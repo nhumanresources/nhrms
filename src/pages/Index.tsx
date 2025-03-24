@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log("Index page loaded");
   }, []);
 
   return (
