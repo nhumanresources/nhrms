@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -18,10 +17,12 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { fadeIn, slideInLeft } from '@/lib/animations';
+import { toast } from '@/hooks/use-toast';
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,6 +35,13 @@ export default function Dashboard() {
 
     handleResize();
     window.addEventListener('resize', handleResize);
+    
+    // Show a welcome toast when the dashboard loads
+    toast({
+      title: "Welcome to nHRMS Dashboard",
+      description: "You are now logged in to the system.",
+    });
+    
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -45,6 +53,9 @@ export default function Dashboard() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Extract the current page from the pathname
+  const currentPath = location.pathname.split('/')[2] || '';
+  
   return (
     <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
