@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -40,7 +39,6 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-xl font-semibold">nHRMS</span>
-            <span className="text-primary text-xl font-light">.com</span>
           </Link>
 
           {/* Desktop Menu */}

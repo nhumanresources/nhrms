@@ -10,7 +10,6 @@ export default function Footer() {
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-6">
               <span className="text-xl font-semibold">nHRMS</span>
-              <span className="text-primary text-xl font-light">.com</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
               Comprehensive 360° HR Management solutions for modern organizations seeking excellence.
@@ -108,7 +107,7 @@ export default function Footer() {
 
         <div className="border-t border-border/50 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} nHRMS.com. All rights reserved.
+            © {new Date().getFullYear()} nHRMS. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
