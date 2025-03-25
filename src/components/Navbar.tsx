@@ -103,6 +103,9 @@ const NavItems = () => (
           <Link to="/services/bot-hr-teams" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
             Build Operate and Transfer - HR Teams
           </Link>
+          <Link to="/services/hr-tech" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+            HR Technology
+          </Link>
         </div>
       </div>
     </div>
@@ -154,6 +157,9 @@ const MobileNavItems = () => (
           </Link>
           <Link to="/services/bot-hr-teams" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             Build Operate and Transfer - HR Teams
+          </Link>
+          <Link to="/services/hr-tech" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            HR Technology
           </Link>
         </div>
       </details>

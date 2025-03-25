@@ -19,6 +19,7 @@ import HRAdvisory from "./pages/services/HRAdvisory";
 import KnowledgeManagement from "./pages/services/KnowledgeManagement";
 import GoToMarket from "./pages/services/GoToMarket";
 import BOTHRTeams from "./pages/services/BOTHRTeams";
+import HRTech from "./pages/services/HRTech";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/services/knowledge-management" element={<KnowledgeManagement />} />
           <Route path="/services/go-to-market" element={<GoToMarket />} />
           <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
+          <Route path="/services/hr-tech" element={<HRTech />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
