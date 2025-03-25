@@ -31,13 +31,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-medium text-lg mb-4">Services</h4>
+            <h4 className="font-medium text-lg mb-4">What We Are Good At</h4>
             <ul className="space-y-3">
-              <li>
-                <Link to="/services/talent-acquisition" className="text-muted-foreground hover:text-primary transition-colors">
-                  Talent Acquisition
-                </Link>
-              </li>
               <li>
                 <Link to="/services/executive-search" className="text-muted-foreground hover:text-primary transition-colors">
                   Executive Search
@@ -51,6 +46,16 @@ export default function Footer() {
               <li>
                 <Link to="/services/knowledge-management" className="text-muted-foreground hover:text-primary transition-colors">
                   Knowledge Management
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/go-to-market" className="text-muted-foreground hover:text-primary transition-colors">
+                  Go to Market Strategy & Execution
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/bot-hr-teams" className="text-muted-foreground hover:text-primary transition-colors">
+                  Build Operate and Transfer - HR Teams
                 </Link>
               </li>
             </ul>

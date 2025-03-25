@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -91,13 +92,10 @@ const NavItems = () => (
     </Link>
     <div className="relative group">
       <button className="flex items-center animated-link text-sm font-medium">
-        Services <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
+        What We Are Good At <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
       </button>
       <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left">
         <div className="glass-panel rounded-lg p-3 shadow-xl">
-          <Link to="/services/talent-acquisition" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
-            Talent Acquisition
-          </Link>
           <Link to="/services/executive-search" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
             Executive Search
           </Link>
@@ -106,6 +104,12 @@ const NavItems = () => (
           </Link>
           <Link to="/services/knowledge-management" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
             Knowledge Management
+          </Link>
+          <Link to="/services/go-to-market" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+            Go to Market Strategy & Execution
+          </Link>
+          <Link to="/services/bot-hr-teams" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+            Build Operate and Transfer - HR Teams
           </Link>
         </div>
       </div>
@@ -127,12 +131,9 @@ const MobileNavItems = () => (
     <div className="px-3 py-2">
       <details className="group">
         <summary className="flex items-center text-sm font-medium cursor-pointer">
-          Services <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
+          What We Are Good At <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
         </summary>
         <div className="mt-2 ml-4 space-y-1">
-          <Link to="/services/talent-acquisition" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
-            Talent Acquisition
-          </Link>
           <Link to="/services/executive-search" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             Executive Search
           </Link>
@@ -141,6 +142,12 @@ const MobileNavItems = () => (
           </Link>
           <Link to="/services/knowledge-management" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             Knowledge Management
+          </Link>
+          <Link to="/services/go-to-market" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            Go to Market Strategy & Execution
+          </Link>
+          <Link to="/services/bot-hr-teams" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            Build Operate and Transfer - HR Teams
           </Link>
         </div>
       </details>
