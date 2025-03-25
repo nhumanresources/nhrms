@@ -14,6 +14,7 @@ import Blog from "./pages/Blog";
 import Research from "./pages/Research";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
+import ExecutiveSearch from "./pages/services/ExecutiveSearch";
 
 const queryClient = new QueryClient();
 
@@ -36,7 +37,7 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           
           {/* Service routes */}
-          <Route path="/services/executive-search" element={<NotFound />} /> {/* Placeholder until page is created */}
+          <Route path="/services/executive-search" element={<ExecutiveSearch />} />
           <Route path="/services/hr-advisory" element={<NotFound />} /> {/* Placeholder until page is created */}
           <Route path="/services/knowledge-management" element={<NotFound />} /> {/* Placeholder until page is created */}
           <Route path="/services/go-to-market" element={<NotFound />} /> {/* Placeholder until page is created */}
