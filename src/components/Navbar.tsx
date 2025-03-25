@@ -92,7 +92,7 @@ const NavItems = () => (
     </Link>
     <div className="relative group">
       <button className="flex items-center animated-link text-sm font-medium">
-        What We Are Good At <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
+        What We Do <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
       </button>
       <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left">
         <div className="glass-panel rounded-lg p-3 shadow-xl">
@@ -114,8 +114,17 @@ const NavItems = () => (
         </div>
       </div>
     </div>
-    <Link to="/about" className="animated-link text-sm font-medium">
-      About
+    <Link to="/who-we-are" className="animated-link text-sm font-medium">
+      Who Are We
+    </Link>
+    <Link to="/case-studies" className="animated-link text-sm font-medium">
+      Case Studies
+    </Link>
+    <Link to="/blog" className="animated-link text-sm font-medium">
+      Blog
+    </Link>
+    <Link to="/research" className="animated-link text-sm font-medium">
+      Research
     </Link>
     <Link to="/contact" className="animated-link text-sm font-medium">
       Contact
@@ -131,7 +140,7 @@ const MobileNavItems = () => (
     <div className="px-3 py-2">
       <details className="group">
         <summary className="flex items-center text-sm font-medium cursor-pointer">
-          What We Are Good At <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
+          What We Do <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
         </summary>
         <div className="mt-2 ml-4 space-y-1">
           <Link to="/services/executive-search" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
@@ -152,8 +161,17 @@ const MobileNavItems = () => (
         </div>
       </details>
     </div>
-    <Link to="/about" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      About
+    <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
+      Who Are We
+    </Link>
+    <Link to="/case-studies" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
+      Case Studies
+    </Link>
+    <Link to="/blog" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
+      Blog
+    </Link>
+    <Link to="/research" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
+      Research
     </Link>
     <Link to="/contact" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Contact

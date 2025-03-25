@@ -74,7 +74,7 @@ export default function ServicesSection() {
     <div className="py-20 bg-background" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Are Good At</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
           <p className="text-muted-foreground text-lg">
             Our suite of HR services is designed to help your organization thrive in today's competitive landscape.
           </p>
