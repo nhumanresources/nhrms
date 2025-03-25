@@ -8,6 +8,11 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import WhoWeAre from "./pages/WhoWeAre";
+import CaseStudies from "./pages/CaseStudies";
+import Blog from "./pages/Blog";
+import Research from "./pages/Research";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -22,11 +27,12 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
-          <Route path="/who-we-are" element={<NotFound />} /> {/* Placeholder until page is created */}
-          <Route path="/case-studies" element={<NotFound />} /> {/* Placeholder until page is created */}
-          <Route path="/blog" element={<NotFound />} /> {/* Placeholder until page is created */}
-          <Route path="/research" element={<NotFound />} /> {/* Placeholder until page is created */}
-          <Route path="/contact" element={<NotFound />} /> {/* Placeholder until page is created */}
+          <Route path="/who-we-are" element={<WhoWeAre />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/research" element={<Research />} />
+          <Route path="/contact" element={<Contact />} />
+          
           {/* Service routes */}
           <Route path="/services/executive-search" element={<NotFound />} /> {/* Placeholder until page is created */}
           <Route path="/services/hr-advisory" element={<NotFound />} /> {/* Placeholder until page is created */}

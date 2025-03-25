@@ -70,11 +70,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="text-muted-foreground hover:text-primary transition-colors">
-                  Our Team
-                </Link>
-              </li>
-              <li>
                 <Link to="/case-studies" className="text-muted-foreground hover:text-primary transition-colors">
                   Case Studies
                 </Link>
@@ -102,12 +97,12 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="flex-shrink-0 text-muted-foreground" />
-                <span className="text-muted-foreground">123 Business Avenue, Suite 500, New York, NY 10001</span>
+                <span className="text-muted-foreground">nHRMS Inc., 123 Corporate Plaza, Suite 500, St. Louis, MO 63101</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="flex-shrink-0 text-muted-foreground" />
-                <a href="tel:+11234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                  +1 (123) 456-7890
+                <a href="tel:+13143018402" className="text-muted-foreground hover:text-primary transition-colors">
+                  +1 (314) 301-8402
                 </a>
               </li>
               <li className="flex items-center space-x-3">
@@ -122,7 +117,7 @@ export default function Footer() {
 
         <div className="border-t border-border/50 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} nHRMS. All rights reserved.
+            © 2009-2025 nHRMS Inc. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">

@@ -45,14 +45,6 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             <NavItems />
-            <div className="flex items-center space-x-2">
-              <Button variant="outline" asChild>
-                <Link to="/login">Login</Link>
-              </Button>
-              <Button asChild>
-                <Link to="/login?register=true">Register</Link>
-              </Button>
-            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -87,8 +79,8 @@ export default function Navbar() {
 
 const NavItems = () => (
   <>
-    <Link to="/" className="animated-link text-sm font-medium">
-      Home
+    <Link to="/who-we-are" className="animated-link text-sm font-medium">
+      Who Are We
     </Link>
     <div className="relative group">
       <button className="flex items-center animated-link text-sm font-medium">
@@ -114,9 +106,6 @@ const NavItems = () => (
         </div>
       </div>
     </div>
-    <Link to="/who-we-are" className="animated-link text-sm font-medium">
-      Who Are We
-    </Link>
     <Link to="/case-studies" className="animated-link text-sm font-medium">
       Case Studies
     </Link>
@@ -129,13 +118,21 @@ const NavItems = () => (
     <Link to="/contact" className="animated-link text-sm font-medium">
       Contact
     </Link>
+    <div className="ml-4 flex items-center space-x-2">
+      <Button variant="outline" size="sm" asChild>
+        <Link to="/login">Login</Link>
+      </Button>
+      <Button size="sm" asChild>
+        <Link to="/login?register=true">Register</Link>
+      </Button>
+    </div>
   </>
 );
 
 const MobileNavItems = () => (
   <>
-    <Link to="/" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      Home
+    <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
+      Who Are We
     </Link>
     <div className="px-3 py-2">
       <details className="group">
@@ -161,9 +158,6 @@ const MobileNavItems = () => (
         </div>
       </details>
     </div>
-    <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      Who Are We
-    </Link>
     <Link to="/case-studies" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Case Studies
     </Link>
