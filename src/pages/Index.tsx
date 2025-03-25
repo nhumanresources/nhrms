@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import KnowledgeSection from '@/components/KnowledgeSection';
+import TrendsResearchSlider from '@/components/TrendsResearchSlider';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -41,6 +42,9 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         <ServicesSection />
+        
+        {/* Trends and Research Slider Section */}
+        <TrendsResearchSlider />
         
         {/* Why Choose Us Section */}
         <section className="py-16 bg-primary/5">
