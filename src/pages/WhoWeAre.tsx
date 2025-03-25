@@ -2,48 +2,110 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { Check, Users, Award, Globe, ArrowRight, Calendar, BookOpen, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function WhoWeAre() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const leadershipTeam = [
+    {
+      name: "Sarah Johnson",
+      title: "Chief Executive Officer",
+      bio: "With over 20 years of experience in HR consulting, Sarah has led transformational HR initiatives for Fortune 500 companies across multiple industries.",
+      image: "/placeholder.svg"
+    },
+    {
+      name: "David Chen",
+      title: "Chief Operating Officer",
+      bio: "David brings 15+ years of operational leadership experience, specializing in scaling professional services organizations and optimizing service delivery.",
+      image: "/placeholder.svg"
+    },
+    {
+      name: "Michelle Rodriguez",
+      title: "Chief HR Officer",
+      bio: "Former CHRO of a global technology company, Michelle has extensive experience in all facets of strategic HR management and organizational development.",
+      image: "/placeholder.svg"
+    },
+    {
+      name: "Robert Kim",
+      title: "Head of Executive Search",
+      bio: "With a background in executive recruitment for leading firms, Robert has placed over 200 C-suite executives in companies worldwide.",
+      image: "/placeholder.svg"
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow pt-20">
+        {/* Hero Section */}
         <section className="py-16 md:py-24 bg-primary/5">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Who Are We</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Who We Are</h1>
               <p className="text-xl text-muted-foreground">
-                A premier management consulting firm specializing in transformative HR solutions for forward-thinking organizations.
+                nHRMS is a leading HR management consulting firm dedicated to helping organizations optimize their human capital and achieve business success through strategic HR solutions.
               </p>
             </div>
           </div>
         </section>
 
+        {/* Mission & Values Section */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-                <p className="text-muted-foreground mb-4">
-                  Founded in 2009, nHRMS began with a vision to revolutionize how organizations approach human resource management. What started as a small team of HR consultants has grown into a comprehensive consulting firm with global reach and influence.
+                <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
+                <p className="text-lg text-muted-foreground mb-8">
+                  We empower organizations to achieve exceptional performance through their people by delivering innovative, tailored HR solutions that align human capital strategy with business objectives.
                 </p>
-                <p className="text-muted-foreground mb-4">
-                  Over the years, we've helped hundreds of organizations across various industries optimize their HR operations, find exceptional talent, and build sustainable HR strategies that align with their business objectives.
-                </p>
-                <p className="text-muted-foreground">
-                  Our success is built on a foundation of deep expertise, innovative thinking, and a commitment to delivering measurable results for our clients.
+                <h2 className="text-3xl font-bold mb-6">Our Vision</h2>
+                <p className="text-lg text-muted-foreground">
+                  To be the most trusted HR management consulting partner, recognized globally for our expertise, innovation, and measurable impact on organizational success.
                 </p>
               </div>
-              <div className="relative">
-                <div className="aspect-video bg-muted rounded-lg overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-3xl font-bold">Since 2009</span>
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Our Values</h2>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-lg">Excellence</h3>
+                      <p className="text-muted-foreground">We are committed to delivering exceptional quality and results in everything we do.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-lg">Innovation</h3>
+                      <p className="text-muted-foreground">We continuously seek new and better ways to solve complex HR challenges.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-lg">Integrity</h3>
+                      <p className="text-muted-foreground">We operate with the highest ethical standards and unwavering commitment to doing what's right.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-lg">Partnership</h3>
+                      <p className="text-muted-foreground">We build collaborative relationships with our clients based on trust, respect, and shared success.</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -51,85 +113,128 @@ export default function WhoWeAre() {
           </div>
         </section>
 
-        <Separator />
-
-        <section className="py-16 bg-background">
+        {/* Our Story Section */}
+        <section className="py-16 bg-primary/5">
           <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold mb-12 text-center">Our Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center text-center">
-                <div className="rounded-full bg-primary/10 w-20 h-20 flex items-center justify-center text-primary mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Calendar className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-lg">Founded in 2009</h3>
+                    <p className="text-muted-foreground">
+                      nHRMS was founded by a team of experienced HR executives with a vision to transform how organizations approach human capital management. Starting with a focus on executive search, we quickly expanded our services to address the full spectrum of HR challenges.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Integrity</h3>
-                <p className="text-muted-foreground">
-                  We uphold the highest ethical standards in all our interactions, building trust through transparency and honesty.
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="rounded-full bg-primary/10 w-20 h-20 flex items-center justify-center text-primary mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Globe className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-lg">Global Expansion</h3>
+                    <p className="text-muted-foreground">
+                      By 2015, we had established a presence in key markets across North America, Europe, and Asia, allowing us to serve multinational clients with consistent quality and local expertise.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Innovation</h3>
-                <p className="text-muted-foreground">
-                  We constantly pursue innovative solutions that challenge conventional thinking and deliver exceptional results.
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="rounded-full bg-primary/10 w-20 h-20 flex items-center justify-center text-primary mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <BookOpen className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-lg">Innovation & Thought Leadership</h3>
+                    <p className="text-muted-foreground">
+                      Throughout our journey, we've maintained a commitment to innovation and thought leadership, regularly publishing research and developing proprietary methodologies to address emerging HR challenges.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Excellence</h3>
-                <p className="text-muted-foreground">
-                  We strive for excellence in everything we do, setting high standards and consistently exceeding expectations.
-                </p>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Briefcase className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-lg">Today</h3>
+                    <p className="text-muted-foreground">
+                      Today, nHRMS stands as a trusted partner to hundreds of organizations worldwide, from fast-growing startups to Fortune 500 companies, helping them build and maintain world-class HR functions that drive business success.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <Separator />
-
+        {/* Leadership Team Section */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold mb-12 text-center">Leadership Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 rounded-full bg-muted mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-r from-primary/30 to-secondary/30"></div>
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Our Leadership Team</h2>
+              <p className="text-muted-foreground">
+                Led by experienced professionals with deep expertise in HR and business strategy.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {leadershipTeam.map((leader, index) => (
+                <div key={index} className="bg-background border border-border/50 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                  <div className="aspect-square bg-primary/5 flex items-center justify-center">
+                    <Users className="h-20 w-20 text-primary/20" />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-bold text-lg mb-1">{leader.name}</h3>
+                    <p className="text-primary text-sm mb-3">{leader.title}</p>
+                    <p className="text-sm text-muted-foreground">{leader.bio}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold">Sarah Johnson</h3>
-                <p className="text-primary font-medium mb-2">CEO & Founder</p>
-                <p className="text-muted-foreground">
-                  20+ years of experience in HR leadership and organizational development.
-                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="py-16 bg-primary/5">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold mb-2">16+</div>
+                <p className="text-muted-foreground">Years of Experience</p>
               </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 rounded-full bg-muted mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-r from-primary/30 to-secondary/30"></div>
-                </div>
-                <h3 className="text-xl font-semibold">Michael Chen</h3>
-                <p className="text-primary font-medium mb-2">Chief Strategy Officer</p>
-                <p className="text-muted-foreground">
-                  Former Fortune 500 HR Executive with expertise in global workforce strategies.
-                </p>
+              <div>
+                <div className="text-4xl font-bold mb-2">500+</div>
+                <p className="text-muted-foreground">Clients Served</p>
               </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 rounded-full bg-muted mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-r from-primary/30 to-secondary/30"></div>
-                </div>
-                <h3 className="text-xl font-semibold">Olivia Martinez</h3>
-                <p className="text-primary font-medium mb-2">Head of Consulting</p>
-                <p className="text-muted-foreground">
-                  Specialized in transformational HR projects and change management.
-                </p>
+              <div>
+                <div className="text-4xl font-bold mb-2">12</div>
+                <p className="text-muted-foreground">Global Offices</p>
               </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">150+</div>
+                <p className="text-muted-foreground">HR Consultants</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 bg-primary/10">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-4">Ready to Transform Your HR Function?</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Let's discuss how our team of experts can help you address your most pressing HR challenges and drive business success.
+              </p>
+              <Button size="lg" asChild>
+                <Link to="/contact" className="inline-flex items-center">
+                  Contact Our Team <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>

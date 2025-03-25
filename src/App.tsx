@@ -15,6 +15,10 @@ import Research from "./pages/Research";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import ExecutiveSearch from "./pages/services/ExecutiveSearch";
+import HRAdvisory from "./pages/services/HRAdvisory";
+import KnowledgeManagement from "./pages/services/KnowledgeManagement";
+import GoToMarket from "./pages/services/GoToMarket";
+import BOTHRTeams from "./pages/services/BOTHRTeams";
 
 const queryClient = new QueryClient();
 
@@ -38,10 +42,10 @@ const App = () => (
           
           {/* Service routes */}
           <Route path="/services/executive-search" element={<ExecutiveSearch />} />
-          <Route path="/services/hr-advisory" element={<NotFound />} /> {/* Placeholder until page is created */}
-          <Route path="/services/knowledge-management" element={<NotFound />} /> {/* Placeholder until page is created */}
-          <Route path="/services/go-to-market" element={<NotFound />} /> {/* Placeholder until page is created */}
-          <Route path="/services/bot-hr-teams" element={<NotFound />} /> {/* Placeholder until page is created */}
+          <Route path="/services/hr-advisory" element={<HRAdvisory />} />
+          <Route path="/services/knowledge-management" element={<KnowledgeManagement />} />
+          <Route path="/services/go-to-market" element={<GoToMarket />} />
+          <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
