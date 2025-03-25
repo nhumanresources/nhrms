@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Search, FileText, Library, Briefcase } from 'lucide-react';
+import { ArrowRight, Search, FileText, Library, Briefcase, BarChart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { scaleIn } from '@/lib/animations';
 
@@ -57,14 +57,14 @@ export default function ServicesSection() {
       link: "/services/knowledge-management"
     },
     {
-      icon: <Briefcase className="h-10 w-10" />,
-      title: "Go to Market Strategy & Execution",
+      icon: <BarChart className="h-10 w-10" />,
+      title: "Go to Market Strategy",
       description: "Develop and implement effective strategies to bring your HR solutions to market with maximum impact and efficiency.",
       link: "/services/go-to-market"
     },
     {
       icon: <Briefcase className="h-10 w-10" />,
-      title: "Build Operate and Transfer - HR Teams",
+      title: "BOT HR Teams",
       description: "Complete BOT solutions for HR teams - we build, operate, and transfer fully functional HR departments tailored to your organization.",
       link: "/services/bot-hr-teams"
     }
@@ -103,6 +103,14 @@ export default function ServicesSection() {
               </CardFooter>
             </Card>
           ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Button size="lg" asChild>
+            <Link to="/services">
+              View All Services <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

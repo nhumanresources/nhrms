@@ -13,6 +13,7 @@ import CaseStudies from "./pages/CaseStudies";
 import Blog from "./pages/Blog";
 import Research from "./pages/Research";
 import Contact from "./pages/Contact";
+import Services from "./pages/Services";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/research" element={<Research />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
           
           {/* Service routes */}
           <Route path="/services/executive-search" element={<NotFound />} /> {/* Placeholder until page is created */}

@@ -44,13 +44,13 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div {...slideInLeft(200)}>
             <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              360° HR Management
+              Global HR Consulting
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight tracking-tight text-balance mb-4">
-              Transforming HR <br /> for the Future
+              Transforming <br /> Organizations
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-md">
-              Comprehensive HR management solutions designed to optimize your organization's most valuable asset—your people.
+              Comprehensive HR management and consulting solutions for organizations seeking excellence in today's competitive landscape.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
@@ -70,14 +70,14 @@ export default function HeroSection() {
                 <div className="absolute -top-6 -left-6 w-20 h-20 bg-primary/5 rounded-full"></div>
                 <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-primary/10 rounded-full"></div>
                 
-                <h3 className="text-2xl font-bold mb-4">HR Solutions</h3>
+                <h3 className="text-2xl font-bold mb-4">Our Expertise</h3>
                 
                 <div className="space-y-4">
                   {[
-                    { title: "Talent Acquisition", delay: 200 },
+                    { title: "Organization Strategy", delay: 200 },
                     { title: "Executive Search", delay: 400 },
                     { title: "HR Advisory", delay: 600 },
-                    { title: "Knowledge Management", delay: 800 }
+                    { title: "Workforce Transformation", delay: 800 }
                   ].map((item, index) => (
                     <div key={index} className="card-hover" {...slideInBottom(item.delay)}>
                       <div className="glass-panel rounded-lg p-4 flex items-center gap-3">
