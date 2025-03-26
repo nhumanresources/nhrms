@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,6 +12,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,9 +49,9 @@ export default function LoginForm() {
         description: "Welcome back! Redirecting to dashboard...",
       });
       
-      // Redirect would happen here
+      // Use React Router for navigation instead of page reload
       setTimeout(() => {
-        window.location.href = '/dashboard';
+        navigate('/dashboard');
       }, 1000);
       
     } catch (error) {
@@ -93,9 +95,13 @@ export default function LoginForm() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <Label htmlFor="password">Password</Label>
-            <a href="/forgot-password" className="text-sm text-primary hover:underline">
+            <button 
+              type="button" 
+              onClick={() => navigate('/forgot-password')} 
+              className="text-sm text-primary hover:underline"
+            >
               Forgot password?
-            </a>
+            </button>
           </div>
           <Input 
             id="password" 
@@ -134,9 +140,13 @@ export default function LoginForm() {
       
       <p className="text-center text-sm text-muted-foreground">
         Don't have an account?{" "}
-        <a href="/login?register=true" className="text-primary hover:underline">
+        <button 
+          type="button" 
+          onClick={() => navigate('/login?register=true')} 
+          className="text-primary hover:underline"
+        >
           Sign up
-        </a>
+        </button>
       </p>
     </div>
   );

@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import LoginForm from '@/components/LoginForm';
 import RegisterForm from '@/components/RegisterForm';
@@ -12,6 +12,7 @@ const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [animating, setAnimating] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Check if register parameter is in the URL
@@ -29,13 +30,17 @@ const Login = () => {
     setTimeout(() => {
       setIsRegister(register);
       setAnimating(false);
+      
+      // Update URL without full page reload
+      const newSearch = register ? '?register=true' : '';
+      navigate({ pathname: '/login', search: newSearch }, { replace: true });
     }, 300);
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-b from-blue-50 to-white">
       {/* Left side - Illustration */}
-      <div className="hidden md:flex md:w-1/2 bg-primary-foreground p-10 items-center justify-center">
+      <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-blue-50 to-white p-10 items-center justify-center">
         <div className="max-w-md mx-auto text-center" {...fadeIn(300)}>
           <div className="mb-8 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
@@ -71,7 +76,7 @@ const Login = () => {
       </div>
       
       {/* Right side - Form */}
-      <div className="w-full md:w-1/2 bg-background flex flex-col">
+      <div className="w-full md:w-1/2 bg-gradient-to-tr from-white to-blue-50 flex flex-col">
         <div className="p-4">
           <Button variant="ghost" size="sm" asChild>
             <Link to="/" className="flex items-center text-muted-foreground hover:text-foreground">
@@ -82,10 +87,11 @@ const Login = () => {
         </div>
         
         <div className="flex-grow flex items-center justify-center p-4 md:p-8">
-          <div className="w-full max-w-md space-y-8">
+          <div className="w-full max-w-md space-y-8 bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-sm">
             {/* Tab navigation */}
             <div className="flex border-b">
               <button
+                type="button"
                 className={cn(
                   "pb-2 px-4 text-sm font-medium transition-colors",
                   !isRegister ? "border-b-2 border-primary text-foreground" : "text-muted-foreground"
@@ -95,6 +101,7 @@ const Login = () => {
                 Sign in
               </button>
               <button
+                type="button"
                 className={cn(
                   "pb-2 px-4 text-sm font-medium transition-colors",
                   isRegister ? "border-b-2 border-primary text-foreground" : "text-muted-foreground"
