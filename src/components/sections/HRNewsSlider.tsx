@@ -115,10 +115,10 @@ export default function HRNewsSlider() {
   }, [currentIndex, visibleItems]);
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-0 bg-background mt-0">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Latest HR Insights</h2>
+        <div className="text-center mb-8 mt-0">
+          <h2 className="text-3xl font-bold mb-3">Latest HR Insights</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Stay updated with the latest news, trends, and developments in the HR world
           </p>

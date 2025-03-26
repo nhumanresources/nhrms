@@ -54,8 +54,10 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         
-        {/* HR News Slider Section - Added between Hero and Metrics */}
-        <HRNewsSlider />
+        {/* HR News Slider Section - Added directly below Hero with no gap */}
+        <div className="mt-0 pt-0">
+          <HRNewsSlider />
+        </div>
         
         {/* Tech-driven HR Metrics Section */}
         <MetricsSection metrics={performanceMetrics} />
