@@ -21,6 +21,7 @@ import GoToMarket from "./pages/services/GoToMarket";
 import BOTHRTeams from "./pages/services/BOTHRTeams";
 import HRTech from "./pages/services/HRTech";
 
+// Create a new QueryClient instance
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -47,6 +48,9 @@ const App = () => (
         <Route path="/services/go-to-market" element={<GoToMarket />} />
         <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
         <Route path="/services/hr-tech" element={<HRTech />} />
+        
+        {/* Base path for the deployed preview site */}
+        <Route path="/hr360-solution-hub/*" element={<Index />} />
         
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
