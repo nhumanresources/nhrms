@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { hrNews } from '@/data/newsItems';
@@ -63,9 +62,9 @@ export default function HRNewsSlider() {
   }, [currentIndex, visibleItems]);
 
   return (
-    <section className="py-0 bg-background mt-0">
+    <section className="py-0 bg-background">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-8 mt-0">
+        <div className="text-center mb-6">
           <h2 className="text-3xl font-bold mb-3">Latest HR Insights</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Stay updated with the latest news, trends, and developments in the HR world
@@ -73,7 +72,6 @@ export default function HRNewsSlider() {
         </div>
         
         <div className="relative">
-          {/* Navigation Controls */}
           <NewsNavigation 
             currentIndex={currentIndex}
             totalItems={hrNews.length}
@@ -82,7 +80,6 @@ export default function HRNewsSlider() {
             onNext={nextSlide}
           />
           
-          {/* News Items Slider */}
           <div 
             ref={containerRef}
             className="flex overflow-x-scroll scrollbar-hide snap-x snap-mandatory -mx-4 px-4"

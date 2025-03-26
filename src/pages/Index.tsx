@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -11,12 +10,6 @@ import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CTASection from '@/components/sections/CTASection';
 import HRNewsSlider from '@/components/sections/HRNewsSlider';
-
-const Index = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    console.log("Index page loaded");
-  }, []);
 
   // Testimonials data
   const testimonials = [
@@ -48,14 +41,18 @@ const Index = () => {
     { label: "Knowledge Management", value: 94 }
   ];
 
+const Index = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    console.log("Index page loaded");
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        
-        {/* HR News Slider Section - Connect directly to Hero with no gap */}
-        <div className="mt-0 pt-0 -mt-4">
+        <div className="-mt-20">
           <HRNewsSlider />
         </div>
         
