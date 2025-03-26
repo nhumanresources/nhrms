@@ -8,7 +8,6 @@ import TrendsResearchSlider from '@/components/TrendsResearchSlider';
 import Footer from '@/components/Footer';
 import MetricsSection from '@/components/sections/MetricsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CTASection from '@/components/sections/CTASection';
 import HRNewsSlider from '@/components/sections/HRNewsSlider';
 
@@ -18,28 +17,6 @@ const performanceMetrics = [
   { label: "Human Connection Score", value: 98 },
   { label: "EQ Integration Index", value: 94 },
   { label: "Digital Transformation Success", value: 96 }
-];
-
-// Testimonials highlighting AI + Human + EQ success stories
-const testimonials = [
-  {
-    quote: "The combination of AI precision and human empathy in nHRMS's approach transformed our hiring process, creating a perfect balance of efficiency and emotional intelligence.",
-    name: "Dr. Sarah Chen",
-    title: "Chief People Officer, Future Tech Solutions",
-    rating: 5
-  },
-  {
-    quote: "Their AI-powered insights combined with deep emotional intelligence expertise helped us build the most engaged workforce we've ever had.",
-    name: "Marcus Rodriguez",
-    title: "Head of Innovation, Global Dynamics",
-    rating: 5
-  },
-  {
-    quote: "nHRMS's unique blend of technology and human touch has revolutionized how we approach employee development and well-being.",
-    name: "Emma Thompson",
-    title: "Director of People & Culture, Next-Gen Industries",
-    rating: 5
-  }
 ];
 
 const Index = () => {
@@ -65,7 +42,6 @@ const Index = () => {
           </div>
           <WhyChooseUsSection />
           <KnowledgeSection />
-          <TestimonialsSection testimonials={testimonials} />
           <CTASection />
         </div>
       </main>
