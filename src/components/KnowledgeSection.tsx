@@ -34,23 +34,23 @@ export default function KnowledgeSection() {
   const recentUpdates = [
     {
       title: "New Amendments to Labor Code",
-      date: "June 12, 2023",
+      date: "March 15, 2025",
       category: "Labor Law"
     },
     {
       title: "Remote Work Regulations Updated",
-      date: "May 28, 2023",
+      date: "February 28, 2025",
       category: "Workplace Policy"
     },
     {
       title: "Employee Benefits Guidelines",
-      date: "April 15, 2023",
+      date: "January 20, 2025",
       category: "Compliance"
     }
   ];
 
   return (
-    <div className="py-20 bg-secondary/50" ref={sectionRef}>
+    <div className="py-20 bg-wave-pattern" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div {...slideInLeft(300)}>
@@ -87,7 +87,7 @@ export default function KnowledgeSection() {
 
           <div className="relative" {...slideInRight(500)}>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl transform rotate-1 scale-105 opacity-70"></div>
-            <div className="glass-panel rounded-2xl p-8 relative z-10">
+            <div className="glass-panel rounded-2xl p-8 relative z-10 bg-white border border-blue-100/50 shadow-lg">
               <div className="flex items-center justify-center mb-6">
                 <div className="rounded-full bg-primary/10 p-4">
                   <BookOpen className="h-8 w-8 text-primary" />

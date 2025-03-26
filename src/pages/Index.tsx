@@ -25,19 +25,18 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-primary/5">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 via-white to-blue-50">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
         <div className="-mt-32 relative z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-50/80 pointer-events-none" />
           <HRNewsSlider />
         </div>
         <div className="relative z-20">
           <MetricsSection metrics={performanceMetrics} />
           <ServicesSection />
-          <div className="relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5" />
+          <div className="relative overflow-hidden bg-pattern">
             <TrendsResearchSlider />
           </div>
           <WhyChooseUsSection />
