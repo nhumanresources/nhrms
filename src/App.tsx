@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -30,6 +30,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <Routes>
+        {/* Main routes */}
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -49,7 +50,8 @@ const App = () => (
         <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
         <Route path="/services/hr-tech" element={<HRTech />} />
         
-        {/* Base path for the deployed preview site */}
+        {/* Special routes for the deployed preview site */}
+        <Route path="/hr360-solution-hub" element={<Navigate to="/" replace />} />
         <Route path="/hr360-solution-hub/*" element={<Index />} />
         
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
