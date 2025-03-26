@@ -52,7 +52,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <div className="-mt-20">
+        <div className="-mt-32">
           <HRNewsSlider />
         </div>
         
