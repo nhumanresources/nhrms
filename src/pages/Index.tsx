@@ -12,57 +12,62 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CTASection from '@/components/sections/CTASection';
 import HRNewsSlider from '@/components/sections/HRNewsSlider';
 
-// Testimonials data
-const testimonials = [
-  {
-    quote: "nHRMS helped us completely transform our talent acquisition process, resulting in a 40% reduction in time-to-hire and significant improvement in candidate quality.",
-    name: "Jennifer Thompson",
-    title: "CHRO, Global Tech Company",
-    rating: 5
-  },
-  {
-    quote: "The knowledge management system implemented by nHRMS has been a game-changer for our organization, preserving critical expertise and improving collaboration across our global teams.",
-    name: "Michael Chen",
-    title: "VP of HR, Manufacturing Corporation",
-    rating: 5
-  },
-  {
-    quote: "Working with nHRMS on our executive search needs has been exceptional. They truly understand our culture and have helped us build a leadership team that's driving unprecedented growth.",
-    name: "Sarah Rodriguez",
-    title: "CEO, Healthcare Startup",
-    rating: 5
-  }
+// Performance metrics focused on AI + Human + EQ integration
+const performanceMetrics = [
+  { label: "AI-Driven Decision Accuracy", value: 95 },
+  { label: "Human Connection Score", value: 98 },
+  { label: "EQ Integration Index", value: 94 },
+  { label: "Digital Transformation Success", value: 96 }
 ];
 
-// Performance metrics
-const performanceMetrics = [
-  { label: "Talent Acquisition Success", value: 92 },
-  { label: "Client Satisfaction", value: 97 },
-  { label: "Process Efficiency", value: 89 },
-  { label: "Knowledge Management", value: 94 }
+// Testimonials highlighting AI + Human + EQ success stories
+const testimonials = [
+  {
+    quote: "The combination of AI precision and human empathy in nHRMS's approach transformed our hiring process, creating a perfect balance of efficiency and emotional intelligence.",
+    name: "Dr. Sarah Chen",
+    title: "Chief People Officer, Future Tech Solutions",
+    rating: 5
+  },
+  {
+    quote: "Their AI-powered insights combined with deep emotional intelligence expertise helped us build the most engaged workforce we've ever had.",
+    name: "Marcus Rodriguez",
+    title: "Head of Innovation, Global Dynamics",
+    rating: 5
+  },
+  {
+    quote: "nHRMS's unique blend of technology and human touch has revolutionized how we approach employee development and well-being.",
+    name: "Emma Thompson",
+    title: "Director of People & Culture, Next-Gen Industries",
+    rating: 5
+  }
 ];
 
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log("Index page loaded");
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-primary/5">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <div className="-mt-32">
+        <div className="-mt-32 relative z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 pointer-events-none" />
           <HRNewsSlider />
         </div>
-        <MetricsSection metrics={performanceMetrics} />
-        <ServicesSection />
-        <TrendsResearchSlider />
-        <WhyChooseUsSection />
-        <KnowledgeSection />
-        <TestimonialsSection testimonials={testimonials} />
-        <CTASection />
+        <div className="relative z-20">
+          <MetricsSection metrics={performanceMetrics} />
+          <ServicesSection />
+          <div className="relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5" />
+            <TrendsResearchSlider />
+          </div>
+          <WhyChooseUsSection />
+          <KnowledgeSection />
+          <TestimonialsSection testimonials={testimonials} />
+          <CTASection />
+        </div>
       </main>
       <Footer />
     </div>
