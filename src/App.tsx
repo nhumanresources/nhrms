@@ -20,6 +20,11 @@ import KnowledgeManagement from "./pages/services/KnowledgeManagement";
 import GoToMarket from "./pages/services/GoToMarket";
 import BOTHRTeams from "./pages/services/BOTHRTeams";
 import HRTech from "./pages/services/HRTech";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
+import LeadershipDevelopment from "./pages/research/LeadershipDevelopment";
+import FinancialHRAnalytics from "./pages/case-studies/FinancialHRAnalytics";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -49,6 +54,17 @@ const App = () => (
         <Route path="/services/go-to-market" element={<GoToMarket />} />
         <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
         <Route path="/services/hr-tech" element={<HRTech />} />
+        
+        {/* Legal pages */}
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/cookies" element={<Cookies />} />
+        
+        {/* Research detail pages */}
+        <Route path="/research/leadership-development-impact" element={<LeadershipDevelopment />} />
+        
+        {/* Case study detail pages */}
+        <Route path="/case-studies/financial-hr-analytics" element={<FinancialHRAnalytics />} />
         
         {/* Special routes for the deployed preview site */}
         <Route path="/hr360-solution-hub" element={<Navigate to="/" replace />} />

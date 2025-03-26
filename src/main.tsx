@@ -5,7 +5,9 @@ import App from './App.tsx';
 import './index.css';
 
 // Determine the base URL for routing
-const baseUrl = import.meta.env.BASE_URL || '/';
+const isPreviewSite = window.location.pathname.startsWith('/hr360-solution-hub');
+const baseUrl = isPreviewSite ? '/hr360-solution-hub' : '/';
+
 console.log("Application initializing with baseUrl:", baseUrl);
 
 createRoot(document.getElementById("root")!).render(
