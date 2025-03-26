@@ -36,13 +36,13 @@ export default function ServicesMenu() {
       title: "Products",
       items: [
         "Talent Suite Overview",
-        "Korn Ferry Architect",
-        "Korn Ferry Assess",
-        "Korn Ferry Coach",
-        "Korn Ferry Learn",
-        "Korn Ferry Listen",
-        "Korn Ferry Pay",
-        "Korn Ferry Sell",
+        "nHRMS Architect",
+        "nHRMS Assess",
+        "nHRMS Coach",
+        "nHRMS Learn",
+        "nHRMS Listen",
+        "nHRMS Pay",
+        "nHRMS Sell",
         "Talent Suite Resources"
       ]
     },
