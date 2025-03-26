@@ -10,6 +10,7 @@ import MetricsSection from '@/components/sections/MetricsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CTASection from '@/components/sections/CTASection';
+import HRNewsSlider from '@/components/sections/HRNewsSlider';
 
 const Index = () => {
   useEffect(() => {
@@ -52,6 +53,9 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
+        
+        {/* HR News Slider Section - Added between Hero and Metrics */}
+        <HRNewsSlider />
         
         {/* Tech-driven HR Metrics Section */}
         <MetricsSection metrics={performanceMetrics} />
