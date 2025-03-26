@@ -10,6 +10,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Check, Users, Award, BarChart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Slider } from '@/components/ui/slider';
 
 const Index = () => {
   useEffect(() => {
@@ -22,18 +24,29 @@ const Index = () => {
     {
       quote: "nHRMS helped us completely transform our talent acquisition process, resulting in a 40% reduction in time-to-hire and significant improvement in candidate quality.",
       name: "Jennifer Thompson",
-      title: "CHRO, Global Tech Company"
+      title: "CHRO, Global Tech Company",
+      rating: 5
     },
     {
       quote: "The knowledge management system implemented by nHRMS has been a game-changer for our organization, preserving critical expertise and improving collaboration across our global teams.",
       name: "Michael Chen",
-      title: "VP of HR, Manufacturing Corporation"
+      title: "VP of HR, Manufacturing Corporation",
+      rating: 5
     },
     {
       quote: "Working with nHRMS on our executive search needs has been exceptional. They truly understand our culture and have helped us build a leadership team that's driving unprecedented growth.",
       name: "Sarah Rodriguez",
-      title: "CEO, Healthcare Startup"
+      title: "CEO, Healthcare Startup",
+      rating: 5
     }
+  ];
+
+  // Performance metrics
+  const performanceMetrics = [
+    { label: "Talent Acquisition Success", value: 92 },
+    { label: "Client Satisfaction", value: 97 },
+    { label: "Process Efficiency", value: 89 },
+    { label: "Knowledge Management", value: 94 }
   ];
 
   return (
@@ -41,6 +54,30 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
+        
+        {/* Tech-driven HR Metrics Section */}
+        <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {performanceMetrics.map((metric, index) => (
+                <div key={index} className="bg-background rounded-lg p-6 shadow-sm border border-border/30">
+                  <h3 className="text-lg font-medium text-muted-foreground mb-2">{metric.label}</h3>
+                  <div className="flex items-center space-x-4">
+                    <div className="text-3xl font-bold text-primary">{metric.value}%</div>
+                    <Slider
+                      defaultValue={[metric.value]}
+                      max={100}
+                      step={1}
+                      disabled
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        
         <ServicesSection />
         
         {/* Trends and Research Slider Section */}
@@ -57,7 +94,7 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-background p-6 rounded-lg border border-border/50">
+              <div className="bg-background p-6 rounded-lg border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                   <Users className="h-6 w-6 text-primary" />
                 </div>
@@ -81,7 +118,7 @@ const Index = () => {
                 </ul>
               </div>
               
-              <div className="bg-background p-6 rounded-lg border border-border/50">
+              <div className="bg-background p-6 rounded-lg border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                   <Award className="h-6 w-6 text-primary" />
                 </div>
@@ -105,7 +142,7 @@ const Index = () => {
                 </ul>
               </div>
               
-              <div className="bg-background p-6 rounded-lg border border-border/50">
+              <div className="bg-background p-6 rounded-lg border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                   <BarChart className="h-6 w-6 text-primary" />
                 </div>
@@ -134,7 +171,7 @@ const Index = () => {
         
         <KnowledgeSection />
         
-        {/* Testimonials Section */}
+        {/* Testimonials Section with Tabs */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center max-w-3xl mx-auto mb-12">
@@ -144,26 +181,36 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Tabs defaultValue="testimonial-0" className="w-full max-w-4xl mx-auto">
+              <TabsList className="grid w-full grid-cols-3 mb-8">
+                {testimonials.map((testimonial, index) => (
+                  <TabsTrigger key={index} value={`testimonial-${index}`}>
+                    {testimonial.name.split(' ')[0]}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="border border-border/50">
-                  <CardContent className="p-6">
-                    <div className="mb-4 text-primary">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-xl">★</span>
-                      ))}
-                    </div>
-                    <blockquote className="text-muted-foreground mb-6 italic">
-                      "{testimonial.quote}"
-                    </blockquote>
-                    <div>
-                      <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                <TabsContent key={index} value={`testimonial-${index}`} className="mt-0">
+                  <Card className="border border-border/50 shadow-sm">
+                    <CardContent className="p-8">
+                      <div className="mb-4 text-primary">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <span key={i} className="text-xl">★</span>
+                        ))}
+                      </div>
+                      <blockquote className="text-muted-foreground mb-6 italic text-lg">
+                        "{testimonial.quote}"
+                      </blockquote>
+                      <div>
+                        <p className="font-medium text-lg">{testimonial.name}</p>
+                        <p className="text-muted-foreground">{testimonial.title}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
               ))}
-            </div>
+            </Tabs>
             
             <div className="mt-12 text-center">
               <Button variant="outline" asChild>
