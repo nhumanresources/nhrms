@@ -100,8 +100,6 @@ export default function HRNewsSlider() {
               </div>
             ))}
           </div>
-          
-          {/* Mobile Navigation Dots - Rendered within NewsNavigation */}
         </div>
       </div>
     </section>

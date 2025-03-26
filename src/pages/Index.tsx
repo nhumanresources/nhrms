@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -53,8 +54,8 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         
-        {/* HR News Slider Section - Added directly below Hero with no gap */}
-        <div className="mt-0 pt-0">
+        {/* HR News Slider Section - Connect directly to Hero with no gap */}
+        <div className="mt-0 pt-0 -mt-4">
           <HRNewsSlider />
         </div>
         
