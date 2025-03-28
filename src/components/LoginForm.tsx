@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2, Mail, Linkedin } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { setLoggedIn } from '@/utils/loginHelper';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -43,6 +44,9 @@ export default function LoginForm() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
+      // Set logged in state in localStorage
+      setLoggedIn();
+      
       // Success handling
       toast({
         title: "Login Successful",
@@ -71,6 +75,11 @@ export default function LoginForm() {
       description: "Redirecting to LinkedIn for authentication...",
     });
     // LinkedIn integration would happen here
+    // For demo purposes, we'll just set the user as logged in
+    setLoggedIn();
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 1000);
   };
 
   return (

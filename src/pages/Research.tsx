@@ -1,42 +1,78 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Download, FileText } from 'lucide-react';
+import { ArrowRight, Download, FileText, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { researchPapers } from '@/data/researchPapers';
+import { useToast } from '@/components/ui/use-toast';
 
 export default function Research() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { toast } = useToast();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Check if user is logged in (this would be replaced with your actual auth check)
+    const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(userLoggedIn);
   }, []);
+
+  const handleDownload = (title: string, requiresLogin: boolean = true) => {
+    if (requiresLogin && !isLoggedIn) {
+      toast({
+        title: "Login Required",
+        description: "Please login to download research papers",
+        action: (
+          <Button asChild variant="default" size="sm">
+            <Link to="/login">Login</Link>
+          </Button>
+        ),
+      });
+      return;
+    }
+    
+    // In a real implementation, this would trigger a download of an actual PDF
+    toast({
+      title: "Download Started",
+      description: `${title} is now downloading`,
+    });
+  };
 
   const researchReports = [
     {
       title: "2025 HR Technology Landscape Report",
       date: "February 2025",
       description: "A comprehensive analysis of the current HR technology market, emerging trends, and recommendations for technology adoption.",
-      link: "/research/hr-tech-landscape-2025"
+      link: "/research/hr-tech-landscape-2025",
+      externalUrl: "https://www.shrm.org/ResourcesAndTools/hr-topics/technology/Pages/default.aspx",
+      sourceType: "SHRM"
     },
     {
       title: "Future of Work: AI and Human Collaboration",
       date: "January 2025",
       description: "Research on how AI is transforming workforce dynamics, productivity enhancement, and creating new collaborative work models.",
-      link: "/research/future-work-ai-collaboration"
+      link: "/research/future-work-ai-collaboration",
+      externalUrl: "https://www.mckinsey.com/featured-insights/future-of-work",
+      sourceType: "McKinsey"
     },
     {
       title: "Talent Acquisition Benchmark Study",
       date: "November 2024",
       description: "Industry benchmarks for recruitment metrics across different sectors, company sizes, and geographies in the post-pandemic labor market.",
-      link: "/research/talent-acquisition-benchmark-2024"
+      link: "/research/talent-acquisition-benchmark-2024",
+      externalUrl: "https://www.gartner.com/en/human-resources/research/talent-acquisition",
+      sourceType: "Gartner"
     },
     {
       title: "Employee Engagement in the Digital Age",
       date: "October 2024",
       description: "Research on effective strategies for maintaining employee engagement in increasingly digital and remote work environments.",
-      link: "/research/employee-engagement-digital-2024"
+      link: "/research/employee-engagement-digital-2024",
+      externalUrl: "https://www.gallup.com/workplace/285674/improve-employee-engagement-workplace.aspx",
+      sourceType: "Gallup"
     }
   ];
 
@@ -44,17 +80,23 @@ export default function Research() {
     {
       title: "Building Strategic HR: From Administrative Function to Business Partner",
       description: "How HR departments can evolve to become strategic partners that drive business outcomes and organizational success.",
-      link: "/research/whitepapers/strategic-hr-business-partner"
+      link: "/research/whitepapers/strategic-hr-business-partner",
+      externalUrl: "https://www.cipd.co.uk/knowledge/strategy/hr/strategic-hrm-factsheet",
+      sourceType: "CIPD"
     },
     {
       title: "The Business Case for Diversity & Inclusion",
       description: "Data-driven insights on how diversity and inclusion initiatives impact business performance, innovation, and growth.",
-      link: "/research/whitepapers/diversity-inclusion-business-case"
+      link: "/research/whitepapers/diversity-inclusion-business-case",
+      externalUrl: "https://www.mckinsey.com/featured-insights/diversity-and-inclusion",
+      sourceType: "McKinsey"
     },
     {
       title: "HR Analytics: Moving from Data to Insights",
       description: "A framework for developing advanced HR analytics capabilities that inform strategic decision-making.",
-      link: "/research/whitepapers/hr-analytics-framework"
+      link: "/research/whitepapers/hr-analytics-framework",
+      externalUrl: "https://www.deloitte.com/global/en/services/consulting/services/human-capital.html",
+      sourceType: "Deloitte"
     }
   ];
 
@@ -92,8 +134,11 @@ export default function Research() {
                   <CardContent>
                     <p className="text-muted-foreground line-clamp-3">{paper.abstract}</p>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Button variant="outline" size="sm" className="group" asChild>
+                  <CardFooter className="flex flex-col gap-2">
+                    <Button variant="outline" size="sm" className="w-full justify-center" onClick={() => handleDownload(paper.title)}>
+                      <Download className="mr-2 h-4 w-4" /> Download PDF
+                    </Button>
+                    <Button variant="ghost" size="sm" className="w-full justify-center group" asChild>
                       <Link to={paper.link}>
                         Read Paper <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
@@ -119,10 +164,16 @@ export default function Research() {
                     <CardDescription className="text-base">
                       {report.description}
                     </CardDescription>
+                    <div className="mt-3 text-sm flex items-center text-muted-foreground">
+                      <span className="font-medium">Source:</span>
+                      <a href={report.externalUrl} target="_blank" rel="noopener noreferrer" className="ml-1 flex items-center hover:text-primary">
+                        {report.sourceType} <ExternalLink className="ml-1 h-3 w-3" />
+                      </a>
+                    </div>
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <Button variant="outline" size="sm" className="group">
-                      <Download className="mr-2 h-4 w-4" /> Download
+                    <Button variant="outline" size="sm" className="group" onClick={() => handleDownload(report.title)}>
+                      <Download className="mr-2 h-4 w-4" /> Download PDF
                     </Button>
                     <Button variant="ghost" size="sm" className="group" asChild>
                       <Link to={report.link}>
@@ -152,11 +203,20 @@ export default function Research() {
                     <CardDescription className="text-base line-clamp-3">
                       {paper.description}
                     </CardDescription>
+                    <div className="mt-3 text-sm flex items-center text-muted-foreground">
+                      <span className="font-medium">Source:</span>
+                      <a href={paper.externalUrl} target="_blank" rel="noopener noreferrer" className="ml-1 flex items-center hover:text-primary">
+                        {paper.sourceType} <ExternalLink className="ml-1 h-3 w-3" />
+                      </a>
+                    </div>
                   </CardContent>
-                  <CardFooter>
-                    <Button variant="ghost" size="sm" className="mt-2 group" asChild>
+                  <CardFooter className="flex justify-between">
+                    <Button variant="outline" size="sm" onClick={() => handleDownload(paper.title)}>
+                      <Download className="mr-2 h-4 w-4" /> Download PDF
+                    </Button>
+                    <Button variant="ghost" size="sm" className="group" asChild>
                       <Link to={paper.link}>
-                        Read whitepaper <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </Button>
                   </CardFooter>
