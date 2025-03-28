@@ -13,10 +13,10 @@ import HRNewsSlider from '@/components/sections/HRNewsSlider';
 
 // Performance metrics focused on AI + Human + EQ integration
 const performanceMetrics = [
-  { label: "AI-Driven Decision Accuracy", value: 95 },
+  { label: "Setting up Assessment Centers and their Accuracy", value: 95 },
   { label: "Human Connection Score", value: 98 },
   { label: "EQ Integration Index", value: 94 },
-  { label: "Digital Transformation Success", value: 96 }
+  { label: "HR Transformation Success in SME", value: 96 }
 ];
 
 const Index = () => {
