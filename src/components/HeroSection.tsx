@@ -27,7 +27,7 @@ export default function HeroSection() {
                 Transform Your HR Function for Excellence
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8">
-                Partner with nHRMS to optimize your human capital strategy, enhance organizational performance, and achieve sustainable business success in today's competitive landscape.
+                Partner with us to optimize your human capital strategy, enhance organizational performance, and achieve sustainable business success in today's competitive landscape.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -55,21 +55,25 @@ export default function HeroSection() {
                   <span>Global Presence in US & India</span>
                 </div>
               </div>
+              
+              <div className="mt-6 text-sm text-muted-foreground font-medium">
+                <p>Specializing in Talent Acquisition - Building teams in Sales, Marketing, HR, Finance & Tech across industries.</p>
+              </div>
             </div>
           </div>
           
           <div className="lg:w-1/2 relative">
             <div className="rounded-lg overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" 
-                alt="Executive team meeting" 
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1920" 
+                alt="Diverse executive team in formal attire" 
                 className="w-full h-auto object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-1/2 rounded-lg overflow-hidden shadow-lg border-4 border-white hidden md:block">
               <img 
-                src="https://images.unsplash.com/photo-1518005020951-eccb494ad742" 
-                alt="Modern corporate building" 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1920" 
+                alt="Professional Indian executive in business meeting" 
                 className="w-full h-auto object-cover"
               />
             </div>

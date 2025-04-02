@@ -16,15 +16,8 @@ export default function MetricsSection({ metrics }: MetricsSectionProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {metrics.map((metric, index) => (
             <div key={index} className="bg-background rounded-lg p-6 shadow-sm border border-border/30 hover:shadow-md transition-shadow">
-              <h3 className="text-lg font-medium text-muted-foreground mb-2">{metric.label}</h3>
-              <div className="flex items-center space-x-4 mb-2">
-                <div className="text-3xl font-bold text-primary">{metric.value}</div>
-              </div>
-              <div className="mt-3">
-                <div className="h-2 bg-secondary rounded-full">
-                  <div className="h-2 bg-primary rounded-full" style={{ width: '100%' }}></div>
-                </div>
-              </div>
+              <div className="text-3xl font-bold text-primary mb-3">{metric.value}</div>
+              <h3 className="text-lg font-medium text-muted-foreground">{metric.label}</h3>
             </div>
           ))}
         </div>

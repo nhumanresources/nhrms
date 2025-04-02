@@ -15,7 +15,7 @@ import { PerformanceMetric } from '@/types/metrics';
 const metrics: PerformanceMetric[] = [
   { value: '95%', label: 'Client Retention Rate' },
   { value: '500+', label: 'Executive Placements' },
-  { value: '45+', label: 'Countries Served' },
+  { value: '7+', label: 'Countries Served' },
   { value: '20+', label: 'Years of Excellence' }
 ];
 
@@ -23,7 +23,7 @@ const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Set page title and meta description for SEO
-    document.title = "n Human Resources and Management Systems - nHRMS | Strategic HR Consulting";
+    document.title = "n Human Resources and Management Systems | Strategic HR Consulting";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'nHRMS provides comprehensive HR consulting services including executive search, HR advisory, knowledge management, and HR technology solutions for modern organizations seeking excellence.');

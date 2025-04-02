@@ -49,7 +49,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <div className="font-bold text-lg md:text-xl bg-gradient-to-r from-blue-800 to-blue-600 text-transparent bg-clip-text">
-              <span className="hidden sm:inline">n Human Resources and Management Systems -</span> nHRMS
+              <span className="hidden sm:inline">n Human Resources and Management Systems</span> n Human Resources
             </div>
           </Link>
 
@@ -67,9 +67,6 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
-            <Button size="sm" variant="outline" className="mr-2" asChild>
-              <Link to="/contact">Contact</Link>
-            </Button>
             <button 
               className="text-gray-700 p-2" 
               onClick={toggleMobileMenu} 
