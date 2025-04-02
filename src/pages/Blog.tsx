@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -19,12 +18,12 @@ export default function Blog() {
   const featuredPost = {
     title: "The Future of Work: How AI is Reshaping HR",
     category: "HR Technology",
-    date: "June 15, 2023",
+    date: "February 15, 2025",
     author: "Sarah Johnson",
     description: "An in-depth look at how artificial intelligence is transforming human resources practices and what HR leaders need to know to stay ahead.",
     link: "#",
     image: "bg-gradient-to-r from-blue-400/50 to-purple-500/50",
-    year: "2023",
+    year: "2025",
     content: `
       <h2>The Future of Work: How AI is Reshaping HR</h2>
       
@@ -215,11 +214,11 @@ export default function Blog() {
       year: "2024"
     },
     
-    // 2025 posts (projected)
+    // 2025 posts (updated to be before March 2025)
     {
       title: "The Metaverse Workplace: Early Adopters and Lessons Learned",
       category: "Future of Work",
-      date: "April 2, 2025",
+      date: "March 2, 2025",
       author: "Victoria West",
       description: "Examining how pioneering organizations are using metaverse technologies for collaboration, learning, and employee engagement.",
       link: "#",
@@ -228,7 +227,7 @@ export default function Blog() {
     {
       title: "Quantum Computing Applications in Workforce Analytics",
       category: "HR Technology",
-      date: "March 18, 2025",
+      date: "February 18, 2025",
       author: "Raj Patel",
       description: "How quantum computing is beginning to transform complex workforce modeling and scenario planning for large organizations.",
       link: "#",
@@ -253,11 +252,11 @@ export default function Blog() {
       year: "2025"
     },
     
-    // New 2025 posts focused on Policy Research, Executive Search, etc.
+    // Policy Research, Executive Search posts (updated to be before March 2025)
     {
       title: "Global Policy Research: HR Compliance Trends for Multinational Organizations",
       category: "Policy Research",
-      date: "June 15, 2025",
+      date: "March 15, 2025",
       author: "Elena Campos",
       description: "Comprehensive analysis of emerging HR policy trends across major global markets and strategies for building adaptable compliance frameworks.",
       link: "#",
@@ -266,7 +265,7 @@ export default function Blog() {
     {
       title: "Executive Compensation in the Post-AI Era: New Metrics for Leadership Success",
       category: "Executive Search",
-      date: "May 28, 2025",
+      date: "February 28, 2025",
       author: "Jonathan Chen",
       description: "How executive pay structures are evolving to incorporate AI adoption, digital transformation leadership, and sustainable business practices.",
       link: "#",
@@ -275,7 +274,7 @@ export default function Blog() {
     {
       title: "Policy Governance in the Age of Remote Work: Legal Frameworks and Best Practices",
       category: "Policy Research",
-      date: "May 10, 2025",
+      date: "February 10, 2025",
       author: "Priya Sharma",
       description: "Navigating the complex legal considerations of permanent remote and hybrid work models across different jurisdictions.",
       link: "#",
@@ -284,7 +283,7 @@ export default function Blog() {
     {
       title: "Sales Incentive Structures that Drive Sustainable Growth: 2025 Benchmark Study",
       category: "Compensation",
-      date: "April 22, 2025",
+      date: "January 22, 2025",
       author: "Derek Morgan",
       description: "Research findings on effective sales compensation models that balance short-term performance with long-term customer relationship building.",
       link: "#",
@@ -293,7 +292,7 @@ export default function Blog() {
     {
       title: "E-SOP Policy Design: Equity Distribution Strategies for Global Workforces",
       category: "Compensation",
-      date: "April 15, 2025",
+      date: "January 15, 2025",
       author: "Naomi Watanabe",
       description: "In-depth guide to creating electronic stock ownership plans that work effectively across different markets and regulatory environments.",
       link: "#",
@@ -302,7 +301,7 @@ export default function Blog() {
     {
       title: "Executive Search Strategies for Digital Transformation Leaders",
       category: "Executive Search",
-      date: "April 8, 2025",
+      date: "February 8, 2025",
       author: "Alexander Rivera",
       description: "Identifying and attracting executive talent capable of leading organizations through complex digital transformation initiatives.",
       link: "#",
@@ -311,7 +310,7 @@ export default function Blog() {
     {
       title: "Board Diversity Policies: Moving Beyond Compliance to Competitive Advantage",
       category: "Policy Research",
-      date: "March 25, 2025",
+      date: "February 25, 2025",
       author: "Zainab Okafor",
       description: "How forward-thinking organizations are implementing board diversity initiatives that drive innovation and strategic advantage.",
       link: "#",
