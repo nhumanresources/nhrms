@@ -10,7 +10,7 @@ export default function WhoWeAre() {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Set page title and meta description for SEO
-    document.title = "Who We Are | n Human Resources and Management Systems - nHRMS";
+    document.title = "Who are we | n Human Resources and Management Systems - nHRMS";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Learn about n Human Resources and Management Systems (nHRMS), a leading HR management consulting firm dedicated to helping organizations optimize their human capital.');
@@ -40,7 +40,7 @@ export default function WhoWeAre() {
         <section className="py-16 md:py-24 bg-primary/5">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Who We Are</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Who are we</h1>
               <p className="text-xl text-muted-foreground">
                 n Human Resources and Management Systems (nHRMS) is a leading HR management consulting firm dedicated to helping organizations optimize their human capital and achieve business success through strategic HR solutions.
               </p>

@@ -102,7 +102,7 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
         isActive('/who-we-are') ? "text-primary font-semibold" : "text-muted-foreground"
       )}
     >
-      Who We Are
+      Who are we
     </Link>
     <div className="relative group">
       <button 
@@ -113,7 +113,7 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
         aria-haspopup="true" 
         aria-expanded="false"
       >
-        What We Do <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
+        Our Focus <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
       </button>
       <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50" role="menu">
         <div className="glass-panel rounded-lg p-3 shadow-xl">
@@ -171,12 +171,12 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
 const MobileNavItems = () => (
   <>
     <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      Who We Are
+      Who are we
     </Link>
     <div className="px-3 py-2">
       <details className="group">
         <summary className="flex items-center text-sm font-medium cursor-pointer">
-          What We Do <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
+          Our Focus <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
         </summary>
         <div className="mt-2 ml-4 space-y-1">
           <Link to="/services/executive-search" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
