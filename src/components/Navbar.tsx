@@ -1,13 +1,15 @@
 
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, ChevronDown, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,8 +24,16 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const isActive = (path: string) => {
+    return location.pathname === path || location.pathname.startsWith(`${path}/`);
   };
 
   return (
@@ -31,35 +41,53 @@ export default function Navbar() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white/80 backdrop-blur-md py-3 shadow-md'
+          ? 'bg-white/90 backdrop-blur-md py-3 shadow-sm border-b border-border/30'
           : 'bg-transparent py-5'
       )}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-semibold">
-              <span className="sr-only">n Human Resources and Management Systems</span>
-              <span aria-hidden="true">nHRMS</span>
-            </span>
+            <div className="font-bold text-lg md:text-xl bg-gradient-to-r from-blue-800 to-blue-600 text-transparent bg-clip-text">
+              <span className="hidden sm:inline">n Human Resources and Management Systems -</span> nHRMS
+            </div>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
-            <NavItems />
+          <div className="hidden md:flex items-center space-x-8">
+            <NavItems isActive={isActive} />
+            <div className="ml-2">
+              <Button size="sm" variant="outline" className="hidden lg:inline-flex" asChild>
+                <a href="tel:+13143018402" className="gap-2">
+                  <Phone size={16} /> +1 (314) 301-8402
+                </a>
+              </Button>
+              <Button size="sm" className="ml-2" asChild>
+                <Link to="/contact">Contact Us</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-gray-700" onClick={toggleMobileMenu} aria-label="Toggle menu">
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center md:hidden">
+            <Button size="sm" variant="outline" className="mr-2" asChild>
+              <Link to="/contact">Contact</Link>
+            </Button>
+            <button 
+              className="text-gray-700 p-2" 
+              onClick={toggleMobileMenu} 
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
       <div
         className={cn(
-          'md:hidden bg-white absolute left-0 right-0 px-4 pt-2 pb-4 shadow-lg transition-all duration-300 ease-in-out',
+          'md:hidden bg-white absolute left-0 right-0 px-4 pt-2 pb-4 shadow-lg transition-all duration-300 ease-in-out border-b border-border',
           isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
         )}
       >
@@ -71,16 +99,29 @@ export default function Navbar() {
   );
 }
 
-const NavItems = () => (
+const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
   <>
-    <Link to="/who-we-are" className="animated-link text-sm font-medium">
+    <Link 
+      to="/who-we-are" 
+      className={cn(
+        "animated-link text-sm font-medium", 
+        isActive('/who-we-are') ? "text-primary font-semibold" : "text-muted-foreground"
+      )}
+    >
       Who We Are
     </Link>
     <div className="relative group">
-      <button className="flex items-center animated-link text-sm font-medium" aria-haspopup="true" aria-expanded="false">
+      <button 
+        className={cn(
+          "flex items-center animated-link text-sm font-medium",
+          isActive('/services') ? "text-primary font-semibold" : "text-muted-foreground"
+        )} 
+        aria-haspopup="true" 
+        aria-expanded="false"
+      >
         What We Do <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
       </button>
-      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left" role="menu">
+      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50" role="menu">
         <div className="glass-panel rounded-lg p-3 shadow-xl">
           <Link to="/services/executive-search" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             Executive Search
@@ -103,17 +144,32 @@ const NavItems = () => (
         </div>
       </div>
     </div>
-    <Link to="/case-studies" className="animated-link text-sm font-medium">
+    <Link 
+      to="/case-studies" 
+      className={cn(
+        "animated-link text-sm font-medium", 
+        isActive('/case-studies') ? "text-primary font-semibold" : "text-muted-foreground"
+      )}
+    >
       Case Studies
     </Link>
-    <Link to="/blog" className="animated-link text-sm font-medium">
+    <Link 
+      to="/blog" 
+      className={cn(
+        "animated-link text-sm font-medium", 
+        isActive('/blog') ? "text-primary font-semibold" : "text-muted-foreground"
+      )}
+    >
       Blog
     </Link>
-    <Link to="/research" className="animated-link text-sm font-medium">
+    <Link 
+      to="/research" 
+      className={cn(
+        "animated-link text-sm font-medium", 
+        isActive('/research') ? "text-primary font-semibold" : "text-muted-foreground"
+      )}
+    >
       Research
-    </Link>
-    <Link to="/contact" className="animated-link text-sm font-medium">
-      Contact
     </Link>
   </>
 );
@@ -159,8 +215,10 @@ const MobileNavItems = () => (
     <Link to="/research" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Research
     </Link>
-    <Link to="/contact" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      Contact
-    </Link>
+    <div className="border-t border-border/50 mt-2 pt-2">
+      <a href="tel:+13143018402" className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 rounded">
+        <Phone size={16} className="mr-2" /> +1 (314) 301-8402
+      </a>
+    </div>
   </>
 );

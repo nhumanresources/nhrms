@@ -1,59 +1,71 @@
+
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <footer className="bg-background border-t border-border/50">
-      <div className="container mx-auto px-4 md:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-gradient-to-b from-background to-slate-50 border-t border-border/50">
+      <div className="container mx-auto px-4 md:px-6 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-6">
-              <span className="text-xl font-semibold">n Human Resources and Management Systems - nHRMS</span>
+              <span className="text-xl font-semibold text-primary">n Human Resources and Management Systems - nHRMS</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
-              Comprehensive 360° HR Management solutions for modern organizations seeking excellence.
+              Comprehensive 360° HR Management solutions for modern organizations seeking excellence in today's competitive landscape.
             </p>
             <div className="flex space-x-4">
-              <a href="https://fb.com/nhrms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="https://x.com/nhrms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="https://www.linkedin.com/company/n-hrms/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/company/n-hrms/" target="_blank" rel="noopener noreferrer" 
+                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://x.com/nhrms" target="_blank" rel="noopener noreferrer" 
+                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
+                <Twitter size={20} />
+              </a>
+              <a href="https://fb.com/nhrms" target="_blank" rel="noopener noreferrer" 
+                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
+                <Facebook size={20} />
+              </a>
+              <a href="#" className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
                 <Instagram size={20} />
               </a>
             </div>
           </div>
 
           <div>
-            <h4 className="font-medium text-lg mb-4">What We Do</h4>
+            <h4 className="font-semibold text-lg mb-5">What We Do</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/services/executive-search" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services/executive-search" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Executive Search
                 </Link>
               </li>
               <li>
-                <Link to="/services/hr-advisory" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services/hr-advisory" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   HR Advisory
                 </Link>
               </li>
               <li>
-                <Link to="/services/knowledge-management" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services/knowledge-management" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Knowledge Management
                 </Link>
               </li>
               <li>
-                <Link to="/services/go-to-market" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services/go-to-market" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Go to Market Strategy & Execution
                 </Link>
               </li>
               <li>
-                <Link to="/services/bot-hr-teams" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services/bot-hr-teams" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Build Operate and Transfer - HR Teams
                 </Link>
               </li>
@@ -61,30 +73,35 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-medium text-lg mb-4">Company</h4>
+            <h4 className="font-semibold text-lg mb-5">Company</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/who-we-are" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/who-we-are" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Who Are We
                 </Link>
               </li>
               <li>
-                <Link to="/case-studies" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/case-studies" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Case Studies
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/research" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/research" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Research
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
                   Contact Us
                 </Link>
               </li>
@@ -92,31 +109,39 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-medium text-lg mb-4">Contact</h4>
+            <h4 className="font-semibold text-lg mb-5">Get In Touch</h4>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
-                <MapPin size={20} className="flex-shrink-0 text-muted-foreground" />
+                <MapPin size={20} className="flex-shrink-0 text-primary mt-1" />
                 <span className="text-muted-foreground">nHRMS Inc., US, India (Hyderabad & Bangalore)</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone size={20} className="flex-shrink-0 text-muted-foreground" />
+                <Phone size={20} className="flex-shrink-0 text-primary" />
                 <a href="tel:+13143018402" className="text-muted-foreground hover:text-primary transition-colors">
                   +1 (314) 301-8402
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail size={20} className="flex-shrink-0 text-muted-foreground" />
+                <Mail size={20} className="flex-shrink-0 text-primary" />
                 <a href="mailto:info@nhrms.com" className="text-muted-foreground hover:text-primary transition-colors">
                   info@nhrms.com
                 </a>
               </li>
             </ul>
+            
+            <div className="mt-6">
+              <Button variant="outline" size="sm" className="w-full" asChild>
+                <Link to="/contact" className="flex items-center justify-center">
+                  Contact Us <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-border/50 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-border/50 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © 2009-2025 nHRMS Inc. All rights reserved.
+            © 2009-{currentYear} n Human Resources and Management Systems - nHRMS Inc. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
