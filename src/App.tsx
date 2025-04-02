@@ -29,6 +29,7 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import LeadershipDevelopment from "./pages/research/LeadershipDevelopment";
 import FinancialHRAnalytics from "./pages/case-studies/FinancialHRAnalytics";
+import BangaloreInternship from "./pages/careers/internships/BangaloreInternship";
 
 const App = () => {
   // Create a new QueryClient instance inside the component
@@ -62,6 +63,9 @@ const App = () => {
           <Route path="/services/hr-tech" element={<HRTech />} />
           <Route path="/services/talent-acquisition" element={<TalentAcquisition />} />
           <Route path="/learning-solutions" element={<LearningServices />} />
+          
+          {/* Careers routes */}
+          <Route path="/careers/internships/bangalore" element={<BangaloreInternship />} />
           
           {/* Legal pages */}
           <Route path="/privacy" element={<Privacy />} />

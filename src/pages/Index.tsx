@@ -16,7 +16,7 @@ const metrics: PerformanceMetric[] = [
   { value: '95%', label: 'Client Retention Rate' },
   { value: '500+', label: 'Executive Placements' },
   { value: '7+', label: 'Countries Served' },
-  { value: '16+', label: 'Years of Excellence' }
+  { value: '20+', label: 'Years of Excellence' }
 ];
 
 const Index = () => {

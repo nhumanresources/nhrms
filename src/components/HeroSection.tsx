@@ -44,11 +44,11 @@ export default function HeroSection() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Trusted by Fortune 500 Companies</span>
+                  <span>Trusted by 120+ Clients</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>16+ Years Industry Experience</span>
+                  <span>20+ Years Industry Experience</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle className="h-4 w-4 text-green-500" />

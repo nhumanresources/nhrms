@@ -1,6 +1,5 @@
-
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Footer() {
@@ -12,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-6">
-              <span className="text-xl font-semibold text-primary">nHRMS</span>
+              <span className="text-xl font-semibold text-primary">n Human Resources and Management Systems</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
               Comprehensive 360° HR Management solutions for modern organizations seeking excellence in today's competitive landscape.
@@ -29,9 +28,6 @@ export default function Footer() {
               <a href="https://fb.com/nhrms" target="_blank" rel="noopener noreferrer" 
                  className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
-                <Instagram size={20} />
               </a>
             </div>
           </div>
