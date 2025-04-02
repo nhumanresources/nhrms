@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Download, FileText, ExternalLink } from 'lucide-react';
+import { ArrowRight, FileText, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { researchPapers } from '@/data/researchPapers';
 import { useToast } from '@/components/ui/use-toast';
@@ -19,27 +19,6 @@ export default function Research() {
     const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     setIsLoggedIn(userLoggedIn);
   }, []);
-
-  const handleDownload = (title: string, requiresLogin: boolean = true) => {
-    if (requiresLogin && !isLoggedIn) {
-      toast({
-        title: "Login Required",
-        description: "Please login to download research papers",
-        action: (
-          <Button asChild variant="default" size="sm">
-            <Link to="/login">Login</Link>
-          </Button>
-        ),
-      });
-      return;
-    }
-    
-    // In a real implementation, this would trigger a download of an actual PDF
-    toast({
-      title: "Download Started",
-      description: `${title} is now downloading`,
-    });
-  };
 
   const researchReports = [
     {
@@ -134,10 +113,7 @@ export default function Research() {
                   <CardContent>
                     <p className="text-muted-foreground line-clamp-3">{paper.abstract}</p>
                   </CardContent>
-                  <CardFooter className="flex flex-col gap-2">
-                    <Button variant="outline" size="sm" className="w-full justify-center" onClick={() => handleDownload(paper.title)}>
-                      <Download className="mr-2 h-4 w-4" /> Download PDF
-                    </Button>
+                  <CardFooter>
                     <Button variant="ghost" size="sm" className="w-full justify-center group" asChild>
                       <Link to={paper.link}>
                         Read Paper <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -171,11 +147,8 @@ export default function Research() {
                       </a>
                     </div>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Button variant="outline" size="sm" className="group" onClick={() => handleDownload(report.title)}>
-                      <Download className="mr-2 h-4 w-4" /> Download PDF
-                    </Button>
-                    <Button variant="ghost" size="sm" className="group" asChild>
+                  <CardFooter>
+                    <Button variant="ghost" size="sm" className="w-full group" asChild>
                       <Link to={report.link}>
                         Learn more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
@@ -210,11 +183,8 @@ export default function Research() {
                       </a>
                     </div>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Button variant="outline" size="sm" onClick={() => handleDownload(paper.title)}>
-                      <Download className="mr-2 h-4 w-4" /> Download PDF
-                    </Button>
-                    <Button variant="ghost" size="sm" className="group" asChild>
+                  <CardFooter>
+                    <Button variant="ghost" size="sm" className="w-full group" asChild>
                       <Link to={paper.link}>
                         Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>

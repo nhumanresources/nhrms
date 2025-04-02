@@ -214,11 +214,11 @@ export default function WhoWeAre() {
                 <p className="text-muted-foreground">Clients Served</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">12</div>
+                <div className="text-4xl font-bold mb-2">3</div>
                 <p className="text-muted-foreground">Global Offices</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">150+</div>
+                <div className="text-4xl font-bold mb-2">15+</div>
                 <p className="text-muted-foreground">HR Consultants</p>
               </div>
             </div>
