@@ -22,6 +22,7 @@ import KnowledgeManagement from "./pages/services/KnowledgeManagement";
 import GoToMarket from "./pages/services/GoToMarket";
 import BOTHRTeams from "./pages/services/BOTHRTeams";
 import HRTech from "./pages/services/HRTech";
+import LearningServices from "./pages/LearningServices";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/services/go-to-market" element={<GoToMarket />} />
           <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
           <Route path="/services/hr-tech" element={<HRTech />} />
+          <Route path="/learning-solutions" element={<LearningServices />} />
           
           {/* Legal pages */}
           <Route path="/privacy" element={<Privacy />} />

@@ -27,10 +27,10 @@ export default function Contact() {
     window.scrollTo(0, 0);
     
     // Update page title and meta description for SEO
-    document.title = "Contact Us - n Human Resources and Management Systems - nHRMS";
+    document.title = "Contact Us - n Human Resources and Management Systems";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Contact nHRMS for all your HR consulting needs. Get in touch with our expert team for inquiries about executive search, HR advisory, and HR technology solutions.');
+      metaDescription.setAttribute('content', 'Contact n Human Resources and Management Systems for all your HR consulting needs. Get in touch with our expert team for inquiries about executive search, HR advisory, and HR technology solutions.');
     }
   }, []);
 
@@ -160,10 +160,21 @@ export default function Contact() {
                   <div className="flex items-start space-x-4">
                     <MapPin className="h-6 w-6 text-primary flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold mb-1">Office Location</h3>
-                      <p className="text-muted-foreground">
-                        nHRMS Inc., US, India (Hyderabad & Bangalore)
-                      </p>
+                      <h3 className="font-semibold mb-3">Office Locations</h3>
+                      <div className="space-y-4 text-muted-foreground">
+                        <div>
+                          <p className="font-medium">United States</p>
+                          <p>Corporate Headquarters</p>
+                        </div>
+                        <div>
+                          <p className="font-medium">India - Hyderabad</p>
+                          <p>Regional Office</p>
+                        </div>
+                        <div>
+                          <p className="font-medium">India - Bangalore</p>
+                          <p>Technology & Learning Center</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   

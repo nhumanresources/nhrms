@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight, Briefcase } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Footer() {
@@ -69,6 +69,12 @@ export default function Footer() {
                   Build Operate and Transfer - HR Teams
                 </Link>
               </li>
+              <li>
+                <Link to="/learning-solutions" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
+                  Learning Solutions
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -118,6 +124,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="https://jobs.nhrms.com/internships/bangalore" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center text-xs ml-5">
+                  • Bangalore (6 months)
+                </a>
+              </li>
+              <li>
                 <a href="https://jobs.nhrms.com/culture" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
                   Our Culture
@@ -138,7 +149,10 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="flex-shrink-0 text-primary mt-1" />
-                <span className="text-muted-foreground">nHRMS Inc., US, India (Hyderabad & Bangalore)</span>
+                <span className="text-muted-foreground">
+                  <strong>Office Locations:</strong><br />
+                  US, India (Hyderabad & Bangalore)
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="flex-shrink-0 text-primary" />
@@ -184,4 +198,3 @@ export default function Footer() {
     </footer>
   );
 }
-
