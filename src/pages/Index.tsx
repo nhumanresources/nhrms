@@ -31,6 +31,14 @@ const testimonials = [
   }
 ];
 
+// Define the metrics with correct types
+const metrics = [
+  { value: '95%', label: 'Client Retention Rate' },
+  { value: '500+', label: 'Executive Placements' },
+  { value: '45+', label: 'Countries Served' },
+  { value: '20+', label: 'Years of Excellence' }
+];
+
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,14 +55,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <MetricsSection 
-          metrics={[
-            { value: '95%', label: 'Client Retention Rate' },
-            { value: '500+', label: 'Executive Placements' },
-            { value: '45+', label: 'Countries Served' },
-            { value: '20+', label: 'Years of Excellence' }
-          ]}
-        />
+        <MetricsSection metrics={metrics} />
         <ServicesSection />
         <WhyChooseUsSection />
         <TestimonialsSection testimonials={testimonials} />
