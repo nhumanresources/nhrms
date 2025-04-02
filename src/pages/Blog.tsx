@@ -267,6 +267,80 @@ export default function Blog() {
       description: "How leading organizations are incorporating environmental impact indicators into compensation and benefits packages to align with climate goals.",
       link: "#",
       year: "2025"
+    },
+    
+    // New 2025 posts focused on Policy Research, Executive Search, etc.
+    {
+      title: "Global Policy Research: HR Compliance Trends for Multinational Organizations",
+      category: "Policy Research",
+      date: "June 15, 2025",
+      author: "Elena Campos",
+      description: "Comprehensive analysis of emerging HR policy trends across major global markets and strategies for building adaptable compliance frameworks.",
+      link: "#",
+      year: "2025"
+    },
+    {
+      title: "Executive Compensation in the Post-AI Era: New Metrics for Leadership Success",
+      category: "Executive Search",
+      date: "May 28, 2025",
+      author: "Jonathan Chen",
+      description: "How executive pay structures are evolving to incorporate AI adoption, digital transformation leadership, and sustainable business practices.",
+      link: "#",
+      year: "2025"
+    },
+    {
+      title: "Policy Governance in the Age of Remote Work: Legal Frameworks and Best Practices",
+      category: "Policy Research",
+      date: "May 10, 2025",
+      author: "Priya Sharma",
+      description: "Navigating the complex legal considerations of permanent remote and hybrid work models across different jurisdictions.",
+      link: "#",
+      year: "2025"
+    },
+    {
+      title: "Sales Incentive Structures that Drive Sustainable Growth: 2025 Benchmark Study",
+      category: "Compensation",
+      date: "April 22, 2025",
+      author: "Derek Morgan",
+      description: "Research findings on effective sales compensation models that balance short-term performance with long-term customer relationship building.",
+      link: "#",
+      year: "2025"
+    },
+    {
+      title: "E-SOP Policy Design: Equity Distribution Strategies for Global Workforces",
+      category: "Compensation",
+      date: "April 15, 2025",
+      author: "Naomi Watanabe",
+      description: "In-depth guide to creating electronic stock ownership plans that work effectively across different markets and regulatory environments.",
+      link: "#",
+      year: "2025"
+    },
+    {
+      title: "Executive Search Strategies for Digital Transformation Leaders",
+      category: "Executive Search",
+      date: "April 8, 2025",
+      author: "Alexander Rivera",
+      description: "Identifying and attracting executive talent capable of leading organizations through complex digital transformation initiatives.",
+      link: "#",
+      year: "2025"
+    },
+    {
+      title: "Board Diversity Policies: Moving Beyond Compliance to Competitive Advantage",
+      category: "Policy Research",
+      date: "March 25, 2025",
+      author: "Zainab Okafor",
+      description: "How forward-thinking organizations are implementing board diversity initiatives that drive innovation and strategic advantage.",
+      link: "#",
+      year: "2025"
+    },
+    {
+      title: "Alternative Compensation Models: Beyond Traditional Executive Pay Structures",
+      category: "Executive Search",
+      date: "March 12, 2025",
+      author: "Lucas Schmidt",
+      description: "Emerging models for executive compensation that align leadership incentives with long-term organizational resilience and stakeholder value.",
+      link: "#",
+      year: "2025"
     }
   ];
 
@@ -377,8 +451,9 @@ export default function Blog() {
                   <TabsTrigger value="all">All</TabsTrigger>
                   <TabsTrigger value="strategy">Strategic HR</TabsTrigger>
                   <TabsTrigger value="tech">HR Technology</TabsTrigger>
-                  <TabsTrigger value="compliance">Compliance</TabsTrigger>
-                  <TabsTrigger value="future">Future of Work</TabsTrigger>
+                  <TabsTrigger value="policy">Policy Research</TabsTrigger>
+                  <TabsTrigger value="executive">Executive Search</TabsTrigger>
+                  <TabsTrigger value="compensation">Compensation</TabsTrigger>
                 </TabsList>
               </div>
               
@@ -573,11 +648,11 @@ export default function Blog() {
                 </div>
               </TabsContent>
               
-              <TabsContent value="compliance" className="mt-0">
+              <TabsContent value="policy" className="mt-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {blogPosts.filter(post => 
                     (activeYear === 'all' || post.year === activeYear) && 
-                    post.category === "Compliance"
+                    post.category === "Policy Research"
                   ).map((post, index) => (
                     <Card key={index} className="border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
                       <CardHeader className="pb-4">
@@ -637,11 +712,11 @@ export default function Blog() {
                 </div>
               </TabsContent>
               
-              <TabsContent value="future" className="mt-0">
+              <TabsContent value="executive" className="mt-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {blogPosts.filter(post => 
                     (activeYear === 'all' || post.year === activeYear) && 
-                    post.category === "Future of Work"
+                    post.category === "Executive Search"
                   ).map((post, index) => (
                     <Card key={index} className="border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
                       <CardHeader className="pb-4">
@@ -680,31 +755,4 @@ export default function Blog() {
                               </DialogHeader>
                               <div className="mt-4 prose prose-blue max-w-none">
                                 <h2>{post.title}</h2>
-                                <p className="lead">{post.description}</p>
-                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        ) : (
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="mt-2 group"
-                            onClick={handleLoginPrompt}
-                          >
-                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        )}
-                      </CardFooter>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
-  );
-}
+                                <p className="lead">{
