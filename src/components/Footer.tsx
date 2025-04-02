@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
@@ -96,7 +97,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="flex-shrink-0 text-muted-foreground" />
-                <span className="text-muted-foreground">nHRMS Inc., 123 Corporate Plaza, Suite 500, St. Louis, MO 63101</span>
+                <span className="text-muted-foreground">nHRMS Inc., US, India (Hyderabad & Bangalore)</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="flex-shrink-0 text-muted-foreground" />

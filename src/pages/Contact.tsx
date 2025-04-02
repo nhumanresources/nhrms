@@ -152,9 +152,7 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold mb-1">Office Location</h3>
                       <p className="text-muted-foreground">
-                        nHRMS Inc., 123 Corporate Plaza, Suite 500<br />
-                        St. Louis, MO 63101<br />
-                        United States
+                        nHRMS Inc., US, India (Hyderabad & Bangalore)
                       </p>
                     </div>
                   </div>
@@ -192,12 +190,6 @@ export default function Contact() {
                         Saturday - Sunday: Closed
                       </p>
                     </div>
-                  </div>
-                </div>
-                
-                <div className="mt-10 aspect-video bg-muted rounded-lg overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
-                    <span className="text-lg font-medium">Interactive Map Coming Soon</span>
                   </div>
                 </div>
               </div>
