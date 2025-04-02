@@ -1,11 +1,9 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Check, Users, Award, Globe, ArrowRight, Calendar, BookOpen, Briefcase, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 export default function WhoWeAre() {
   useEffect(() => {
@@ -17,14 +15,12 @@ export default function WhoWeAre() {
       name: "Sai Varma",
       title: "Partner, CEO",
       bio: "With over 20 years of experience in HR consulting, Sai has led transformational HR initiatives for Fortune 500 companies across multiple industries.",
-      image: "/placeholder.svg",
       linkedin: "https://linkedin.com/in/saikrshna/"
     },
     {
       name: "Usha Sai",
       title: "Partner, COO",
       bio: "Usha brings 15+ years of operational leadership experience, specializing in scaling professional services organizations and optimizing service delivery.",
-      image: "/placeholder.svg",
       linkedin: "https://linkedin.com/in/ushasai/"
     }
   ];
@@ -174,27 +170,22 @@ export default function WhoWeAre() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
               {leadershipTeam.map((leader, index) => (
-                <div key={index} className="bg-background border border-border/50 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                  <div className="aspect-square bg-primary/5 flex items-center justify-center">
-                    <Users className="h-20 w-20 text-primary/20" />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-3">
-                      <div>
-                        <h3 className="font-bold text-lg mb-1">{leader.name}</h3>
-                        <p className="text-primary text-sm">{leader.title}</p>
-                      </div>
-                      <a 
-                        href={leader.linkedin} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <Linkedin size={20} />
-                      </a>
+                <div key={index} className="bg-background border border-border/50 rounded-lg overflow-hidden hover:shadow-md transition-shadow p-6">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">{leader.name}</h3>
+                      <p className="text-primary text-sm">{leader.title}</p>
                     </div>
-                    <p className="text-sm text-muted-foreground">{leader.bio}</p>
+                    <a 
+                      href={leader.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Linkedin size={20} />
+                    </a>
                   </div>
+                  <p className="text-sm text-muted-foreground">{leader.bio}</p>
                 </div>
               ))}
             </div>
