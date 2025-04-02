@@ -19,7 +19,6 @@ import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import ExecutiveSearch from "./pages/services/ExecutiveSearch";
 import HRAdvisory from "./pages/services/HRAdvisory";
-import KnowledgeManagement from "./pages/services/KnowledgeManagement";
 import GoToMarket from "./pages/services/GoToMarket";
 import BOTHRTeams from "./pages/services/BOTHRTeams";
 import HRTech from "./pages/services/HRTech";
@@ -63,7 +62,6 @@ const App = () => {
           {/* Service routes */}
           <Route path="/services/executive-search" element={<ExecutiveSearch />} />
           <Route path="/services/hr-advisory" element={<HRAdvisory />} />
-          <Route path="/services/knowledge-management" element={<KnowledgeManagement />} />
           <Route path="/services/go-to-market" element={<GoToMarket />} />
           <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
           <Route path="/services/hr-tech" element={<HRTech />} />

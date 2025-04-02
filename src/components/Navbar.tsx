@@ -123,9 +123,6 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
           <Link to="/services/hr-advisory" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             HR Advisory
           </Link>
-          <Link to="/services/knowledge-management" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
-            Knowledge Management
-          </Link>
           <Link to="/services/go-to-market" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             Go to Market Strategy & Execution
           </Link>
@@ -187,9 +184,6 @@ const MobileNavItems = () => (
           </Link>
           <Link to="/services/hr-advisory" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             HR Advisory
-          </Link>
-          <Link to="/services/knowledge-management" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
-            Knowledge Management
           </Link>
           <Link to="/services/go-to-market" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             Go to Market Strategy & Execution

@@ -26,7 +26,7 @@ const Index = () => {
     document.title = "nHRMS | Strategic HR Consulting";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'nHRMS provides comprehensive HR consulting services including executive search, HR advisory, knowledge management, and HR technology solutions for modern organizations seeking excellence.');
+      metaDescription.setAttribute('content', 'nHRMS provides comprehensive HR consulting services including executive search, HR advisory, talent acquisition, and HR technology solutions for modern organizations seeking excellence.');
     }
   }, []);
 

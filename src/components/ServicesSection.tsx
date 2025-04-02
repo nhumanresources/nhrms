@@ -28,13 +28,6 @@ export default function ServicesSection() {
       image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920"
     },
     {
-      icon: <Library className="h-10 w-10" />,
-      title: "Knowledge Management",
-      description: "Stay updated with the latest labor law changes through our knowledge system.",
-      link: "/services/knowledge-management",
-      image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?q=80&w=1920"
-    },
-    {
       icon: <BarChart className="h-10 w-10" />,
       title: "Go to Market Strategy",
       description: "Develop effective strategies to bring your HR solutions to market.",

@@ -13,6 +13,11 @@ export default function BangaloreInternship() {
     document.title = "Bangalore 6-Month Internship Program | nHRMS";
   }, []);
 
+  const handleApplyNow = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    window.location.href = "mailto:krishna@nhrms.com?subject=Application for 6-Month Internship Program&body=Dear Krishna,%0D%0A%0D%0AI am interested in applying for the 6-Month Career Development Program. Please find my attached resume and cover letter.%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ASincerely,%0D%0A[Your Name]";
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -28,11 +33,11 @@ export default function BangaloreInternship() {
               </div>
               
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                Bangalore 6-Month Internship Program
+                Bangalore 6-Month Career Development Program
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground mb-6">
-                Transition from academics to industry with our comprehensive 6-month internship program designed for budding professionals in Bangalore.
+                Not just an internship, but a comprehensive career journey designed to transform promising graduates into industry-ready professionals.
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
@@ -58,14 +63,14 @@ export default function BangaloreInternship() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2 space-y-8">
               <section>
-                <h2 className="text-2xl font-bold mb-4">Program Overview</h2>
+                <h2 className="text-2xl font-bold mb-4">Career Development Journey</h2>
                 <p className="text-muted-foreground mb-4">
-                  Our 6-month internship program in Bangalore provides a unique bridge from academia to corporate for promising students and recent graduates. 
-                  This intensive program offers hands-on experience, industry-specific training, and mentorship from industry experts.
+                  Our 6-month career development program in Bangalore is designed as a comprehensive journey from academia to industry, not just a traditional internship. 
+                  We focus on building long-term career foundations with personalized mentorship, professional networking, and career path planning.
                 </p>
                 <p className="text-muted-foreground">
-                  Interns work on real projects, collaborate with experienced professionals, and gain essential skills that prepare them for successful 
-                  careers in their chosen fields of Marketing, Finance, Sales, or Human Resources.
+                  Participants work on meaningful projects with real business impact, develop essential industry skills, and receive guidance on career 
+                  progression pathways to set them up for long-term professional growth and success.
                 </p>
               </section>
               
@@ -73,8 +78,8 @@ export default function BangaloreInternship() {
                 <h2 className="text-2xl font-bold mb-4">Program Structure</h2>
                 <ol className="space-y-4 list-decimal list-inside">
                   <li className="ml-4">
-                    <span className="font-medium">Orientation & Foundation (2 weeks)</span>
-                    <p className="text-muted-foreground ml-6 mt-1">Introduction to corporate work culture, business communication, and professional development fundamentals.</p>
+                    <span className="font-medium">Career Orientation & Foundation (2 weeks)</span>
+                    <p className="text-muted-foreground ml-6 mt-1">Introduction to professional work culture, career planning fundamentals, and personal branding development.</p>
                   </li>
                   <li className="ml-4">
                     <span className="font-medium">Specialization Training (4 weeks)</span>
@@ -82,11 +87,11 @@ export default function BangaloreInternship() {
                   </li>
                   <li className="ml-4">
                     <span className="font-medium">Project Work (16 weeks)</span>
-                    <p className="text-muted-foreground ml-6 mt-1">Hands-on experience working on actual projects under the guidance of mentors.</p>
+                    <p className="text-muted-foreground ml-6 mt-1">Hands-on experience working on actual projects under the guidance of mentors, building your professional portfolio.</p>
                   </li>
                   <li className="ml-4">
-                    <span className="font-medium">Final Presentation & Assessment (2 weeks)</span>
-                    <p className="text-muted-foreground ml-6 mt-1">Project presentations, performance evaluation, and career planning sessions.</p>
+                    <span className="font-medium">Career Planning & Assessment (2 weeks)</span>
+                    <p className="text-muted-foreground ml-6 mt-1">Project presentations, performance evaluation, and personalized career roadmap development sessions.</p>
                   </li>
                 </ol>
               </section>
@@ -203,7 +208,7 @@ export default function BangaloreInternship() {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Certificate of completion</span>
+                    <span>Career development roadmap</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -218,11 +223,11 @@ export default function BangaloreInternship() {
                 <Separator className="my-6" />
                 
                 <div className="text-center">
-                  <Button className="w-full mb-3" size="lg">
+                  <Button className="w-full mb-3" size="lg" onClick={handleApplyNow}>
                     Apply Now
                   </Button>
                   <p className="text-sm text-muted-foreground">
-                    Next batch starts on July 1st, 2024
+                    Next batch starts on June 10th, 2025
                   </p>
                 </div>
               </div>
@@ -234,14 +239,12 @@ export default function BangaloreInternship() {
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold mb-4">Ready to Start Your Career Journey?</h2>
             <p className="text-muted-foreground mb-6">
-              Our Academia to Corporate program is designed to give you the skills, experience, and confidence 
-              needed to excel in your professional career.
+              Our career development program is designed to give you the skills, experience, and professional network 
+              needed to build a successful long-term career, not just find your first job.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2" asChild>
-                <Link to="/careers/internships/bangalore">
-                  Apply for Internship <ArrowRight className="h-4 w-4" />
-                </Link>
+              <Button size="lg" className="gap-2" onClick={handleApplyNow}>
+                Apply for Career Program <ArrowRight className="h-4 w-4" />
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link to="/contact">Contact For Questions</Link>
