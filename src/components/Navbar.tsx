@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone } from 'lucide-react';
@@ -48,7 +49,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <div className="font-bold text-lg md:text-xl bg-gradient-to-r from-blue-800 to-blue-600 text-transparent bg-clip-text">
-              n Human Resources and Management Systems
+              nHRMS
             </div>
           </Link>
 
@@ -134,6 +135,9 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
           <Link to="/services/hr-tech" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             HR Technology
           </Link>
+          <Link to="/services/talent-acquisition" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
+            Talent Acquisition - Build Teams
+          </Link>
         </div>
       </div>
     </div>
@@ -195,6 +199,9 @@ const MobileNavItems = () => (
           </Link>
           <Link to="/services/hr-tech" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             HR Technology
+          </Link>
+          <Link to="/services/talent-acquisition" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            Talent Acquisition - Build Teams
           </Link>
         </div>
       </details>

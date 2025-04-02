@@ -48,16 +48,12 @@ export default function HeroSection() {
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>20+ Years Industry Experience</span>
+                  <span>16+ Years Industry Experience</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle className="h-4 w-4 text-green-500" />
                   <span>Global Presence in US & India</span>
                 </div>
-              </div>
-              
-              <div className="mt-6 text-sm text-muted-foreground font-medium">
-                <p>Specializing in Talent Acquisition - Building teams in Sales, Marketing, HR, Finance & Tech across industries.</p>
               </div>
             </div>
           </div>

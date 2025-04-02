@@ -16,17 +16,17 @@ const metrics: PerformanceMetric[] = [
   { value: '95%', label: 'Client Retention Rate' },
   { value: '500+', label: 'Executive Placements' },
   { value: '7+', label: 'Countries Served' },
-  { value: '20+', label: 'Years of Excellence' }
+  { value: '16+', label: 'Years of Excellence' }
 ];
 
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Set page title and meta description for SEO
-    document.title = "n Human Resources and Management Systems | Strategic HR Consulting";
+    document.title = "nHRMS | Strategic HR Consulting";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'n Human Resources and Management Systems provides comprehensive HR consulting services including executive search, HR advisory, knowledge management, and HR technology solutions for modern organizations seeking excellence.');
+      metaDescription.setAttribute('content', 'nHRMS provides comprehensive HR consulting services including executive search, HR advisory, knowledge management, and HR technology solutions for modern organizations seeking excellence.');
     }
   }, []);
 
