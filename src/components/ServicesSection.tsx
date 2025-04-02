@@ -10,31 +10,36 @@ export default function ServicesSection() {
       icon: <Search className="h-10 w-10" />,
       title: "Executive Search",
       description: "Find exceptional leaders through our rigorous executive search practice.",
-      link: "/services/executive-search"
+      link: "/services/executive-search",
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1920"
     },
     {
       icon: <FileText className="h-10 w-10" />,
       title: "HR Advisory",
       description: "Optimize your HR operations with expert guidance on strategies and policies.",
-      link: "/services/hr-advisory"
+      link: "/services/hr-advisory",
+      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920"
     },
     {
       icon: <Library className="h-10 w-10" />,
       title: "Knowledge Management",
       description: "Stay updated with the latest labor law changes through our knowledge system.",
-      link: "/services/knowledge-management"
+      link: "/services/knowledge-management",
+      image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?q=80&w=1920"
     },
     {
       icon: <BarChart className="h-10 w-10" />,
       title: "Go to Market Strategy",
       description: "Develop effective strategies to bring your HR solutions to market.",
-      link: "/services/go-to-market"
+      link: "/services/go-to-market",
+      image: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=1920"
     },
     {
       icon: <Briefcase className="h-10 w-10" />,
       title: "BOT HR Teams",
       description: "Complete BOT solutions for HR teams - we build, operate, and transfer.",
-      link: "/services/bot-hr-teams"
+      link: "/services/bot-hr-teams",
+      image: "https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?q=80&w=1920"
     }
   ];
 
@@ -50,11 +55,22 @@ export default function ServicesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Card key={index} className="border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-              <CardHeader>
-                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center text-primary mb-4">
-                  {service.icon}
+            <Card key={index} className="border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 overflow-hidden">
+              <div className="relative h-48 w-full overflow-hidden">
+                <img 
+                  src={service.image} 
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <div className="p-4">
+                    <div className="rounded-full bg-white/90 w-12 h-12 flex items-center justify-center text-primary mb-2">
+                      {service.icon}
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <CardHeader>
                 <CardTitle>{service.title}</CardTitle>
               </CardHeader>
               <CardContent>

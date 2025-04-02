@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -44,8 +43,13 @@ export default function BOTHRTeams() {
                   </Button>
                 </div>
               </div>
-              <div className="relative rounded-xl overflow-hidden aspect-video md:aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                <Users className="w-32 h-32 text-primary/40" />
+              <div className="relative rounded-xl overflow-hidden aspect-video md:aspect-square">
+                <img 
+                  src="https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?q=80&w=1920"
+                  alt="Team of HR professionals in a planning meeting"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent"></div>
               </div>
             </div>
           </div>
