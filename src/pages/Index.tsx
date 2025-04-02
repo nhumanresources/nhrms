@@ -29,12 +29,9 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <div className="-mt-32 relative z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-50/80 pointer-events-none" />
-          <HRNewsSlider />
-        </div>
         <div className="relative z-20">
           <MetricsSection metrics={performanceMetrics} />
+          <HRNewsSlider />
           <ServicesSection />
           <div className="relative overflow-hidden bg-pattern">
             <TrendsResearchSlider />

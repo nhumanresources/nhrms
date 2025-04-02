@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { hrNews } from '@/data/newsItems';
@@ -62,7 +63,7 @@ export default function HRNewsSlider() {
   }, [currentIndex, visibleItems]);
 
   return (
-    <section className="py-0 bg-background">
+    <section className="py-16 bg-background mt-0">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold mb-3">Latest HR Insights</h2>

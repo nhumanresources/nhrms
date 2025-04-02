@@ -41,7 +41,7 @@ export default function ExecutiveSearch() {
                   </div>
                   <div className="flex items-start space-x-3">
                     <Check className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">Ghosh Smart's A-Method© Scorecard for evidence-based selection</p>
+                    <p className="text-muted-foreground">Jeff Smart's A-Method© Scorecard for evidence-based selection</p>
                   </div>
                 </div>
                 <div className="mt-8">
@@ -63,7 +63,7 @@ export default function ExecutiveSearch() {
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">The A-Method© Scorecard Framework</h2>
               <p className="text-muted-foreground">
-                Our executive search process incorporates Ghosh Smart's renowned A-Method© Scorecard framework to ensure objective, data-driven hiring decisions.
+                Our executive search process incorporates Jeff Smart's renowned A-Method© Scorecard framework to ensure objective, data-driven hiring decisions.
               </p>
             </div>
             
@@ -82,7 +82,7 @@ export default function ExecutiveSearch() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">
-                        The A-Method© Scorecard is a structured evaluation framework developed by Ghosh Smart that transforms traditional, subjective hiring into an objective, evidence-based process. It provides a consistent method for defining role requirements, evaluating candidates, and making hiring decisions.
+                        The A-Method© Scorecard is a structured evaluation framework developed by Jeff Smart that transforms traditional, subjective hiring into an objective, evidence-based process. It provides a consistent method for defining role requirements, evaluating candidates, and making hiring decisions.
                       </p>
                       <p className="text-muted-foreground">
                         Unlike traditional job descriptions that focus on responsibilities and qualifications, the Scorecard focuses on outcomes and competencies, creating a clear definition of what "good" looks like for each role, along with metrics to evaluate success.
