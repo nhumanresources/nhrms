@@ -11,20 +11,20 @@ export default function JobOffersTracker() {
   const jobOffersGoal = 1000000; // 1 million jobs by 2035
   const progressPercentage = Math.round((jobOffersCreated / jobOffersGoal) * 100);
 
-  // Array of monthly job offer counts for the past 12 months (updated to 8K-14K range)
+  // Array of monthly job offer counts for the past 12 months (updated to 8-14 range)
   const monthlyOffers = [
-    { month: 'Sep', count: 8200 },
-    { month: 'Oct', count: 8900 },
-    { month: 'Nov', count: 9100 },
-    { month: 'Dec', count: 8500 },
-    { month: 'Jan', count: 9800 },
-    { month: 'Feb', count: 10500 },
-    { month: 'Mar', count: 11200 },
-    { month: 'Apr', count: 12400 },
-    { month: 'May', count: 13100 },
-    { month: 'Jun', count: 13900 },
-    { month: 'Jul', count: 13500 },
-    { month: 'Aug', count: 14000 }
+    { month: 'Sep', count: 8 },
+    { month: 'Oct', count: 9 },
+    { month: 'Nov', count: 11 },
+    { month: 'Dec', count: 10 },
+    { month: 'Jan', count: 12 },
+    { month: 'Feb', count: 13 },
+    { month: 'Mar', count: 12 },
+    { month: 'Apr', count: 13 },
+    { month: 'May', count: 14 },
+    { month: 'Jun', count: 13 },
+    { month: 'Jul', count: 12 },
+    { month: 'Aug', count: 14 }
   ];
 
   const totalLastYear = monthlyOffers.reduce((acc, month) => acc + month.count, 0);
@@ -85,7 +85,7 @@ export default function JobOffersTracker() {
             <CardContent>
               <div className="space-y-4">
                 <div>
-                  <p className="text-4xl font-bold">{totalLastYear.toLocaleString()}</p>
+                  <p className="text-4xl font-bold">{totalLastYear}</p>
                   <p className="text-sm text-muted-foreground">Total job offers in the past year</p>
                 </div>
                 
@@ -108,7 +108,7 @@ export default function JobOffersTracker() {
                 <div className="flex items-center justify-between text-sm text-muted-foreground mt-4">
                   <div className="flex items-center">
                     <Users className="h-4 w-4 mr-1" />
-                    <span>Average: {Math.round(totalLastYear / 12).toLocaleString()} per month</span>
+                    <span>Average: {Math.round(totalLastYear / 12)} per month</span>
                   </div>
                   <div>
                     <span className="text-green-500 font-medium">+21.4% YoY</span>
