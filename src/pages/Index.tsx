@@ -9,7 +9,6 @@ import Footer from '@/components/Footer';
 import MetricsSection from '@/components/sections/MetricsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import CTASection from '@/components/sections/CTASection';
-import HRNewsSlider from '@/components/sections/HRNewsSlider';
 
 // Performance metrics focused on AI + Human + EQ integration
 const performanceMetrics = [
@@ -31,7 +30,6 @@ const Index = () => {
         <HeroSection />
         <div className="relative z-20">
           <MetricsSection metrics={performanceMetrics} />
-          <HRNewsSlider />
           <ServicesSection />
           <div className="relative overflow-hidden bg-pattern">
             <TrendsResearchSlider />
