@@ -36,6 +36,9 @@ import EmployeeExperienceROI from "./pages/research/EmployeeExperienceROI";
 import FutureWorkAICollaboration from "./pages/research/FutureWorkAICollaboration";
 import TalentAcquisitionBenchmark from "./pages/research/TalentAcquisitionBenchmark";
 import EmployeeEngagementDigital from "./pages/research/EmployeeEngagementDigital";
+import GenerativeAIHR from "./pages/research/GenerativeAIHR";
+import PsychologicalSafety from "./pages/research/PsychologicalSafety";
+import WorkforcePlanning from "./pages/research/WorkforcePlanning";
 
 const App = () => {
   // Create a new QueryClient instance inside the component
@@ -90,6 +93,9 @@ const App = () => {
           <Route path="/research/future-work-ai-collaboration" element={<FutureWorkAICollaboration />} />
           <Route path="/research/talent-acquisition-benchmark-2024" element={<TalentAcquisitionBenchmark />} />
           <Route path="/research/employee-engagement-digital-2024" element={<EmployeeEngagementDigital />} />
+          <Route path="/research/generative-ai-hr" element={<GenerativeAIHR />} />
+          <Route path="/research/psychological-safety-virtual" element={<PsychologicalSafety />} />
+          <Route path="/research/workforce-planning-automation" element={<WorkforcePlanning />} />
           
           {/* Case study detail pages */}
           <Route path="/case-studies/financial-hr-analytics" element={<FinancialHRAnalytics />} />
