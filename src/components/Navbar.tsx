@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export default function Navbar() {
@@ -63,14 +62,6 @@ export default function Navbar() {
       >
         <div className="flex flex-col space-y-3">
           <MobileNavItems />
-          <div className="pt-3 border-t flex flex-col space-y-2">
-            <Button variant="outline" asChild className="w-full">
-              <Link to="/login">Login</Link>
-            </Button>
-            <Button asChild className="w-full">
-              <Link to="/login?register=true">Register</Link>
-            </Button>
-          </div>
         </div>
       </div>
     </nav>
@@ -121,14 +112,6 @@ const NavItems = () => (
     <Link to="/contact" className="animated-link text-sm font-medium">
       Contact
     </Link>
-    <div className="ml-4 flex items-center space-x-2">
-      <Button variant="outline" size="sm" asChild>
-        <Link to="/login">Login</Link>
-      </Button>
-      <Button size="sm" asChild>
-        <Link to="/login?register=true">Register</Link>
-      </Button>
-    </div>
   </>
 );
 
