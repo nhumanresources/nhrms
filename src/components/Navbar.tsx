@@ -148,15 +148,6 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
       Case Studies
     </Link>
     <Link 
-      to="/blog" 
-      className={cn(
-        "animated-link text-sm font-medium", 
-        isActive('/blog') ? "text-primary font-semibold" : "text-muted-foreground"
-      )}
-    >
-      Blog
-    </Link>
-    <Link 
       to="/research" 
       className={cn(
         "animated-link text-sm font-medium", 
@@ -211,9 +202,6 @@ const MobileNavItems = () => (
     </div>
     <Link to="/case-studies" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Case Studies
-    </Link>
-    <Link to="/blog" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      Blog
     </Link>
     <Link to="/research" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Research

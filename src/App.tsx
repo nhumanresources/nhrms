@@ -32,6 +32,10 @@ import HRTechLandscape from "./pages/research/HRTechLandscape";
 import FinancialHRAnalytics from "./pages/case-studies/FinancialHRAnalytics";
 import Internships from "./pages/careers/Internships";
 import BangaloreInternship from "./pages/careers/internships/BangaloreInternship";
+import EmployeeExperienceROI from "./pages/research/EmployeeExperienceROI";
+import FutureWorkAICollaboration from "./pages/research/FutureWorkAICollaboration";
+import TalentAcquisitionBenchmark from "./pages/research/TalentAcquisitionBenchmark";
+import EmployeeEngagementDigital from "./pages/research/EmployeeEngagementDigital";
 
 const App = () => {
   // Create a new QueryClient instance inside the component
@@ -82,6 +86,10 @@ const App = () => {
           {/* Research detail pages */}
           <Route path="/research/leadership-development-impact" element={<LeadershipDevelopment />} />
           <Route path="/research/hr-tech-landscape-2025" element={<HRTechLandscape />} />
+          <Route path="/research/employee-experience-roi" element={<EmployeeExperienceROI />} />
+          <Route path="/research/future-work-ai-collaboration" element={<FutureWorkAICollaboration />} />
+          <Route path="/research/talent-acquisition-benchmark-2024" element={<TalentAcquisitionBenchmark />} />
+          <Route path="/research/employee-engagement-digital-2024" element={<EmployeeEngagementDigital />} />
           
           {/* Case study detail pages */}
           <Route path="/case-studies/financial-hr-analytics" element={<FinancialHRAnalytics />} />
