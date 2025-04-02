@@ -15,9 +15,9 @@ export default function TrendsResearchSlider() {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest Insights</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Insights</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Stay ahead with the latest trends and research in HR management and organizational development
+            Stay ahead with trends and research in HR management and organizational development
           </p>
           
           {/* Tab navigation */}

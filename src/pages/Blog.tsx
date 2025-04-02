@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -388,7 +389,7 @@ export default function Blog() {
 
             <div className="mb-8">
               <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold">Latest Articles</h2>
+                <h2 className="text-2xl font-bold">Browse Articles</h2>
                 <div className="flex space-x-2">
                   <Button 
                     variant={activeYear === 'all' ? "default" : "outline"} 

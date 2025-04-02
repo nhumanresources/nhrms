@@ -66,9 +66,9 @@ export default function HRNewsSlider() {
     <section className="py-16 bg-background mt-0">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold mb-3">Latest HR Insights</h2>
+          <h2 className="text-3xl font-bold mb-3">HR Insights</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-6">
-            Stay updated with the latest trends as SMEs with less than 500 employees navigate the changing talent landscape
+            Stay updated with trends as SMEs with less than 500 employees navigate the changing talent landscape
           </p>
           <p className="text-muted-foreground text-base max-w-3xl mx-auto">
             Small and medium enterprises face unique challenges in attracting, developing, and retaining top talent in today's competitive market
