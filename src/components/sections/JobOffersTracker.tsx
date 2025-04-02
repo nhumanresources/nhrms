@@ -11,20 +11,20 @@ export default function JobOffersTracker() {
   const jobOffersGoal = 1000000; // 1 million jobs by 2035
   const progressPercentage = Math.round((jobOffersCreated / jobOffersGoal) * 100);
 
-  // Array of monthly job offer counts for the past 12 months (example data)
+  // Array of monthly job offer counts for the past 12 months (updated to 8K-14K range)
   const monthlyOffers = [
-    { month: 'Sep', count: 1250 },
-    { month: 'Oct', count: 1320 },
-    { month: 'Nov', count: 1180 },
-    { month: 'Dec', count: 1090 },
-    { month: 'Jan', count: 1540 },
-    { month: 'Feb', count: 1780 },
-    { month: 'Mar', count: 2050 },
-    { month: 'Apr', count: 2310 },
-    { month: 'May', count: 2480 },
-    { month: 'Jun', count: 2620 },
-    { month: 'Jul', count: 2780 },
-    { month: 'Aug', count: 2829 }
+    { month: 'Sep', count: 8200 },
+    { month: 'Oct', count: 8900 },
+    { month: 'Nov', count: 9100 },
+    { month: 'Dec', count: 8500 },
+    { month: 'Jan', count: 9800 },
+    { month: 'Feb', count: 10500 },
+    { month: 'Mar', count: 11200 },
+    { month: 'Apr', count: 12400 },
+    { month: 'May', count: 13100 },
+    { month: 'Jun', count: 13900 },
+    { month: 'Jul', count: 13500 },
+    { month: 'Aug', count: 14000 }
   ];
 
   const totalLastYear = monthlyOffers.reduce((acc, month) => acc + month.count, 0);
