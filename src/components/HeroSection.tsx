@@ -61,15 +61,15 @@ export default function HeroSection() {
           <div className="lg:w-1/2 relative">
             <div className="rounded-lg overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1920" 
-                alt="Diverse executive team in formal attire" 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1920" 
+                alt="Professional team in business strategy meeting" 
                 className="w-full h-auto object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-1/2 rounded-lg overflow-hidden shadow-lg border-4 border-white hidden md:block">
               <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1920" 
-                alt="Professional Indian executive in business meeting" 
+                src="https://images.unsplash.com/photo-1603201667141-5a2d4c673378?q=80&w=1976&auto=format&fit=crop" 
+                alt="HR professionals collaborating on talent strategy" 
                 className="w-full h-auto object-cover"
               />
             </div>

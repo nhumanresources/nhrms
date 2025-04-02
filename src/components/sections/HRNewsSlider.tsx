@@ -67,8 +67,11 @@ export default function HRNewsSlider() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold mb-3">Latest HR Insights</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Stay updated with the latest news, trends, and developments in the HR world
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-6">
+            Stay updated with the latest trends as SMEs with less than 500 employees navigate the changing talent landscape
+          </p>
+          <p className="text-muted-foreground text-base max-w-3xl mx-auto">
+            Small and medium enterprises face unique challenges in attracting, developing, and retaining top talent in today's competitive market
           </p>
         </div>
         
