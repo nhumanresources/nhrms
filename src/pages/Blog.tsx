@@ -16,33 +16,33 @@ export default function Blog() {
   }, []);
 
   const featuredPost = {
-    title: "The Future of Work: How AI is Reshaping HR",
+    title: "The Future of Work: How Technology is Reshaping HR",
     category: "HR Technology",
     date: "February 15, 2025",
     author: "Sarah Johnson",
-    description: "An in-depth look at how artificial intelligence is transforming human resources practices and what HR leaders need to know to stay ahead.",
+    description: "An in-depth look at how technology is transforming human resources practices and what HR leaders need to know to stay ahead.",
     link: "#",
     image: "bg-gradient-to-r from-blue-400/50 to-purple-500/50",
     year: "2025",
     content: `
-      <h2>The Future of Work: How AI is Reshaping HR</h2>
+      <h2>The Future of Work: How Technology is Reshaping HR</h2>
       
-      <p>Artificial intelligence is no longer a futuristic concept—it's here, and it's transforming how HR functions across organizations of all sizes. From recruitment to employee engagement, AI tools are helping HR professionals work smarter, faster, and with greater precision.</p>
+      <p>Technology is no longer a separate department—it's integrated into how HR functions across organizations of all sizes. From recruitment to employee engagement, digital tools are helping HR professionals work smarter, faster, and with greater precision.</p>
       
       <h3>Recruitment and Talent Acquisition</h3>
       
-      <p>AI-powered recruitment tools are revolutionizing how organizations find and attract talent:</p>
+      <p>Modern recruitment tools are revolutionizing how organizations find and attract talent:</p>
       
       <ul>
-        <li>Resume screening algorithms can process thousands of applications in minutes, identifying candidates with the highest potential fit</li>
-        <li>Chatbots engage with candidates throughout the application process, answering questions and guiding them through next steps</li>
+        <li>Advanced screening systems can process thousands of applications quickly, identifying candidates with the highest potential fit</li>
+        <li>Interactive assistants engage with candidates throughout the application process, answering questions and guiding them through next steps</li>
         <li>Predictive analytics help identify which candidates are most likely to succeed in specific roles</li>
-        <li>Video interview analysis tools assess candidate responses, facial expressions, and speech patterns</li>
+        <li>Video interview analysis tools assess candidate responses and communication patterns</li>
       </ul>
       
       <h3>Employee Onboarding and Development</h3>
       
-      <p>Once candidates are hired, AI continues to play a crucial role:</p>
+      <p>Once candidates are hired, technology continues to play a crucial role:</p>
       
       <ul>
         <li>Personalized onboarding experiences adjust to each new hire's role, experience, and learning style</li>
@@ -53,23 +53,23 @@ export default function Blog() {
       
       <h3>Performance Management</h3>
       
-      <p>Traditional annual performance reviews are being replaced by more dynamic, AI-enhanced approaches:</p>
+      <p>Traditional annual performance reviews are being replaced by more dynamic, technology-enhanced approaches:</p>
       
       <ul>
         <li>Continuous feedback systems gather input from multiple sources throughout the year</li>
-        <li>Natural language processing analyzes the sentiment and content of feedback</li>
+        <li>Language processing analyzes the sentiment and content of feedback</li>
         <li>Performance prediction tools identify high-potential employees and flight risks</li>
-        <li>Bias detection algorithms help ensure fair and objective evaluations</li>
+        <li>Pattern detection algorithms help ensure fair and objective evaluations</li>
       </ul>
       
       <h3>Employee Experience and Engagement</h3>
       
-      <p>AI is helping organizations better understand and improve the employee experience:</p>
+      <p>Technology is helping organizations better understand and improve the employee experience:</p>
       
       <ul>
-        <li>Sentiment analysis tools monitor employee engagement through surveys, communications, and social media</li>
-        <li>Chatbots provide immediate responses to employee questions about policies, benefits, and procedures</li>
-        <li>Wellness programs use AI to deliver personalized health recommendations</li>
+        <li>Analysis tools monitor employee engagement through surveys, communications, and social media</li>
+        <li>Digital assistants provide immediate responses to employee questions about policies, benefits, and procedures</li>
+        <li>Wellness programs use technology to deliver personalized health recommendations</li>
         <li>Predictive models identify factors that contribute to turnover and disengagement</li>
       </ul>
       
@@ -86,27 +86,27 @@ export default function Blog() {
       
       <h3>Ethical Considerations</h3>
       
-      <p>As AI becomes more prevalent in HR, organizations must address important ethical considerations:</p>
+      <p>As technology becomes more prevalent in HR, organizations must address important ethical considerations:</p>
       
       <ul>
-        <li>Algorithmic bias must be actively identified and mitigated</li>
+        <li>Algorithmic bias must be actively identified and addressed</li>
         <li>Data privacy and security protocols must be robust</li>
-        <li>Transparency in how AI makes decisions affecting employees is essential</li>
+        <li>Transparency in how systems make decisions affecting employees is essential</li>
         <li>Human oversight remains critical to ensure fair outcomes</li>
       </ul>
       
-      <h3>Preparing for an AI-Enhanced Future</h3>
+      <h3>Preparing for a Technology-Enhanced Future</h3>
       
       <p>HR professionals can prepare for this evolving landscape by:</p>
       
       <ul>
         <li>Developing digital literacy and analytical skills</li>
         <li>Focusing on uniquely human capabilities like empathy, creativity, and ethical judgment</li>
-        <li>Creating governance frameworks for AI implementation</li>
-        <li>Partnering with IT, legal, and compliance teams on AI initiatives</li>
+        <li>Creating governance frameworks for technology implementation</li>
+        <li>Partnering with IT, legal, and compliance teams on digital initiatives</li>
       </ul>
       
-      <p>The integration of AI into HR functions doesn't signal the replacement of HR professionals—rather, it enables them to focus on more strategic, high-value activities while technology handles repetitive tasks. By embracing these new tools thoughtfully, HR leaders can drive greater value for their organizations and enhance the employee experience.</p>
+      <p>The integration of technology into HR functions doesn't signal the replacement of HR professionals—rather, it enables them to focus on more strategic, high-value activities while automation handles repetitive tasks. By embracing these new tools thoughtfully, HR leaders can drive greater value for their organizations and enhance the employee experience.</p>
     `
   };
 
@@ -476,7 +476,8 @@ export default function Blog() {
                               <div className="mt-4 prose prose-blue max-w-none">
                                 <h2>{post.title}</h2>
                                 <p className="lead">{post.description}</p>
-                                <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                                <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
+                                <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
                               </div>
                             </DialogContent>
                           </Dialog>
@@ -529,7 +530,8 @@ export default function Blog() {
                             <div className="mt-4 prose prose-blue max-w-none">
                               <h2>{post.title}</h2>
                               <p className="lead">{post.description}</p>
-                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
+                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
                             </div>
                           </DialogContent>
                         </Dialog>
@@ -582,7 +584,8 @@ export default function Blog() {
                             <div className="mt-4 prose prose-blue max-w-none">
                               <h2>{post.title}</h2>
                               <p className="lead">{post.description}</p>
-                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
+                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
                             </div>
                           </DialogContent>
                         </Dialog>
@@ -635,7 +638,8 @@ export default function Blog() {
                             <div className="mt-4 prose prose-blue max-w-none">
                               <h2>{post.title}</h2>
                               <p className="lead">{post.description}</p>
-                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
+                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
                             </div>
                           </DialogContent>
                         </Dialog>
@@ -688,7 +692,8 @@ export default function Blog() {
                             <div className="mt-4 prose prose-blue max-w-none">
                               <h2>{post.title}</h2>
                               <p className="lead">{post.description}</p>
-                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
+                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
                             </div>
                           </DialogContent>
                         </Dialog>
@@ -741,7 +746,8 @@ export default function Blog() {
                             <div className="mt-4 prose prose-blue max-w-none">
                               <h2>{post.title}</h2>
                               <p className="lead">{post.description}</p>
-                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
+                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
                             </div>
                           </DialogContent>
                         </Dialog>
