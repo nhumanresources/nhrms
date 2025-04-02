@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
@@ -9,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-6">
-              <span className="text-xl font-semibold">nHRMS</span>
+              <span className="text-xl font-semibold">n Human Resources and Management Systems - nHRMS</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
               Comprehensive 360° HR Management solutions for modern organizations seeking excellence.

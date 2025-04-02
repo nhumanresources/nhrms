@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
@@ -25,6 +25,13 @@ type FormValues = z.infer<typeof formSchema>;
 export default function Contact() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Update page title and meta description for SEO
+    document.title = "Contact Us - n Human Resources and Management Systems - nHRMS";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Contact nHRMS for all your HR consulting needs. Get in touch with our expert team for inquiries about executive search, HR advisory, and HR technology solutions.');
+    }
   }, []);
 
   const form = useForm<FormValues>({
@@ -39,8 +46,11 @@ export default function Contact() {
   });
 
   function onSubmit(values: FormValues) {
-    console.log(values);
-    toast.success("Your message has been sent. We'll get back to you soon!");
+    console.log("Sending form data to info@nhrms.com", values);
+    
+    // Here you would typically send the data to a server
+    // Since we're just showing a success message for now:
+    toast.success("Your message has been sent to info@nhrms.com. We'll get back to you soon!");
     form.reset();
   }
 
@@ -177,17 +187,6 @@ export default function Contact() {
                         <a href="mailto:info@nhrms.com" className="hover:text-primary transition-colors">
                           info@nhrms.com
                         </a>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-4">
-                    <Clock className="h-6 w-6 text-primary flex-shrink-0" />
-                    <div>
-                      <h3 className="font-semibold mb-1">Business Hours</h3>
-                      <p className="text-muted-foreground">
-                        Monday - Friday: 9:00 AM - 6:00 PM EST<br />
-                        Saturday - Sunday: Closed
                       </p>
                     </div>
                   </div>
