@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Footer() {
@@ -9,10 +9,10 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-background to-slate-50 border-t border-border/50">
       <div className="container mx-auto px-4 md:px-6 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+          <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-6">
-              <span className="text-xl font-semibold text-primary">n Human Resources and Management Systems - nHRMS</span>
+              <span className="text-xl font-semibold text-primary">n Human Resources and Management Systems</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
               Comprehensive 360° HR Management solutions for modern organizations seeking excellence in today's competitive landscape.
@@ -99,13 +99,38 @@ export default function Footer() {
                   Research
                 </Link>
               </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold text-lg mb-5">Careers</h4>
+            <ul className="space-y-3">
               <li>
-                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                <a href="https://jobs.nhrms.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <Briefcase className="h-4 w-4 mr-2" />
+                  Current Openings
+                </a>
+              </li>
+              <li>
+                <a href="https://jobs.nhrms.com/internships" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
-                  Contact Us
-                </Link>
+                  Internship Programs
+                </a>
+              </li>
+              <li>
+                <a href="https://jobs.nhrms.com/culture" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
+                  Our Culture
+                </a>
               </li>
             </ul>
+            <div className="mt-6">
+              <Button variant="outline" size="sm" className="w-full" asChild>
+                <a href="https://jobs.nhrms.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                  Join Our Team <Briefcase className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
           </div>
 
           <div>
@@ -141,7 +166,7 @@ export default function Footer() {
 
         <div className="border-t border-border/50 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © 2009-{currentYear} n Human Resources and Management Systems - nHRMS Inc. All rights reserved.
+            © 2009-{currentYear} n Human Resources and Management Systems Inc. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -159,3 +184,4 @@ export default function Footer() {
     </footer>
   );
 }
+

@@ -1,9 +1,8 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Check, FileText, BarChart, Building, ArrowRight, Briefcase, Users, ShieldCheck, BadgePercent, ScrollText } from 'lucide-react';
+import { Check, BarChart, Building, ArrowRight, Briefcase, Users, ShieldCheck, BadgePercent } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
@@ -49,8 +48,13 @@ export default function HRAdvisory() {
                   </Button>
                 </div>
               </div>
-              <div className="relative rounded-xl overflow-hidden aspect-video md:aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                <FileText className="w-32 h-32 text-primary/40" />
+              <div className="relative rounded-xl overflow-hidden aspect-video md:aspect-square shadow-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1000" 
+                  alt="HR professionals in a strategic meeting" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
               </div>
             </div>
           </div>
