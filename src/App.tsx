@@ -30,6 +30,7 @@ import Cookies from "./pages/Cookies";
 import LeadershipDevelopment from "./pages/research/LeadershipDevelopment";
 import HRTechLandscape from "./pages/research/HRTechLandscape";
 import FinancialHRAnalytics from "./pages/case-studies/FinancialHRAnalytics";
+import Internships from "./pages/careers/Internships";
 import BangaloreInternship from "./pages/careers/internships/BangaloreInternship";
 
 const App = () => {
@@ -70,6 +71,7 @@ const App = () => {
           <Route path="/learning-solutions" element={<LearningServices />} />
           
           {/* Careers routes */}
+          <Route path="/careers/internships" element={<Internships />} />
           <Route path="/careers/internships/bangalore" element={<BangaloreInternship />} />
           
           {/* Legal pages */}
