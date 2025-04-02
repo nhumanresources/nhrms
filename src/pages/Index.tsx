@@ -5,6 +5,7 @@ import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import MetricsSection from '@/components/sections/MetricsSection';
+import JobOffersTracker from '@/components/sections/JobOffersTracker';
 import HRNewsSlider from '@/components/sections/HRNewsSlider';
 import Footer from '@/components/Footer';
 import CTASection from '@/components/sections/CTASection';
@@ -36,6 +37,7 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         <MetricsSection metrics={metrics} />
+        <JobOffersTracker />
         <ServicesSection />
         <OrganizationStructureSection />
         <WhyChooseUsSection />
