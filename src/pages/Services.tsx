@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import ServicesMenu from '@/components/ServicesMenu';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, FileText, UserSearch, Library, BarChart, Briefcase, Monitor } from 'lucide-react';
+import { ArrowRight, FileText, UserSearch, Library, BarChart, Briefcase, Monitor, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Services() {
@@ -33,10 +33,10 @@ export default function Services() {
       link: "/services/go-to-market"
     },
     {
-      icon: <Library className="h-12 w-12 text-primary/70" />,
-      title: "Knowledge Management",
-      description: "Stay updated with the latest HR practices and regulatory changes through our comprehensive knowledge management solutions.",
-      link: "/services/knowledge-management"
+      icon: <GraduationCap className="h-12 w-12 text-primary/70" />,
+      title: "Academia Solutions",
+      description: "Career-oriented programs and learning solutions designed for students and professionals seeking growth and excellence in HR management.",
+      link: "/learning-solutions"
     },
     {
       icon: <Briefcase className="h-12 w-12 text-primary/70" />,

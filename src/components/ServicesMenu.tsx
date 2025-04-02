@@ -47,6 +47,18 @@ export default function ServicesMenu() {
       ]
     },
     {
+      id: "academia",
+      title: "Academia",
+      items: [
+        "Learning Solutions",
+        "Internship Programs",
+        "Career Development",
+        "Certifications",
+        "Research Opportunities",
+        "Industry-Academia Partnership"
+      ]
+    },
+    {
       id: "industries",
       title: "Industries",
       items: [

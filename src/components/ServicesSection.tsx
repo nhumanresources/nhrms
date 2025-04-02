@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Search, FileText, Library, BarChart, Briefcase, Users } from 'lucide-react';
+import { ArrowRight, Search, FileText, Library, BarChart, Briefcase, Users, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ServicesSection() {
@@ -40,6 +40,13 @@ export default function ServicesSection() {
       description: "Complete BOT solutions for HR teams - we build, operate, and transfer.",
       link: "/services/bot-hr-teams",
       image: "https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?q=80&w=1920"
+    },
+    {
+      icon: <GraduationCap className="h-10 w-10" />,
+      title: "Academia Solutions",
+      description: "Career-oriented programs for students and professionals seeking growth in HR.",
+      link: "/learning-solutions",
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1920"
     }
   ];
 
