@@ -1,88 +1,56 @@
 
-import { useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Search, FileText, Library, Briefcase, BarChart } from 'lucide-react';
+import { ArrowRight, Search, FileText, Library, BarChart, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { scaleIn } from '@/lib/animations';
 
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const cards = entry.target.querySelectorAll('.service-card');
-            cards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add('animate-in');
-              }, 100 * index);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   const services = [
     {
       icon: <Search className="h-10 w-10" />,
       title: "Executive Search",
-      description: "Find exceptional leaders through our rigorous executive search practice that identifies candidates who align with your vision.",
+      description: "Find exceptional leaders through our rigorous executive search practice.",
       link: "/services/executive-search"
     },
     {
       icon: <FileText className="h-10 w-10" />,
       title: "HR Advisory",
-      description: "Optimize your HR operations with expert guidance on strategies, policies, and practices for improved outcomes.",
+      description: "Optimize your HR operations with expert guidance on strategies and policies.",
       link: "/services/hr-advisory"
     },
     {
       icon: <Library className="h-10 w-10" />,
       title: "Knowledge Management",
-      description: "Stay updated with the latest labor law changes through our comprehensive knowledge management system.",
+      description: "Stay updated with the latest labor law changes through our knowledge system.",
       link: "/services/knowledge-management"
     },
     {
       icon: <BarChart className="h-10 w-10" />,
       title: "Go to Market Strategy",
-      description: "Develop and implement effective strategies to bring your HR solutions to market with maximum impact and efficiency.",
+      description: "Develop effective strategies to bring your HR solutions to market.",
       link: "/services/go-to-market"
     },
     {
       icon: <Briefcase className="h-10 w-10" />,
       title: "BOT HR Teams",
-      description: "Complete BOT solutions for HR teams - we build, operate, and transfer fully functional HR departments tailored to your organization.",
+      description: "Complete BOT solutions for HR teams - we build, operate, and transfer.",
       link: "/services/bot-hr-teams"
     }
   ];
 
   return (
-    <div className="py-20 bg-background" ref={sectionRef}>
+    <div className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-muted-foreground text-lg">
-            Our suite of HR services is designed to help your organization thrive in today's competitive landscape.
+            Designed to help your organization thrive in today's competitive landscape.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Card key={index} className="service-card border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 opacity-0" {...scaleIn(200 * index)}>
+            <Card key={index} className="border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
               <CardHeader>
                 <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center text-primary mb-4">
                   {service.icon}
