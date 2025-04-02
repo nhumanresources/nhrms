@@ -62,9 +62,6 @@ export default function Navbar() {
                   <Phone size={16} /> +1 (314) 301-8402
                 </a>
               </Button>
-              <Button size="sm" className="ml-2" asChild>
-                <Link to="/contact">Contact Us</Link>
-              </Button>
             </div>
           </div>
 

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -63,23 +64,23 @@ export default function Research() {
     {
       title: "Building Strategic HR: From Administrative Function to Business Partner",
       description: "How HR departments can evolve to become strategic partners that drive business outcomes and organizational success.",
-      link: "/research/whitepapers/strategic-hr-business-partner",
-      externalUrl: "https://www.cipd.co.uk/knowledge/strategy/hr/strategic-hrm-factsheet",
-      sourceType: "CIPD"
+      link: "https://www.cipd.co.uk/knowledge/strategy/hr/strategic-hrm-factsheet",
+      sourceType: "CIPD",
+      citation: "© Chartered Institute of Personnel and Development (CIPD)"
     },
     {
       title: "The Business Case for Diversity & Inclusion",
       description: "Data-driven insights on how diversity and inclusion initiatives impact business performance, innovation, and growth.",
-      link: "/research/whitepapers/diversity-inclusion-business-case",
-      externalUrl: "https://www.mckinsey.com/featured-insights/diversity-and-inclusion",
-      sourceType: "McKinsey"
+      link: "https://www.mckinsey.com/featured-insights/diversity-and-inclusion",
+      sourceType: "McKinsey",
+      citation: "© McKinsey & Company"
     },
     {
       title: "HR Analytics: Moving from Data to Insights",
       description: "A framework for developing advanced HR analytics capabilities that inform strategic decision-making.",
-      link: "/research/whitepapers/hr-analytics-framework",
-      externalUrl: "https://www.deloitte.com/global/en/services/consulting/services/human-capital.html",
-      sourceType: "Deloitte"
+      link: "https://www.deloitte.com/global/en/services/consulting/services/human-capital.html",
+      sourceType: "Deloitte",
+      citation: "© Deloitte Touche Tohmatsu Limited"
     }
   ];
 
@@ -177,21 +178,24 @@ export default function Research() {
                     <CardTitle className="line-clamp-2">{paper.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-base line-clamp-3">
+                    <CardDescription className="text-base line-clamp-3 mb-2">
                       {paper.description}
                     </CardDescription>
-                    <div className="mt-3 text-sm flex items-center text-muted-foreground">
+                    <div className="text-sm flex items-center text-muted-foreground">
                       <span className="font-medium">Source:</span>
-                      <a href={paper.externalUrl} target="_blank" rel="noopener noreferrer" className="ml-1 flex items-center hover:text-primary">
+                      <a href={paper.link} target="_blank" rel="noopener noreferrer" className="ml-1 flex items-center hover:text-primary">
                         {paper.sourceType} <ExternalLink className="ml-1 h-3 w-3" />
                       </a>
                     </div>
+                    <p className="text-xs text-muted-foreground mt-2 italic">
+                      {paper.citation}
+                    </p>
                   </CardContent>
                   <CardFooter>
                     <Button variant="ghost" size="sm" className="w-full group" asChild>
-                      <Link to={paper.link}>
+                      <a href={paper.link} target="_blank" rel="noopener noreferrer">
                         Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
+                      </a>
                     </Button>
                   </CardFooter>
                 </Card>

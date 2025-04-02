@@ -10,6 +10,12 @@ import HRNewsSlider from '@/components/sections/HRNewsSlider';
 import Footer from '@/components/Footer';
 import CTASection from '@/components/sections/CTASection';
 
+// Define the type for metrics
+interface PerformanceMetric {
+  value: string;
+  label: string;
+}
+
 const testimonials = [
   {
     quote: "nHRMS transformed our executive search process, helping us find the perfect leadership team for our expansion. Their comprehensive methodology produced outstanding results.",
@@ -31,8 +37,8 @@ const testimonials = [
   }
 ];
 
-// Define the metrics with correct types
-const metrics = [
+// Define the metrics with the correct type
+const metrics: PerformanceMetric[] = [
   { value: '95%', label: 'Client Retention Rate' },
   { value: '500+', label: 'Executive Placements' },
   { value: '45+', label: 'Countries Served' },
