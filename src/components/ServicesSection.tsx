@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Search, FileText, Library, BarChart, Briefcase } from 'lucide-react';
+import { ArrowRight, Search, FileText, Library, BarChart, Briefcase, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ServicesSection() {
@@ -12,6 +12,13 @@ export default function ServicesSection() {
       description: "Find exceptional leaders through our rigorous executive search practice.",
       link: "/services/executive-search",
       image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1920"
+    },
+    {
+      icon: <Users className="h-10 w-10" />,
+      title: "Talent Acquisition",
+      description: "Build high-performing teams that drive success across key functional areas.",
+      link: "/services/talent-acquisition",
+      image: "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?q=80&w=1920"
     },
     {
       icon: <FileText className="h-10 w-10" />,
