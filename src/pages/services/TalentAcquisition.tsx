@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Building, CheckCircle, ArrowRight, Target, Briefcase, LineChart } from 'lucide-react';
@@ -48,9 +47,6 @@ export default function TalentAcquisition() {
                   <Link to="/contact" className="gap-2">
                     Contact Us <ArrowRight className="h-4 w-4" />
                   </Link>
-                </Button>
-                <Button variant="outline" asChild>
-                  <Link to="/case-studies">View Success Stories</Link>
                 </Button>
               </div>
             </div>
