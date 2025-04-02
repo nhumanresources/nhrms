@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -741,3 +742,20 @@ export default function Blog() {
                             <div className="mt-4 prose prose-blue max-w-none">
                               <h2>{post.title}</h2>
                               <p className="lead">{post.description}</p>
+                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
