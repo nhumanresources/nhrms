@@ -7,8 +7,11 @@ export const applySecurityMeasures = () => {
   // Prevent text selection/copying
   document.body.style.userSelect = 'none';
   document.body.style.webkitUserSelect = 'none';
-  document.body.style.msUserSelect = 'none';
-  document.body.style.mozUserSelect = 'none';
+  
+  // Instead of using direct properties that TypeScript doesn't recognize,
+  // use setProperty for vendor prefixes
+  document.body.style.setProperty('-ms-user-select', 'none');
+  document.body.style.setProperty('-moz-user-select', 'none');
   
   // Disable context menu (right click)
   document.addEventListener('contextmenu', (e) => {
