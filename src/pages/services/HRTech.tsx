@@ -2,8 +2,8 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Button } from '@/components/ui/button';
-import { Check, Code, BarChart, Laptop, ArrowRight, Database, Cloud, Sparkles, Shield, Globe, Workflow } from 'lucide-react';
+import { Button } from '@/components/ui/card';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function HRTech() {
@@ -22,166 +22,100 @@ export default function HRTech() {
           <div className="absolute inset-0 bg-pattern opacity-20 z-0"></div>
           
           <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div data-animation="slide-in-left">
-                <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-future-600 to-neural-600 bg-clip-text text-transparent">HR Technology Solutions</h1>
-                <p className="text-xl text-muted-foreground mb-8">
-                  Cutting-edge technology solutions to transform your HR operations and employee experience.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-future-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">AI-powered talent acquisition and management</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-future-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">Cloud-based HRIS implementation and optimization</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-future-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">Data analytics and workforce intelligence platforms</p>
-                  </div>
-                </div>
-                <div className="mt-8">
-                  <Button className="bg-gradient-to-r from-future-600 to-neural-600 hover:from-neural-600 hover:to-future-600 transition-all duration-300 shadow-lg" asChild>
-                    <Link to="/contact">Request a Demo</Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="relative rounded-xl overflow-hidden aspect-video md:aspect-square" data-animation="slide-in-right" data-delay="200">
-                <div className="absolute inset-0 bg-gradient-to-br from-future-600/80 via-future-400/50 to-neural-500/30 opacity-80 mix-blend-multiply"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1200" 
-                  alt="HR Technology Solutions" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Code className="w-24 h-24 text-white/90" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-future-100/30">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-3xl mx-auto text-center mb-16" data-animation="fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-future-600 to-neural-600 bg-clip-text text-transparent">Our HR Technology Services</h2>
-              <p className="text-muted-foreground text-lg">
-                Innovative HR tech solutions designed to streamline processes, enhance decision-making, and improve employee experience.
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-future-600 to-neural-600 bg-clip-text text-transparent">Custom HR Tech Advisory Solutions</h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                Strategic guidance for organizations navigating the complex landscape of HR technology selection, implementation, and optimization.
               </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl border border-future-200/50 shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1" data-animation="slide-in-bottom" data-delay="0">
-                <div className="w-16 h-16 bg-gradient-to-br from-future-600/20 to-future-400/20 rounded-full flex items-center justify-center mb-6">
-                  <Cloud className="h-8 w-8 text-future-600" />
-                </div>
-                <h3 className="text-2xl font-medium mb-4">Cloud HRIS Solutions</h3>
-                <p className="text-muted-foreground">
-                  Implementation, integration, and optimization of cloud-based HR Information Systems to centralize HR data and processes.
-                </p>
-              </div>
-              
-              <div className="bg-white rounded-xl border border-future-200/50 shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1" data-animation="slide-in-bottom" data-delay="150">
-                <div className="w-16 h-16 bg-gradient-to-br from-future-600/20 to-future-400/20 rounded-full flex items-center justify-center mb-6">
-                  <Database className="h-8 w-8 text-future-600" />
-                </div>
-                <h3 className="text-2xl font-medium mb-4">HR Analytics</h3>
-                <p className="text-muted-foreground">
-                  Advanced analytics platforms to transform HR data into actionable insights for strategic workforce planning and decision-making.
-                </p>
-              </div>
-              
-              <div className="bg-white rounded-xl border border-future-200/50 shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1" data-animation="slide-in-bottom" data-delay="300">
-                <div className="w-16 h-16 bg-gradient-to-br from-future-600/20 to-future-400/20 rounded-full flex items-center justify-center mb-6">
-                  <Laptop className="h-8 w-8 text-future-600" />
-                </div>
-                <h3 className="text-2xl font-medium mb-4">AI-Powered Talent Solutions</h3>
-                <p className="text-muted-foreground">
-                  Artificial intelligence and machine learning tools for recruitment, candidate assessment, and employee development.
-                </p>
-              </div>
+              <Button className="bg-gradient-to-r from-future-600 to-neural-600 hover:from-neural-600 hover:to-future-600 transition-all duration-300 shadow-lg text-white px-8 py-3 rounded-md" asChild>
+                <Link to="/contact">Request a Consultation</Link>
+              </Button>
             </div>
           </div>
         </section>
 
-        {/* Tech Stack Section */}
-        <section className="py-20 bg-gradient-to-b from-future-100/30 to-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-pattern opacity-5"></div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-future-200 rounded-full filter blur-3xl opacity-30 -mr-32 -mt-32"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-neural-200 rounded-full filter blur-3xl opacity-30 -ml-32 -mb-32"></div>
-          
-          <div className="container mx-auto px-4 md:px-6 relative">
-            <div className="max-w-3xl mx-auto text-center mb-16" data-animation="fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-future-600 to-neural-600 bg-clip-text text-transparent">Our Technology Stack</h2>
-              <p className="text-muted-foreground text-lg">
-                We leverage cutting-edge technologies to deliver scalable, secure, and user-friendly HR solutions.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="bg-white p-8 rounded-xl text-center shadow-lg border border-future-200/50 hover:shadow-xl transition-all hover:-translate-y-1" data-animation="scale-in" data-delay="0">
-                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-future-600/20 to-neural-400/20 rounded-full flex items-center justify-center mb-6">
-                  <Sparkles className="h-10 w-10 text-future-600" />
-                </div>
-                <h3 className="text-xl font-medium mb-3">Artificial Intelligence</h3>
-                <p className="text-sm text-muted-foreground">Machine learning algorithms for predictive analytics and automation</p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl text-center shadow-lg border border-future-200/50 hover:shadow-xl transition-all hover:-translate-y-1" data-animation="scale-in" data-delay="150">
-                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-future-600/20 to-neural-400/20 rounded-full flex items-center justify-center mb-6">
-                  <Workflow className="h-10 w-10 text-future-600" />
-                </div>
-                <h3 className="text-xl font-medium mb-3">API Integration</h3>
-                <p className="text-sm text-muted-foreground">Seamless connectivity between multiple HR systems and platforms</p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl text-center shadow-lg border border-future-200/50 hover:shadow-xl transition-all hover:-translate-y-1" data-animation="scale-in" data-delay="300">
-                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-future-600/20 to-neural-400/20 rounded-full flex items-center justify-center mb-6">
-                  <Cloud className="h-10 w-10 text-future-600" />
-                </div>
-                <h3 className="text-xl font-medium mb-3">Cloud Computing</h3>
-                <p className="text-sm text-muted-foreground">Scalable infrastructure with enterprise-grade security</p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl text-center shadow-lg border border-future-200/50 hover:shadow-xl transition-all hover:-translate-y-1" data-animation="scale-in" data-delay="450">
-                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-future-600/20 to-neural-400/20 rounded-full flex items-center justify-center mb-6">
-                  <Shield className="h-10 w-10 text-future-600" />
-                </div>
-                <h3 className="text-xl font-medium mb-3">UX Design</h3>
-                <p className="text-sm text-muted-foreground">User-centered design for intuitive and engaging employee experiences</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Case Study Preview Section */}
+        {/* Main Content Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-4xl mx-auto" data-animation="fade-in">
-              <div className="bg-gradient-to-br from-future-100 to-neural-100 rounded-xl p-8 shadow-lg">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-future-600 to-neural-600 bg-clip-text text-transparent">Case Study: Global Tech Company</h2>
-                    <div className="flex items-center">
-                      <Globe className="h-5 w-5 text-future-600 mr-2" />
-                      <span className="text-muted-foreground">Fortune 500 Technology Leader</span>
-                    </div>
-                  </div>
-                  <div className="bg-future-600/10 text-future-600 px-4 py-1 rounded-full text-sm font-medium">AI Talent Strategy</div>
-                </div>
-                <p className="text-muted-foreground mb-6 text-lg">
-                  Implemented an AI-powered talent acquisition platform for a Fortune 500 technology company, reducing time-to-hire by 40% and improving quality-of-hire metrics by 35%.
-                </p>
-                <Button variant="outline" className="group relative overflow-hidden" asChild>
-                  <Link to="/case-studies" className="inline-flex items-center">
-                    View Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-future-600 group-hover:w-full transition-all duration-300"></span>
-                  </Link>
-                </Button>
-              </div>
+            <div className="max-w-4xl mx-auto prose prose-lg">
+              <h2 className="text-3xl font-bold mb-6 text-center">Navigating the HR Technology Ecosystem</h2>
+              
+              <p>
+                In today's rapidly evolving business landscape, HR technology has become a critical enabler of organizational success. 
+                Yet, with thousands of vendors, overlapping capabilities, and competing claims, navigating the HR tech ecosystem can 
+                be overwhelming. At nHRMS, we specialize in providing customized HR technology advisory services that align technology 
+                decisions with your unique organizational needs, culture, and strategic objectives.
+              </p>
+
+              <p>
+                Our approach is vendor-agnostic and results-focused. We recognize that successful HR technology implementation is not 
+                just about selecting the right software but also about driving adoption, optimizing processes, and measuring impact. 
+                Our team of experienced HR technology consultants combines deep domain expertise with practical implementation 
+                experience to guide you through every stage of the HR technology lifecycle.
+              </p>
+
+              <h3 className="text-2xl font-semibold mt-10 mb-4">Our Custom HR Tech Advisory Services</h3>
+
+              <h4 className="text-xl font-medium mt-8 mb-2">HR Technology Strategy Development</h4>
+              <p>
+                We help you craft a comprehensive HR technology strategy that aligns with your business goals and HR vision. 
+                Our consultants work closely with your leadership team to understand your unique requirements, assess your 
+                current technology landscape, identify gaps, and develop a roadmap for technology acquisition and implementation. 
+                This strategic foundation ensures that your HR technology investments deliver measurable value and support your 
+                organizational objectives.
+              </p>
+
+              <h4 className="text-xl font-medium mt-8 mb-2">Vendor Selection & Evaluation</h4>
+              <p>
+                The HR tech marketplace is crowded with vendors offering similar solutions, making it challenging to identify 
+                the right fit for your organization. Our consultants leverage their extensive market knowledge and structured 
+                evaluation frameworks to help you navigate the vendor landscape. We assist in defining selection criteria, 
+                creating RFPs, evaluating proposals, arranging demonstrations, and conducting reference checks. Our rigorous 
+                evaluation process ensures you select technology partners that meet your functional requirements, align with 
+                your budget, and share your vision for success.
+              </p>
+
+              <h4 className="text-xl font-medium mt-8 mb-2">Implementation Strategy & Change Management</h4>
+              <p>
+                Technology implementations often fail not because of the technology itself but due to inadequate planning and 
+                change management. Our consultants help you develop a comprehensive implementation strategy that covers system 
+                configuration, data migration, integration with existing systems, user training, and organizational change 
+                management. We work alongside your implementation teams to ensure smooth delivery, stakeholder engagement, 
+                and successful adoption.
+              </p>
+
+              <h4 className="text-xl font-medium mt-8 mb-2">HR Technology Optimization</h4>
+              <p>
+                Many organizations underutilize their existing HR technology investments. Our optimization services help you 
+                maximize the return on your technology investments by identifying opportunities to enhance system configuration, 
+                streamline processes, improve integration, and leverage advanced features. We conduct thorough assessments of 
+                your current systems, identify improvement opportunities, and implement changes that enhance functionality, 
+                user experience, and business impact.
+              </p>
+
+              <h4 className="text-xl font-medium mt-8 mb-2">HR Analytics & Reporting Strategy</h4>
+              <p>
+                Data-driven decision-making is essential for modern HR functions. We help you develop an effective HR analytics 
+                and reporting strategy that transforms raw data into actionable insights. Our consultants assist in defining key 
+                metrics, designing dashboards, implementing reporting solutions, and building analytical capabilities within your 
+                HR team. We ensure that your HR technology ecosystem supports your analytics ambitions and enables evidence-based 
+                decision-making.
+              </p>
+
+              <h3 className="text-2xl font-semibold mt-10 mb-4">Why Choose nHRMS for HR Technology Advisory</h3>
+              <p>
+                Our HR technology advisory services stand apart due to our vendor-neutral approach, deep industry expertise, 
+                and focus on measurable outcomes. We understand that technology is a means to an end, not an end in itself. 
+                Our consultants bring practical experience from hundreds of implementation projects across various industries, 
+                geographies, and organizational sizes. We combine this experience with a structured methodology that ensures 
+                consistent, high-quality outcomes while accommodating your unique organizational context.
+              </p>
+
+              <p>
+                Whether you're selecting your first HR system, replacing legacy applications, or optimizing your existing 
+                technology ecosystem, our consultants provide objective guidance, practical support, and expert insights that 
+                help you make informed decisions and maximize the value of your HR technology investments.
+              </p>
             </div>
           </div>
         </section>
@@ -190,14 +124,14 @@ export default function HRTech() {
         <section className="py-24 bg-gradient-to-br from-future-700/90 to-neural-700/90 relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1920')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
           <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <div className="max-w-3xl mx-auto text-center" data-animation="fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Transform Your HR Technology</h2>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Transform Your HR Technology Strategy</h2>
               <p className="text-xl text-white/80 mb-8">
-                Let's discuss how our HR technology solutions can help you modernize your HR operations and enhance your employee experience.
+                Ready to make informed HR technology decisions that drive business value? Our consultants are here to help you navigate the complex world of HR tech.
               </p>
-              <Button size="lg" className="bg-white text-future-700 hover:bg-white/90 shadow-lg" asChild>
+              <Button size="lg" className="bg-white text-future-700 hover:bg-white/90 shadow-lg px-8 py-3 rounded-md" asChild>
                 <Link to="/contact" className="inline-flex items-center">
-                  Schedule a Demo <ArrowRight className="ml-2 h-5 w-5" />
+                  Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>
