@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -15,7 +14,12 @@ export default function Research() {
   
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Check if user is logged in (this would be replaced with your actual auth check)
+    document.title = "Research & Insights | n Human Resources and Management Systems - nHRMS";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Explore nHRMS research papers, reports and whitepapers on HR trends, technology, leadership development, and strategic human capital management.');
+    }
+    
     const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     setIsLoggedIn(userLoggedIn);
   }, []);

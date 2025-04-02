@@ -38,7 +38,10 @@ export default function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-semibold">nHRMS</span>
+            <span className="text-xl font-semibold">
+              <span className="sr-only">n Human Resources and Management Systems</span>
+              <span aria-hidden="true">nHRMS</span>
+            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -47,7 +50,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-gray-700" onClick={toggleMobileMenu}>
+          <button className="md:hidden text-gray-700" onClick={toggleMobileMenu} aria-label="Toggle menu">
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -71,30 +74,30 @@ export default function Navbar() {
 const NavItems = () => (
   <>
     <Link to="/who-we-are" className="animated-link text-sm font-medium">
-      Who Are We
+      Who We Are
     </Link>
     <div className="relative group">
-      <button className="flex items-center animated-link text-sm font-medium">
+      <button className="flex items-center animated-link text-sm font-medium" aria-haspopup="true" aria-expanded="false">
         What We Do <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
       </button>
-      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left">
+      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left" role="menu">
         <div className="glass-panel rounded-lg p-3 shadow-xl">
-          <Link to="/services/executive-search" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+          <Link to="/services/executive-search" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             Executive Search
           </Link>
-          <Link to="/services/hr-advisory" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+          <Link to="/services/hr-advisory" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             HR Advisory
           </Link>
-          <Link to="/services/knowledge-management" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+          <Link to="/services/knowledge-management" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             Knowledge Management
           </Link>
-          <Link to="/services/go-to-market" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+          <Link to="/services/go-to-market" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             Go to Market Strategy & Execution
           </Link>
-          <Link to="/services/bot-hr-teams" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+          <Link to="/services/bot-hr-teams" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             Build Operate and Transfer - HR Teams
           </Link>
-          <Link to="/services/hr-tech" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+          <Link to="/services/hr-tech" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded" role="menuitem">
             HR Technology
           </Link>
         </div>
@@ -118,7 +121,7 @@ const NavItems = () => (
 const MobileNavItems = () => (
   <>
     <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      Who Are We
+      Who We Are
     </Link>
     <div className="px-3 py-2">
       <details className="group">

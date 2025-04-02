@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,6 +9,12 @@ import { Link } from 'react-router-dom';
 export default function WhoWeAre() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Set page title and meta description for SEO
+    document.title = "Who We Are | n Human Resources and Management Systems - nHRMS";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn about n Human Resources and Management Systems (nHRMS), a leading HR management consulting firm dedicated to helping organizations optimize their human capital.');
+    }
   }, []);
 
   const leadershipTeam = [
@@ -35,7 +42,7 @@ export default function WhoWeAre() {
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Who We Are</h1>
               <p className="text-xl text-muted-foreground">
-                nHRMS is a leading HR management consulting firm dedicated to helping organizations optimize their human capital and achieve business success through strategic HR solutions.
+                n Human Resources and Management Systems (nHRMS) is a leading HR management consulting firm dedicated to helping organizations optimize their human capital and achieve business success through strategic HR solutions.
               </p>
             </div>
           </div>
@@ -181,6 +188,7 @@ export default function WhoWeAre() {
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-primary transition-colors"
+                      aria-label={`${leader.name}'s LinkedIn profile`}
                     >
                       <Linkedin size={20} />
                     </a>
