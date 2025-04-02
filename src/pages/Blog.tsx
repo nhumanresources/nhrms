@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,30 +7,13 @@ import { ArrowRight, Calendar, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { useToast } from '@/components/ui/use-toast';
 
 export default function Blog() {
   const [activeYear, setActiveYear] = useState('all');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { toast } = useToast();
   
   useEffect(() => {
     window.scrollTo(0, 0);
-    const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    setIsLoggedIn(userLoggedIn);
   }, []);
-
-  const handleLoginPrompt = () => {
-    toast({
-      title: "Login Required",
-      description: "Please login to access full articles",
-      action: (
-        <Button asChild variant="default" size="sm">
-          <Link to="/login">Login</Link>
-        </Button>
-      ),
-    });
-  };
 
   const featuredPost = {
     title: "The Future of Work: How AI is Reshaping HR",
@@ -383,28 +365,22 @@ export default function Blog() {
                     <p className="text-muted-foreground mb-6">
                       {featuredPost.description}
                     </p>
-                    {isLoggedIn ? (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button className="group">
-                            Read article <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                          <DialogHeader>
-                            <DialogTitle>{featuredPost.title}</DialogTitle>
-                            <DialogDescription>
-                              By {featuredPost.author} | {featuredPost.date}
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="mt-4 prose prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: featuredPost.content }} />
-                        </DialogContent>
-                      </Dialog>
-                    ) : (
-                      <Button className="group" onClick={handleLoginPrompt}>
-                        Read article <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    )}
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="group">
+                          Read article <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle>{featuredPost.title}</DialogTitle>
+                          <DialogDescription>
+                            By {featuredPost.author} | {featuredPost.date}
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="mt-4 prose prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: featuredPost.content }} />
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
               </Card>
@@ -484,37 +460,26 @@ export default function Blog() {
                           </CardDescription>
                         </CardContent>
                         <CardFooter>
-                          {isLoggedIn ? (
-                            <Dialog>
-                              <DialogTrigger asChild>
-                                <Button variant="ghost" size="sm" className="mt-2 group">
-                                  Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                </Button>
-                              </DialogTrigger>
-                              <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                                <DialogHeader>
-                                  <DialogTitle>{post.title}</DialogTitle>
-                                  <DialogDescription>
-                                    By {post.author} | {post.date}
-                                  </DialogDescription>
-                                </DialogHeader>
-                                <div className="mt-4 prose prose-blue max-w-none">
-                                  <h2>{post.title}</h2>
-                                  <p className="lead">{post.description}</p>
-                                  <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
-                                </div>
-                              </DialogContent>
-                            </Dialog>
-                          ) : (
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="mt-2 group"
-                              onClick={handleLoginPrompt}
-                            >
-                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                          )}
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="ghost" size="sm" className="mt-2 group">
+                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                              <DialogHeader>
+                                <DialogTitle>{post.title}</DialogTitle>
+                                <DialogDescription>
+                                  By {post.author} | {post.date}
+                                </DialogDescription>
+                              </DialogHeader>
+                              <div className="mt-4 prose prose-blue max-w-none">
+                                <h2>{post.title}</h2>
+                                <p className="lead">{post.description}</p>
+                                <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
                         </CardFooter>
                       </Card>
                     ))}
@@ -548,37 +513,26 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        {isLoggedIn ? (
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="ghost" size="sm" className="mt-2 group">
-                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>{post.title}</DialogTitle>
-                                <DialogDescription>
-                                  By {post.author} | {post.date}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="mt-4 prose prose-blue max-w-none">
-                                <h2>{post.title}</h2>
-                                <p className="lead">{post.description}</p>
-                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        ) : (
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="mt-2 group"
-                            onClick={handleLoginPrompt}
-                          >
-                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        )}
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="ghost" size="sm" className="mt-2 group">
+                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>{post.title}</DialogTitle>
+                              <DialogDescription>
+                                By {post.author} | {post.date}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="mt-4 prose prose-blue max-w-none">
+                              <h2>{post.title}</h2>
+                              <p className="lead">{post.description}</p>
+                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
                       </CardFooter>
                     </Card>
                   ))}
@@ -612,37 +566,26 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        {isLoggedIn ? (
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="ghost" size="sm" className="mt-2 group">
-                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>{post.title}</DialogTitle>
-                                <DialogDescription>
-                                  By {post.author} | {post.date}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="mt-4 prose prose-blue max-w-none">
-                                <h2>{post.title}</h2>
-                                <p className="lead">{post.description}</p>
-                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        ) : (
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="mt-2 group"
-                            onClick={handleLoginPrompt}
-                          >
-                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        )}
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="ghost" size="sm" className="mt-2 group">
+                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>{post.title}</DialogTitle>
+                              <DialogDescription>
+                                By {post.author} | {post.date}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="mt-4 prose prose-blue max-w-none">
+                              <h2>{post.title}</h2>
+                              <p className="lead">{post.description}</p>
+                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
                       </CardFooter>
                     </Card>
                   ))}
@@ -676,37 +619,26 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        {isLoggedIn ? (
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="ghost" size="sm" className="mt-2 group">
-                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>{post.title}</DialogTitle>
-                                <DialogDescription>
-                                  By {post.author} | {post.date}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="mt-4 prose prose-blue max-w-none">
-                                <h2>{post.title}</h2>
-                                <p className="lead">{post.description}</p>
-                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        ) : (
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="mt-2 group"
-                            onClick={handleLoginPrompt}
-                          >
-                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        )}
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="ghost" size="sm" className="mt-2 group">
+                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>{post.title}</DialogTitle>
+                              <DialogDescription>
+                                By {post.author} | {post.date}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="mt-4 prose prose-blue max-w-none">
+                              <h2>{post.title}</h2>
+                              <p className="lead">{post.description}</p>
+                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
                       </CardFooter>
                     </Card>
                   ))}
@@ -740,37 +672,26 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        {isLoggedIn ? (
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="ghost" size="sm" className="mt-2 group">
-                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>{post.title}</DialogTitle>
-                                <DialogDescription>
-                                  By {post.author} | {post.date}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="mt-4 prose prose-blue max-w-none">
-                                <h2>{post.title}</h2>
-                                <p className="lead">{post.description}</p>
-                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        ) : (
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="mt-2 group"
-                            onClick={handleLoginPrompt}
-                          >
-                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        )}
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="ghost" size="sm" className="mt-2 group">
+                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>{post.title}</DialogTitle>
+                              <DialogDescription>
+                                By {post.author} | {post.date}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="mt-4 prose prose-blue max-w-none">
+                              <h2>{post.title}</h2>
+                              <p className="lead">{post.description}</p>
+                              <p>This is the full content of the article. It is freely accessible to all users without requiring login.</p>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
                       </CardFooter>
                     </Card>
                   ))}
@@ -804,47 +725,19 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        {isLoggedIn ? (
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="ghost" size="sm" className="mt-2 group">
-                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>{post.title}</DialogTitle>
-                                <DialogDescription>
-                                  By {post.author} | {post.date}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="mt-4 prose prose-blue max-w-none">
-                                <h2>{post.title}</h2>
-                                <p className="lead">{post.description}</p>
-                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        ) : (
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="mt-2 group"
-                            onClick={handleLoginPrompt}
-                          >
-                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        )}
-                      </CardFooter>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
-  );
-}
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="ghost" size="sm" className="mt-2 group">
+                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>{post.title}</DialogTitle>
+                              <DialogDescription>
+                                By {post.author} | {post.date}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="mt-4 prose prose-blue max-w-none">
+                              <h2>{post.title}</h2>
+                              <p className="lead">{post.description}</p>
