@@ -28,6 +28,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import LeadershipDevelopment from "./pages/research/LeadershipDevelopment";
+import HRTechLandscape from "./pages/research/HRTechLandscape";
 import FinancialHRAnalytics from "./pages/case-studies/FinancialHRAnalytics";
 import BangaloreInternship from "./pages/careers/internships/BangaloreInternship";
 
@@ -78,6 +79,7 @@ const App = () => {
           
           {/* Research detail pages */}
           <Route path="/research/leadership-development-impact" element={<LeadershipDevelopment />} />
+          <Route path="/research/hr-tech-landscape-2025" element={<HRTechLandscape />} />
           
           {/* Case study detail pages */}
           <Route path="/case-studies/financial-hr-analytics" element={<FinancialHRAnalytics />} />

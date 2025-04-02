@@ -1,9 +1,8 @@
-
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Share2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const LeadershipDevelopment = () => {
@@ -44,12 +43,6 @@ const LeadershipDevelopment = () => {
                   <div className="text-sm text-muted-foreground">Lead HR Researcher</div>
                 </div>
               </div>
-            </div>
-            
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
-                <Share2 className="h-4 w-4" /> Share
-              </Button>
             </div>
           </div>
           
