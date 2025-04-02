@@ -6,6 +6,12 @@ export default function CTASection() {
   const location = useLocation();
   const isCareerPage = location.pathname.includes('/careers');
 
+  // Function to handle career application clicks
+  const handleCareerApply = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.location.href = "mailto:info@nhrms.com?subject=Career Application&body=Dear nHRMS Team,%0D%0A%0D%0AI am interested in exploring career opportunities with your organization. Please find my attached resume.%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ASincerely,%0D%0A[Your Name]";
+  };
+
   return (
     <section className="py-16 bg-primary/10">
       <div className="container mx-auto px-4 md:px-6">
@@ -18,7 +24,7 @@ export default function CTASection() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <Link to="/contact">Apply Now</Link>
+                  <a href="#" onClick={handleCareerApply}>Apply Now</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link to="/who-we-are">Learn About Our Culture</Link>

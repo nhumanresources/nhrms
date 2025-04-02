@@ -15,7 +15,7 @@ export default function BangaloreInternship() {
 
   const handleApplyNow = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    window.location.href = "mailto:krishna@nhrms.com?subject=Application for 6-Month Internship Program&body=Dear Krishna,%0D%0A%0D%0AI am interested in applying for the 6-Month Career Development Program. Please find my attached resume and cover letter.%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ASincerely,%0D%0A[Your Name]";
+    window.location.href = "mailto:info@nhrms.com?subject=Application for 6-Month Internship Program&body=Dear nHRMS Team,%0D%0A%0D%0AI am interested in applying for the 6-Month Career Development Program. Please find my attached resume and cover letter.%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ASincerely,%0D%0A[Your Name]";
   };
 
   return (
