@@ -1,33 +1,39 @@
-# Welcome to your Lovable project
 
-## Project info
+# n Human Resources and Management Systems - nHRMS
 
-**URL**: https://lovable.dev/projects/efa1dfca-e2c7-4cb5-8d71-ef763dc1918e
+## About nHRMS
 
-## How can I edit this code?
+nHRMS is a comprehensive Human Resources Management System providing 360° HR solutions for modern organizations seeking excellence.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- Executive Search
+- HR Advisory
+- Knowledge Management
+- Go to Market Strategy & Execution
+- Build Operate and Transfer - HR Teams
+- HR Technology Solutions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/efa1dfca-e2c7-4cb5-8d71-ef763dc1918e) and start prompting.
+## Development
 
-Changes made via Lovable will be committed automatically to this repo.
+This project is built with:
 
-**Use your preferred IDE**
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Running Locally
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Follow these steps to run the application locally:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
 
 # Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd nhrms
 
 # Step 3: Install the necessary dependencies.
 npm i
@@ -36,34 +42,14 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The site can be built using:
 
-**Use GitHub Codespaces**
+```sh
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Contact
 
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/efa1dfca-e2c7-4cb5-8d71-ef763dc1918e) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+For inquiries, please contact us at info@nhrms.com or call +1 (314) 301-8402.
