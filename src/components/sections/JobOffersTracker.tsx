@@ -7,24 +7,24 @@ import { ChartContainer, ChartLegend, ChartLegendContent } from "../ui/chart";
 
 export default function JobOffersTracker() {
   const [progress, setProgress] = useState(0);
-  const jobOffersCreated = 375000; // This would come from your API in a real app
+  const jobOffersCreated = 23229; // Updated to 23,229 jobs created so far
   const jobOffersGoal = 1000000; // 1 million jobs by 2035
   const progressPercentage = Math.round((jobOffersCreated / jobOffersGoal) * 100);
 
   // Array of monthly job offer counts for the past 12 months (example data)
   const monthlyOffers = [
-    { month: 'Sep', count: 8500 },
-    { month: 'Oct', count: 9200 },
-    { month: 'Nov', count: 8900 },
-    { month: 'Dec', count: 7800 },
-    { month: 'Jan', count: 8100 },
-    { month: 'Feb', count: 9500 },
-    { month: 'Mar', count: 10200 },
-    { month: 'Apr', count: 11500 },
-    { month: 'May', count: 12800 },
-    { month: 'Jun', count: 13900 },
-    { month: 'Jul', count: 15200 },
-    { month: 'Aug', count: 16400 }
+    { month: 'Sep', count: 1250 },
+    { month: 'Oct', count: 1320 },
+    { month: 'Nov', count: 1180 },
+    { month: 'Dec', count: 1090 },
+    { month: 'Jan', count: 1540 },
+    { month: 'Feb', count: 1780 },
+    { month: 'Mar', count: 2050 },
+    { month: 'Apr', count: 2310 },
+    { month: 'May', count: 2480 },
+    { month: 'Jun', count: 2620 },
+    { month: 'Jul', count: 2780 },
+    { month: 'Aug', count: 2829 }
   ];
 
   const totalLastYear = monthlyOffers.reduce((acc, month) => acc + month.count, 0);
