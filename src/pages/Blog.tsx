@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -755,4 +756,95 @@ export default function Blog() {
                               </DialogHeader>
                               <div className="mt-4 prose prose-blue max-w-none">
                                 <h2>{post.title}</h2>
-                                <p className="lead">{
+                                <p className="lead">{post.description}</p>
+                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        ) : (
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="mt-2 group"
+                            onClick={handleLoginPrompt}
+                          >
+                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </Button>
+                        )}
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="compensation" className="mt-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {blogPosts.filter(post => 
+                    (activeYear === 'all' || post.year === activeYear) && 
+                    post.category === "Compensation"
+                  ).map((post, index) => (
+                    <Card key={index} className="border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                      <CardHeader className="pb-4">
+                        <div className="text-sm text-primary font-medium mb-2">{post.category}</div>
+                        <CardTitle className="line-clamp-2">{post.title}</CardTitle>
+                        <div className="flex items-center text-muted-foreground text-sm mt-2">
+                          <div className="flex items-center mr-4">
+                            <Calendar className="h-3 w-3 mr-1" /> 
+                            {post.date}
+                          </div>
+                          <div className="flex items-center">
+                            <User className="h-3 w-3 mr-1" /> 
+                            {post.author}
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription className="text-base line-clamp-3">
+                          {post.description}
+                        </CardDescription>
+                      </CardContent>
+                      <CardFooter>
+                        {isLoggedIn ? (
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="ghost" size="sm" className="mt-2 group">
+                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                              <DialogHeader>
+                                <DialogTitle>{post.title}</DialogTitle>
+                                <DialogDescription>
+                                  By {post.author} | {post.date}
+                                </DialogDescription>
+                              </DialogHeader>
+                              <div className="mt-4 prose prose-blue max-w-none">
+                                <h2>{post.title}</h2>
+                                <p className="lead">{post.description}</p>
+                                <p>This is where the full content of the article would appear. The user would be able to read the entire article after logging in.</p>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        ) : (
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="mt-2 group"
+                            onClick={handleLoginPrompt}
+                          >
+                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </Button>
+                        )}
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
