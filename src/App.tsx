@@ -3,8 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { applySecurityMeasures } from "./utils/securityUtils";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -34,6 +35,11 @@ import BangaloreInternship from "./pages/careers/internships/BangaloreInternship
 const App = () => {
   // Create a new QueryClient instance inside the component
   const [queryClient] = useState(() => new QueryClient());
+  
+  // Apply security measures when the app loads
+  useEffect(() => {
+    applySecurityMeasures();
+  }, []);
   
   return (
     <QueryClientProvider client={queryClient}>
