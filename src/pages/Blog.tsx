@@ -14,6 +14,11 @@ export default function Blog() {
   
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Blog & Insights | nHRMS";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Explore nHRMS blog articles and insights on HR trends, technology, leadership development, and strategic human capital management.');
+    }
   }, []);
 
   const featuredPost = {
@@ -22,7 +27,7 @@ export default function Blog() {
     date: "February 15, 2025",
     author: "Sarah Johnson",
     description: "An in-depth look at how technology is transforming human resources practices and what HR leaders need to know to stay ahead.",
-    link: "#",
+    link: "/research/future-work-ai-collaboration",
     image: "bg-gradient-to-r from-blue-400/50 to-purple-500/50",
     year: "2025",
     content: `
@@ -119,7 +124,7 @@ export default function Blog() {
       date: "May 28, 2023",
       author: "Michael Chen",
       description: "Detailed strategies to create an engaging and effective remote onboarding experience that sets new hires up for success.",
-      link: "#",
+      link: "/research/employee-experience-roi",
       year: "2023"
     },
     {
@@ -128,7 +133,7 @@ export default function Blog() {
       date: "May 10, 2023",
       author: "Olivia Martinez",
       description: "How to foster a learning culture that drives innovation, retention, and organizational growth in today's rapidly changing business environment.",
-      link: "#",
+      link: "/research/leadership-development",
       year: "2023"
     },
     {
@@ -137,7 +142,7 @@ export default function Blog() {
       date: "April 22, 2023",
       author: "Daniel Washington",
       description: "A comprehensive overview of the most important regulatory changes affecting HR departments and what you need to do to ensure compliance.",
-      link: "#",
+      link: "/research/hr-tech-landscape-2025",
       year: "2023"
     },
     {
@@ -146,7 +151,7 @@ export default function Blog() {
       date: "April 5, 2023",
       author: "Jennifer Lee",
       description: "Measuring the true impact of wellbeing programs on organizational performance, including both quantitative and qualitative metrics.",
-      link: "#",
+      link: "/research/employee-experience-roi",
       year: "2023"
     },
     {
@@ -155,7 +160,7 @@ export default function Blog() {
       date: "March 18, 2023",
       author: "Robert Keller",
       description: "A step-by-step approach to workforce planning that aligns with your organization's strategic objectives and anticipated growth.",
-      link: "#",
+      link: "/research/talent-acquisition-benchmark-2024",
       year: "2023"
     },
     {
@@ -164,7 +169,7 @@ export default function Blog() {
       date: "March 3, 2023",
       author: "Keisha Williams",
       description: "Practical strategies for implementing diversity, equity, and inclusion initiatives that create lasting organizational change.",
-      link: "#",
+      link: "/research/leadership-development",
       year: "2023"
     },
     
@@ -175,7 +180,7 @@ export default function Blog() {
       date: "April 15, 2024",
       author: "Thomas Zhang",
       description: "Explore practical applications of generative AI across recruitment, onboarding, employee engagement, and performance management.",
-      link: "#",
+      link: "/research/future-work-ai-collaboration",
       year: "2024"
     },
     {
@@ -184,7 +189,7 @@ export default function Blog() {
       date: "March 28, 2024",
       author: "Amara Nelson",
       description: "Analyzing data from organizations that have implemented four-day workweeks and the impact on productivity, wellbeing, and retention.",
-      link: "#",
+      link: "/research/employee-engagement-digital-2024",
       year: "2024"
     },
     {
@@ -193,7 +198,7 @@ export default function Blog() {
       date: "February 20, 2024",
       author: "Jamal Parker",
       description: "How to identify and mitigate algorithmic bias in AI-powered HR systems to ensure fair and equitable talent decisions.",
-      link: "#",
+      link: "/research/future-work-ai-collaboration",
       year: "2024"
     },
     {
@@ -202,7 +207,7 @@ export default function Blog() {
       date: "January 30, 2024",
       author: "Sophia Garcia",
       description: "The shift toward skills-based talent models and how organizations are restructuring work around capabilities rather than static job descriptions.",
-      link: "#",
+      link: "/research/talent-acquisition-benchmark-2024",
       year: "2024"
     },
     {
@@ -211,7 +216,7 @@ export default function Blog() {
       date: "January 12, 2024",
       author: "David Kim",
       description: "Best practices for evaluating, selecting, and integrating HR technologies to create a seamless employee experience across the talent lifecycle.",
-      link: "#",
+      link: "/research/hr-tech-landscape-2025",
       year: "2024"
     },
     
@@ -222,7 +227,7 @@ export default function Blog() {
       date: "March 2, 2025",
       author: "Victoria West",
       description: "Examining how pioneering organizations are using metaverse technologies for collaboration, learning, and employee engagement.",
-      link: "#",
+      link: "/research/future-work-ai-collaboration",
       year: "2025"
     },
     {
@@ -231,7 +236,7 @@ export default function Blog() {
       date: "February 18, 2025",
       author: "Raj Patel",
       description: "How quantum computing is beginning to transform complex workforce modeling and scenario planning for large organizations.",
-      link: "#",
+      link: "/research/hr-tech-landscape-2025",
       year: "2025"
     },
     {
@@ -240,7 +245,7 @@ export default function Blog() {
       date: "February 27, 2025",
       author: "Emma Rodriguez",
       description: "Innovative approaches to creating truly neurodiverse-friendly workplaces that leverage diverse cognitive abilities as competitive advantages.",
-      link: "#",
+      link: "/research/leadership-development",
       year: "2025"
     },
     {
@@ -249,7 +254,7 @@ export default function Blog() {
       date: "January 20, 2025",
       author: "Marcus Johnson",
       description: "How leading organizations are incorporating environmental impact indicators into compensation and benefits packages to align with climate goals.",
-      link: "#",
+      link: "/research/employee-experience-roi",
       year: "2025"
     },
     
@@ -260,7 +265,7 @@ export default function Blog() {
       date: "March 15, 2025",
       author: "Elena Campos",
       description: "Comprehensive analysis of emerging HR policy trends across major global markets and strategies for building adaptable compliance frameworks.",
-      link: "#",
+      link: "/research/hr-tech-landscape-2025",
       year: "2025"
     },
     {
@@ -269,7 +274,7 @@ export default function Blog() {
       date: "February 28, 2025",
       author: "Jonathan Chen",
       description: "How executive pay structures are evolving to incorporate AI adoption, digital transformation leadership, and sustainable business practices.",
-      link: "#",
+      link: "/research/talent-acquisition-benchmark-2024",
       year: "2025"
     },
     {
@@ -278,7 +283,7 @@ export default function Blog() {
       date: "February 10, 2025",
       author: "Priya Sharma",
       description: "Navigating the complex legal considerations of permanent remote and hybrid work models across different jurisdictions.",
-      link: "#",
+      link: "/research/employee-engagement-digital-2024",
       year: "2025"
     },
     {
@@ -287,7 +292,7 @@ export default function Blog() {
       date: "January 22, 2025",
       author: "Derek Morgan",
       description: "Research findings on effective sales compensation models that balance short-term performance with long-term customer relationship building.",
-      link: "#",
+      link: "/research/talent-acquisition-benchmark-2024",
       year: "2025"
     },
     {
@@ -296,7 +301,7 @@ export default function Blog() {
       date: "January 15, 2025",
       author: "Naomi Watanabe",
       description: "In-depth guide to creating electronic stock ownership plans that work effectively across different markets and regulatory environments.",
-      link: "#",
+      link: "/research/employee-experience-roi",
       year: "2025"
     },
     {
@@ -305,7 +310,7 @@ export default function Blog() {
       date: "February 8, 2025",
       author: "Alexander Rivera",
       description: "Identifying and attracting executive talent capable of leading organizations through complex digital transformation initiatives.",
-      link: "#",
+      link: "/research/future-work-ai-collaboration",
       year: "2025"
     },
     {
@@ -314,7 +319,7 @@ export default function Blog() {
       date: "February 25, 2025",
       author: "Zainab Okafor",
       description: "How forward-thinking organizations are implementing board diversity initiatives that drive innovation and strategic advantage.",
-      link: "#",
+      link: "/research/leadership-development",
       year: "2025"
     },
     {
@@ -323,7 +328,7 @@ export default function Blog() {
       date: "March 12, 2025",
       author: "Lucas Schmidt",
       description: "Emerging models for executive compensation that align leadership incentives with long-term organizational resilience and stakeholder value.",
-      link: "#",
+      link: "/research/talent-acquisition-benchmark-2024",
       year: "2025"
     }
   ];
@@ -366,22 +371,11 @@ export default function Blog() {
                     <p className="text-muted-foreground mb-6">
                       {featuredPost.description}
                     </p>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button className="group">
-                          Read article <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle>{featuredPost.title}</DialogTitle>
-                          <DialogDescription>
-                            By {featuredPost.author} | {featuredPost.date}
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="mt-4 prose prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: featuredPost.content }} />
-                      </DialogContent>
-                    </Dialog>
+                    <Link to={featuredPost.link}>
+                      <Button className="group">
+                        Read article <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </Card>
@@ -461,27 +455,11 @@ export default function Blog() {
                           </CardDescription>
                         </CardContent>
                         <CardFooter>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="ghost" size="sm" className="mt-2 group">
-                                Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>{post.title}</DialogTitle>
-                                <DialogDescription>
-                                  By {post.author} | {post.date}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="mt-4 prose prose-blue max-w-none">
-                                <h2>{post.title}</h2>
-                                <p className="lead">{post.description}</p>
-                                <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
-                                <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
+                          <Button variant="ghost" size="sm" className="mt-2 group" asChild>
+                            <Link to={post.link}>
+                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Link>
+                          </Button>
                         </CardFooter>
                       </Card>
                     ))}
@@ -515,27 +493,11 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="ghost" size="sm" className="mt-2 group">
-                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                            <DialogHeader>
-                              <DialogTitle>{post.title}</DialogTitle>
-                              <DialogDescription>
-                                By {post.author} | {post.date}
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="mt-4 prose prose-blue max-w-none">
-                              <h2>{post.title}</h2>
-                              <p className="lead">{post.description}</p>
-                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
-                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
+                        <Button variant="ghost" size="sm" className="mt-2 group" asChild>
+                          <Link to={post.link}>
+                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
                       </CardFooter>
                     </Card>
                   ))}
@@ -569,27 +531,11 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="ghost" size="sm" className="mt-2 group">
-                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                            <DialogHeader>
-                              <DialogTitle>{post.title}</DialogTitle>
-                              <DialogDescription>
-                                By {post.author} | {post.date}
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="mt-4 prose prose-blue max-w-none">
-                              <h2>{post.title}</h2>
-                              <p className="lead">{post.description}</p>
-                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
-                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
+                        <Button variant="ghost" size="sm" className="mt-2 group" asChild>
+                          <Link to={post.link}>
+                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
                       </CardFooter>
                     </Card>
                   ))}
@@ -623,27 +569,11 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="ghost" size="sm" className="mt-2 group">
-                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                            <DialogHeader>
-                              <DialogTitle>{post.title}</DialogTitle>
-                              <DialogDescription>
-                                By {post.author} | {post.date}
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="mt-4 prose prose-blue max-w-none">
-                              <h2>{post.title}</h2>
-                              <p className="lead">{post.description}</p>
-                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
-                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
+                        <Button variant="ghost" size="sm" className="mt-2 group" asChild>
+                          <Link to={post.link}>
+                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
                       </CardFooter>
                     </Card>
                   ))}
@@ -677,27 +607,11 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="ghost" size="sm" className="mt-2 group">
-                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                            <DialogHeader>
-                              <DialogTitle>{post.title}</DialogTitle>
-                              <DialogDescription>
-                                By {post.author} | {post.date}
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="mt-4 prose prose-blue max-w-none">
-                              <h2>{post.title}</h2>
-                              <p className="lead">{post.description}</p>
-                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
-                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
+                        <Button variant="ghost" size="sm" className="mt-2 group" asChild>
+                          <Link to={post.link}>
+                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
                       </CardFooter>
                     </Card>
                   ))}
@@ -731,27 +645,11 @@ export default function Blog() {
                         </CardDescription>
                       </CardContent>
                       <CardFooter>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="ghost" size="sm" className="mt-2 group">
-                              Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                            <DialogHeader>
-                              <DialogTitle>{post.title}</DialogTitle>
-                              <DialogDescription>
-                                By {post.author} | {post.date}
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="mt-4 prose prose-blue max-w-none">
-                              <h2>{post.title}</h2>
-                              <p className="lead">{post.description}</p>
-                              <p>This article explores {post.category.toLowerCase()} trends and best practices in today's evolving workplace. With approximately 700-750 words, it provides a concise yet comprehensive overview of key concepts, challenges, and strategies related to {post.title.toLowerCase()}.</p>
-                              <p>The content addresses current industry developments, practical applications, and forward-looking perspectives that HR professionals need to consider when implementing effective solutions.</p>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
+                        <Button variant="ghost" size="sm" className="mt-2 group" asChild>
+                          <Link to={post.link}>
+                            Read more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
                       </CardFooter>
                     </Card>
                   ))}
