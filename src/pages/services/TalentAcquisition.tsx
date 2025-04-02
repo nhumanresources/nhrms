@@ -46,7 +46,7 @@ export default function TalentAcquisition() {
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button asChild>
                   <Link to="/contact" className="gap-2">
-                    Schedule a Consultation <ArrowRight className="h-4 w-4" />
+                    Contact Us <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button variant="outline" asChild>
@@ -221,7 +221,7 @@ export default function TalentAcquisition() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <Link to="/contact">Request a Consultation</Link>
+                <Link to="/contact">Contact Us</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link to="/services">Explore Our Other Services</Link>

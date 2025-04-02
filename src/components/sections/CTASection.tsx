@@ -13,7 +13,7 @@ export default function CTASection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link to="/contact">Request a Consultation</Link>
+              <Link to="/contact">Contact Us</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link to="/services">Explore Our Services</Link>

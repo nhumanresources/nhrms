@@ -165,6 +165,15 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
     >
       Research
     </Link>
+    <Link 
+      to="/contact" 
+      className={cn(
+        "animated-link text-sm font-medium", 
+        isActive('/contact') ? "text-primary font-semibold" : "text-muted-foreground"
+      )}
+    >
+      Contact Us
+    </Link>
   </>
 );
 
@@ -208,6 +217,9 @@ const MobileNavItems = () => (
     </Link>
     <Link to="/research" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Research
+    </Link>
+    <Link to="/contact" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
+      Contact Us
     </Link>
     <div className="border-t border-border/50 mt-2 pt-2">
       <a href="tel:+13143018402" className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 rounded">
