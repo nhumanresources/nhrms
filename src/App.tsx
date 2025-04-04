@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -68,6 +67,9 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
           
+          {/* Redirect careers to external site */}
+          <Route path="/careers" element={<Navigate to="https://jobs.nhrms.com/jobs/Careers" replace />} />
+          
           {/* Service routes */}
           <Route path="/services/executive-search" element={<ExecutiveSearch />} />
           <Route path="/services/hr-advisory" element={<HRAdvisory />} />
@@ -77,7 +79,7 @@ const App = () => {
           <Route path="/services/talent-acquisition" element={<TalentAcquisition />} />
           <Route path="/learning-solutions" element={<LearningServices />} />
           
-          {/* Careers routes */}
+          {/* Careers routes - keep internships pages */}
           <Route path="/careers/internships" element={<Internships />} />
           <Route path="/careers/internships/bangalore" element={<BangaloreInternship />} />
           

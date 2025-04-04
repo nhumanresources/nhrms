@@ -9,7 +9,7 @@ export default function CTASection() {
   // Function to handle career application clicks
   const handleCareerApply = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.location.href = "mailto:info@nhrms.com?subject=Career Application&body=Dear nHRMS Team,%0D%0A%0D%0AI am interested in exploring career opportunities with your organization. Please find my attached resume.%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ASincerely,%0D%0A[Your Name]";
+    window.location.href = "https://jobs.nhrms.com/jobs/Careers";
   };
 
   return (
@@ -24,10 +24,10 @@ export default function CTASection() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <a href="#" onClick={handleCareerApply}>Apply Now</a>
+                  <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer">Apply Now</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/who-we-are">Learn About Our Culture</Link>
+                  <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer">Learn About Our Culture</a>
                 </Button>
               </div>
             </>

@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -115,10 +114,10 @@ export default function Footer() {
             <h4 className="font-semibold text-lg mb-5">Careers</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/careers" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <Briefcase className="h-4 w-4 mr-2" />
                   Current Openings
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="/careers/internships" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
@@ -132,17 +131,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/careers/culture" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
                   Our Culture
-                </Link>
+                </a>
               </li>
             </ul>
             <div className="mt-6">
               <Button variant="outline" size="sm" className="w-full" asChild>
-                <Link to="/careers" className="flex items-center justify-center">
+                <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
                   Join Our Team <Briefcase className="ml-2 h-4 w-4" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
