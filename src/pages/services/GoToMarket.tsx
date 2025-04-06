@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Rocket } from 'lucide-react';
 import { initInViewAnimations } from '@/lib/animationUtils';
 
 // Import our new components
@@ -20,6 +19,9 @@ export default function GoToMarket() {
     setTimeout(() => {
       initInViewAnimations();
     }, 100);
+    
+    // Update page title
+    document.title = "Go-To-Market - Launch for HR-Tech Solutions | nHRMS";
   }, []);
 
   return (

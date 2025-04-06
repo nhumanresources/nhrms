@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -29,6 +30,7 @@ import Cookies from "./pages/Cookies";
 import LeadershipDevelopment from "./pages/research/LeadershipDevelopment";
 import HRTechLandscape from "./pages/research/HRTechLandscape";
 import FinancialHRAnalytics from "./pages/case-studies/FinancialHRAnalytics";
+import HRTechPlatformLaunch from "./pages/case-studies/HRTechPlatformLaunch";
 import Internships from "./pages/careers/Internships";
 import BangaloreInternship from "./pages/careers/internships/BangaloreInternship";
 import EmployeeExperienceROI from "./pages/research/EmployeeExperienceROI";
@@ -101,6 +103,7 @@ const App = () => {
           
           {/* Case study detail pages */}
           <Route path="/case-studies/financial-hr-analytics" element={<FinancialHRAnalytics />} />
+          <Route path="/case-studies/hr-tech-platform-launch" element={<HRTechPlatformLaunch />} />
           
           {/* Special routes for the deployed preview site */}
           <Route path="/hr360-solution-hub" element={<Navigate to="/" replace />} />
