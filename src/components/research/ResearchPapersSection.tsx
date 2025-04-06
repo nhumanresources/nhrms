@@ -31,7 +31,7 @@ export default function ResearchPapersSection({ papers }: ResearchPapersSectionP
                 </div>
                 <CardTitle className="line-clamp-2">{paper.title}</CardTitle>
                 <CardDescription className="text-sm">
-                  {paper.authors ? `By ${paper.authors}` : 'Active Research Area'}
+                  {paper.authors ? 'In collaboration with industry experts' : 'Active Research Area'}
                 </CardDescription>
               </CardHeader>
               <CardContent>

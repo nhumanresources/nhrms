@@ -50,7 +50,7 @@ export default function HRAdvisory() {
               </div>
               <div className="relative rounded-xl overflow-hidden aspect-video md:aspect-square shadow-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1000" 
+                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920" 
                   alt="HR professionals in a strategic meeting" 
                   className="w-full h-full object-cover"
                 />

@@ -49,6 +49,7 @@ import OrganizationStrategy from "./pages/services/OrganizationStrategy";
 import CareerDevelopment from "./pages/services/CareerDevelopment";
 import Certifications from "./pages/services/Certifications";
 import LeadershipDevelopmentService from "./pages/services/LeadershipDevelopmentService";
+import Mail from "./pages/Mail";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -76,6 +77,10 @@ const App = () => {
           <Route path="/research-opportunities" element={<ResearchOpportunities />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/mail" element={<Mail />} />
+          
+          {/* Redirect mail.nhrms.com to the mail page */}
+          <Route path="/mail.nhrms.com" element={<Navigate to="/mail" replace />} />
           
           <Route path="/careers" element={<Navigate to="https://jobs.nhrms.com/jobs/Careers" replace />} />
           
