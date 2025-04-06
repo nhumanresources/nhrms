@@ -83,49 +83,31 @@ export default function ResearchOpportunities() {
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-xl font-semibold mb-3">AI-Powered Skills Taxonomy Development</h3>
                 <p className="mb-4">Researching methods to create dynamic, self-updating skills taxonomies that adapt to emerging job roles and changing industry requirements using large language models and labor market data.</p>
-                <div className="text-sm text-muted-foreground mt-2">
-                  <p>Collaborating institutions: MIT Media Lab, Stanford HCI Group</p>
-                </div>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-xl font-semibold mb-3">Ethical AI in Recruitment Decision-Making</h3>
                 <p className="mb-4">Investigating frameworks for building transparent, fair, and accountable AI systems for candidate screening and selection, with particular focus on mitigating algorithmic bias.</p>
-                <div className="text-sm text-muted-foreground mt-2">
-                  <p>Collaborating institutions: Oxford Internet Institute, Carnegie Mellon University</p>
-                </div>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-xl font-semibold mb-3">Multimodal Learning Experience Personalization</h3>
                 <p className="mb-4">Exploring how AI can deliver personalized learning experiences by adapting content formats, difficulty levels, and delivery methods to individual learning preferences and career paths.</p>
-                <div className="text-sm text-muted-foreground mt-2">
-                  <p>Collaborating institutions: UC Berkeley School of Information, Georgia Tech</p>
-                </div>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-xl font-semibold mb-3">Algorithmic Management and Employee Well-being</h3>
                 <p className="mb-4">Studying the psychological and performance impacts of AI-driven management systems, and developing frameworks for human-centered algorithmic management practices.</p>
-                <div className="text-sm text-muted-foreground mt-2">
-                  <p>Collaborating institutions: Harvard Labor and Worklife Program, INSEAD</p>
-                </div>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-xl font-semibold mb-3">Generative AI for Organizational Knowledge Management</h3>
                 <p className="mb-4">Researching applications of generative AI in capturing, organizing, and making accessible institutional knowledge while balancing information accuracy and privacy concerns.</p>
-                <div className="text-sm text-muted-foreground mt-2">
-                  <p>Collaborating institutions: Northwestern University, University of Toronto</p>
-                </div>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-xl font-semibold mb-3">Predictive Analytics for Workforce Planning</h3>
                 <p className="mb-4">Developing advanced ML models that integrate internal workforce data with external economic indicators to improve long-term workforce planning and talent pipeline development.</p>
-                <div className="text-sm text-muted-foreground mt-2">
-                  <p>Collaborating institutions: Wharton School, London School of Economics</p>
-                </div>
               </div>
             </div>
           </div>
