@@ -50,6 +50,7 @@ import CareerDevelopment from "./pages/services/CareerDevelopment";
 import Certifications from "./pages/services/Certifications";
 import LeadershipDevelopmentService from "./pages/services/LeadershipDevelopmentService";
 import Mail from "./pages/Mail";
+import Sitemap from "./components/Sitemap";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -63,6 +64,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <Sitemap />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
