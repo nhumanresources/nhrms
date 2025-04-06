@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -26,7 +25,6 @@ export default function Contact() {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Update page title and meta description for SEO
     document.title = "Contact Us - n Human Resources and Management Systems";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -48,9 +46,7 @@ export default function Contact() {
   function onSubmit(values: FormValues) {
     console.log("Sending form data to info@nhrms.com", values);
     
-    // Here you would typically send the data to a server
-    // Since we're just showing a success message for now:
-    toast.success("Your message has been sent to info@nhrms.com. We'll get back to you soon!");
+    toast.success(`Your message has been sent to info@nhrms.com. We'll get back to you soon!`);
     form.reset();
   }
 

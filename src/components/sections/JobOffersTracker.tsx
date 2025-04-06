@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -7,7 +6,7 @@ import { ChartContainer, ChartLegend, ChartLegendContent } from "../ui/chart";
 
 export default function JobOffersTracker() {
   const [progress, setProgress] = useState(0);
-  const jobOffersCreated = 278432; // Updated to 278,432 jobs created as of March 2025
+  const jobOffersCreated = 30000; // Modified to show approximately 3% progress
   const jobOffersGoal = 1000000; // 1 million jobs by 2035
   const progressPercentage = Math.round((jobOffersCreated / jobOffersGoal) * 100);
 
