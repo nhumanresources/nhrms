@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -41,12 +40,16 @@ import EmployeeEngagementDigital from "./pages/research/EmployeeEngagementDigita
 import GenerativeAIHR from "./pages/research/GenerativeAIHR";
 import PsychologicalSafety from "./pages/research/PsychologicalSafety";
 import WorkforcePlanning from "./pages/research/WorkforcePlanning";
+import InternshipPrograms from "./pages/services/InternshipPrograms";
+import TotalRewards from "./pages/services/TotalRewards";
+import OrganizationStrategy from "./pages/services/OrganizationStrategy";
+import CareerDevelopment from "./pages/services/CareerDevelopment";
+import Certifications from "./pages/services/Certifications";
+import LeadershipDevelopmentService from "./pages/services/LeadershipDevelopmentService";
 
 const App = () => {
-  // Create a new QueryClient instance inside the component
   const [queryClient] = useState(() => new QueryClient());
   
-  // Apply security measures when the app loads
   useEffect(() => {
     applySecurityMeasures();
   }, []);
@@ -57,7 +60,6 @@ const App = () => {
         <Toaster />
         <Sonner />
         <Routes>
-          {/* Main routes */}
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -71,10 +73,8 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
           
-          {/* Redirect careers to external site */}
           <Route path="/careers" element={<Navigate to="https://jobs.nhrms.com/jobs/Careers" replace />} />
           
-          {/* Service routes */}
           <Route path="/services/executive-search" element={<ExecutiveSearch />} />
           <Route path="/services/hr-advisory" element={<HRAdvisory />} />
           <Route path="/services/go-to-market" element={<GoToMarket />} />
@@ -83,16 +83,20 @@ const App = () => {
           <Route path="/services/talent-acquisition" element={<TalentAcquisition />} />
           <Route path="/learning-solutions" element={<LearningServices />} />
           
-          {/* Careers routes - keep internships pages */}
+          <Route path="/services/internship-programs" element={<InternshipPrograms />} />
+          <Route path="/services/total-rewards" element={<TotalRewards />} />
+          <Route path="/services/organization-strategy" element={<OrganizationStrategy />} />
+          <Route path="/services/career-development" element={<CareerDevelopment />} />
+          <Route path="/services/certifications" element={<Certifications />} />
+          <Route path="/services/leadership-&-professional-development" element={<LeadershipDevelopmentService />} />
+          
           <Route path="/careers/internships" element={<Internships />} />
           <Route path="/careers/internships/bangalore" element={<BangaloreInternship />} />
           
-          {/* Legal pages */}
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cookies" element={<Cookies />} />
           
-          {/* Research detail pages */}
           <Route path="/research/leadership-development-impact" element={<LeadershipDevelopment />} />
           <Route path="/research/hr-tech-landscape-2025" element={<HRTechLandscape />} />
           <Route path="/research/employee-experience-roi" element={<EmployeeExperienceROI />} />
@@ -103,15 +107,12 @@ const App = () => {
           <Route path="/research/psychological-safety-virtual" element={<PsychologicalSafety />} />
           <Route path="/research/workforce-planning-automation" element={<WorkforcePlanning />} />
           
-          {/* Case study detail pages */}
           <Route path="/case-studies/financial-hr-analytics" element={<FinancialHRAnalytics />} />
           <Route path="/case-studies/hr-tech-platform-launch" element={<HRTechPlatformLaunch />} />
           
-          {/* Special routes for the deployed preview site */}
           <Route path="/hr360-solution-hub" element={<Navigate to="/" replace />} />
           <Route path="/hr360-solution-hub/*" element={<Index />} />
           
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </TooltipProvider>
