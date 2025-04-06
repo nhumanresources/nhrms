@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,29 +7,11 @@ import { ArrowRight, Award, BarChart, Users, Building, Clock, Activity } from 'l
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { useToast } from '@/components/ui/use-toast';
 
 export default function CaseStudies() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { toast } = useToast();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
-    const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    setIsLoggedIn(userLoggedIn);
   }, []);
-
-  const handleLoginPrompt = () => {
-    toast({
-      title: "Login Required",
-      description: "Please login to access full case studies",
-      action: (
-        <Button asChild variant="default" size="sm">
-          <Link to="/login">Login</Link>
-        </Button>
-      ),
-    });
-  };
 
   const caseStudies = [
     {
@@ -287,33 +269,22 @@ export default function CaseStudies() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    {isLoggedIn ? (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="ghost" size="sm" className="mt-2 group w-full justify-center">
-                            Read full case study <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-                          <DialogHeader>
-                            <DialogTitle>{study.title}</DialogTitle>
-                            <DialogDescription>
-                              Industry: {study.industry}
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="mt-4 prose prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: study.content }} />
-                        </DialogContent>
-                      </Dialog>
-                    ) : (
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="mt-2 group w-full justify-center"
-                        onClick={handleLoginPrompt}
-                      >
-                        Read full case study <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    )}
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="ghost" size="sm" className="mt-2 group w-full justify-center">
+                          Read full case study <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle>{study.title}</DialogTitle>
+                          <DialogDescription>
+                            Industry: {study.industry}
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="mt-4 prose prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: study.content }} />
+                      </DialogContent>
+                    </Dialog>
                   </CardFooter>
                 </Card>
               ))}
