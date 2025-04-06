@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ArrowLeft, Calendar, BarChart, Target, Users, LineChart, Rocket } from 'lucide-react';
+import { ArrowLeft, Calendar, BarChart, Target, Users, LineChart, Rocket, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -272,7 +272,7 @@ export default function HRTechPlatformLaunch() {
                     <Button variant="ghost" className="group" asChild>
                       <Link to="/case-studies/financial-hr-analytics" className="flex items-center">
                         Read Case Study 
-                        <ArrowLeft className="ml-2 h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </Button>
                   </CardContent>

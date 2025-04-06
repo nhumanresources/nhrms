@@ -10,7 +10,7 @@ export default function ViewAllButton({ activeTab }: ViewAllButtonProps) {
   return (
     <div className="text-center mt-10">
       <Button variant="outline" asChild>
-        <Link to={activeTab === 'trends' ? "/research" : "/research"}>
+        <Link to="/research">
           View All {activeTab === 'trends' ? 'Articles' : 'Research Papers'}
         </Link>
       </Button>
