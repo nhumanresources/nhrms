@@ -118,7 +118,9 @@ export default function TalentAcquisitionBenchmark() {
               <div className="mt-12 border-t border-border pt-6">
                 <h3>About the Authors</h3>
                 <p>
-                  This research was conducted by nHRMS Research's Talent Acquisition Practice, led by Jennifer Walker, with contributions from recruitment analytics specialists and industry experts from the Global Talent Acquisition Consortium.
+                  This research was conducted by nHRMS Research's Talent Acquisition Practice under the leadership of Sai Varma. 
+                  The study leveraged our extensive network of recruitment specialists and talent analytics experts to provide 
+                  comprehensive benchmarks for HR leaders.
                 </p>
               </div>
             </div>

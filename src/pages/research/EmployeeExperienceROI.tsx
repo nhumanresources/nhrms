@@ -75,7 +75,7 @@ export default function EmployeeExperienceROI() {
               <div className="mt-12 border-t border-border pt-6">
                 <h3>About the Authors</h3>
                 <p>
-                  This research was conducted by nHRMS Research in collaboration with the Institute for Workplace Innovation. The research team was led by Dr. Sarah Chen, Principal Researcher at nHRMS, with contributions from workplace strategy experts and economists specializing in organizational performance.
+                  This research was conducted by nHRMS Research under the guidance of Dr. Ajoy Bhupatiraju, Head of Research at nHRMS. The study was led by our team of workplace experience specialists with contributions from organizational effectiveness experts and economists specializing in human capital measurement.
                 </p>
               </div>
             </div>

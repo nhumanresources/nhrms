@@ -94,9 +94,9 @@ export default function GenerativeAIHR() {
               <div className="mt-12 border-t border-border pt-6">
                 <h3>About the Authors</h3>
                 <p>
-                  This research was conducted by nHRMS Research's Technology & Innovation team, led by Dr. Rahul Gupta, 
-                  with contributions from AI ethics specialists, HR technology consultants, and data privacy experts from 
-                  the Global AI in HR Consortium.
+                  This research was led by Dr. Ajoy Bhupatiraju, Head of Research at nHRMS, with contributions from our 
+                  Technology & Innovation team. The study benefited from collaboration with AI ethics specialists and 
+                  data privacy experts to provide a balanced perspective on this transformative technology.
                 </p>
               </div>
             </div>

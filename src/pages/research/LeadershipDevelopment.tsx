@@ -33,14 +33,9 @@ const LeadershipDevelopment = () => {
             </h1>
             <div className="flex items-center space-x-4 mb-6">
               <div className="flex items-center">
-                <img 
-                  src="https://randomuser.me/api/portraits/women/76.jpg" 
-                  alt="Dr. Sarah Johnson" 
-                  className="h-10 w-10 rounded-full mr-3" 
-                />
                 <div>
-                  <div className="font-medium">Dr. Sarah Johnson</div>
-                  <div className="text-sm text-muted-foreground">Lead HR Researcher</div>
+                  <div className="font-medium">nHRMS Research</div>
+                  <div className="text-sm text-muted-foreground">Leadership Excellence Practice</div>
                 </div>
               </div>
             </div>

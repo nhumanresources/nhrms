@@ -92,7 +92,7 @@ export default function EmployeeEngagementDigital() {
               <div className="mt-12 border-t border-border pt-6">
                 <h3>About the Authors</h3>
                 <p>
-                  This research was conducted by nHRMS Research's Employee Experience team, led by Dr. Rebecca Liu, in collaboration with the Digital Workplace Institute. Contributing researchers included organizational psychologists, digital workplace strategists, and HR analytics specialists with expertise in remote work dynamics.
+                  This research was led by Usha Sai, Partner at nHRMS, with support from our Employee Experience team. The study incorporated insights from our global network of remote work specialists and organizational psychologists to provide a comprehensive understanding of engagement in digital environments.
                 </p>
               </div>
             </div>

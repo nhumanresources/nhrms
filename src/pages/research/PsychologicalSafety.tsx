@@ -94,9 +94,9 @@ export default function PsychologicalSafety() {
               <div className="mt-12 border-t border-border pt-6">
                 <h3>About the Authors</h3>
                 <p>
-                  This research was conducted by nHRMS Research in collaboration with the Virtual Work Research Institute. 
-                  Lead researchers included Dr. Javier Rodriguez and Dr. Hannah Kim, organizational psychologists specializing 
-                  in team dynamics and virtual collaboration.
+                  This research was conducted by nHRMS Research's Employee Experience team under the guidance of Usha Sai. 
+                  The study was enriched by insights from our organizational psychologists specializing in team dynamics 
+                  and virtual collaboration methodologies.
                 </p>
               </div>
             </div>

@@ -81,7 +81,7 @@ export default function FutureWorkAICollaboration() {
               <div className="mt-12 border-t border-border pt-6">
                 <h3>About the Authors</h3>
                 <p>
-                  This research was conducted by nHRMS Research in partnership with the Center for Digital Workforce Transformation. Lead researchers included Dr. Michael Ramirez, Chief Innovation Officer at nHRMS, and a team of organizational psychologists and data scientists specializing in workplace technology adoption.
+                  This research was conducted by nHRMS Research under the leadership of Sai Varma and Usha Sai. The study leveraged the expertise of our digital transformation specialists and AI ethics researchers to provide a balanced perspective on the future of human-AI collaboration in the workplace.
                 </p>
               </div>
             </div>

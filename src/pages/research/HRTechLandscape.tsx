@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -34,14 +33,9 @@ const HRTechLandscape = () => {
             </h1>
             <div className="flex items-center space-x-4 mb-6">
               <div className="flex items-center">
-                <img 
-                  src="https://randomuser.me/api/portraits/men/32.jpg" 
-                  alt="Dr. Michael Chen" 
-                  className="h-10 w-10 rounded-full mr-3" 
-                />
                 <div>
-                  <div className="font-medium">Dr. Michael Chen</div>
-                  <div className="text-sm text-muted-foreground">HR Technology Analyst</div>
+                  <div className="font-medium">nHRMS Research</div>
+                  <div className="text-sm text-muted-foreground">Technology & Innovation Team</div>
                 </div>
               </div>
             </div>

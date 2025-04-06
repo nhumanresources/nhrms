@@ -92,8 +92,9 @@ export default function WorkforcePlanning() {
               <div className="mt-12 border-t border-border pt-6">
                 <h3>About the Authors</h3>
                 <p>
-                  This research was conducted by nHRMS Research's Future of Work team, led by Dr. Takashi Nakamura, with contributions from 
-                  workforce economists, organizational designers, and technology forecasters from the Adaptive Workforce Consortium.
+                  This research was conducted by nHRMS Research under the direction of Sai Varma and represents a collaboration 
+                  between our Workforce Strategy team and industry specialists. The study incorporated input from workforce 
+                  economists and technology forecasters to provide actionable insights for HR leaders.
                 </p>
               </div>
             </div>
