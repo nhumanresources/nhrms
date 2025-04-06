@@ -18,6 +18,7 @@ import BlogArticle from "./pages/BlogArticle";
 import Research from "./pages/Research";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
+import DefaultServicePage from "./pages/services/DefaultServicePage";
 import ExecutiveSearch from "./pages/services/ExecutiveSearch";
 import HRAdvisory from "./pages/services/HRAdvisory";
 import GoToMarket from "./pages/services/GoToMarket";
@@ -90,6 +91,9 @@ const App = () => {
           <Route path="/services/career-development" element={<CareerDevelopment />} />
           <Route path="/services/certifications" element={<Certifications />} />
           <Route path="/services/leadership-&-professional-development" element={<LeadershipDevelopmentService />} />
+          
+          {/* Catch-all route for any service pages that don't have specific implementations */}
+          <Route path="/services/:serviceName" element={<DefaultServicePage />} />
           
           <Route path="/careers/internships" element={<Internships />} />
           <Route path="/careers/internships/bangalore" element={<BangaloreInternship />} />
