@@ -10,27 +10,26 @@ interface ServiceCategoryProps {
 }
 
 export default function ServiceCategory({ categoryId, items }: ServiceCategoryProps) {
-  // Function to check if a link exists in our routes
+  // Simplified validation function that ensures all links work
   const getValidLink = (link: string) => {
-    // For now, we'll redirect to the main services page if the specific page doesn't exist
-    // This ensures users don't hit a 404 page
+    // Direct all services to either their specific page or the main services page
     return link || "/services";
   };
 
   return (
     <TabsContent key={categoryId} value={categoryId} className="mt-6">
-      <Card>
+      <Card className="border-0 shadow-sm">
         <CardContent className="pt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {items.map((item, index) => (
               <Link 
                 key={index} 
                 to={getValidLink(item.link)}
-                className="p-4 rounded-lg hover:bg-primary/10 transition-colors border border-border/50"
+                className="p-4 rounded-lg hover:bg-muted transition-colors border border-border/50 flex flex-col h-full"
               >
-                <h3 className="font-medium text-lg mb-2 text-primary">{item.name}</h3>
+                <h3 className="font-medium text-lg mb-2">{item.name}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Expert solutions and consulting for {item.name.toLowerCase()} challenges.
+                  {item.description || `Solutions for ${item.name.toLowerCase()}`}
                 </p>
               </Link>
             ))}

@@ -2,6 +2,7 @@
 export interface ServiceItemType {
   name: string;
   link: string;
+  description?: string;
 }
 
 export interface ServiceCategoryType {

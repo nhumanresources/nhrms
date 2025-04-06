@@ -3,234 +3,100 @@ import { ServiceCategoryType } from "./types";
 
 export const serviceCategories: ServiceCategoryType[] = [
   {
-    id: "capabilities",
-    title: "Capabilities",
+    id: "solutions",
+    title: "Solutions",
     items: [
       {
-        name: "Organization Strategy",
-        link: "/services/organization-strategy"
+        name: "Executive Search",
+        link: "/services/executive-search",
+        description: "Find exceptional leaders who align with your organization's vision."
       },
       {
-        name: "Total Rewards",
-        link: "/services/total-rewards"
+        name: "HR Advisory",
+        link: "/services/hr-advisory",
+        description: "Strategic consulting to optimize your human capital strategy."
       },
       {
-        name: "Assessment & Succession",
-        link: "/services/hr-advisory"
+        name: "Go to Market",
+        link: "/services/go-to-market",
+        description: "Specialized strategies to bring your HR solutions to market."
       },
       {
         name: "Talent Acquisition",
-        link: "/services/talent-acquisition"
+        link: "/services/talent-acquisition",
+        description: "Build high-performing teams that drive success."
       },
       {
-        name: "Leadership & Professional Development",
-        link: "/services/leadership-&-professional-development"
+        name: "BOT HR Teams",
+        link: "/services/bot-hr-teams",
+        description: "Complete build-operate-transfer solutions for HR departments."
+      },
+      {
+        name: "HR Technology",
+        link: "/services/hr-tech",
+        description: "Implementation and optimization of HR technology systems."
       }
     ]
   },
   {
-    id: "solutions",
-    title: "Featured Solutions",
+    id: "services",
+    title: "Services",
     items: [
       {
-        name: "Diversity, Equity & Inclusion",
-        link: "/services/hr-advisory"
+        name: "Organization Strategy",
+        link: "/services/organization-strategy",
+        description: "Align your organizational design with business objectives."
       },
       {
-        name: "ESG & Sustainability",
-        link: "/services/hr-advisory"
+        name: "Total Rewards",
+        link: "/services/total-rewards",
+        description: "Develop compensation and benefits strategies to attract talent."
       },
       {
-        name: "Sales Effectiveness",
-        link: "/services/go-to-market"
-      },
-      {
-        name: "Workforce Transformation",
-        link: "/services/hr-advisory"
-      },
-      {
-        name: "Cost Optimization",
-        link: "/services/hr-advisory"
-      },
-      {
-        name: "Career Transition & Outplacement",
-        link: "/services/hr-advisory"
-      },
-      {
-        name: "Customer Experience",
-        link: "/services/go-to-market"
-      },
-      {
-        name: "Talent Management",
-        link: "/services/talent-acquisition"
-      },
-      {
-        name: "Training & Certification",
-        link: "/services/certifications"
-      }
-    ]
-  },
-  {
-    id: "products",
-    title: "Products",
-    items: [
-      {
-        name: "Talent Suite Overview",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "nHRMS Architect",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "nHRMS Assess",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "nHRMS Coach",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "nHRMS Learn",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "nHRMS Listen",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "nHRMS Pay",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "nHRMS Sell",
-        link: "/services/hr-tech"
-      },
-      {
-        name: "Talent Suite Resources",
-        link: "/services/hr-tech"
-      }
-    ]
-  },
-  {
-    id: "academia",
-    title: "Academia",
-    items: [
-      {
-        name: "Learning Solutions",
-        link: "/learning-solutions"
-      },
-      {
-        name: "Internship Programs",
-        link: "/services/internship-programs"
+        name: "Leadership Development",
+        link: "/services/leadership-&-professional-development",
+        description: "Build leadership capabilities across your organization."
       },
       {
         name: "Career Development",
-        link: "/services/career-development"
+        link: "/services/career-development",
+        description: "Create pathways for employee growth and advancement."
+      },
+      {
+        name: "Diversity & Inclusion",
+        link: "/services/hr-advisory",
+        description: "Build inclusive cultures that embrace diversity."
+      },
+      {
+        name: "Workforce Transformation",
+        link: "/services/hr-advisory",
+        description: "Navigate change and prepare your workforce for the future."
+      }
+    ]
+  },
+  {
+    id: "learning",
+    title: "Learning",
+    items: [
+      {
+        name: "Learning Solutions",
+        link: "/learning-solutions",
+        description: "Comprehensive training programs for professional development."
       },
       {
         name: "Certifications",
-        link: "/services/certifications"
+        link: "/services/certifications",
+        description: "Industry-recognized certifications for HR professionals."
+      },
+      {
+        name: "Internship Programs",
+        link: "/services/internship-programs",
+        description: "Structured programs for students seeking HR experience."
       },
       {
         name: "Research Opportunities",
-        link: "/research"
-      },
-      {
-        name: "Industry-Academia Partnership",
-        link: "/learning-solutions"
-      }
-    ]
-  },
-  {
-    id: "industries",
-    title: "Industries",
-    items: [
-      {
-        name: "Consumer Markets",
-        link: "/services"
-      },
-      {
-        name: "Financial Services",
-        link: "/services"
-      },
-      {
-        name: "Healthcare",
-        link: "/services"
-      },
-      {
-        name: "Life Sciences",
-        link: "/services"
-      },
-      {
-        name: "Industrial",
-        link: "/services"
-      },
-      {
-        name: "Technology",
-        link: "/services"
-      },
-      {
-        name: "Government & Public Services",
-        link: "/services"
-      }
-    ]
-  },
-  {
-    id: "functions",
-    title: "Functions",
-    items: [
-      {
-        name: "Board & CEO Services",
-        link: "/services/executive-search"
-      },
-      {
-        name: "Accounting",
-        link: "/services"
-      },
-      {
-        name: "Corporate Affairs",
-        link: "/services"
-      },
-      {
-        name: "Cybersecurity",
-        link: "/services"
-      },
-      {
-        name: "Digital & Technology",
-        link: "/services"
-      },
-      {
-        name: "Finance",
-        link: "/services"
-      },
-      {
-        name: "Human Resources",
-        link: "/services/hr-advisory"
-      },
-      {
-        name: "Legal",
-        link: "/services"
-      },
-      {
-        name: "Marketing",
-        link: "/services"
-      },
-      {
-        name: "Risk Management",
-        link: "/services"
-      },
-      {
-        name: "Sales",
-        link: "/services"
-      },
-      {
-        name: "Supply Chain",
-        link: "/services"
-      },
-      {
-        name: "Sustainability",
-        link: "/services"
+        link: "/research",
+        description: "Participate in cutting-edge HR research and studies."
       }
     ]
   }
