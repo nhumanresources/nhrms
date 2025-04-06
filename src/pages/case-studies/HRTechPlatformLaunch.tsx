@@ -11,7 +11,7 @@ import { initInViewAnimations } from '@/lib/animationUtils';
 export default function HRTechPlatformLaunch() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "HR Tech Platform Launch Case Study | nHRMS";
+    document.title = "HR-Tech Platform Launch Case Study | nHRMS";
     
     // Initialize animations
     setTimeout(() => {
@@ -40,7 +40,7 @@ export default function HRTechPlatformLaunch() {
               </div>
               
               <div data-animation="fade-in-up" className="mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-future-700 to-neural-600 bg-clip-text text-transparent leading-tight">HR Tech Platform Launch: Go-to-Market Strategy for Performance Management SaaS</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-future-700 to-neural-600 bg-clip-text text-transparent leading-tight">HR-Tech Platform Launch: Go-to-Market Strategy for Performance Management SaaS</h1>
                 
                 <div className="flex flex-wrap gap-3 mb-6">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-future-100 text-future-700">
@@ -50,7 +50,7 @@ export default function HRTechPlatformLaunch() {
                     <Rocket className="mr-1 h-4 w-4" /> Go-to-Market
                   </span>
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                    <Users className="mr-1 h-4 w-4" /> HR Tech
+                    <Users className="mr-1 h-4 w-4" /> HR-Tech
                   </span>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default function HRTechPlatformLaunch() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Client Challenge</h2>
                 
                 <p className="mb-6">
-                  Our client, a venture-backed HR technology startup, had developed an innovative AI-powered performance management platform. Despite having a superior product, they faced significant challenges in gaining market traction amid fierce competition in the HR tech landscape. The client needed a comprehensive go-to-market strategy to effectively position their solution, identify the right customer segments, and establish optimal pricing and distribution channels.
+                  Our client, a venture-backed HR-Tech startup, had developed an innovative AI-powered performance management platform. Despite having a superior product, they faced significant challenges in gaining market traction amid fierce competition in the HR-Tech landscape. The client needed a comprehensive go-to-market strategy to effectively position their solution, identify the right customer segments, and establish optimal pricing and distribution channels.
                 </p>
                 
                 <div className="bg-future-50 p-6 rounded-xl my-8 border border-future-200/50">
@@ -98,7 +98,7 @@ export default function HRTechPlatformLaunch() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Approach</h2>
                 
                 <p className="mb-6">
-                  nHRMS deployed a specialized go-to-market team with deep expertise in HR technology and B2B SaaS launches. We developed a comprehensive strategy focused on clear market positioning, audience segmentation, and channel optimization.
+                  nHRMS deployed a specialized go-to-market team with deep expertise in HR-Tech solutions and B2B SaaS launches. We developed a comprehensive strategy focused on clear market positioning, audience segmentation, and channel optimization.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-8 my-10">
@@ -240,9 +240,9 @@ export default function HRTechPlatformLaunch() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Client Testimonial</h2>
                 
                 <blockquote className="border-l-4 border-future-500 pl-6 py-2 italic my-8">
-                  "nHRMS's go-to-market expertise was transformative for our business. Their strategic guidance helped us refine our positioning, identify our ideal customers, and optimize our pricing model. The results have exceeded our expectations, with faster growth and higher customer satisfaction than we had projected. Their deep understanding of the HR tech space was evident throughout our engagement."
+                  "nHRMS's go-to-market expertise was transformative for our business. Their strategic guidance helped us refine our positioning, identify our ideal customers, and optimize our pricing model. The results have exceeded our expectations, with faster growth and higher customer satisfaction than we had projected. Their deep understanding of the HR-Tech space was evident throughout our engagement."
                   <footer className="mt-4 text-gray-700 not-italic">
-                    — CEO, HR Tech Startup
+                    — CEO, HR-Tech Startup
                   </footer>
                 </blockquote>
                 

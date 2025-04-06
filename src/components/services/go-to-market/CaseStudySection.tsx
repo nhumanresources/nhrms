@@ -14,7 +14,7 @@ export default function CaseStudySection() {
             <div className="relative z-10">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-future-700 to-neural-600 bg-clip-text text-transparent">Case Study: HR Tech Platform Launch</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-future-700 to-neural-600 bg-clip-text text-transparent">Case Study: HR-Tech Platform Launch</h2>
                   <div className="flex items-center">
                     <Rocket className="h-5 w-5 text-future-700 mr-2" />
                     <span className="text-muted-foreground">SaaS Performance Management Platform</span>
@@ -23,7 +23,7 @@ export default function CaseStudySection() {
                 <span className="text-sm font-medium bg-future-600/10 text-future-700 px-4 py-2 rounded-full mt-3 md:mt-0">Go-to-Market Success</span>
               </div>
               <p className="text-muted-foreground mb-8 text-lg">
-                We developed and executed a comprehensive go-to-market strategy for a leading HR tech startup's performance management platform. Our approach included market segmentation, positioning strategy, and channel development that resulted in 150+ enterprise clients acquired within 18 months, 85% user adoption rates across client organizations, and a 3x increase in average deal size through our value-based pricing and packaging recommendations.
+                We developed and executed a comprehensive go-to-market strategy for a leading HR-Tech startup's performance management platform. Our approach included market segmentation, positioning strategy, and channel development that resulted in 150+ enterprise clients acquired within 18 months, 85% user adoption rates across client organizations, and a 3x increase in average deal size through our value-based pricing and packaging recommendations.
               </p>
               <Button variant="outline" className="group relative overflow-hidden border-future-600/30" asChild>
                 <Link to="/case-studies/hr-tech-platform-launch" className="inline-flex items-center">

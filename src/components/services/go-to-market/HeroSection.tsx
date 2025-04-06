@@ -13,9 +13,9 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div data-animation="slide-in-left">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-future-700 to-neural-600 bg-clip-text text-transparent">Go-to-Market Strategy for HR Products</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-future-700 to-neural-600 bg-clip-text text-transparent">Go-to-Market Strategy for HR-Tech Products</h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Specialized strategies to bring your HR solutions to market with maximum impact, visibility, and adoption.
+              Specialized strategies to bring your HR-Tech solutions to market with maximum impact, visibility, and adoption.
             </p>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
@@ -24,7 +24,7 @@ export default function HeroSection() {
               </div>
               <div className="flex items-start space-x-3">
                 <Check className="h-6 w-6 text-future-700 flex-shrink-0 mt-0.5" />
-                <p className="text-muted-foreground">HR buyer journey mapping and targeting</p>
+                <p className="text-muted-foreground">HR-Tech buyer journey mapping and targeting</p>
               </div>
               <div className="flex items-start space-x-3">
                 <Check className="h-6 w-6 text-future-700 flex-shrink-0 mt-0.5" />
