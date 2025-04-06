@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -19,15 +20,21 @@ export default function WhoWeAre() {
   const leadershipTeam = [
     {
       name: "Sai Varma",
-      title: "Partner, CEO",
+      title: "Partner",
       bio: "With over 20 years of experience in HR consulting, Sai has led transformational HR initiatives for Fortune 500 companies across multiple industries.",
       linkedin: "https://linkedin.com/in/saikrshna/"
     },
     {
       name: "Usha Sai",
-      title: "Partner, COO",
+      title: "Partner",
       bio: "Usha brings 15+ years of operational leadership experience, specializing in scaling professional services organizations and optimizing service delivery.",
       linkedin: "https://linkedin.com/in/ushasai/"
+    },
+    {
+      name: "Ajoy Varma",
+      title: "Head of Research",
+      bio: "Ajoy leads our research initiatives with over 18 years of experience in HR analytics and workforce insights, driving innovation through data-driven approaches.",
+      linkedin: "https://linkedin.com/in/ajoyvarma/"
     }
   ];
 
