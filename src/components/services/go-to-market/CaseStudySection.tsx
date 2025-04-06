@@ -23,7 +23,7 @@ export default function CaseStudySection() {
                 <span className="text-sm font-medium bg-future-600/10 text-future-700 px-4 py-2 rounded-full mt-3 md:mt-0">Go-to-Market Success</span>
               </div>
               <p className="text-muted-foreground mb-8 text-lg">
-                We developed and executed a comprehensive go-to-market strategy for a SaaS-based performance management platform, resulting in 150+ enterprise clients acquired within 18 months, 85% user adoption rates, and a 3x increase in average deal size through value-based pricing and packaging.
+                We developed and executed a comprehensive go-to-market strategy for a leading HR tech startup's performance management platform. Our approach included market segmentation, positioning strategy, and channel development that resulted in 150+ enterprise clients acquired within 18 months, 85% user adoption rates across client organizations, and a 3x increase in average deal size through our value-based pricing and packaging recommendations.
               </p>
               <Button variant="outline" className="group relative overflow-hidden border-future-600/30" asChild>
                 <Link to="/case-studies/financial-hr-analytics" className="inline-flex items-center">
