@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ArrowLeft, Calendar, LucideChart, Target, Users, LineChart, Rocket } from 'lucide-react';
+import { ArrowLeft, Calendar, BarChart, Target, Users, LineChart, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
