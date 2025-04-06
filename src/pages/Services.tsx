@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ServicesMenu from '@/components/ServicesMenu';
+import ServicesMenu from '@/components/services-menu';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, FileText, UserSearch, Library, BarChart, Briefcase, Monitor, GraduationCap } from 'lucide-react';
