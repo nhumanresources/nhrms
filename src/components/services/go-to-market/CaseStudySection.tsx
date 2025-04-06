@@ -26,7 +26,7 @@ export default function CaseStudySection() {
                 We developed and executed a comprehensive go-to-market strategy for a SaaS-based performance management platform, resulting in 150+ enterprise clients acquired within 18 months, 85% user adoption rates, and a 3x increase in average deal size through value-based pricing and packaging.
               </p>
               <Button variant="outline" className="group relative overflow-hidden border-future-600/30" asChild>
-                <Link to="/case-studies" className="inline-flex items-center">
+                <Link to="/case-studies/financial-hr-analytics" className="inline-flex items-center">
                   View Full Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-future-600 group-hover:w-full transition-all duration-300"></span>
                 </Link>
