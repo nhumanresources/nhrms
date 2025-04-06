@@ -9,6 +9,53 @@ import WhitepapersSection from '@/components/research/WhitepapersSection';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { BriefcaseBusiness, Building, PartyPopper } from 'lucide-react';
+import { researchPapers } from '@/data/researchPapers';
+import { ResearchReport, Whitepaper } from '@/components/research/types';
+
+// Research Reports Data
+const researchReports: ResearchReport[] = [
+  {
+    title: "The State of HR Technology 2025",
+    date: "April 2025",
+    description: "A comprehensive analysis of the HR technology landscape, including emerging trends, key players, and predictions for the future of HR tech.",
+    link: "/research/hr-tech-landscape-2025",
+    externalUrl: "https://hrtechresearch.org/reports/2025-landscape",
+    sourceType: "HR Tech Research Institute"
+  },
+  {
+    title: "Global Talent Acquisition Benchmark Report 2024",
+    date: "February 2024",
+    description: "Annual benchmark report on talent acquisition metrics across industries, regions, and company sizes, with insights on best practices.",
+    link: "/research/talent-acquisition-benchmark-2024",
+    externalUrl: "https://talentstrategyinstitute.com/benchmarks",
+    sourceType: "Talent Strategy Institute"
+  }
+];
+
+// Whitepapers Data
+const whitepapers: Whitepaper[] = [
+  {
+    title: "Future of Work: AI & Human Collaboration",
+    description: "Explores the evolving relationship between AI systems and human workers, with frameworks for effective collaboration and skills development.",
+    link: "https://futureofwork.org/ai-human-collaboration",
+    sourceType: "Future of Work Institute",
+    citation: "Johnson, M., & Patel, S. (2024). Future of Work: AI & Human Collaboration. Future of Work Institute."
+  },
+  {
+    title: "Employee Engagement in the Digital Era",
+    description: "Research-backed strategies for maintaining and enhancing employee engagement in increasingly digital and remote work environments.",
+    link: "https://engagementresearch.com/digital-era-whitepaper",
+    sourceType: "Engagement Research Consortium",
+    citation: "Chang, L., Williams, T., & Rodriguez, M. (2024). Employee Engagement in the Digital Era. Engagement Research Consortium."
+  },
+  {
+    title: "Strategic Workforce Planning Toolkit",
+    description: "A practical guide to implementing strategic workforce planning processes that align with business objectives and adapt to changing talent needs.",
+    link: "https://workforceanalytics.org/planning-toolkit",
+    sourceType: "Workforce Analytics Council",
+    citation: "Thompson, B., & Kumar, A. (2024). Strategic Workforce Planning Toolkit. Workforce Analytics Council."
+  }
+];
 
 export default function Research() {
   useEffect(() => {
@@ -28,13 +75,13 @@ export default function Research() {
       <ResearchHeader />
 
       {/* Research Papers */}
-      <ResearchPapersSection />
+      <ResearchPapersSection papers={researchPapers} />
       
       {/* Research Reports */}
-      <ResearchReportsSection />
+      <ResearchReportsSection reports={researchReports} />
       
       {/* Whitepapers */}
-      <WhitepapersSection />
+      <WhitepapersSection whitepapers={whitepapers} />
       
       {/* Join Our Team Section */}
       <section className="py-16 bg-primary/5">
