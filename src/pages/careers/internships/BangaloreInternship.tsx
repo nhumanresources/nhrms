@@ -1,13 +1,23 @@
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
-import { ArrowRight, GraduationCap, Calendar, Briefcase, CheckCircle, Clock } from 'lucide-react';
+import { ArrowRight, GraduationCap, Calendar, Briefcase, CheckCircle, Clock, X } from 'lucide-react';
+import InternshipApplicationForm from '@/components/careers/InternshipApplicationForm';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function BangaloreInternship() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Bangalore 6-Month Internship Program | nHRMS";
@@ -15,7 +25,7 @@ export default function BangaloreInternship() {
 
   const handleApplyNow = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    window.location.href = "mailto:info@nhrms.com?subject=Application for 6-Month Internship Program&body=Dear nHRMS Team,%0D%0A%0D%0AI am interested in applying for the 6-Month Career Development Program. Please find my attached resume and cover letter.%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ASincerely,%0D%0A[Your Name]";
+    setIsDialogOpen(true);
   };
 
   return (
@@ -253,6 +263,24 @@ export default function BangaloreInternship() {
           </div>
         </div>
       </main>
+      
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Apply for Bangalore 6-Month Internship</DialogTitle>
+            <DialogDescription>
+              Please fill out the application form below. All fields marked with * are required.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <InternshipApplicationForm 
+              onSuccess={() => setIsDialogOpen(false)}
+              position="6-Month Career Development Program"
+              location="Bangalore"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
       
       <Footer />
     </div>
