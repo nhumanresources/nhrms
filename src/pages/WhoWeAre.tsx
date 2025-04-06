@@ -26,19 +26,22 @@ export default function WhoWeAre() {
       name: "Sai Varma",
       title: "Partner",
       bio: "With over 20 years of experience in HR consulting, Sai has led transformational HR initiatives for Fortune 500 companies across multiple industries.",
-      linkedin: "https://linkedin.com/in/saikrshna/"
+      linkedin: "https://linkedin.com/in/saikrshna/",
+      imageSrc: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
     },
     {
       name: "Usha Sai",
       title: "Partner",
       bio: "Usha brings 15+ years of operational leadership experience, specializing in scaling professional services organizations and optimizing service delivery.",
-      linkedin: "https://linkedin.com/in/ushasai/"
+      linkedin: "https://linkedin.com/in/ushasai/",
+      imageSrc: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
     },
     {
       name: "Ajoy Varma",
       title: "Head of Research",
       bio: "Ajoy leads our research initiatives with over 18 years of experience in HR analytics and workforce insights, driving innovation through data-driven approaches.",
-      linkedin: "https://linkedin.com/in/ajoyvarma/"
+      linkedin: "https://linkedin.com/in/ajoyvarma/",
+      imageSrc: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
     }
   ];
 

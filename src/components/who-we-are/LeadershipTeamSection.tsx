@@ -1,11 +1,14 @@
 
-import { Linkedin } from 'lucide-react';
+import { Linkedin, User } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 interface Leader {
   name: string;
   title: string;
   bio: string;
   linkedin: string;
+  imageSrc?: string;
 }
 
 interface LeadershipTeamSectionProps {
@@ -23,26 +26,40 @@ export default function LeadershipTeamSection({ leaders }: LeadershipTeamSection
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {leaders.map((leader, index) => (
-            <div key={index} className="bg-background border border-border/50 rounded-lg overflow-hidden hover:shadow-md transition-shadow p-6">
-              <div className="flex justify-between items-start mb-3">
-                <div>
-                  <h3 className="font-bold text-lg mb-1">{leader.name}</h3>
-                  <p className="text-primary text-sm">{leader.title}</p>
+            <Card 
+              key={index} 
+              className="bg-background border-border/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            >
+              <CardHeader className="text-center pb-2">
+                <Avatar className="h-24 w-24 mx-auto mb-4">
+                  {leader.imageSrc ? (
+                    <AvatarImage src={leader.imageSrc} alt={leader.name} />
+                  ) : (
+                    <AvatarFallback className="bg-primary/10">
+                      <User className="h-12 w-12 text-primary/80" />
+                    </AvatarFallback>
+                  )}
+                </Avatar>
+                <h3 className="font-bold text-xl mb-1">{leader.name}</h3>
+                <p className="text-primary font-medium">{leader.title}</p>
+              </CardHeader>
+              <CardContent className="pt-2">
+                <p className="text-sm text-muted-foreground mb-4">{leader.bio}</p>
+                <div className="flex justify-center">
+                  <a 
+                    href={leader.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10"
+                    aria-label={`${leader.name}'s LinkedIn profile`}
+                  >
+                    <Linkedin size={20} />
+                  </a>
                 </div>
-                <a 
-                  href={leader.linkedin} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  aria-label={`${leader.name}'s LinkedIn profile`}
-                >
-                  <Linkedin size={20} />
-                </a>
-              </div>
-              <p className="text-sm text-muted-foreground">{leader.bio}</p>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
