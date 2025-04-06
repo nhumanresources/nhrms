@@ -1,6 +1,6 @@
 
 import { Linkedin, User } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 interface Leader {
@@ -34,13 +34,9 @@ export default function LeadershipTeamSection({ leaders }: LeadershipTeamSection
             >
               <CardHeader className="text-center pb-2">
                 <Avatar className="h-24 w-24 mx-auto mb-4">
-                  {leader.imageSrc ? (
-                    <AvatarImage src={leader.imageSrc} alt={leader.name} />
-                  ) : (
-                    <AvatarFallback className="bg-primary/10">
-                      <User className="h-12 w-12 text-primary/80" />
-                    </AvatarFallback>
-                  )}
+                  <AvatarFallback className="bg-primary/10">
+                    <User className="h-12 w-12 text-primary/80" />
+                  </AvatarFallback>
                 </Avatar>
                 <h3 className="font-bold text-xl mb-1">{leader.name}</h3>
                 <p className="text-primary font-medium">{leader.title}</p>

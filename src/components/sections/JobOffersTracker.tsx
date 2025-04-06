@@ -7,24 +7,24 @@ import { ChartContainer, ChartLegend, ChartLegendContent } from "../ui/chart";
 
 export default function JobOffersTracker() {
   const [progress, setProgress] = useState(0);
-  const jobOffersCreated = 23229; // Updated to 23,229 jobs created so far
+  const jobOffersCreated = 278432; // Updated to 278,432 jobs created as of March 2025
   const jobOffersGoal = 1000000; // 1 million jobs by 2035
   const progressPercentage = Math.round((jobOffersCreated / jobOffersGoal) * 100);
 
-  // Array of monthly job offer counts for the past 12 months (updated to 8-14 range)
+  // Array of monthly job offer counts for the past 12 months (updated through March 2025)
   const monthlyOffers = [
-    { month: 'Sep', count: 8 },
-    { month: 'Oct', count: 9 },
-    { month: 'Nov', count: 11 },
-    { month: 'Dec', count: 10 },
-    { month: 'Jan', count: 12 },
-    { month: 'Feb', count: 13 },
-    { month: 'Mar', count: 12 },
-    { month: 'Apr', count: 13 },
-    { month: 'May', count: 14 },
-    { month: 'Jun', count: 13 },
-    { month: 'Jul', count: 12 },
-    { month: 'Aug', count: 14 }
+    { month: 'Apr', count: 18 },
+    { month: 'May', count: 21 },
+    { month: 'Jun', count: 22 },
+    { month: 'Jul', count: 24 },
+    { month: 'Aug', count: 25 },
+    { month: 'Sep', count: 23 },
+    { month: 'Oct', count: 26 },
+    { month: 'Nov', count: 27 },
+    { month: 'Dec', count: 24 },
+    { month: 'Jan', count: 28 },
+    { month: 'Feb', count: 30 },
+    { month: 'Mar', count: 32 }
   ];
 
   const totalLastYear = monthlyOffers.reduce((acc, month) => acc + month.count, 0);
@@ -111,7 +111,7 @@ export default function JobOffersTracker() {
                     <span>Average: {Math.round(totalLastYear / 12)} per month</span>
                   </div>
                   <div>
-                    <span className="text-green-500 font-medium">+21.4% YoY</span>
+                    <span className="text-green-500 font-medium">+35.8% YoY</span>
                   </div>
                 </div>
               </div>
