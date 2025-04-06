@@ -19,7 +19,7 @@ export default function Research() {
     document.title = "Research & Insights | n Human Resources and Management Systems - nHRMS";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Explore nHRMS research papers, reports and whitepapers on HR trends, technology, leadership development, and strategic human capital management.');
+      metaDescription.setAttribute('content', 'Explore nHRMS research areas, reports and whitepapers on HR trends, technology, leadership development, and strategic human capital management.');
     }
     
     const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';

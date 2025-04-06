@@ -14,7 +14,13 @@ export default function ResearchPapersSection({ papers }: ResearchPapersSectionP
   return (
     <section className="py-16 bg-wave-pattern">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl font-bold mb-10">Latest Research Papers</h2>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
+          <h2 className="text-3xl font-bold">Research Focus Areas</h2>
+          <Button variant="outline" className="mt-4 md:mt-0" asChild>
+            <Link to="/research-opportunities">Research Opportunities</Link>
+          </Button>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {papers.map((paper) => (
             <Card key={paper.id} className="border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-white">
@@ -25,7 +31,7 @@ export default function ResearchPapersSection({ papers }: ResearchPapersSectionP
                 </div>
                 <CardTitle className="line-clamp-2">{paper.title}</CardTitle>
                 <CardDescription className="text-sm">
-                  By {paper.authors}
+                  {paper.authors ? `By ${paper.authors}` : 'Active Research Area'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -34,7 +40,7 @@ export default function ResearchPapersSection({ papers }: ResearchPapersSectionP
               <CardFooter>
                 <Button variant="ghost" size="sm" className="w-full justify-center group" asChild>
                   <Link to={paper.link}>
-                    Read Paper <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
               </CardFooter>
