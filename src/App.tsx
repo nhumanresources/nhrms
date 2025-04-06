@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import WhoWeAre from "./pages/WhoWeAre";
 import CaseStudies from "./pages/CaseStudies";
 import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import Research from "./pages/Research";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
@@ -65,6 +66,7 @@ const App = () => {
           <Route path="/who-we-are" element={<WhoWeAre />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogArticle />} />
           <Route path="/research" element={<Research />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />

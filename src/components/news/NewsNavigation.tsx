@@ -48,7 +48,10 @@ export default function NewsNavigation({
         {Array.from({ length: totalItems - (visibleItems - 1) }).map((_, index) => (
           <button
             key={index}
-            onClick={() => {/* Using the parent's setCurrentIndex function directly */}}
+            onClick={() => {
+              // Set current index directly to this position
+              window.dispatchEvent(new CustomEvent('set-slider-index', { detail: index }));
+            }}
             className={cn(
               "w-2 h-2 rounded-full transition-colors",
               index === currentIndex ? "bg-primary" : "bg-muted"
