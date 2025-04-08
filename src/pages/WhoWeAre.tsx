@@ -9,6 +9,8 @@ import OurStorySection from '@/components/who-we-are/OurStorySection';
 import LeadershipTeamSection from '@/components/who-we-are/LeadershipTeamSection';
 import StatsSection from '@/components/who-we-are/StatsSection';
 import CTASection from '@/components/who-we-are/CTASection';
+import OurApproachSection from '@/components/who-we-are/OurApproachSection';
+import InvestorsSection from '@/components/who-we-are/InvestorsSection';
 
 export default function WhoWeAre() {
   useEffect(() => {
@@ -47,10 +49,12 @@ export default function WhoWeAre() {
       <Navbar />
       <main className="flex-grow pt-20">
         <HeroSection />
+        <OurApproachSection />
         <OurAimSection />
         <MissionValuesSection />
         <OurStorySection />
         <LeadershipTeamSection leaders={leadershipTeam} />
+        <InvestorsSection />
         <StatsSection />
         <CTASection />
       </main>
