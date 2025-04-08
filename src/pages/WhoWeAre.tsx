@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,7 +9,6 @@ import LeadershipTeamSection from '@/components/who-we-are/LeadershipTeamSection
 import StatsSection from '@/components/who-we-are/StatsSection';
 import CTASection from '@/components/who-we-are/CTASection';
 import OurApproachSection from '@/components/who-we-are/OurApproachSection';
-import InvestorsSection from '@/components/who-we-are/InvestorsSection';
 
 export default function WhoWeAre() {
   useEffect(() => {
@@ -54,7 +52,6 @@ export default function WhoWeAre() {
         <MissionValuesSection />
         <OurStorySection />
         <LeadershipTeamSection leaders={leadershipTeam} />
-        <InvestorsSection />
         <StatsSection />
         <CTASection />
       </main>
