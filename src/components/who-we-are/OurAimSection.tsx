@@ -27,9 +27,9 @@ export default function OurAimSection() {
               </div>
               
               <div className="md:w-2/3 text-center md:text-left">
-                <h3 className="text-2xl font-bold mb-4">Creating 1 Million Jobs by 2035</h3>
+                <h3 className="text-2xl font-bold mb-4">Co-Creating 1 Million Jobs by 2035</h3>
                 <p className="text-lg text-muted-foreground mb-6">
-                  We aim to work and collaborate with people and organizations who can create jobs, with a target of 10 Lakh / 1 million jobs by 2035.
+                  We aim to work and collaborate with people and organizations to co-create 10 Lakh / 1 million jobs by 2035.
                 </p>
                 <div className="flex justify-center md:justify-start">
                   <Button variant="outline" asChild>

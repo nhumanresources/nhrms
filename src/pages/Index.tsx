@@ -14,7 +14,7 @@ import { PerformanceMetric } from '@/types/metrics';
 
 // Define the metrics with the correct type
 const metrics: PerformanceMetric[] = [
-  { value: '95%', label: 'Client Retention Rate' },
+  { value: '70%', label: 'Client Retention Rate' },
   { value: '500+', label: 'Executive Placements' },
   { value: '7+', label: 'Countries Served' },
   { value: '20+', label: 'Years of Excellence' }

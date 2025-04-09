@@ -7,7 +7,7 @@ export default function ApproachSection() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Talent Acquisition Approach</h2>
+          <h2 className="text-3xl font-bold mb-4">Our Approach Towards Talent Acquisition</h2>
           <p className="text-muted-foreground">
             We partner with organizations to build high-performing teams that align with business objectives and cultural values.
           </p>

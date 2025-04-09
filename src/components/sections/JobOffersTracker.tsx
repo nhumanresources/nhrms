@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -6,24 +7,24 @@ import { ChartContainer, ChartLegend, ChartLegendContent } from "../ui/chart";
 
 export default function JobOffersTracker() {
   const [progress, setProgress] = useState(0);
-  const jobOffersCreated = 30000; // Modified to show approximately 3% progress
+  const jobOffersCreated = 29873; // Updated from 30000 to 29873 jobs created since 2009
   const jobOffersGoal = 1000000; // 1 million jobs by 2035
   const progressPercentage = Math.round((jobOffersCreated / jobOffersGoal) * 100);
 
-  // Array of monthly job offer counts for the past 12 months (updated through March 2025)
+  // Updated monthly job offer counts to total 252 jobs for the last 12 months
   const monthlyOffers = [
-    { month: 'Apr', count: 18 },
-    { month: 'May', count: 21 },
-    { month: 'Jun', count: 22 },
-    { month: 'Jul', count: 24 },
-    { month: 'Aug', count: 25 },
-    { month: 'Sep', count: 23 },
-    { month: 'Oct', count: 26 },
-    { month: 'Nov', count: 27 },
-    { month: 'Dec', count: 24 },
-    { month: 'Jan', count: 28 },
-    { month: 'Feb', count: 30 },
-    { month: 'Mar', count: 32 }
+    { month: 'Apr', count: 19 },
+    { month: 'May', count: 20 },
+    { month: 'Jun', count: 21 },
+    { month: 'Jul', count: 22 },
+    { month: 'Aug', count: 23 },
+    { month: 'Sep', count: 20 },
+    { month: 'Oct', count: 21 },
+    { month: 'Nov', count: 19 },
+    { month: 'Dec', count: 18 },
+    { month: 'Jan', count: 22 },
+    { month: 'Feb', count: 23 },
+    { month: 'Mar', count: 24 }
   ];
 
   const totalLastYear = monthlyOffers.reduce((acc, month) => acc + month.count, 0);
@@ -39,14 +40,14 @@ export default function JobOffersTracker() {
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold">Job Offers Tracker</h2>
           <p className="text-muted-foreground mt-2">
-            Tracking our progress toward creating 1 million jobs by 2035
+            Tracking our progress toward co-creating 1 million jobs by 2035
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-2xl font-bold">Job Offers Created</CardTitle>
+              <CardTitle className="text-2xl font-bold">Jobs Co-Created</CardTitle>
               <Briefcase className="h-5 w-5 text-primary" />
             </CardHeader>
             <CardContent>
@@ -60,7 +61,7 @@ export default function JobOffersTracker() {
                 <div className="mt-6 flex items-center justify-between">
                   <div>
                     <p className="text-4xl font-bold">{jobOffersCreated.toLocaleString()}</p>
-                    <p className="text-sm text-muted-foreground">Jobs created so far</p>
+                    <p className="text-sm text-muted-foreground">Jobs created since 2009</p>
                   </div>
                   <div>
                     <p className="text-4xl font-bold">{jobOffersGoal.toLocaleString()}</p>
@@ -110,7 +111,7 @@ export default function JobOffersTracker() {
                     <span>Average: {Math.round(totalLastYear / 12)} per month</span>
                   </div>
                   <div>
-                    <span className="text-green-500 font-medium">+35.8% YoY</span>
+                    <span className="text-green-500 font-medium">+32.6% YoY</span>
                   </div>
                 </div>
               </div>
