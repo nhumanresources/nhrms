@@ -9,19 +9,19 @@ export default function ContactInformation() {
         <div className="flex items-start space-x-4">
           <MapPin className="h-6 w-6 text-primary flex-shrink-0" />
           <div>
-            <h3 className="font-semibold mb-3">Office Locations</h3>
+            <h3 className="font-semibold mb-3">Company Presence</h3>
             <div className="space-y-4 text-muted-foreground">
               <div>
                 <p className="font-medium">United States</p>
-                <p>Headquartered</p>
+                <p>Registered Headquarters</p>
               </div>
               <div>
                 <p className="font-medium">India - Hyderabad</p>
-                <p>Regional Center</p>
+                <p>Virtual Regional Center</p>
               </div>
               <div>
                 <p className="font-medium">India - Bangalore</p>
-                <p>Tech & Learning Center</p>
+                <p>Physical Office - Tech & Learning Center</p>
               </div>
             </div>
           </div>
