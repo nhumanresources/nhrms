@@ -38,7 +38,7 @@ export default function WhoWeAre() {
     {
       name: "Dr. Ajoy Bhupatiraju",
       title: "Head of Research",
-      bio: "Some one who has an interest in interdisciplinary research and keen participant in HR Research since 2 years with nHRMS.",
+      bio: "Dr. Bhupatiraju has an interest in interdisciplinary research and keen participant in HR Research since 2 years with nHRMS.",
       linkedin: "https://www.linkedin.com/in/ajoy-bhupatiraju-3700986/"
     }
   ];
