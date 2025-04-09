@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,6 +36,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-lg mb-5">What We Do</h4>
             <ul className="space-y-3">
+              <li className="text-muted-foreground font-semibold text-sm">BUILD</li>
               <li>
                 <Link to="/services/executive-search" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
@@ -42,17 +44,19 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/services/hr-advisory" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                <Link to="/services/talent-acquisition" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
-                  HR Advisory
+                  Build Teams - Talent Acquisition
                 </Link>
               </li>
+              <li className="text-muted-foreground font-semibold text-sm mt-4">OPERATE</li>
               <li>
-                <Link to="/services/knowledge-management" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                <Link to="/services/bot-hr-teams" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
-                  Knowledge Management
+                  HR Teams (On-Prem, Remote)
                 </Link>
               </li>
+              <li className="text-muted-foreground font-semibold text-sm mt-4">GROWTH</li>
               <li>
                 <Link to="/services/go-to-market" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
@@ -60,21 +64,22 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/services/bot-hr-teams" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
-                  <ArrowRight className="h-3 w-3 mr-2" />
-                  Build Operate and Transfer - HR Teams
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/talent-acquisition" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
-                  <ArrowRight className="h-3 w-3 mr-2" />
-                  Talent Acquisition - Build Teams
-                </Link>
-              </li>
-              <li>
                 <Link to="/learning-solutions" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
                   Learning Solutions
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/hr-tech" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
+                  HR Technology
+                </Link>
+              </li>
+              <li className="text-muted-foreground font-semibold text-sm mt-4">ADVISORY</li>
+              <li>
+                <Link to="/services/hr-advisory" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
+                  HR Advisory
                 </Link>
               </li>
             </ul>
@@ -131,10 +136,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                <Link to="/culture" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
                   Our Culture
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="mt-6">

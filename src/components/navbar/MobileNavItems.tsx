@@ -16,23 +16,33 @@ export const MobileNavItems = () => (
           Our Focus <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
         </summary>
         <div className="mt-2 ml-4 space-y-1">
+          <div className="px-2 py-1 text-xs font-semibold text-muted-foreground">Build</div>
           <Link to="/services/executive-search" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             Executive Search
           </Link>
-          <Link to="/services/hr-advisory" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
-            HR Advisory
+          <Link to="/services/talent-acquisition" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            Build Teams - Talent Acquisition
           </Link>
+          
+          <div className="mt-2 px-2 py-1 text-xs font-semibold text-muted-foreground">Operate</div>
+          <Link to="/services/bot-hr-teams" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            HR Teams (On-Prem, Remote)
+          </Link>
+          
+          <div className="mt-2 px-2 py-1 text-xs font-semibold text-muted-foreground">Growth</div>
           <Link to="/services/go-to-market" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             Go to Market Strategy & Execution
           </Link>
-          <Link to="/services/bot-hr-teams" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
-            Build Operate and Transfer - HR Teams
+          <Link to="/learning-solutions" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            Learning Solutions
           </Link>
           <Link to="/services/hr-tech" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
             HR Technology
           </Link>
-          <Link to="/services/talent-acquisition" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
-            Talent Acquisition - Build Teams
+          
+          <div className="mt-2 px-2 py-1 text-xs font-semibold text-muted-foreground">Advisory</div>
+          <Link to="/services/hr-advisory" className="block px-3 py-2 text-sm hover:bg-gray-100 rounded">
+            HR Advisory
           </Link>
         </div>
       </details>
