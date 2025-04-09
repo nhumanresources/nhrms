@@ -104,6 +104,15 @@ const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) => (
     >
       Who are we
     </Link>
+    <Link 
+      to="/culture" 
+      className={cn(
+        "animated-link text-sm font-medium", 
+        isActive('/culture') ? "text-primary font-semibold" : "text-muted-foreground"
+      )}
+    >
+      Our Culture
+    </Link>
     <div className="relative group">
       <button 
         className={cn(
@@ -172,6 +181,9 @@ const MobileNavItems = () => (
   <>
     <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Who are we
+    </Link>
+    <Link to="/culture" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
+      Our Culture
     </Link>
     <div className="px-3 py-2">
       <details className="group">

@@ -8,7 +8,6 @@ import ResearchReportsSection from '@/components/research/ResearchReportsSection
 import WhitepapersSection from '@/components/research/WhitepapersSection';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { BriefcaseBusiness, Building, PartyPopper } from 'lucide-react';
 import { researchPapers } from '@/data/researchPapers';
 import { ResearchReport, Whitepaper } from '@/components/research/types';
 
@@ -126,9 +125,6 @@ export default function Research() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
                   <Link to="/research-opportunities">View Full Job Description</Link>
-                </Button>
-                <Button variant="outline" size="lg">
-                  <a href="mailto:careers@nhrms.com">careers@nhrms.com</a>
                 </Button>
               </div>
             </div>

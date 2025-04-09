@@ -19,6 +19,7 @@ import Research from "./pages/Research";
 import ResearchOpportunities from "./pages/ResearchOpportunities";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
+import Culture from "./pages/Culture";
 import DefaultServicePage from "./pages/services/DefaultServicePage";
 import ExecutiveSearch from "./pages/services/ExecutiveSearch";
 import HRAdvisory from "./pages/services/HRAdvisory";
@@ -72,6 +73,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/who-we-are" element={<WhoWeAre />} />
+          <Route path="/culture" element={<Culture />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogArticle />} />

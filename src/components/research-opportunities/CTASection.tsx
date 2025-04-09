@@ -23,9 +23,6 @@ export default function CTASection({ onApplyNow, isSubmitting }: CTASectionProps
             >
               {isSubmitting ? 'Submitting...' : 'Apply Now'}
             </Button>
-            <Button variant="outline" size="lg">
-              <a href="mailto:careers@nhrms.com">careers@nhrms.com</a>
-            </Button>
           </div>
         </div>
       </div>
