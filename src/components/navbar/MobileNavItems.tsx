@@ -53,9 +53,6 @@ export const MobileNavItems = () => (
     <Link to="/research" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Research
     </Link>
-    <Link to="/contact" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
-      Contact Us
-    </Link>
     <div className="border-t border-border/50 mt-2 pt-2">
       <a href="tel:+13143018402" className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 rounded">
         <Phone size={16} className="mr-2" /> +1 (314) 301-8402

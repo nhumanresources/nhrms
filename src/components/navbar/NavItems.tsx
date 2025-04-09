@@ -85,14 +85,5 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
     >
       Research
     </Link>
-    <Link 
-      to="/contact" 
-      className={cn(
-        "animated-link text-sm font-medium", 
-        isActive('/contact') ? "text-primary font-semibold" : "text-muted-foreground"
-      )}
-    >
-      Contact Us
-    </Link>
   </>
 );
