@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -37,7 +38,7 @@ export default function WhoWeAre() {
     {
       name: "Dr. Ajoy Bhupatiraju",
       title: "Head of Research",
-      bio: "Dr. Ajoy leads our research initiatives with over 18 years of experience in HR analytics and workforce insights, driving innovation through data-driven approaches.",
+      bio: "Some one who has an interest in interdisciplinary research and keen participant in HR Research since 2 years with nHRMS.",
       linkedin: "https://www.linkedin.com/in/ajoy-bhupatiraju-3700986/"
     }
   ];
