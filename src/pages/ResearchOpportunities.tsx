@@ -39,7 +39,7 @@ export default function ResearchOpportunities() {
     // Create a form and submit it programmatically to the FormSubmit.co service
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = 'https://formsubmit.co/info@nhrms.com';
+    form.action = 'https://formsubmit.co/careers@nhrms.com';
     
     // Set hidden fields
     const hiddenFields = {
