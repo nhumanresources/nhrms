@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactHero from '@/components/contact/ContactHero';
 import ContactContent from '@/components/contact/ContactContent';
+import { toast } from 'sonner';
 
 export default function Contact() {
   useEffect(() => {
@@ -13,6 +14,16 @@ export default function Contact() {
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Contact n Human Resources and Management Systems for all your HR consulting needs. Get in touch with our expert team for inquiries about executive search, HR advisory, and HR technology solutions.');
+    }
+    
+    // Check for success parameter in URL to show toast message
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      toast.success('Your message has been sent! We will get back to you soon.');
+      
+      // Clean up the URL
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
     }
   }, []);
 

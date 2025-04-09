@@ -26,47 +26,47 @@ export default function ResearchOpportunities() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
       toast.success('Your application has been submitted successfully! We will get back to you soon.');
+      
+      // Clean up the URL
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
     }
   }, []);
 
   const handleApplyNow = () => {
+    setIsSubmitting(true);
+    
     // Create a form and submit it programmatically to the FormSubmit.co service
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = 'https://formsubmit.co/info@nhrms.com';
     
     // Set hidden fields
-    const subjectField = document.createElement('input');
-    subjectField.type = 'hidden';
-    subjectField.name = '_subject';
-    subjectField.value = 'Research Associate Application';
-    form.appendChild(subjectField);
+    const hiddenFields = {
+      '_subject': 'Research Associate Application',
+      '_captcha': 'false',
+      '_next': window.location.origin + '/research-opportunities?success=true',
+      'message': 'I am interested in the Research Associate position at nHRMS in Whitefield, Bangalore.',
+      'application_type': 'Research Associate Position'
+    };
     
-    const captchaField = document.createElement('input');
-    captchaField.type = 'hidden';
-    captchaField.name = '_captcha';
-    captchaField.value = 'false';
-    form.appendChild(captchaField);
-    
-    const nextField = document.createElement('input');
-    nextField.type = 'hidden';
-    nextField.name = '_next';
-    nextField.value = window.location.origin + '/research-opportunities?success=true';
-    form.appendChild(nextField);
-    
-    const messageField = document.createElement('input');
-    messageField.type = 'hidden';
-    messageField.name = 'message';
-    messageField.value = 'I am interested in the Research Associate position at nHRMS in Whitefield, Bangalore.';
-    form.appendChild(messageField);
+    // Add all fields to the form
+    Object.entries(hiddenFields).forEach(([key, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
     
     // Hide the form and append to body
     form.style.display = 'none';
     document.body.appendChild(form);
     
     // Submit the form
-    setIsSubmitting(true);
     form.submit();
+    
+    // We don't reset isSubmitting since we're navigating away
   };
 
   return (

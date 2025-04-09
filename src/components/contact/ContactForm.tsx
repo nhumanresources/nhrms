@@ -38,21 +38,42 @@ export default function ContactForm() {
     
     console.log("Sending form data to info@nhrms.com", values);
     
-    // Submit the form after a brief delay to simulate network request
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success(`Your message has been sent to info@nhrms.com. We'll get back to you soon!`);
-      form.reset();
-    }, 1500);
+    // Create a form and submit it programmatically to the FormSubmit.co service
+    const formElement = document.createElement('form');
+    formElement.method = 'POST';
+    formElement.action = 'https://formsubmit.co/info@nhrms.com';
+    
+    // Add hidden fields for form configuration
+    const hiddenFields = {
+      '_subject': 'New contact form submission from website',
+      '_captcha': 'false',
+      '_next': window.location.origin + '/contact?success=true',
+      'name': values.name,
+      'email': values.email,
+      'company': values.company || 'Not specified',
+      'phone': values.phone,
+      'message': values.message
+    };
+    
+    // Create and append all form fields
+    Object.entries(hiddenFields).forEach(([key, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value as string;
+      formElement.appendChild(input);
+    });
+    
+    // Append form to body and submit
+    document.body.appendChild(formElement);
+    formElement.submit();
+    
+    // We don't reset the form here because we're redirecting away
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <input type="hidden" name="_subject" value="New contact form submission" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value={window.location.href} />
-        
         <FormField
           control={form.control}
           name="name"
