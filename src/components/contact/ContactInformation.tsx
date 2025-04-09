@@ -17,11 +17,11 @@ export default function ContactInformation() {
               </div>
               <div>
                 <p className="font-medium">India - Hyderabad</p>
-                <p>Virtual Regional Center</p>
+                <p>Regional Center</p>
               </div>
               <div>
                 <p className="font-medium">India - Bangalore</p>
-                <p>Physical Office - Tech & Learning Center</p>
+                <p>Tech & Learning Center</p>
               </div>
             </div>
           </div>
