@@ -1,6 +1,5 @@
-
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen, Link as LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Footer() {
@@ -142,7 +141,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                {/* Career Edge link - Assistant to Job Seekers */}
                 <a 
                   href="https://careeredge.nhrms.com"
                   target="_blank"
@@ -152,6 +150,15 @@ export default function Footer() {
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/press-releases/nhrms-acquires-careeredge"
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center"
+                >
+                  <LinkIcon className="h-3 w-3 mr-2" />
+                  Read the Press Release: nHRMS acquires CareerEdge
                 </a>
               </li>
             </ul>
@@ -218,4 +225,3 @@ export default function Footer() {
     </footer>
   );
 }
-
