@@ -29,10 +29,10 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md py-3 shadow-sm border-b border-border/30'
-          : 'bg-transparent py-5'
+          ? 'bg-white/95 backdrop-blur-md py-2 shadow-md border-b border-border/20'
+          : 'bg-transparent py-4'
       )}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -40,9 +40,9 @@ export default function Navbar() {
           <NavLogo />
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <NavItems isActive={isActive} />
-            <div className="ml-2">
+            <div className="ml-4 pl-4 border-l border-muted">
               <PhoneButton />
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
             <button 
-              className="text-gray-700 p-2" 
+              className="text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors" 
               onClick={toggleMobileMenu} 
               aria-label="Toggle menu"
             >
