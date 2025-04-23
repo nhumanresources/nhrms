@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { BookOpen, Briefcase, Link as LinkIcon } from "lucide-react";
 
@@ -49,11 +48,10 @@ export default function NHRMSAcquiresCareeredge() {
           </li>
         </ul>
 
-        <h3 className="text-lg font-semibold mb-2">Comments from Leadership</h3>
         <blockquote className="border-l-4 border-primary pl-4 italic mb-4 text-muted-foreground">
-          “This acquisition unites nHRMS’s vision for organizational excellence with CareerEdge’s mission to guide and empower individuals, creating an impactful synergy for the modern workforce.”
+          "This acquisition unites nHRMS's vision for organizational excellence with CareerEdge's mission to guide and empower individuals, creating an impactful synergy for the modern workforce."
           <br />
-          <span className="block mt-2 font-medium">- Alok Yog, Managing Director, nHRMS Inc.</span>
+          <span className="block mt-2 font-medium">- Sai Varma, Managing Director, nHRMS Inc.</span>
         </blockquote>
 
         <h3 className="text-lg font-semibold mb-2">Next Steps</h3>
