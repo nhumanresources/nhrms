@@ -141,6 +141,19 @@ export default function Footer() {
                   Our Culture
                 </Link>
               </li>
+              <li>
+                {/* Career Edge link - Assistant to Job Seekers */}
+                <a 
+                  href="https://careeredge.nhrms.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center"
+                  title="Career Edge – Your assistant to Job Seekers"
+                >
+                  <BookOpen className="h-4 w-4 mr-2" />
+                  Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
+                </a>
+              </li>
             </ul>
             <div className="mt-6">
               <Button variant="outline" size="sm" className="w-full" asChild>
@@ -205,3 +218,4 @@ export default function Footer() {
     </footer>
   );
 }
+

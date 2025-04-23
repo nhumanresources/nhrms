@@ -85,5 +85,16 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
     >
       Research
     </Link>
+    {/* Career Edge link for Job Seekers as an assistant */}
+    <a 
+      href="https://careeredge.nhrms.com" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="animated-link text-sm font-medium text-primary hover:underline ml-3"
+      title="Career Edge – Your assistant to Job Seekers"
+    >
+      Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
+    </a>
   </>
 );
+

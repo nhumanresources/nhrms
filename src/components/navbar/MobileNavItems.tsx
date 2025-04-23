@@ -53,6 +53,16 @@ export const MobileNavItems = () => (
     <Link to="/research" className="px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded">
       Research
     </Link>
+    {/* Career Edge mobile nav – Job Seekers Assistant link */}
+    <a 
+      href="https://careeredge.nhrms.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-3 py-2 text-sm font-medium text-primary hover:underline rounded"
+      title="Career Edge – Your assistant to Job Seekers"
+    >
+      Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
+    </a>
     <div className="border-t border-border/50 mt-2 pt-2">
       <a href="tel:+13143018402" className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 rounded">
         <Phone size={16} className="mr-2" /> +1 (314) 301-8402
@@ -60,3 +70,4 @@ export const MobileNavItems = () => (
     </div>
   </>
 );
+
