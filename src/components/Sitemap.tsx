@@ -10,6 +10,33 @@ const Sitemap = () => {
     if (location.pathname === '/sitemap.xml') {
       window.location.href = '/sitemap.xml';
     }
+    
+    // Add structured data for organization
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      'name': 'nHRMS',
+      'url': 'https://nhrms.com',
+      'logo': 'https://nhrms.com/logo.png',
+      'description': 'Strategic 360 Degree HR Management Consulting Firm',
+      'contactPoint': {
+        '@type': 'ContactPoint',
+        'telephone': '+1-314-301-8402',
+        'contactType': 'customer service'
+      },
+      'sameAs': [
+        'https://linkedin.com/company/nhrms',
+        'https://twitter.com/nhrms'
+      ]
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      // Clean up when component unmounts
+      document.head.removeChild(script);
+    };
   }, [location]);
 
   return null;

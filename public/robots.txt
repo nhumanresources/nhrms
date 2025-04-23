@@ -1,4 +1,9 @@
 
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Specific permissions for major crawlers
 User-agent: Googlebot
 Allow: /
 
@@ -11,8 +16,8 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
-
-# Sitemap
+# Sitemap location
 Sitemap: https://nhrms.com/sitemap.xml
+
+# Crawl delay for all bots (in seconds)
+Crawl-delay: 10

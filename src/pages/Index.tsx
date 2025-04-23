@@ -1,5 +1,6 @@
 
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -23,29 +24,47 @@ const metrics: PerformanceMetric[] = [
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Set page title and meta description for SEO
-    document.title = "nHRMS | Strategic HR Consulting";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'nHRMS provides comprehensive HR consulting services including executive search, HR advisory, talent acquisition, and HR technology solutions for modern organizations seeking excellence.');
-    }
   }, []);
 
+  const pageDescription = "nHRMS provides comprehensive HR consulting services including executive search, HR advisory, talent acquisition, and HR technology solutions for modern organizations seeking excellence.";
+
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Navbar />
-      <main className="flex-grow">
-        <HeroSection />
-        <MetricsSection metrics={metrics} />
-        <JobOffersTracker />
-        <ServicesSection />
-        <OrganizationStructureSection />
-        <WhyChooseUsSection />
-        <HRNewsSlider />
-        <CTASection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Helmet>
+        <title>nHRMS | Strategic HR Consulting</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content="HR consulting, executive search, talent acquisition, HR technology, HR advisory" />
+        <link rel="canonical" href="https://nhrms.com/" />
+        <meta property="og:title" content="nHRMS | Strategic HR Consulting" />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content="https://nhrms.com/" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "nHRMS",
+            "url": "https://nhrms.com",
+            "logo": "https://nhrms.com/logo.png",
+            "description": pageDescription
+          })}
+        </script>
+      </Helmet>
+      <div className="min-h-screen flex flex-col bg-white">
+        <Navbar />
+        <main className="flex-grow">
+          <HeroSection />
+          <MetricsSection metrics={metrics} />
+          <JobOffersTracker />
+          <ServicesSection />
+          <OrganizationStructureSection />
+          <WhyChooseUsSection />
+          <HRNewsSlider />
+          <CTASection />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

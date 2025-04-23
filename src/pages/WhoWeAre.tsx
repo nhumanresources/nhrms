@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 import HeroSection from '@/components/who-we-are/HeroSection';
 import OurAimSection from '@/components/who-we-are/OurAimSection';
 import MissionValuesSection from '@/components/who-we-are/MissionValuesSection';
@@ -14,13 +15,10 @@ import OurApproachSection from '@/components/who-we-are/OurApproachSection';
 export default function WhoWeAre() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Set page title and meta description for SEO
-    document.title = "Who are we | n Human Resources and Management Systems - nHRMS";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Learn about n Human Resources and Management Systems (nHRMS), a leading HR management consulting firm dedicated to helping organizations optimize their human capital.');
-    }
   }, []);
+
+  const pageTitle = "Who We Are | n Human Resources and Management Systems - nHRMS";
+  const pageDescription = "Learn about n Human Resources and Management Systems (nHRMS), a leading HR management consulting firm dedicated to helping organizations optimize their human capital.";
 
   const leadershipTeam = [
     {
@@ -43,8 +41,33 @@ export default function WhoWeAre() {
     }
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "nHRMS",
+      "description": pageDescription,
+      "foundingDate": "2003",
+      "employee": leadershipTeam.map(leader => ({
+        "@type": "Person",
+        "name": leader.name,
+        "jobTitle": leader.title,
+        "description": leader.bio,
+        "sameAs": leader.linkedin
+      }))
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title={pageTitle}
+        description={pageDescription}
+        keywords="HR consulting, HR management, human capital, leadership team, HR strategy, nHRMS"
+        canonicalUrl="https://nhrms.com/who-we-are"
+        structuredData={structuredData}
+      />
       <Navbar />
       <main className="flex-grow pt-20">
         <HeroSection />

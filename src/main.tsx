@@ -1,6 +1,7 @@
 
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import './index.css';
 
@@ -39,9 +40,11 @@ try {
   
   console.log("Rendering React application with router");
   root.render(
-    <BrowserRouter basename={baseUrl}>
-      <App />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter basename={baseUrl}>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
   );
   
   console.log("React application render complete");
