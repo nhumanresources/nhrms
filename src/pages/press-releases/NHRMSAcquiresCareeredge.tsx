@@ -51,7 +51,7 @@ export default function NHRMSAcquiresCareeredge() {
         <blockquote className="border-l-4 border-primary pl-4 italic mb-4 text-muted-foreground">
           "This acquisition unites nHRMS's vision for organizational excellence with CareerEdge's mission to guide and empower individuals, creating an impactful synergy for the modern workforce."
           <br />
-          <span className="block mt-2 font-medium">- Sai Varma, Managing Director, nHRMS Inc.</span>
+          <span className="block mt-2 font-medium">- Sai Varma, Partner, nHRMS Inc.</span>
         </blockquote>
 
         <h3 className="text-lg font-semibold mb-2">Next Steps</h3>
