@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { ChevronDown, Phone } from 'lucide-react';
 
@@ -56,8 +55,6 @@ export const MobileNavItems = () => (
     {/* Career Edge mobile nav – Job Seekers Assistant link */}
     <a 
       href="https://careeredge.nhrms.com"
-      target="_blank"
-      rel="noopener noreferrer"
       className="px-3 py-2 text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 rounded-md transition-colors mt-1"
       title="Career Edge – Your assistant to Job Seekers"
     >

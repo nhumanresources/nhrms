@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -103,8 +102,6 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
     {/* Career Edge link for Job Seekers as an assistant */}
     <a 
       href="https://careeredge.nhrms.com" 
-      target="_blank" 
-      rel="noopener noreferrer"
       className="px-2 py-1 text-sm font-semibold text-primary hover:text-primary/80 ml-2 bg-primary/10 rounded-full flex items-center transition-all hover:bg-primary/20"
       title="Career Edge – Your assistant to Job Seekers"
     >
