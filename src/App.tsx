@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -52,6 +51,7 @@ import Certifications from "./pages/services/Certifications";
 import LeadershipDevelopmentService from "./pages/services/LeadershipDevelopmentService";
 import Mail from "./pages/Mail";
 import Sitemap from "./components/Sitemap";
+import NHRMSAcquiresCareeredge from "./pages/press-releases/NHRMSAcquiresCareeredge";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -84,7 +84,8 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/mail" element={<Mail />} />
           
-          {/* Redirect mail.nhrms.com to the mail page */}
+          <Route path="/press-releases/nhrms-acquires-careeredge" element={<NHRMSAcquiresCareeredge />} />
+          
           <Route path="/mail.nhrms.com" element={<Navigate to="/mail" replace />} />
           
           <Route path="/careers" element={<Navigate to="https://jobs.nhrms.com/jobs/Careers" replace />} />
@@ -104,7 +105,6 @@ const App = () => {
           <Route path="/services/certifications" element={<Certifications />} />
           <Route path="/services/leadership-&-professional-development" element={<LeadershipDevelopmentService />} />
           
-          {/* Catch-all route for any service pages that don't have specific implementations */}
           <Route path="/services/:serviceName" element={<DefaultServicePage />} />
           
           <Route path="/careers/internships" element={<Internships />} />
