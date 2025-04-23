@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { BookOpen, Briefcase } from "lucide-react";
+import { BookOpen, Briefcase, Link2 } from "lucide-react";
 import { Linkedin, Twitter, Facebook } from "lucide-react";
 
 export default function NHRMSAcquiresCareeredge() {
@@ -44,7 +45,7 @@ export default function NHRMSAcquiresCareeredge() {
       {/* Acquisition Overview */}
       <div className="bg-background/60 rounded-xl border p-6 shadow mb-10">
         <h2 className="text-2xl font-semibold mb-3 flex items-center">
-          <LinkIcon className="w-6 h-6 mr-2 text-primary" />
+          <Link2 className="w-6 h-6 mr-2 text-primary" />
           Press Release Summary
         </h2>
         <p className="mb-4">
@@ -60,7 +61,7 @@ export default function NHRMSAcquiresCareeredge() {
         </p>
 
         <p className="mb-4">
-          <span className="font-semibold">CareerEdge</span> is an interactive, AI-assisted assistant that helps job seekers navigate their job search, offering personalized insights, resume tips, interview guidance, and up-to-date job market intelligence. As part of the nHRMS family, CareerEdge will integrate its intuitive technology into nHRMS’s robust HRMS offerings, making it easier for organizations to connect with top talent and for candidates to unlock new opportunities.
+          <span className="font-semibold">CareerEdge</span> is an interactive, AI-assisted assistant that helps job seekers navigate their job search, offering personalized insights, resume tips, interview guidance, and up-to-date job market intelligence. As part of the nHRMS family, CareerEdge will integrate its intuitive technology into nHRMS's robust HRMS offerings, making it easier for organizations to connect with top talent and for candidates to unlock new opportunities.
         </p>
 
         <ul className="list-disc pl-5 mb-4 text-muted-foreground">
