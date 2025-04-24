@@ -7,7 +7,7 @@ import PartnersSection from '@/components/partners/PartnersSection';
 
 export default function Partners() {
   const pageTitle = "Technology Partners | n Human Resources and Management Systems - nHRMS";
-  const pageDescription = "nHRMS partners with leading technology providers like Keka, GreytHR, Oracle, Microsoft, and Google to deliver cutting-edge HR solutions.";
+  const pageDescription = "nHRMS partners with leading technology providers like Keka, Oracle, Microsoft, and Google to deliver cutting-edge HR solutions.";
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -19,11 +19,6 @@ export default function Partners() {
         "@type": "Organization",
         "name": "Keka",
         "description": "HR & Payroll Software"
-      },
-      {
-        "@type": "Organization",
-        "name": "GreytHR",
-        "description": "HR Management Software"
       },
       {
         "@type": "Organization",
@@ -48,7 +43,7 @@ export default function Partners() {
       <SEO 
         title={pageTitle}
         description={pageDescription}
-        keywords="HR technology partners, HR software partners, Keka, GreytHR, Oracle, Microsoft, Google"
+        keywords="HR technology partners, HR software partners, Keka, Oracle, Microsoft, Google"
         structuredData={structuredData}
       />
       <Navbar />

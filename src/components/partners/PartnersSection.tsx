@@ -9,12 +9,6 @@ export default function PartnersSection() {
       category: "HR Tech"
     },
     {
-      name: "GreytHR",
-      logo: "https://www.greythr.com/wp-content/themes/greythr/assets/img/greytHR-logo.svg",
-      description: "HR Management Software",
-      category: "HR Tech"
-    },
-    {
       name: "Oracle",
       logo: "https://www.oracle.com/a/ocom/img/rh03-oracle-cloud-infinity-loop.svg",
       description: "Enterprise Technology Solutions",
