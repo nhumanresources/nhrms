@@ -5,35 +5,35 @@ export default function PartnersSection() {
   const partners = [
     {
       name: "Keka",
-      logo: "/partners/keka.svg",
+      logo: "https://www.keka.com/static/media/kekaLogo.3154c0b0.svg",
       description: "Leading HR & Payroll Software",
       category: "HR Tech",
       website: "https://www.keka.com"
     },
     {
       name: "GreytHR",
-      logo: "/partners/greythr.svg",
+      logo: "https://www.greythr.com/content/dam/greythr/logo.svg",
       description: "HR Management Software",
       category: "HR Tech",
       website: "https://www.greythr.com"
     },
     {
       name: "Oracle",
-      logo: "/partners/oracle.svg",
+      logo: "https://www.oracle.com/a/ocom/img/oracle-red.svg",
       description: "Enterprise Technology Solutions",
       category: "Enterprise",
       website: "https://www.oracle.com"
     },
     {
       name: "Microsoft",
-      logo: "/partners/microsoft.svg",
+      logo: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31",
       description: "Enterprise Technology Solutions",
       category: "Enterprise",
       website: "https://www.microsoft.com"
     },
     {
       name: "Google",
-      logo: "/partners/google.svg",
+      logo: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
       description: "Enterprise Technology Solutions",
       category: "Enterprise",
       website: "https://cloud.google.com"
@@ -54,10 +54,11 @@ export default function PartnersSection() {
           {partners.map((partner) => (
             <div key={partner.name} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <div className="h-24 flex items-center justify-center mb-4">
-                {/* Placeholder for partner logos until actual logos are added */}
-                <div className="w-32 h-12 bg-gray-100 rounded flex items-center justify-center">
-                  <span className="text-lg font-semibold text-primary/70">{partner.name}</span>
-                </div>
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`}
+                  className="h-12 w-auto object-contain"
+                />
               </div>
               <h3 className="text-xl font-semibold mb-2">{partner.name}</h3>
               <p className="text-muted-foreground mb-4">{partner.description}</p>
