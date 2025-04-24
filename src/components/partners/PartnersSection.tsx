@@ -5,38 +5,33 @@ export default function PartnersSection() {
   const partners = [
     {
       name: "Keka",
-      logo: "https://www.keka.com/static/media/kekaLogo.3154c0b0.svg",
+      logo: "https://www.keka.com/assets/images/kekaLogoBlue.svg", // Updated logo URL
       description: "Leading HR & Payroll Software",
-      category: "HR Tech",
-      website: "https://www.keka.com"
+      category: "HR Tech"
     },
     {
       name: "GreytHR",
-      logo: "https://www.greythr.com/content/dam/greythr/logo.svg",
+      logo: "https://www.greythr.com/wp-content/themes/greythr/assets/img/greytHR-logo.svg", // Updated logo URL
       description: "HR Management Software",
-      category: "HR Tech",
-      website: "https://www.greythr.com"
+      category: "HR Tech"
     },
     {
       name: "Oracle",
-      logo: "https://www.oracle.com/a/ocom/img/oracle-red.svg",
+      logo: "https://www.oracle.com/a/ocom/img/rh03-oracle-cloud-infinity-loop.svg", // Updated logo URL
       description: "Enterprise Technology Solutions",
-      category: "Enterprise",
-      website: "https://www.oracle.com"
+      category: "Enterprise"
     },
     {
       name: "Microsoft",
       logo: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31",
       description: "Enterprise Technology Solutions",
-      category: "Enterprise",
-      website: "https://www.microsoft.com"
+      category: "Enterprise"
     },
     {
       name: "Google",
-      logo: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      logo: "https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg", // Updated logo URL
       description: "Enterprise Technology Solutions",
-      category: "Enterprise",
-      website: "https://cloud.google.com"
+      category: "Enterprise"
     }
   ];
 
@@ -58,19 +53,14 @@ export default function PartnersSection() {
                   src={partner.logo} 
                   alt={`${partner.name} logo`}
                   className="h-12 w-auto object-contain"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "https://via.placeholder.com/180x60?text=" + partner.name;
+                  }}
                 />
               </div>
               <h3 className="text-xl font-semibold mb-2">{partner.name}</h3>
-              <p className="text-muted-foreground mb-4">{partner.description}</p>
-              <a 
-                href={partner.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-sm text-primary hover:text-primary/80"
-              >
-                <Globe className="w-4 h-4 mr-1" />
-                Visit Website
-              </a>
+              <p className="text-muted-foreground">{partner.description}</p>
             </div>
           ))}
         </div>
