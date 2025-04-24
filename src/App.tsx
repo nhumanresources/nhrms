@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -53,9 +52,9 @@ import LeadershipDevelopmentService from "./pages/services/LeadershipDevelopment
 import Mail from "./pages/Mail";
 import Sitemap from "./components/Sitemap";
 import NHRMSAcquiresCareeredge from "./pages/press-releases/NHRMSAcquiresCareeredge";
+import HRTechSolutions from "./pages/services/HRTechSolutions";
 
 const App = () => {
-  // Create a QueryClient instance inside the component function
   const [queryClient] = useState(() => new QueryClient());
   
   useEffect(() => {
@@ -98,6 +97,7 @@ const App = () => {
           <Route path="/services/bot-hr-teams" element={<BOTHRTeams />} />
           <Route path="/services/hr-tech" element={<HRTech />} />
           <Route path="/services/talent-acquisition" element={<TalentAcquisition />} />
+          <Route path="/services/hr-tech-solutions" element={<HRTechSolutions />} />
           <Route path="/learning-solutions" element={<LearningServices />} />
           
           <Route path="/services/internship-programs" element={<InternshipPrograms />} />

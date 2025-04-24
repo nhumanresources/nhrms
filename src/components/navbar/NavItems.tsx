@@ -66,6 +66,9 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
           <Link to="/services/hr-tech" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             HR Technology
           </Link>
+          <Link to="/services/hr-tech-solutions" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+            HR Tech Solutions & Implementation
+          </Link>
           
           <div className="mt-2 mb-1 px-4 py-1 text-xs font-semibold text-primary/70">Advisory</div>
           <Link to="/services/hr-advisory" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
@@ -99,7 +102,6 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       Research
     </Link>
     
-    {/* Career Edge link for Job Seekers as an assistant */}
     <a 
       href="https://careeredge.nhrms.com" 
       className="px-2 py-1 text-sm font-semibold text-primary hover:text-primary/80 ml-2 bg-primary/10 rounded-full flex items-center transition-all hover:bg-primary/20"

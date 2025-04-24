@@ -38,6 +38,9 @@ export const MobileNavItems = () => (
           <Link to="/services/hr-tech" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             HR Technology
           </Link>
+          <Link to="/services/hr-tech-solutions" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            HR Tech Solutions & Implementation
+          </Link>
           
           <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Advisory</div>
           <Link to="/services/hr-advisory" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
