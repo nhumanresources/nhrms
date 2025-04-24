@@ -1,23 +1,22 @@
-
 import { Globe } from 'lucide-react';
 
 export default function PartnersSection() {
   const partners = [
     {
       name: "Keka",
-      logo: "https://www.keka.com/assets/images/kekaLogoBlue.svg", // Updated logo URL
+      logo: "https://www.keka.com/assets/images/kekaLogoBlue.svg",
       description: "Leading HR & Payroll Software",
       category: "HR Tech"
     },
     {
       name: "GreytHR",
-      logo: "https://www.greythr.com/wp-content/themes/greythr/assets/img/greytHR-logo.svg", // Updated logo URL
+      logo: "https://www.greythr.com/wp-content/themes/greythr/assets/img/greytHR-logo.svg",
       description: "HR Management Software",
       category: "HR Tech"
     },
     {
       name: "Oracle",
-      logo: "https://www.oracle.com/a/ocom/img/rh03-oracle-cloud-infinity-loop.svg", // Updated logo URL
+      logo: "https://www.oracle.com/a/ocom/img/rh03-oracle-cloud-infinity-loop.svg",
       description: "Enterprise Technology Solutions",
       category: "Enterprise"
     },
@@ -29,9 +28,15 @@ export default function PartnersSection() {
     },
     {
       name: "Google",
-      logo: "https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg", // Updated logo URL
+      logo: "https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg",
       description: "Enterprise Technology Solutions",
       category: "Enterprise"
+    },
+    {
+      name: "Entries.ai",
+      logo: "https://entries.ai/wp-content/uploads/2024/01/entries-logo.svg",
+      description: "AI-Powered HR Solutions",
+      category: "HR Tech"
     }
   ];
 
