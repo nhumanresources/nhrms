@@ -53,6 +53,7 @@ import Mail from "./pages/Mail";
 import Sitemap from "./components/Sitemap";
 import NHRMSAcquiresCareeredge from "./pages/press-releases/NHRMSAcquiresCareeredge";
 import HRTechSolutions from "./pages/services/HRTechSolutions";
+import Partners from "./pages/Partners";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -131,6 +132,8 @@ const App = () => {
           
           <Route path="/hr360-solution-hub" element={<Navigate to="/" replace />} />
           <Route path="/hr360-solution-hub/*" element={<Index />} />
+          
+          <Route path="/partners" element={<Partners />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

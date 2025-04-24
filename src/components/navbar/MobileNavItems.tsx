@@ -6,6 +6,9 @@ export const MobileNavItems = () => (
     <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
       Who are we
     </Link>
+    <Link to="/partners" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
+      Partners
+    </Link>
     <Link to="/culture" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
       Our Culture
     </Link>

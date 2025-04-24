@@ -17,15 +17,15 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
     </Link>
     
     <Link 
-      to="/culture" 
+      to="/partners" 
       className={cn(
         "relative px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary", 
-        isActive('/culture') 
+        isActive('/partners') 
           ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
           : "text-muted-foreground"
       )}
     >
-      Our Culture
+      Partners
     </Link>
     
     <div className="relative group">
