@@ -3,15 +3,25 @@ import { ChevronDown, Phone } from 'lucide-react';
 
 export const MobileNavItems = () => (
   <>
-    <Link to="/who-we-are" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
-      Who are we
-    </Link>
-    <Link to="/partners" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
-      Partners
-    </Link>
-    <Link to="/culture" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
-      Our Culture
-    </Link>
+    <div className="px-3 py-2">
+      <details className="group">
+        <summary className="flex items-center text-sm font-medium cursor-pointer">
+          Company <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
+        </summary>
+        <div className="mt-2 ml-2 space-y-1 border-l-2 border-primary/20 pl-2">
+          <Link to="/who-we-are" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Who Are We
+          </Link>
+          <Link to="/culture" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Our Culture
+          </Link>
+          <Link to="/partners" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Partners
+          </Link>
+        </div>
+      </details>
+    </div>
+    
     <div className="px-3 py-2">
       <details className="group">
         <summary className="flex items-center text-sm font-medium cursor-pointer">
