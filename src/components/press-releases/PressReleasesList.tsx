@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, FileText, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
 export default function PressReleasesList() {
   const pressReleases = [
@@ -114,17 +114,6 @@ export default function PressReleasesList() {
             </CardContent>
           </Card>
         ))}
-      </div>
-      
-      <div className="flex justify-center mt-12">
-        <a 
-          href="https://lovable.dev/projects/efa1dfca-e2c7-4cb5-8d71-ef763dc1918e" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="inline-flex items-center px-6 py-3 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors"
-        >
-          <FileText size={18} className="mr-2" /> View More Articles on Our Lovable Platform
-        </a>
       </div>
     </div>
   );
