@@ -1,3 +1,4 @@
+
 import { Globe } from 'lucide-react';
 
 export default function PartnersSection() {
@@ -47,14 +48,15 @@ export default function PartnersSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {partners.map((partner) => (
             <div key={partner.name} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-24 flex items-center justify-center mb-4">
+              <div className="h-20 flex items-center justify-center mb-6">
                 <img 
                   src={partner.logo} 
                   alt={`${partner.name} logo`}
-                  className="h-12 w-auto object-contain"
+                  className="max-h-16 max-w-[180px] w-auto object-contain"
+                  loading="lazy"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
-                    e.currentTarget.src = "https://via.placeholder.com/180x60?text=" + partner.name;
+                    e.currentTarget.src = `https://placehold.co/200x80/e6f4ff/5090D3?text=${partner.name}`;
                   }}
                 />
               </div>
