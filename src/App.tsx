@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -54,6 +55,8 @@ import Sitemap from "./components/Sitemap";
 import NHRMSAcquiresCareeredge from "./pages/press-releases/NHRMSAcquiresCareeredge";
 import HRTechSolutions from "./pages/services/HRTechSolutions";
 import Partners from "./pages/Partners";
+import PressReleases from "./pages/PressReleases";
+import TimelessContribution from "./pages/press-releases/TimelessContribution";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -86,7 +89,10 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/mail" element={<Mail />} />
           
+          {/* Press Releases Routes */}
+          <Route path="/press-releases" element={<PressReleases />} />
           <Route path="/press-releases/nhrms-acquires-careeredge" element={<NHRMSAcquiresCareeredge />} />
+          <Route path="/press-releases/timeless-contribution" element={<TimelessContribution />} />
           
           <Route path="/mail.nhrms.com" element={<Navigate to="/mail" replace />} />
           

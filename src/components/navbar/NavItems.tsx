@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -8,7 +9,7 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       <button 
         className={cn(
           "relative flex items-center px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
-          isActive('/who-we-are') || isActive('/partners') || isActive('/culture')
+          isActive('/who-we-are') || isActive('/partners') || isActive('/culture') || isActive('/press-releases')
             ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
             : "text-muted-foreground"
         )} 
@@ -27,6 +28,9 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
           </Link>
           <Link to="/partners" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Partners
+          </Link>
+          <Link to="/press-releases" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+            Press Releases
           </Link>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { ChevronDown, Phone } from 'lucide-react';
 
@@ -17,6 +18,9 @@ export const MobileNavItems = () => (
           </Link>
           <Link to="/partners" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Partners
+          </Link>
+          <Link to="/press-releases" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Press Releases
           </Link>
         </div>
       </details>
