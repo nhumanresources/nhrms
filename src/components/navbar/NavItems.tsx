@@ -88,8 +88,20 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       href="https://careeredge.nhrms.com" 
       className="px-2 py-1 text-sm font-semibold text-primary hover:text-primary/80 ml-2 bg-primary/10 rounded-full flex items-center transition-all hover:bg-primary/20"
       title="Career Edge – Your assistant to Job Seekers"
+      target="_blank"
+      rel="noopener noreferrer"
     >
       Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
+    </a>
+    
+    <a 
+      href="https://notemap.com" 
+      className="px-2 py-1 text-sm font-semibold text-primary hover:text-primary/80 ml-2 bg-primary/10 rounded-full flex items-center transition-all hover:bg-primary/20"
+      title="Notemap - Your Digital Notebook"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Notemap
     </a>
   </>
 );

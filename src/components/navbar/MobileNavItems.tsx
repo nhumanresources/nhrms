@@ -80,8 +80,20 @@ export const MobileNavItems = () => (
       href="https://careeredge.nhrms.com"
       className="px-3 py-2 text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 rounded-md transition-colors mt-1"
       title="Career Edge – Your assistant to Job Seekers"
+      target="_blank" 
+      rel="noopener noreferrer"
     >
       Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
+    </a>
+    {/* Notemap link */}
+    <a 
+      href="https://notemap.com"
+      className="px-3 py-2 text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 rounded-md transition-colors mt-1"
+      title="Notemap - Your Digital Notebook"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Notemap
     </a>
     <div className="border-t border-border/50 mt-2 pt-2">
       <a href="tel:+13143018402" className="flex items-center px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
