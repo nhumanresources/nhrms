@@ -72,6 +72,18 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       Research
     </Link>
     
+    <Link 
+      to="/hr-roadmap" 
+      className={cn(
+        "relative px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary", 
+        isActive('/hr-roadmap') 
+          ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
+          : "text-muted-foreground"
+      )}
+    >
+      HR Roadmap
+    </Link>
+    
     <a 
       href="https://careeredge.nhrms.com" 
       className="px-2 py-1 text-sm font-semibold text-primary hover:text-primary/80 ml-2 bg-primary/10 rounded-full flex items-center transition-all hover:bg-primary/20"

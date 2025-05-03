@@ -72,6 +72,9 @@ export const MobileNavItems = () => (
     <Link to="/research" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
       Research
     </Link>
+    <Link to="/hr-roadmap" className="px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors">
+      HR Roadmap
+    </Link>
     {/* Career Edge mobile nav – Job Seekers Assistant link */}
     <a 
       href="https://careeredge.nhrms.com"
