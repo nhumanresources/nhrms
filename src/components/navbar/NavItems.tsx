@@ -32,6 +32,9 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
           <Link to="/press-releases" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Press Releases
           </Link>
+          <Link to="/lms-login" className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+            LMS Login
+          </Link>
         </div>
       </div>
     </div>

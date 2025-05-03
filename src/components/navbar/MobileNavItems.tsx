@@ -22,6 +22,9 @@ export const MobileNavItems = () => (
           <Link to="/press-releases" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Press Releases
           </Link>
+          <Link to="/lms-login" className="block px-3 py-2 text-sm text-gray-500 hover:bg-white rounded-md transition-colors">
+            LMS Login
+          </Link>
         </div>
       </details>
     </div>

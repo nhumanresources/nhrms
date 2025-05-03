@@ -58,6 +58,7 @@ import Partners from "./pages/Partners";
 import PressReleases from "./pages/PressReleases";
 import TimelessContribution from "./pages/press-releases/TimelessContribution";
 import HRRoadmap from "./pages/HRRoadmap";
+import LMSLogin from "./pages/LMSLogin";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -89,6 +90,9 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
           <Route path="/mail" element={<Mail />} />
+          
+          {/* LMS Login Route */}
+          <Route path="/lms-login" element={<LMSLogin />} />
           
           {/* HR Roadmap Route */}
           <Route path="/hr-roadmap" element={<HRRoadmap />} />
