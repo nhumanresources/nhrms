@@ -214,10 +214,6 @@ export default function BangaloreInternship() {
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Monthly stipend</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
                     <span>Career development roadmap</span>
                   </li>
                   <li className="flex items-start gap-3">
