@@ -43,7 +43,7 @@ export default function WhoWeAre() {
       name: "Venkat Raman",
       title: "Principal Consultant - Functional HR Tech",
       bio: "Venkat brings rich 15 years of industry experience with leading firms like Flipkart and Cipla, where he managed large HR areas and functional HR technology implementations.",
-      linkedin: "https://linkedin.com/in/venkatraman/"
+      linkedin: "https://linkedin.com/in/bvenkat/"
     }
   ];
 
