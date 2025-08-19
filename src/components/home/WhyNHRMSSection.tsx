@@ -9,8 +9,8 @@ export default function WhyNHRMSSection() {
     {
       icon: <IndianRupee className="h-8 w-8 text-green-600" />,
       title: "Transparent Pricing",
-      description: "Starting at ₹3,000/month for up to 50 employees. No hidden costs, no surprises.",
-      highlight: "₹25/employee for additional staff"
+      description: "Flexible pricing models that grow with your business. No hidden costs, no surprises.",
+      highlight: "Affordable plans for all business sizes"
     },
     {
       icon: <Users className="h-8 w-8 text-blue-600" />,
@@ -31,7 +31,7 @@ export default function WhyNHRMSSection() {
     "10,000 payslip processing capability", 
     "Complete statutory compliance",
     "Dedicated account manager",
-    "24/7 support via WhatsApp",
+    "24/7 support via WhatsApp & Telegram",
     "Custom HR project support"
   ];
 

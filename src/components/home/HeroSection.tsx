@@ -36,8 +36,6 @@ export default function HeroSection() {
           {/* Subtext */}
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '400ms' }}>
             From Payroll to Performance, We Power Your People.
-            <br />
-            <span className="text-blue-600 font-medium">₹3,000/month</span> for complete HR outsourcing.
           </p>
           
           {/* CTA Buttons */}

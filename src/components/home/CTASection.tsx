@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { ArrowRight, Phone, MessageCircle, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function CTASection() {
@@ -42,12 +42,12 @@ export default function CTASection() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-              <div className="text-3xl font-bold mb-2">₹3,000</div>
-              <div className="text-blue-100">Starting price per month</div>
+              <div className="text-3xl font-bold mb-2">500+</div>
+              <div className="text-blue-100">Companies Trust Us</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
               <div className="text-3xl font-bold mb-2">24/7</div>
-              <div className="text-blue-100">Support via WhatsApp</div>
+              <div className="text-blue-100">Support via Chat</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
               <div className="text-3xl font-bold mb-2">Free</div>
@@ -59,21 +59,31 @@ export default function CTASection() {
             <p className="text-blue-100 mb-4">Need help with HR? Let's Talk.</p>
             <div className="flex items-center justify-center space-x-4">
               <a 
-                href="tel:+13143018402" 
+                href="tel:+13144854747" 
                 className="flex items-center text-white hover:text-blue-200 transition-colors"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                +1 (314) 301-8402
+                +1-314-485-4747
               </a>
               <span className="text-white/40">|</span>
               <a 
-                href="https://wa.me/13143018402" 
+                href="https://wa.me/13144854747" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center text-white hover:text-blue-200 transition-colors"
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
                 WhatsApp Us
+              </a>
+              <span className="text-white/40">|</span>
+              <a 
+                href="https://t.me/nhrms" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center text-white hover:text-blue-200 transition-colors"
+              >
+                <Send className="h-5 w-5 mr-2" />
+                Telegram
               </a>
             </div>
           </div>
