@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Star, Quote } from 'lucide-react';
+import TrustpilotWidget from '@/components/ui/trustpilot-widget';
 
 export default function TestimonialsSection() {
   const testimonials = [
@@ -37,9 +38,10 @@ export default function TestimonialsSection() {
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
             What Our Clients Say
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Don't just take our word for it. Here's what founders and HR leaders say about partnering with nHRMS.
           </p>
+          <TrustpilotWidget variant="header" className="max-w-2xl mx-auto" />
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

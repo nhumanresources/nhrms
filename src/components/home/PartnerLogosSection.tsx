@@ -1,4 +1,6 @@
 
+import TrustpilotWidget from '@/components/ui/trustpilot-widget';
+
 export default function PartnerLogosSection() {
   const partners = [
     { name: "Zoho", logo: "Zoho" },
@@ -31,7 +33,8 @@ export default function PartnerLogosSection() {
           ))}
         </div>
         
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 space-y-4">
+          <TrustpilotWidget variant="micro" className="justify-center" />
           <p className="text-gray-600">
             Seamless integration with 20+ HR and payroll platforms
           </p>

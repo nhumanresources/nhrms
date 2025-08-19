@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen, Link as LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import TrustpilotWidget from '@/components/ui/trustpilot-widget';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -195,12 +196,15 @@ export default function Footer() {
               </li>
             </ul>
             
-            <div className="mt-6">
+            <div className="mt-6 space-y-3">
               <Button variant="outline" size="sm" className="w-full" asChild>
                 <Link to="/contact" className="flex items-center justify-center">
                   Contact Us <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
+              <div className="text-center">
+                <TrustpilotWidget variant="micro" className="justify-center text-sm" />
+              </div>
             </div>
           </div>
         </div>
