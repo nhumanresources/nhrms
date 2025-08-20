@@ -17,17 +17,17 @@ export default function CTASection() {
       <div className="container mx-auto px-4 md:px-6 relative">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Ready to Transform Your HR?
+            Ready to Elevate Your HR Strategy?
           </h2>
           <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">
-            Join 500+ companies who trust nHRMS for their complete HR needs. 
-            Start your free trial today.
+            Join 500+ organizations who partner with nHRMS for strategic HR consultation and talent solutions. 
+            Let's discuss your unique challenges.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/contact" className="flex items-center">
-                Get Started Free
+                Partner With Us
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -35,7 +35,7 @@ export default function CTASection() {
             <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg rounded-xl transition-all duration-300" asChild>
               <Link to="/contact" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5" />
-                Book a Demo
+                Schedule Consultation
               </Link>
             </Button>
           </div>
@@ -43,20 +43,20 @@ export default function CTASection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
               <div className="text-3xl font-bold mb-2">500+</div>
-              <div className="text-blue-100">Companies Trust Us</div>
+              <div className="text-blue-100">Strategic Partnerships</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-              <div className="text-3xl font-bold mb-2">24/7</div>
-              <div className="text-blue-100">Support via Chat</div>
+              <div className="text-3xl font-bold mb-2">20+</div>
+              <div className="text-blue-100">Years of Expertise</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-              <div className="text-3xl font-bold mb-2">Free</div>
-              <div className="text-blue-100">HRMS setup & training</div>
+              <div className="text-3xl font-bold mb-2">Custom</div>
+              <div className="text-blue-100">Tailored Solutions</div>
             </div>
           </div>
           
           <div className="mt-12 pt-8 border-t border-white/20">
-            <p className="text-blue-100 mb-4">Need help with HR? Let's Talk.</p>
+            <p className="text-blue-100 mb-4">Ready for strategic HR guidance? Let's connect.</p>
             <div className="flex items-center justify-center space-x-4">
               <a 
                 href="tel:+13144854747" 
@@ -67,16 +67,6 @@ export default function CTASection() {
               </a>
               <span className="text-white/40">|</span>
               <a 
-                href="https://wa.me/13144854747" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center text-white hover:text-blue-200 transition-colors"
-              >
-                <MessageCircle className="h-5 w-5 mr-2" />
-                WhatsApp Us
-              </a>
-              <span className="text-white/40">|</span>
-              <a 
                 href="https://t.me/nhrms" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -84,6 +74,14 @@ export default function CTASection() {
               >
                 <Send className="h-5 w-5 mr-2" />
                 Telegram
+              </a>
+              <span className="text-white/40">|</span>
+              <a 
+                href="mailto:info@nhrms.com" 
+                className="flex items-center text-white hover:text-blue-200 transition-colors"
+              >
+                <Send className="h-5 w-5 mr-2" />
+                Send Message
               </a>
             </div>
           </div>

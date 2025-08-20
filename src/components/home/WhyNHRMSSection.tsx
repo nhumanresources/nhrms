@@ -7,32 +7,32 @@ import { Link } from 'react-router-dom';
 export default function WhyNHRMSSection() {
   const benefits = [
     {
-      icon: <IndianRupee className="h-8 w-8 text-green-600" />,
-      title: "Transparent Pricing",
-      description: "Flexible pricing models that grow with your business. No hidden costs, no surprises.",
-      highlight: "Affordable plans for all business sizes"
-    },
-    {
       icon: <Users className="h-8 w-8 text-blue-600" />,
-      title: "Scalable Solutions", 
-      description: "From 10 to 10,000 employees. Our systems grow with your business needs.",
-      highlight: "Supports unlimited growth"
+      title: "Personalized Approach",
+      description: "Tailored HR strategies designed specifically for your organization's unique needs and culture.",
+      highlight: "Custom solutions for every client"
     },
     {
       icon: <Award className="h-8 w-8 text-purple-600" />,
-      title: "Expert Team",
-      description: "20+ years of HR expertise with deep understanding of Indian business landscape.",
+      title: "Expert Consultants",
+      description: "20+ years of HR expertise with deep understanding of organizational dynamics and talent management.",
       highlight: "Founded by HR Practitioners"
+    },
+    {
+      icon: <IndianRupee className="h-8 w-8 text-green-600" />,
+      title: "Strategic Partnership",
+      description: "Long-term relationships focused on sustainable growth and continuous improvement of your HR capabilities.",
+      highlight: "Your trusted HR partner"
     }
   ];
 
   const features = [
-    "Free HRMS setup and training",
-    "10,000 payslip processing capability", 
-    "Complete statutory compliance",
-    "Dedicated account manager",
-    "24/7 support via WhatsApp & Telegram",
-    "Custom HR project support"
+    "Strategic HR consultation",
+    "Talent acquisition & executive search", 
+    "HR process optimization",
+    "Dedicated consultant relationship",
+    "24/7 support via Telegram",
+    "Custom HR transformation projects"
   ];
 
   return (
@@ -40,10 +40,10 @@ export default function WhyNHRMSSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            Why Choose nHRMS?
+            Why Partner With nHRMS?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We're not just another HR vendor. We're your strategic partner in building a people-first organization.
+            We're your boutique HR consultancy focused on delivering personalized, strategic solutions that drive meaningful organizational transformation.
           </p>
         </div>
         
@@ -77,7 +77,7 @@ export default function WhyNHRMSSection() {
           {/* Features List */}
           <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-              What's Included
+              Our Expertise
             </h3>
             <div className="space-y-4 mb-8">
               {features.map((feature, index) => (
@@ -91,11 +91,11 @@ export default function WhyNHRMSSection() {
             <div className="text-center">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
                 <Link to="/contact">
-                  Start Your Free Trial
+                  Schedule Consultation
                 </Link>
               </Button>
               <p className="text-sm text-gray-500 mt-3">
-                No setup fees • No long-term contracts
+                Let's discuss your HR challenges
               </p>
             </div>
           </div>

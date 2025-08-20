@@ -4,9 +4,7 @@ export default function PartnerLogosSection() {
     { name: "Zoho", logo: "Zoho" },
     { name: "Keka", logo: "Keka" },
     { name: "GreytHR", logo: "GreytHR" },
-    { name: "Entries.ai", logo: "Entries.ai" },
-    { name: "Workday", logo: "Workday" },
-    { name: "SAP SuccessFactors", logo: "SAP SuccessFactors" }
+    { name: "Entries.ai", logo: "Entries.ai" }
   ];
 
   return (
@@ -18,7 +16,7 @@ export default function PartnerLogosSection() {
           </h3>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
           {partners.map((partner, index) => (
             <div 
               key={index} 

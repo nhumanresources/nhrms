@@ -26,30 +26,30 @@ export default function HeroSection() {
           
           {/* Main Headline */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in" style={{ animationDelay: '200ms' }}>
-            Strategic HR &{' '}
+            Boutique HR{' '}
             <span className="text-blue-600 relative">
-              Talent Solutions
+              Management Consultancy
               <div className="absolute -bottom-2 left-0 right-0 h-1 bg-blue-200 rounded-full transform scale-x-0 animate-scale-in" style={{ animationDelay: '800ms' }}></div>
             </span>
           </h1>
           
           {/* Subtext */}
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '400ms' }}>
-            Expert talent acquisition and comprehensive HR management solutions to scale your organization effectively.
+            Personalized HR expertise and strategic talent solutions. We partner with organizations to build exceptional teams and optimize human capital.
           </p>
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in" style={{ animationDelay: '600ms' }}>
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" asChild>
               <Link to="/services" className="flex items-center">
-                Explore Our Services
+                Partner With Us
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             
             <Button variant="outline" size="lg" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg rounded-xl transition-all duration-300" asChild>
               <Link to="/contact">
-                Contact Our Team
+                Schedule Consultation
               </Link>
             </Button>
           </div>
@@ -58,7 +58,7 @@ export default function HeroSection() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center animate-fade-in" style={{ animationDelay: '800ms' }}>
             <div className="bg-white rounded-xl p-6 shadow-sm border border-blue-100">
               <div className="text-2xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-sm text-gray-600">Companies Served</div>
+              <div className="text-sm text-gray-600">Strategic Partnerships</div>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm border border-blue-100">
               <div className="text-2xl font-bold text-blue-600 mb-2">20+</div>
