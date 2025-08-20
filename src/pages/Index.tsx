@@ -15,16 +15,16 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const pageDescription = "Outsourced HR that Actually Works. From Payroll to Performance, We Power Your People. nHRMS provides comprehensive HR solutions for Indian startups, SMEs, and growing businesses.";
+  const pageDescription = "Strategic HR & Talent Solutions. Expert talent acquisition and comprehensive HR management services to scale your organization effectively with specialized recruitment and consulting.";
 
   return (
     <>
       <Helmet>
-        <title>nHRMS | Outsourced HR that Actually Works</title>
+        <title>nHRMS | Strategic HR & Talent Solutions</title>
         <meta name="description" content={pageDescription} />
-        <meta name="keywords" content="HR outsourcing, payroll management, HRMS implementation, compliance, staffing solutions, HR advisory, Indian startups, SME HR solutions" />
+        <meta name="keywords" content="talent acquisition, executive search, HR consulting, leadership development, organizational strategy, HR technology solutions, staffing solutions, BOT HR teams" />
         <link rel="canonical" href="https://nhrms.com/" />
-        <meta property="og:title" content="nHRMS | Outsourced HR that Actually Works" />
+        <meta property="og:title" content="nHRMS | Strategic HR & Talent Solutions" />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:url" content="https://nhrms.com/" />
         <meta property="og:type" content="website" />

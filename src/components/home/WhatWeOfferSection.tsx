@@ -13,40 +13,40 @@ import { Link } from 'react-router-dom';
 export default function WhatWeOfferSection() {
   const services = [
     {
-      icon: <Monitor className="h-12 w-12 text-blue-600" />,
-      title: "HRMS Implementation",
-      description: "Complete setup and customization of HR management systems tailored to your business needs.",
-      link: "/services/hr-tech"
-    },
-    {
-      icon: <Calculator className="h-12 w-12 text-blue-600" />,
-      title: "Payroll Management", 
-      description: "Accurate, compliant payroll processing with automated tax calculations and statutory deductions.",
-      link: "/services/payroll-management"
-    },
-    {
       icon: <Users className="h-12 w-12 text-blue-600" />,
-      title: "Staffing Solutions",
-      description: "Expert recruitment for VLSI, Embedded, and Tech roles with industry-specific expertise.",
+      title: "Talent Acquisition",
+      description: "Strategic recruitment and executive search for specialized roles across technology, engineering, and leadership positions.",
       link: "/services/talent-acquisition"
     },
     {
-      icon: <Shield className="h-12 w-12 text-blue-600" />,
-      title: "Compliance & Audit",
-      description: "Stay compliant with Indian labor laws, PF, ESI, and other statutory requirements.",
-      link: "/services/compliance-audit"
-    },
-    {
       icon: <Briefcase className="h-12 w-12 text-blue-600" />,
-      title: "HR Advisory",
-      description: "Strategic HR consulting to optimize your people processes and organizational structure.",
+      title: "HR Advisory & Consulting",
+      description: "Strategic HR consulting to optimize organizational structure, policies, and people processes for sustainable growth.",
       link: "/services/hr-advisory"
     },
     {
       icon: <TrendingUp className="h-12 w-12 text-blue-600" />,
-      title: "Performance Management",
-      description: "Implement robust performance systems and L&D programs to drive employee growth.",
-      link: "/services/performance-management"
+      title: "Leadership Development",
+      description: "Executive coaching and leadership development programs to build high-performing management teams.",
+      link: "/services/leadership-development"
+    },
+    {
+      icon: <Monitor className="h-12 w-12 text-blue-600" />,
+      title: "HR Technology Solutions",
+      description: "Implementation and optimization of HR management systems and digital transformation initiatives.",
+      link: "/services/hr-tech"
+    },
+    {
+      icon: <Shield className="h-12 w-12 text-blue-600" />,
+      title: "Organizational Strategy",
+      description: "Design and implement scalable organizational structures aligned with business objectives and growth plans.",
+      link: "/services/organization-strategy"
+    },
+    {
+      icon: <Calculator className="h-12 w-12 text-blue-600" />,
+      title: "BOT HR Teams",
+      description: "Build-operate-transfer solutions for complete HR department setup and management.",
+      link: "/services/bot-hr-teams"
     }
   ];
 
@@ -55,10 +55,10 @@ export default function WhatWeOfferSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            What We Offer
+            Our Services
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Complete HR outsourcing solutions designed for Indian startups, SMEs, and growing businesses.
+            Strategic HR management and talent acquisition solutions designed to accelerate organizational growth and build exceptional teams.
           </p>
         </div>
         
