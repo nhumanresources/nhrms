@@ -26,16 +26,16 @@ export default function HeroSection() {
           
           {/* Main Headline */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in" style={{ animationDelay: '200ms' }}>
-            Boutique HR{' '}
+            People.{' '}
             <span className="text-blue-600 relative">
-              Management Consultancy
+              Systems. Success.
               <div className="absolute -bottom-2 left-0 right-0 h-1 bg-blue-200 rounded-full transform scale-x-0 animate-scale-in" style={{ animationDelay: '800ms' }}></div>
             </span>
           </h1>
           
           {/* Subtext */}
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '400ms' }}>
-            Personalized HR expertise and strategic talent solutions. We partner with organizations to build exceptional teams and optimize human capital.
+            Strategic HR consulting that delivers measurable results for modern organizations through people expertise, systematic processes, and proven success.
           </p>
           
           {/* CTA Buttons */}

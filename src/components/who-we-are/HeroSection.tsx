@@ -9,7 +9,7 @@ export default function HeroSection() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">Transforming HR for the Future of Work</h1>
           <p className="text-xl md:text-2xl text-muted-foreground animate-fade-in max-w-3xl mx-auto leading-relaxed" style={{ animationDelay: '100ms' }}>
-            n Human Resources and Management Systems (nHRMS) is a boutique HR management consultancy dedicated to delivering personalized, strategic solutions that transform organizations and unlock human potential.
+            n Human Resources and Management Systems (nHRMS) delivers People. Systems. Success. - strategic HR solutions that transform organizations through expert people management, systematic processes, and measurable results.
           </p>
           <div className="mt-10 flex flex-wrap gap-4 justify-center">
             <Link to="/services" className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors">
