@@ -10,9 +10,10 @@ import JobOverviewSection from '@/components/research-opportunities/JobOverviewS
 import ResponsibilitiesSection from '@/components/research-opportunities/ResponsibilitiesSection';
 import QualificationsSection from '@/components/research-opportunities/QualificationsSection';
 import CTASection from '@/components/research-opportunities/CTASection';
+import ApplicationModal from '@/components/research-opportunities/ApplicationModal';
 
 export default function ResearchOpportunities() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,39 +35,7 @@ export default function ResearchOpportunities() {
   }, []);
 
   const handleApplyNow = () => {
-    setIsSubmitting(true);
-    
-    // Create a form and submit it programmatically to the FormSubmit.co service
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'https://formsubmit.co/careers@nhrms.com';
-    
-    // Set hidden fields
-    const hiddenFields = {
-      '_subject': 'Research Associate Application',
-      '_captcha': 'false',
-      '_next': window.location.origin + '/research-opportunities?success=true',
-      'message': 'I am interested in the Research Associate position at nHRMS in Whitefield, Bangalore.',
-      'application_type': 'Research Associate Position'
-    };
-    
-    // Add all fields to the form
-    Object.entries(hiddenFields).forEach(([key, value]) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = value;
-      form.appendChild(input);
-    });
-    
-    // Hide the form and append to body
-    form.style.display = 'none';
-    document.body.appendChild(form);
-    
-    // Submit the form
-    form.submit();
-    
-    // We don't reset isSubmitting since we're navigating away
+    setIsApplicationModalOpen(true);
   };
 
   return (
@@ -77,9 +46,14 @@ export default function ResearchOpportunities() {
         <JobOverviewSection />
         <ResponsibilitiesSection />
         <QualificationsSection />
-        <CTASection onApplyNow={handleApplyNow} isSubmitting={isSubmitting} />
+        <CTASection onApplyNow={handleApplyNow} />
       </main>
       <Footer />
+      
+      <ApplicationModal 
+        isOpen={isApplicationModalOpen} 
+        onClose={() => setIsApplicationModalOpen(false)} 
+      />
     </div>
   );
 }

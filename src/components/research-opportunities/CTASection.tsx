@@ -3,10 +3,9 @@ import { Button } from '@/components/ui/button';
 
 interface CTASectionProps {
   onApplyNow: () => void;
-  isSubmitting: boolean;
 }
 
-export default function CTASection({ onApplyNow, isSubmitting }: CTASectionProps) {
+export default function CTASection({ onApplyNow }: CTASectionProps) {
   return (
     <section className="py-16 bg-primary/5">
       <div className="container mx-auto px-4 md:px-6">
@@ -19,9 +18,8 @@ export default function CTASection({ onApplyNow, isSubmitting }: CTASectionProps
             <Button 
               size="lg" 
               onClick={onApplyNow}
-              disabled={isSubmitting}
             >
-              {isSubmitting ? 'Submitting...' : 'Apply Now'}
+              Apply Now
             </Button>
           </div>
         </div>
