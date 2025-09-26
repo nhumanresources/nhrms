@@ -5,7 +5,7 @@ export default function PartnersSection() {
   const partners = [
     {
       name: "Keka",
-      logo: "https://placehold.co/200x80/f97316/ffffff?text=Keka",
+      logo: "https://cdn.worldvectorlogo.com/logos/keka.svg",
       description: "Leading HR & Payroll Software",
       category: "HR Tech"
     },
@@ -29,13 +29,13 @@ export default function PartnersSection() {
     },
     {
       name: "GreytHR",
-      logo: "https://placehold.co/200x80/f97316/ffffff?text=GreytHR",
+      logo: "https://cdn.worldvectorlogo.com/logos/greythr.svg",
       description: "Comprehensive HR & Payroll Platform",
       category: "HR Tech"
     },
     {
       name: "Zoho",
-      logo: "https://placehold.co/200x80/f97316/ffffff?text=Zoho",
+      logo: "https://cdn.worldvectorlogo.com/logos/zoho.svg",
       description: "Business Software Suite & HR Solutions",
       category: "HR Tech"
     }
@@ -62,7 +62,7 @@ export default function PartnersSection() {
                   loading="lazy"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
-                    e.currentTarget.src = `https://placehold.co/200x80/e6f4ff/5090D3?text=${partner.name}`;
+                    e.currentTarget.src = `https://placehold.co/200x80/f97316/ffffff?text=${partner.name}`;
                   }}
                 />
               </div>
