@@ -5,32 +5,38 @@ export default function PartnersSection() {
   const partners = [
     {
       name: "Keka",
-      logo: "https://www.keka.com/assets/images/kekaLogoBlue.svg",
+      logo: "https://assets-global.website-files.com/61c832bebf5e7235b582f0d7/61c832bebf5e726f3a82f142_keka-logo.svg",
       description: "Leading HR & Payroll Software",
       category: "HR Tech"
     },
     {
       name: "Oracle",
-      logo: "https://www.oracle.com/a/ocom/img/rh03-oracle-cloud-infinity-loop.svg",
+      logo: "https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png",
       description: "Enterprise Technology Solutions",
       category: "Enterprise"
     },
     {
       name: "Microsoft",
-      logo: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
       description: "Enterprise Technology Solutions",
       category: "Enterprise"
     },
     {
       name: "Google",
-      logo: "https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
       description: "Enterprise Technology Solutions",
       category: "Enterprise"
     },
     {
       name: "GreytHR",
-      logo: "https://www.greythr.com/assets/img/greythr-logo.svg",
+      logo: "https://www.greythr.com/wp-content/uploads/2023/06/greytHR-logo.svg",
       description: "Comprehensive HR & Payroll Platform",
+      category: "HR Tech"
+    },
+    {
+      name: "Zoho",
+      logo: "https://www.zoho.com/assets6/images/zoho-logo.svg",
+      description: "Business Software Suite & HR Solutions",
       category: "HR Tech"
     }
   ];
