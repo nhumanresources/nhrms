@@ -28,9 +28,9 @@ export default function PartnersSection() {
       category: "Enterprise"
     },
     {
-      name: "Entries.ai",
-      logo: "https://entries.ai/wp-content/uploads/2024/01/entries-logo.svg",
-      description: "AI-Powered HR Solutions",
+      name: "GreytHR",
+      logo: "https://www.greythr.com/assets/img/greythr-logo.svg",
+      description: "Comprehensive HR & Payroll Platform",
       category: "HR Tech"
     }
   ];
