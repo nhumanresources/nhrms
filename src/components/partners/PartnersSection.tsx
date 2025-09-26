@@ -5,7 +5,7 @@ export default function PartnersSection() {
   const partners = [
     {
       name: "Keka",
-      logo: "https://assets-global.website-files.com/61c832bebf5e7235b582f0d7/61c832bebf5e726f3a82f142_keka-logo.svg",
+      logo: "https://placehold.co/200x80/f97316/ffffff?text=Keka",
       description: "Leading HR & Payroll Software",
       category: "HR Tech"
     },
@@ -29,13 +29,13 @@ export default function PartnersSection() {
     },
     {
       name: "GreytHR",
-      logo: "https://www.greythr.com/wp-content/uploads/2023/06/greytHR-logo.svg",
+      logo: "https://placehold.co/200x80/f97316/ffffff?text=GreytHR",
       description: "Comprehensive HR & Payroll Platform",
       category: "HR Tech"
     },
     {
       name: "Zoho",
-      logo: "https://www.zoho.com/assets6/images/zoho-logo.svg",
+      logo: "https://placehold.co/200x80/f97316/ffffff?text=Zoho",
       description: "Business Software Suite & HR Solutions",
       category: "HR Tech"
     }
