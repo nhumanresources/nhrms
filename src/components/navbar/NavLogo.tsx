@@ -6,10 +6,10 @@ export const NavLogo = () => {
     <Link 
       to="/" 
       className="flex items-center space-x-2" 
-      aria-label="nHRMS Home"
+      aria-label="n Human Resources & Management Systems Home"
     >
-      <div className="font-bold text-lg md:text-xl text-primary transition-all hover:opacity-80">
-        [ nHRMS ]
+      <div className="font-bold text-sm md:text-lg text-primary transition-all hover:opacity-80">
+        n Human Resources & Management Systems
       </div>
     </Link>
   );
