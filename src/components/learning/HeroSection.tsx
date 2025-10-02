@@ -31,6 +31,9 @@ export default function LearningHeroSection() {
               <Button variant="outline" asChild>
                 <a href="#programs">Browse Programs</a>
               </Button>
+              <Button asChild>
+                <Link to="/courses">Courses</Link>
+              </Button>
             </div>
           </div>
           
