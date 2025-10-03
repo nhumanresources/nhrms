@@ -38,10 +38,17 @@ export default function HeroSection() {
           </p>
           
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 animate-fade-in animate-delay-500">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20 animate-fade-in animate-delay-500">
             <Button size="xl" variant="modern" className="group shadow-glow" asChild>
               <Link to="/services" className="flex items-center">
                 Partner With Us
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+            
+            <Button size="xl" className="group bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-white font-semibold shadow-lg hover:shadow-xl" asChild>
+              <Link to="/courses" className="flex items-center">
+                Job-Guaranteed Courses
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>

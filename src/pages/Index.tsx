@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/home/HeroSection';
 import WhatWeOfferSection from '@/components/home/WhatWeOfferSection';
 import WhyNHRMSSection from '@/components/home/WhyNHRMSSection';
+import CoursesHighlightSection from '@/components/home/CoursesHighlightSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import PartnerLogosSection from '@/components/home/PartnerLogosSection';
 import CTASection from '@/components/home/CTASection';
@@ -52,6 +53,7 @@ const Index = () => {
           <HeroSection />
           <WhatWeOfferSection />
           <WhyNHRMSSection />
+          <CoursesHighlightSection />
           <TestimonialsSection />
           <PartnerLogosSection />
           <CTASection />
