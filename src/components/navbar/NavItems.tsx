@@ -79,7 +79,7 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       <button 
         className={cn(
           "relative flex items-center px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
-          isActive('/hr-roadmap') || isActive('/learning-solutions')
+          isActive('/hr-roadmap') || isActive('/learning-solutions') || isActive('/courses')
             ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
             : "text-muted-foreground"
         )} 
@@ -95,6 +95,9 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
           </Link>
           <Link to="/learning-solutions" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Learning Solutions
+          </Link>
+          <Link to="/courses" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+            Job-Guaranteed Courses
           </Link>
         </div>
       </div>
