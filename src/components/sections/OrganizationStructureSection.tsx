@@ -12,7 +12,7 @@ export default function OrganizationStructureSection() {
           <div className="order-2 lg:order-1">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Organizational Structure & Business Problem Solutions</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              At n Human Resources and Management Systems, we understand that the right organizational structure is fundamental to business success. We leverage our expertise to design and implement structures that align with your strategic objectives.
+              At nHRMS (Nurturing Human Resources & Management Systems), we understand that the right organizational structure is fundamental to business success. We leverage our expertise to design and implement structures that align with your strategic objectives.
             </p>
             
             <div className="space-y-6">

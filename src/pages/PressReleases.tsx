@@ -6,7 +6,7 @@ import SEO from '@/components/SEO';
 import PressReleasesList from '@/components/press-releases/PressReleasesList';
 
 export default function PressReleases() {
-  const pageTitle = "Press Releases & Media | n Human Resources and Management Systems - nHRMS";
+  const pageTitle = "Press Releases & Media | Nurturing Human Resources & Management Systems - nHRMS";
   const pageDescription = "Stay updated with the latest press releases, media coverage, and articles featuring nHRMS and our contributions to the HR industry.";
 
   const structuredData = {

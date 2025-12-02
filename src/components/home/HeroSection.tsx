@@ -47,8 +47,8 @@ export default function HeroSection() {
               <div className="text-sm text-muted-foreground">Clients Served</div>
             </div>
             <div className="text-center">
-              <div className="font-heading text-3xl md:text-4xl font-bold text-primary mb-1">20+</div>
-              <div className="text-sm text-muted-foreground">Years Experience</div>
+              <div className="font-heading text-3xl md:text-4xl font-bold text-primary mb-1">16+</div>
+              <div className="text-sm text-muted-foreground">Years Across Domains</div>
             </div>
             <div className="text-center">
               <div className="font-heading text-3xl md:text-4xl font-bold text-primary mb-1">1000+</div>

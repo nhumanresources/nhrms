@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-6">
-              <span className="text-xl font-semibold text-primary">n Human Resources and Management Systems</span>
+              <span className="text-xl font-semibold text-primary">Nurturing Human Resources & Management Systems</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
               Comprehensive 360° HR Management solutions for modern organizations seeking excellence in today's competitive landscape.

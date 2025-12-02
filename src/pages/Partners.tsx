@@ -6,7 +6,7 @@ import SEO from '@/components/SEO';
 import PartnersSection from '@/components/partners/PartnersSection';
 
 export default function Partners() {
-  const pageTitle = "Technology Partners | n Human Resources and Management Systems - nHRMS";
+  const pageTitle = "Technology Partners | Nurturing Human Resources & Management Systems - nHRMS";
   const pageDescription = "nHRMS partners with leading technology providers like Keka, Oracle, Microsoft, and Google to deliver cutting-edge HR solutions.";
 
   const structuredData = {

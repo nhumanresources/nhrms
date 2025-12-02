@@ -6,7 +6,7 @@ export default function StatsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
             <div className="text-4xl font-bold mb-2 text-primary">16+</div>
-            <p className="text-muted-foreground">Years of Experience</p>
+            <p className="text-muted-foreground">Years Serving Clients</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
             <div className="text-4xl font-bold mb-2 text-primary">500+</div>

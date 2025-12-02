@@ -17,8 +17,8 @@ export default function WhoWeAre() {
     window.scrollTo(0, 0);
   }, []);
 
-  const pageTitle = "Who We Are | n Human Resources and Management Systems - nHRMS";
-  const pageDescription = "Learn about n Human Resources and Management Systems (nHRMS), a leading HR management consulting firm dedicated to helping organizations optimize their human capital.";
+  const pageTitle = "Who We Are | Nurturing Human Resources & Management Systems - nHRMS";
+  const pageDescription = "Learn about nHRMS (Nurturing Human Resources & Management Systems), a leading HR management consulting firm with 16+ years serving clients across domains.";
 
   const leadershipTeam = [
     {

@@ -9,7 +9,7 @@ export const NavLogo = () => {
       aria-label="n Human Resources & Management Systems Home"
     >
       <div className="font-bold text-sm md:text-lg text-primary transition-all hover:opacity-80">
-        n Human Resources & Management Systems
+        nHRMS
       </div>
     </Link>
   );
