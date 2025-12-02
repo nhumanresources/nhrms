@@ -88,9 +88,6 @@ export const MobileNavItems = () => (
           <Link to="/learning-solutions" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Learning Solutions
           </Link>
-          <Link to="/courses" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
-            Job-Guaranteed Courses
-          </Link>
         </div>
       </details>
     </div>
