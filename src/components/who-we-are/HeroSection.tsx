@@ -1,23 +1,81 @@
-
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Play } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="py-24 md:py-32 bg-primary/5 relative overflow-hidden">
-      <div className="absolute inset-0 bg-pattern opacity-30"></div>
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071"
+          alt="Diverse team collaborating"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-20 right-20 w-64 h-64 border border-white/10 rounded-full hidden lg:block" />
+      <div className="absolute bottom-20 left-20 w-32 h-32 border border-white/10 rounded-full hidden lg:block" />
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">Transforming HR for the Future of Work</h1>
-          <p className="text-xl md:text-2xl text-muted-foreground animate-fade-in max-w-3xl mx-auto leading-relaxed" style={{ animationDelay: '100ms' }}>
-            <strong>n</strong>urturing <strong>H</strong>uman <strong>R</strong>esources & <strong>M</strong>anagement <strong>S</strong>ystems (nHRMS) delivers People. Systems. Success. - strategic HR solutions that transform organizations through expert people management, systematic processes, and measurable results.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4 justify-center">
-            <Link to="/services" className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors">
-              Our Services
-            </Link>
-            <Link to="/contact" className="bg-white hover:bg-gray-100 text-primary border border-primary/20 px-6 py-3 rounded-md font-medium transition-colors">
-              Get in Touch
-            </Link>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+              About nHRMS
+            </p>
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Transforming HR for the 
+              <span className="text-secondary"> Future of Work</span>
+            </h1>
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+              <strong>n</strong>urturing <strong>H</strong>uman <strong>R</strong>esources & <strong>M</strong>anagement <strong>S</strong>ystems (nHRMS) delivers 
+              <span className="text-secondary font-semibold"> People. Systems. Success.</span> — strategic HR solutions that transform organizations through expert people management, systematic processes, and measurable results.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                size="lg" 
+                className="bg-secondary hover:bg-secondary/90 text-white px-8"
+                asChild
+              >
+                <Link to="/services" className="flex items-center">
+                  Our Services
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 bg-transparent"
+                asChild
+              >
+                <Link to="/contact">
+                  Get in Touch
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="font-heading text-4xl md:text-5xl font-bold text-white mb-2">16+</div>
+              <p className="text-white/80">Years of Excellence</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="font-heading text-4xl md:text-5xl font-bold text-white mb-2">500+</div>
+              <p className="text-white/80">Clients Served</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="font-heading text-4xl md:text-5xl font-bold text-white mb-2">1000+</div>
+              <p className="text-white/80">Leaders Placed</p>
+            </div>
+            <div className="bg-secondary/20 backdrop-blur-sm rounded-xl p-6 border border-secondary/30">
+              <div className="font-heading text-4xl md:text-5xl font-bold text-secondary mb-2">3</div>
+              <p className="text-white/80">Global Offices</p>
+            </div>
           </div>
         </div>
       </div>

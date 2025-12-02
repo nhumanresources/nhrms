@@ -39,7 +39,7 @@ export default function ResearchOpportunities() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 via-white to-blue-50">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       <main className="flex-grow pt-20">
         <HeroSection />
