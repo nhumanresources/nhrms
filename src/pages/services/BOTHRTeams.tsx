@@ -19,9 +19,10 @@ export default function BOTHRTeams() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-6">Build Operate Transfer HR Teams</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Build Operate Transfer HR Teams</h1>
+                <p className="text-lg text-primary font-medium mb-4">Fractional HR Solutions</p>
                 <p className="text-xl text-muted-foreground mb-8">
-                  End-to-end HR team development and transition services to establish effective HR operations aligned with your business needs.
+                  End-to-end HR team development and transition services to establish effective HR operations aligned with your business needs. Access experienced HR professionals on a fractional basis.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">

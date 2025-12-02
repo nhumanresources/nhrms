@@ -36,8 +36,8 @@ export default function ServicesSection() {
     },
     {
       icon: <Briefcase className="h-10 w-10" />,
-      title: "BOT HR Teams",
-      description: "Complete BOT solutions for HR teams - we build, operate, and transfer.",
+      title: "Fractional HR Solutions",
+      description: "BOT (Build-Operate-Transfer) HR teams - flexible fractional HR solutions for your organization.",
       link: "/services/bot-hr-teams",
       image: "https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?q=80&w=1920"
     },
