@@ -10,10 +10,10 @@ export default function Contact() {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    document.title = "Contact Us - n Human Resources and Management Systems";
+    document.title = "Contact Us - Nurturing Human Resources & Management Systems - nHRMS";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Contact n Human Resources and Management Systems for all your HR consulting needs. Get in touch with our expert team for inquiries about executive search, HR advisory, and HR technology solutions.');
+      metaDescription.setAttribute('content', 'Contact nHRMS (Nurturing Human Resources & Management Systems) for all your HR consulting needs. Get in touch with our expert team for inquiries about executive search, HR advisory, and HR technology solutions.');
     }
     
     // Check for success parameter in URL to show toast message

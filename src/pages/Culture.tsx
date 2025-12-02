@@ -13,7 +13,7 @@ export default function Culture() {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Set page title and meta description for SEO
-    document.title = "Our Culture | n Human Resources and Management Systems - nHRMS";
+    document.title = "Our Culture | Nurturing Human Resources & Management Systems - nHRMS";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Learn about the culture at nHRMS, where we are dedicated to enhancing both Customer Experience and Employee Experience through continuous learning and growth.');
