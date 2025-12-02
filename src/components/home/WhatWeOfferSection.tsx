@@ -1,49 +1,48 @@
-
-import { Card, CardContent } from '@/components/ui/card';
 import { 
   Users, 
   Calculator, 
   Shield, 
   Monitor, 
   Briefcase, 
-  TrendingUp
+  TrendingUp,
+  ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function WhatWeOfferSection() {
   const services = [
     {
-      icon: <Users className="h-12 w-12 text-primary" />,
+      icon: Users,
       title: "Talent Acquisition",
       description: "Strategic recruitment and executive search for specialized roles across technology, engineering, and leadership positions.",
       link: "/services/talent-acquisition"
     },
     {
-      icon: <Briefcase className="h-12 w-12 text-primary" />,
+      icon: Briefcase,
       title: "HR Advisory & Consulting",
       description: "Strategic HR consulting to optimize organizational structure, policies, and people processes for sustainable growth.",
       link: "/services/hr-advisory"
     },
     {
-      icon: <TrendingUp className="h-12 w-12 text-primary" />,
+      icon: TrendingUp,
       title: "Leadership Development",
       description: "Executive coaching and leadership development programs to build high-performing management teams.",
       link: "/services/leadership-development"
     },
     {
-      icon: <Monitor className="h-12 w-12 text-primary" />,
+      icon: Monitor,
       title: "HR Technology Solutions",
       description: "Implementation and optimization of HR management systems and digital transformation initiatives.",
       link: "/services/hr-tech"
     },
     {
-      icon: <Shield className="h-12 w-12 text-primary" />,
+      icon: Shield,
       title: "Organizational Strategy",
       description: "Design and implement scalable organizational structures aligned with business objectives and growth plans.",
       link: "/services/organization-strategy"
     },
     {
-      icon: <Calculator className="h-12 w-12 text-primary" />,
+      icon: Calculator,
       title: "BOT HR Teams",
       description: "Build-operate-transfer solutions for complete HR department setup and management.",
       link: "/services/bot-hr-teams"
@@ -51,48 +50,56 @@ export default function WhatWeOfferSection() {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-modern opacity-60"></div>
-      <div className="absolute top-0 left-0 w-full h-32 bg-wave-pattern"></div>
-      
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center mb-20 animate-fade-in">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
-            Our Expertise
-          </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-            Strategic HR Solutions
+    <section className="py-20 md:py-28 bg-muted/30">
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16">
+          <p className="text-secondary font-semibold text-sm uppercase tracking-wide mb-3">
+            What We Do
+          </p>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5">
+            Comprehensive HR Solutions
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto text-balance">
-            Comprehensive HR management and talent acquisition solutions designed to accelerate organizational growth and build exceptional teams.
+          <p className="text-lg text-muted-foreground">
+            End-to-end human resource services designed to help organizations attract, develop, and retain exceptional talent.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <Link 
-              key={index} 
-              to={service.link}
-              className="group animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="card-modern card-glow group-hover:scale-105 h-full p-8 cursor-pointer transition-all duration-500">
-                <div className="mb-6 p-4 bg-primary/5 rounded-2xl w-fit group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300">
-                  {service.icon}
+        {/* Services Grid - 2 Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <Link 
+                key={index} 
+                to={service.link}
+                className="group"
+              >
+                <div className="flex gap-5 p-6 bg-card rounded-xl border border-border/50 hover:border-primary/30 hover:shadow-soft transition-all duration-200">
+                  {/* Icon */}
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-200">
+                      <Icon className="w-6 h-6 text-primary" />
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                      {service.description}
+                    </p>
+                    <span className="inline-flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      Learn more
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-balance mb-6">
-                  {service.description}
-                </p>
-                <div className="inline-flex items-center text-primary font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                  Learn More →
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

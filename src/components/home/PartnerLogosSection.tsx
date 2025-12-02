@@ -1,36 +1,34 @@
-
 export default function PartnerLogosSection() {
   const partners = [
     { name: "Zoho", logo: "Zoho" },
     { name: "Keka", logo: "Keka" },
-    { name: "GreytHR", logo: "GreytHR" },
-    { name: "Entries.ai", logo: "Entries.ai" }
+    { name: "GreytHR", logo: "GreytHR" }
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-muted/30 border-y border-border/50">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
-          <h3 className="text-lg font-medium text-gray-600 mb-8">
+        <div className="text-center mb-10">
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
             System Integrators for HR - Process, Tech & Implementation
-          </h3>
+          </p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+        <div className="flex flex-wrap justify-center items-center gap-12">
           {partners.map((partner, index) => (
             <div 
               key={index} 
-              className="flex items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
+              className="px-6 py-3"
             >
-              <div className="text-gray-400 font-semibold text-lg">
+              <span className="text-xl font-semibold text-muted-foreground/70 hover:text-foreground transition-colors duration-200">
                 {partner.logo}
-              </div>
+              </span>
             </div>
           ))}
         </div>
         
-        <div className="text-center mt-12">
-          <p className="text-gray-600">
+        <div className="text-center mt-10">
+          <p className="text-sm text-muted-foreground">
             Seamless integration with 20+ HR and payroll platforms
           </p>
         </div>

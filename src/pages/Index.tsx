@@ -1,11 +1,9 @@
-
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/home/HeroSection';
 import WhatWeOfferSection from '@/components/home/WhatWeOfferSection';
 import WhyNHRMSSection from '@/components/home/WhyNHRMSSection';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
 import PartnerLogosSection from '@/components/home/PartnerLogosSection';
 import CTASection from '@/components/home/CTASection';
 import Footer from '@/components/Footer';
@@ -46,13 +44,12 @@ const Index = () => {
           })}
         </script>
       </Helmet>
-      <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <div className="min-h-screen flex flex-col bg-background">
         <Navbar />
         <main className="flex-grow">
           <HeroSection />
           <WhatWeOfferSection />
           <WhyNHRMSSection />
-          <TestimonialsSection />
           <PartnerLogosSection />
           <CTASection />
         </main>
