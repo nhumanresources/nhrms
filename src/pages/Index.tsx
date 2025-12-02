@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/home/HeroSection';
-import WhatWeOfferSection from '@/components/home/WhatWeOfferSection';
-import WhyNHRMSSection from '@/components/home/WhyNHRMSSection';
+import HeroCarousel from '@/components/home/HeroCarousel';
+import ServicesShowcase from '@/components/home/ServicesShowcase';
+import WhyChooseUsRedesigned from '@/components/home/WhyChooseUsRedesigned';
+import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import PartnerLogosSection from '@/components/home/PartnerLogosSection';
-import CTASection from '@/components/home/CTASection';
+import CTASectionRedesigned from '@/components/home/CTASectionRedesigned';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -13,16 +14,16 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const pageDescription = "Strategic HR & Talent Solutions. Expert talent acquisition and comprehensive HR management services to scale your organization effectively with specialized recruitment and consulting.";
+  const pageDescription = "nHRMS - Nurturing Human Resources & Management Systems. Strategic HR consulting with 16+ years of expertise. Talent acquisition, HR advisory, fractional HR solutions, and HR technology services.";
 
   return (
     <>
       <Helmet>
-        <title>nHRMS | Strategic HR & Talent Solutions</title>
+        <title>nHRMS | People. Systems. Success. - Strategic HR Solutions</title>
         <meta name="description" content={pageDescription} />
-        <meta name="keywords" content="talent acquisition, executive search, HR consulting, leadership development, organizational strategy, HR technology solutions, staffing solutions, BOT HR teams" />
+        <meta name="keywords" content="talent acquisition, executive search, HR consulting, leadership development, organizational strategy, HR technology solutions, fractional HR, BOT HR teams, nHRMS" />
         <link rel="canonical" href="https://nhrms.com/" />
-        <meta property="og:title" content="nHRMS | Strategic HR & Talent Solutions" />
+        <meta property="og:title" content="nHRMS | People. Systems. Success." />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:url" content="https://nhrms.com/" />
         <meta property="og:type" content="website" />
@@ -30,16 +31,36 @@ const Index = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "nHRMS",
+            "name": "nHRMS - Nurturing Human Resources & Management Systems",
+            "alternateName": "nHRMS",
             "url": "https://nhrms.com",
             "logo": "https://nhrms.com/logo.png",
             "description": pageDescription,
-            "foundingDate": "2003",
-            "industry": "Human Resources Services",
-            "areaServed": "India",
-            "serviceArea": {
-              "@type": "Country",
-              "name": "India"
+            "foundingDate": "2009",
+            "slogan": "People. Systems. Success.",
+            "industry": "Human Resources Consulting",
+            "areaServed": ["India", "United States"],
+            "address": [
+              {
+                "@type": "PostalAddress",
+                "addressCountry": "US"
+              },
+              {
+                "@type": "PostalAddress",
+                "addressLocality": "Hyderabad",
+                "addressCountry": "India"
+              },
+              {
+                "@type": "PostalAddress",
+                "addressLocality": "Bangalore",
+                "addressCountry": "India"
+              }
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-314-485-4747",
+              "email": "info@nhrms.com",
+              "contactType": "customer service"
             }
           })}
         </script>
@@ -47,11 +68,12 @@ const Index = () => {
       <div className="min-h-screen flex flex-col bg-background">
         <Navbar />
         <main className="flex-grow">
-          <HeroSection />
-          <WhatWeOfferSection />
-          <WhyNHRMSSection />
+          <HeroCarousel />
+          <ServicesShowcase />
+          <WhyChooseUsRedesigned />
+          <TestimonialsSlider />
           <PartnerLogosSection />
-          <CTASection />
+          <CTASectionRedesigned />
         </main>
         <Footer />
       </div>

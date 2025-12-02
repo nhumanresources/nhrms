@@ -40,8 +40,8 @@ export default function Services() {
     },
     {
       icon: <Briefcase className="h-10 w-10 text-primary" />,
-      title: "BOT HR Teams",
-      description: "Complete build-operate-transfer solutions for HR departments.",
+      title: "Fractional HR Solutions",
+      description: "Flexible BOT solutions for HR departments - Build, Operate, Transfer.",
       link: "/services/bot-hr-teams"
     },
     {
@@ -56,19 +56,36 @@ export default function Services() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow pt-16">
-        {/* Hero Section - Simplified */}
-        <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Comprehensive HR management and consulting solutions for organizations seeking excellence.
+        {/* Hero Section */}
+        <section className="relative py-24 md:py-32 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070"
+              alt="Professional team meeting"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-3xl">
+              <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+                What We Do
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" asChild>
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                Comprehensive HR Solutions for 
+                <span className="text-secondary"> Modern Organizations</span>
+              </h1>
+              <p className="text-xl text-white/90 mb-8 max-w-2xl">
+                End-to-end HR management and consulting services designed to help you build, 
+                grow, and transform your workforce for sustainable success.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white" asChild>
                   <Link to="/contact">Request a Consultation</Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
+                <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary bg-transparent" asChild>
                   <Link to="/case-studies">View Case Studies</Link>
                 </Button>
               </div>
