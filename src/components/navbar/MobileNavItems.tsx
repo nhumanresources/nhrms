@@ -45,7 +45,7 @@ export const MobileNavItems = () => (
           
           <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Operate</div>
           <Link to="/services/bot-hr-teams" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
-            HR Teams (On-Prem, Remote)
+            Fractional HR Solutions (BOT)
           </Link>
           
           <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Growth</div>

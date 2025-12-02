@@ -27,9 +27,9 @@ export const serviceCategories: ServiceCategoryType[] = [
         description: "Build high-performing teams that drive success."
       },
       {
-        name: "BOT HR Teams",
+        name: "Fractional HR Solutions (BOT)",
         link: "/services/bot-hr-teams",
-        description: "Complete build-operate-transfer solutions for HR departments."
+        description: "Build-Operate-Transfer HR teams and fractional HR solutions."
       },
       {
         name: "HR Technology",

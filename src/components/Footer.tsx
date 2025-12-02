@@ -52,7 +52,7 @@ export default function Footer() {
               <li>
                 <Link to="/services/bot-hr-teams" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <ArrowRight className="h-3 w-3 mr-2" />
-                  HR Teams (On-Prem, Remote)
+                  Fractional HR Solutions (BOT)
                 </Link>
               </li>
               <li className="text-muted-foreground font-semibold text-sm mt-4">GROWTH</li>

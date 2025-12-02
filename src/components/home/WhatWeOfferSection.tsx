@@ -43,8 +43,8 @@ export default function WhatWeOfferSection() {
     },
     {
       icon: Calculator,
-      title: "BOT HR Teams",
-      description: "Build-operate-transfer solutions for complete HR department setup and management.",
+      title: "Fractional HR Solutions",
+      description: "BOT (Build-Operate-Transfer) HR teams - flexible fractional HR solutions for complete department setup and management.",
       link: "/services/bot-hr-teams"
     }
   ];
