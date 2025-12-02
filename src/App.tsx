@@ -28,7 +28,6 @@ import BOTHRTeams from "./pages/services/BOTHRTeams";
 import HRTech from "./pages/services/HRTech";
 import TalentAcquisition from "./pages/services/TalentAcquisition";
 import LearningServices from "./pages/LearningServices";
-import Courses from "./pages/Courses";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
@@ -116,7 +115,6 @@ const App = () => {
           <Route path="/services/talent-acquisition" element={<TalentAcquisition />} />
           <Route path="/services/hr-tech-solutions" element={<HRTechSolutions />} />
           <Route path="/learning-solutions" element={<LearningServices />} />
-          <Route path="/courses" element={<Courses />} />
           <Route path="/labour-codes" element={<LabourCodes />} />
           
           <Route path="/services/internship-programs" element={<InternshipPrograms />} />

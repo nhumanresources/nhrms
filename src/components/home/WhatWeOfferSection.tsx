@@ -6,8 +6,7 @@ import {
   Shield, 
   Monitor, 
   Briefcase, 
-  TrendingUp,
-  GraduationCap 
+  TrendingUp
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -48,12 +47,6 @@ export default function WhatWeOfferSection() {
       title: "BOT HR Teams",
       description: "Build-operate-transfer solutions for complete HR department setup and management.",
       link: "/services/bot-hr-teams"
-    },
-    {
-      icon: <GraduationCap className="h-12 w-12 text-primary" />,
-      title: "Job-Guaranteed Courses",
-      description: "Hybrid learning programs with 100% job guarantee. HR as a Career and Ready Recruiter courses with practical training and real-world projects.",
-      link: "/courses"
     }
   ];
 

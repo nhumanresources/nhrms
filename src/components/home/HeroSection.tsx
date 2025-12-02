@@ -46,13 +46,6 @@ export default function HeroSection() {
               </Link>
             </Button>
             
-            <Button size="xl" className="group bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-white font-semibold shadow-lg hover:shadow-xl" asChild>
-              <Link to="/courses" className="flex items-center">
-                Job-Guaranteed Courses
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            
             <Button variant="outline" size="xl" className="group hover:shadow-glow hover:border-primary/50" asChild>
               <Link to="/contact" className="flex items-center">
                 Schedule Consultation
