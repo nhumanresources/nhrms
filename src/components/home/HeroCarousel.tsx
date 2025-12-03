@@ -171,8 +171,8 @@ export default function HeroCarousel() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-3 divide-x divide-white/20">
             <div className="py-4 md:py-6 text-center">
-              <div className="font-heading text-2xl md:text-3xl font-bold text-white">500+</div>
-              <div className="text-sm text-white/80">Clients Served</div>
+              <div className="font-heading text-2xl md:text-3xl font-bold text-white">423</div>
+              <div className="text-sm text-white/80">Clients Across 14 Countries</div>
             </div>
             <div className="py-4 md:py-6 text-center">
               <div className="font-heading text-2xl md:text-3xl font-bold text-white">16+</div>
