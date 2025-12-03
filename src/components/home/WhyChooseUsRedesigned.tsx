@@ -60,16 +60,16 @@ export default function WhyChooseUsRedesigned() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative rounded-xl overflow-hidden h-48">
                 <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&fit=crop&crop=face" 
                   alt="Executive professional" 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div className="relative rounded-xl overflow-hidden h-48 mt-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" 
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&fit=crop&crop=face" 
                   alt="Business leader" 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
             </div>
