@@ -27,6 +27,7 @@ const NHRMSBreakdown = () => (
 
 interface HeroSlide {
   image: string;
+  imagePosition?: string;
   headline: React.ReactNode;
   subheadline: string;
   description?: string;
@@ -36,7 +37,8 @@ interface HeroSlide {
 
 const heroSlides: HeroSlide[] = [
   {
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069",
+    imagePosition: "center right",
     headline: (
       <>
         Nurturing Human Resources
@@ -49,21 +51,24 @@ const heroSlides: HeroSlide[] = [
     cta: { text: "Discover Our Story", link: "/who-we-are" }
   },
   {
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2051",
+    imagePosition: "center",
     headline: "People. Systems. Success.",
     subheadline: "Your Strategic HR Partner",
     description: "Transform your organization with expert HR consulting that delivers measurable results and sustainable growth.",
     cta: { text: "Partner With Us", link: "/services" }
   },
   {
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=2070",
+    imagePosition: "top center",
     headline: "Build Winning Teams",
     subheadline: "Talent Acquisition Excellence",
     description: "Access top-tier talent through our proven recruitment strategies. 16+ years of placing leaders across industries.",
     cta: { text: "Find Talent", link: "/services/talent-acquisition" }
   },
   {
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070",
+    imagePosition: "center",
     headline: (
       <>
         HR Technology
@@ -76,7 +81,8 @@ const heroSlides: HeroSlide[] = [
     cta: { text: "Explore Solutions", link: "/services/hr-tech" }
   },
   {
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070",
+    imagePosition: "center",
     headline: "Fractional HR Solutions",
     subheadline: "Flexible. Scalable. Expert.",
     description: "Get enterprise-level HR expertise without the overhead. Build, operate, and transfer with confidence.",
@@ -122,7 +128,8 @@ export default function HeroCarousel() {
           <img
             src={s.image}
             alt=""
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: s.imagePosition || 'center' }}
           />
           {/* Enhanced gradient overlay - stronger on left for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/50" />
