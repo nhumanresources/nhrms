@@ -19,7 +19,7 @@ const features = [
   {
     icon: Award,
     title: "Proven Track Record",
-    description: "500+ satisfied clients and 1000+ successful leadership placements."
+    description: "423 clients across 14 countries and 1000+ successful leadership placements."
   },
   {
     icon: Shield,

@@ -101,7 +101,7 @@ export default function WhitePaperSection() {
                 <p className="font-semibold text-lg mb-2">📊 Based on Research From:</p>
                 <ul className="space-y-1 text-sm text-muted-foreground">
                   <li>• Ministry of Labour & Employment guidelines</li>
-                  <li>• 500+ organization compliance audits</li>
+                  <li>• 423 organization compliance audits across 14 countries</li>
                   <li>• Industry expert interviews</li>
                   <li>• Case studies and best practices</li>
                 </ul>

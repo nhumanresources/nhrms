@@ -20,7 +20,7 @@ export default function CTASection() {
             Ready to Elevate Your HR Strategy?
           </h2>
           <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">
-            Join 500+ organizations who partner with nHRMS for strategic HR consultation and talent solutions. 
+            Join 423 organizations across 14 countries who partner with nHRMS for strategic HR consultation and talent solutions. 
             Let's discuss your unique challenges.
           </p>
           
@@ -42,8 +42,8 @@ export default function CTASection() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-              <div className="text-3xl font-bold mb-2">500+</div>
-              <div className="text-blue-100">Strategic Partnerships</div>
+              <div className="text-3xl font-bold mb-2">423</div>
+              <div className="text-blue-100">Clients Across 14 Countries</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
               <div className="text-3xl font-bold mb-2">20+</div>

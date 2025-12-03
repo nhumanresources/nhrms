@@ -388,8 +388,8 @@ export default function ExecutiveSearch() {
                 <div className="flex justify-center mb-4">
                   <Users className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="text-3xl font-bold mb-2">500+</h3>
-                <p className="text-muted-foreground">Successful Executive Placements</p>
+                <h3 className="text-3xl font-bold mb-2">423</h3>
+                <p className="text-muted-foreground">Clients Across 14 Countries</p>
               </div>
               <div>
                 <div className="flex justify-center mb-4">
