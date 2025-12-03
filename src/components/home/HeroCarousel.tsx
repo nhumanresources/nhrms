@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 const heroSlides = [
   {
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
+    headline: "Nurturing Human Resources & Management Systems",
+    subheadline: "What nHRMS Stands For",
+    description: "n = Nurturing | H = Human | R = Resources | M = Management | S = Systems — We nurture organizations through people-first HR solutions.",
+    cta: { text: "Discover Our Story", link: "/who-we-are" }
+  },
+  {
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070",
     headline: "People. Systems. Success.",
     subheadline: "Your Strategic HR Partner",
     description: "Transform your organization with expert HR consulting that delivers measurable results and sustainable growth.",
