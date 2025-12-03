@@ -62,14 +62,14 @@ export default function WhyChooseUsRedesigned() {
                 <img 
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" 
                   alt="Executive professional" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="relative rounded-xl overflow-hidden h-48 mt-8">
                 <img 
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" 
                   alt="Business leader" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
