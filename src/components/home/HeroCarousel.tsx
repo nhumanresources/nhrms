@@ -3,12 +3,49 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const heroSlides = [
+// Visual letter breakdown component for nHRMS
+const NHRMSBreakdown = () => (
+  <div className="flex flex-wrap gap-3 md:gap-4 mt-6 mb-8">
+    {[
+      { letter: 'n', word: 'Nurturing' },
+      { letter: 'H', word: 'Human' },
+      { letter: 'R', word: 'Resources' },
+      { letter: 'M', word: 'Management' },
+      { letter: 'S', word: 'Systems' },
+    ].map((item, index) => (
+      <div 
+        key={item.letter}
+        className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2 md:px-4 md:py-3 border border-white/20"
+        style={{ animationDelay: `${index * 100}ms` }}
+      >
+        <span className="text-secondary font-heading text-2xl md:text-3xl font-bold">{item.letter}</span>
+        <span className="text-white text-sm md:text-base font-medium">{item.word}</span>
+      </div>
+    ))}
+  </div>
+);
+
+interface HeroSlide {
+  image: string;
+  headline: React.ReactNode;
+  subheadline: string;
+  description?: string;
+  hasBreakdown?: boolean;
+  cta: { text: string; link: string };
+}
+
+const heroSlides: HeroSlide[] = [
   {
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
-    headline: "Nurturing Human Resources & Management Systems",
+    headline: (
+      <>
+        Nurturing Human Resources
+        <br />
+        <span className="text-secondary">&</span> Management Systems
+      </>
+    ),
     subheadline: "What nHRMS Stands For",
-    description: "n = Nurturing | H = Human | R = Resources | M = Management | S = Systems — We nurture organizations through people-first HR solutions.",
+    hasBreakdown: true,
     cta: { text: "Discover Our Story", link: "/who-we-are" }
   },
   {
@@ -27,7 +64,13 @@ const heroSlides = [
   },
   {
     image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074",
-    headline: "HR Technology That Works",
+    headline: (
+      <>
+        HR Technology
+        <br />
+        <span className="text-secondary">That Works</span>
+      </>
+    ),
     subheadline: "Digital Transformation",
     description: "Implement cutting-edge HR systems that streamline operations and empower your workforce.",
     cta: { text: "Explore Solutions", link: "/services/hr-tech" }
@@ -68,7 +111,7 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative h-[90vh] min-h-[600px] max-h-[900px] overflow-hidden">
-      {/* Background Images */}
+      {/* Background Images with Enhanced Overlay */}
       {heroSlides.map((s, index) => (
         <div
           key={index}
@@ -78,10 +121,13 @@ export default function HeroCarousel() {
         >
           <img
             src={s.image}
-            alt={s.headline}
-            className="w-full h-full object-cover"
+            alt=""
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
+          {/* Enhanced gradient overlay - stronger on left for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/50" />
+          {/* Additional top-to-bottom gradient for depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/60" />
         </div>
       ))}
 
@@ -94,19 +140,31 @@ export default function HeroCarousel() {
             </p>
             <h1 
               key={`headline-${currentSlide}`}
-              className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] animate-fade-in"
+              className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-[1.15] animate-fade-in drop-shadow-lg"
             >
               {slide.headline}
             </h1>
-            <p 
-              key={`desc-${currentSlide}`}
-              className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed animate-fade-in"
-              style={{ animationDelay: '100ms' }}
-            >
-              {slide.description}
-            </p>
+            
+            {/* Visual letter breakdown for first slide */}
+            {slide.hasBreakdown ? (
+              <div className="animate-fade-in" style={{ animationDelay: '100ms' }}>
+                <NHRMSBreakdown />
+                <p className="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed">
+                  We nurture organizations through people-first HR solutions.
+                </p>
+              </div>
+            ) : slide.description && (
+              <p 
+                key={`desc-${currentSlide}`}
+                className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed animate-fade-in"
+                style={{ animationDelay: '100ms' }}
+              >
+                {slide.description}
+              </p>
+            )}
+            
             <div 
-              className="flex flex-col sm:flex-row gap-4 animate-fade-in"
+              className="flex flex-col sm:flex-row gap-4 mt-8 animate-fade-in"
               style={{ animationDelay: '200ms' }}
             >
               <Button 
@@ -151,7 +209,7 @@ export default function HeroCarousel() {
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <div className="absolute bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20 flex gap-3">
         {heroSlides.map((_, index) => (
           <button
             key={index}
