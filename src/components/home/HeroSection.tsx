@@ -43,8 +43,8 @@ export default function HeroSection() {
           {/* Trust Indicators - Clean and Simple */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
-              <div className="font-heading text-3xl md:text-4xl font-bold text-primary mb-1">500+</div>
-              <div className="text-sm text-muted-foreground">Clients Served</div>
+              <div className="font-heading text-3xl md:text-4xl font-bold text-primary mb-1">423</div>
+              <div className="text-sm text-muted-foreground">Clients Across 14 Countries</div>
             </div>
             <div className="text-center">
               <div className="font-heading text-3xl md:text-4xl font-bold text-primary mb-1">16+</div>

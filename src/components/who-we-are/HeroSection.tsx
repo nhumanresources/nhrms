@@ -65,8 +65,8 @@ export default function HeroSection() {
               <p className="text-white/80">Years of Excellence</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="font-heading text-4xl md:text-5xl font-bold text-white mb-2">500+</div>
-              <p className="text-white/80">Clients Served</p>
+              <div className="font-heading text-4xl md:text-5xl font-bold text-white mb-2">423</div>
+              <p className="text-white/80">Clients Across 14 Countries</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <div className="font-heading text-4xl md:text-5xl font-bold text-white mb-2">1000+</div>

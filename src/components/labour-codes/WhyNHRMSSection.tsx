@@ -15,7 +15,7 @@ const reasons = [
   {
     icon: Briefcase,
     title: 'Industry Experience',
-    description: 'Served 500+ organizations across manufacturing, IT, services, and startups',
+    description: 'Served 423 organizations across 14 countries in manufacturing, IT, services, and startups',
   },
   {
     icon: TrendingUp,

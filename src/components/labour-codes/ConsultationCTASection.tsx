@@ -52,7 +52,7 @@ export default function ConsultationCTASection() {
 
           <div className="pt-8">
             <p className="text-sm opacity-75">
-              ✓ 500+ organizations trust nHRMS for labour code compliance<br/>
+              ✓ 423 organizations across 14 countries trust nHRMS for labour code compliance<br/>
               ✓ Zero penalties for our clients during transition period<br/>
               ✓ 15+ years of specialized expertise in Indian labour law
             </p>

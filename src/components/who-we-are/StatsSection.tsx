@@ -9,8 +9,8 @@ export default function StatsSection() {
             <p className="text-muted-foreground">Years Serving Clients</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-            <div className="text-4xl font-bold mb-2 text-primary">500+</div>
-            <p className="text-muted-foreground">Clients Served</p>
+            <div className="text-4xl font-bold mb-2 text-primary">423</div>
+            <p className="text-muted-foreground">Clients Across 14 Countries</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
             <div className="text-4xl font-bold mb-2 text-primary">3</div>

@@ -11,7 +11,7 @@ const services = [
     description: "Strategic recruitment and executive search across technology, engineering, finance, and leadership positions. We find leaders who transform organizations.",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800",
     link: "/services/talent-acquisition",
-    stats: "500+ Placements"
+    stats: "423+ Placements"
   },
   {
     icon: Briefcase,
