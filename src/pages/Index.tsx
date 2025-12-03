@@ -4,7 +4,6 @@ import Navbar from '@/components/Navbar';
 import HeroCarousel from '@/components/home/HeroCarousel';
 import ServicesShowcase from '@/components/home/ServicesShowcase';
 import WhyChooseUsRedesigned from '@/components/home/WhyChooseUsRedesigned';
-import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import PartnerLogosSection from '@/components/home/PartnerLogosSection';
 import CTASectionRedesigned from '@/components/home/CTASectionRedesigned';
 import Footer from '@/components/Footer';
@@ -71,7 +70,6 @@ const Index = () => {
           <HeroCarousel />
           <ServicesShowcase />
           <WhyChooseUsRedesigned />
-          <TestimonialsSlider />
           <PartnerLogosSection />
           <CTASectionRedesigned />
         </main>
