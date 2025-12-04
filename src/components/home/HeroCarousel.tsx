@@ -202,14 +202,14 @@ export default function HeroCarousel() {
       {/* Navigation Arrows */}
       <button
         onClick={() => { prevSlide(); setIsAutoPlaying(false); }}
-        className="absolute left-4 md:left-8 bottom-36 md:bottom-40 z-20 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all"
+        className="absolute left-4 md:left-8 bottom-16 md:bottom-20 z-20 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={() => { nextSlide(); setIsAutoPlaying(false); }}
-        className="absolute right-4 md:right-8 bottom-36 md:bottom-40 z-20 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all"
+        className="absolute right-4 md:right-8 bottom-16 md:bottom-20 z-20 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all"
         aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6" />
