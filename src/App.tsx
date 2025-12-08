@@ -60,6 +60,7 @@ import TimelessContribution from "./pages/press-releases/TimelessContribution";
 import HRRoadmap from "./pages/HRRoadmap";
 import LMSLogin from "./pages/LMSLogin";
 import LabourCodes from "./pages/LabourCodes";
+import EmployerAdvisory from "./pages/EmployerAdvisory";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -116,6 +117,7 @@ const App = () => {
           <Route path="/services/hr-tech-solutions" element={<HRTechSolutions />} />
           <Route path="/learning-solutions" element={<LearningServices />} />
           <Route path="/labour-codes" element={<LabourCodes />} />
+          <Route path="/employer-advisory-labour-codes" element={<EmployerAdvisory />} />
           
           <Route path="/services/internship-programs" element={<InternshipPrograms />} />
           <Route path="/services/total-rewards" element={<TotalRewards />} />
