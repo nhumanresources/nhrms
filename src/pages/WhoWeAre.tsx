@@ -22,9 +22,9 @@ export default function WhoWeAre() {
 
   const leadershipTeam = [
     {
-      name: "Sai Varma",
-      title: "Partner",
-      bio: "With over 20 years of experience in HR consulting, Sai has led transformational HR initiatives for Fortune 500 companies across multiple industries.",
+      name: "Saikrishna Varma",
+      title: "Partner - HRM & HR-Tech",
+      bio: "With over 20 years of experience in HR consulting, Saikrishna has led transformational HR initiatives for Fortune 500 companies across multiple industries.",
       linkedin: "https://linkedin.com/in/saikrshna/"
     },
     {
