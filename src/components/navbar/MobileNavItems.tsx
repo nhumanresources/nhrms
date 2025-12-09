@@ -66,6 +66,7 @@ export const MobileNavItems = () => (
         </div>
       </details>
     </div>
+
     <div className="px-3 py-2">
       <details className="group">
         <summary className="flex items-center text-sm font-medium cursor-pointer">
@@ -85,63 +86,50 @@ export const MobileNavItems = () => (
       </details>
     </div>
     
+    {/* Combined Learning & Careers dropdown */}
     <div className="px-3 py-2">
       <details className="group">
         <summary className="flex items-center text-sm font-medium cursor-pointer">
-          Learning <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
+          Learning & Careers <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
         </summary>
         <div className="mt-2 ml-2 space-y-1 border-l-2 border-primary/20 pl-2">
+          {/* Learning Section */}
+          <div className="px-2 py-1 text-xs font-semibold text-primary/70">Learning</div>
           <Link to="/hr-roadmap" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             HR Roadmap
           </Link>
           <Link to="/learning-solutions" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Learning Solutions
           </Link>
-        </div>
-      </details>
-    </div>
-
-    <div className="px-3 py-2">
-      <details className="group">
-        <summary className="flex items-center text-sm font-medium cursor-pointer">
-          Careers <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
-        </summary>
-        <div className="mt-2 ml-2 space-y-1 border-l-2 border-primary/20 pl-2">
+          
+          {/* Careers Section */}
+          <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Careers</div>
           <Link to="/careers/internships" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Internship Opportunities
           </Link>
           <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Job Opportunities
           </a>
+          
+          {/* Blog */}
+          <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Blog</div>
+          <Link to="/blog" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Blog
+          </Link>
         </div>
       </details>
     </div>
 
-    <Link 
-      to="/blog"
-      className="block px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors"
-    >
-      Blog
-    </Link>
-
     {/* Career Edge mobile nav – Job Seekers Assistant link */}
     <a 
       href="https://careeredge.nhrms.com"
-      className="px-3 py-2 text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 rounded-md transition-colors mt-1"
+      className="mx-3 px-3 py-2 text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 rounded-md transition-colors mt-1"
       title="Career Edge – Your assistant to Job Seekers"
       target="_blank" 
       rel="noopener noreferrer"
     >
       Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
     </a>
-    
-    {/* Contact CTA Button */}
-    <Link 
-      to="/contact" 
-      className="mx-3 mt-3 px-4 py-3 text-sm font-semibold text-center text-primary-foreground bg-primary hover:bg-primary/90 rounded-lg transition-all shadow-sm"
-    >
-      Contact Us
-    </Link>
     
     <div className="border-t border-border/50 mt-3 pt-2">
       <a href="tel:+13144854747" className="flex items-center px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">

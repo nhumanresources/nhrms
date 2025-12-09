@@ -18,8 +18,8 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       >
         Company <ChevronDown size={14} className="ml-1 transition-transform duration-300 group-hover:rotate-180" />
       </button>
-      <div className="absolute left-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50" role="menu">
-        <div className="bg-white/95 backdrop-blur-lg rounded-lg p-3 shadow-xl border border-border/30">
+      <div className="absolute left-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-[100]" role="menu">
+        <div className="bg-white rounded-lg p-3 shadow-xl border border-border/30">
           <Link to="/who-we-are" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Who Are We
           </Link>
@@ -61,8 +61,8 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       >
         Research <ChevronDown size={14} className="ml-1 transition-transform duration-300 group-hover:rotate-180" />
       </button>
-      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50" role="menu">
-        <div className="bg-white/95 backdrop-blur-lg rounded-lg p-3 shadow-xl border border-border/30">
+      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-[100]" role="menu">
+        <div className="bg-white rounded-lg p-3 shadow-xl border border-border/30">
           <Link to="/research" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Research Papers
           </Link>
@@ -76,67 +76,53 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       </div>
     </div>
     
+    {/* Combined Learning & Careers dropdown */}
     <div className="relative group">
       <button 
         className={cn(
           "relative flex items-center px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
-          isActive('/hr-roadmap') || isActive('/learning-solutions')
+          isActive('/hr-roadmap') || isActive('/learning-solutions') || isActive('/careers') || isActive('/blog')
             ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
             : "text-muted-foreground"
         )}
         aria-haspopup="true" 
         aria-expanded="false"
       >
-        Learning <ChevronDown size={14} className="ml-1 transition-transform duration-300 group-hover:rotate-180" />
+        Learning & Careers <ChevronDown size={14} className="ml-1 transition-transform duration-300 group-hover:rotate-180" />
       </button>
-      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50" role="menu">
-        <div className="bg-white/95 backdrop-blur-lg rounded-lg p-3 shadow-xl border border-border/30">
+      <div className="absolute left-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-[100]" role="menu">
+        <div className="bg-white rounded-lg p-3 shadow-xl border border-border/30">
+          {/* Learning Section */}
+          <div className="px-4 py-1 text-xs font-semibold text-primary/70 uppercase tracking-wide">Learning</div>
           <Link to="/hr-roadmap" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             HR Roadmap
           </Link>
           <Link to="/learning-solutions" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Learning Solutions
           </Link>
-        </div>
-      </div>
-    </div>
-    
-    <div className="relative group">
-      <button 
-        className={cn(
-          "relative flex items-center px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
-          isActive('/careers')
-            ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
-            : "text-muted-foreground"
-        )}
-        aria-haspopup="true" 
-        aria-expanded="false"
-      >
-        Careers <ChevronDown size={14} className="ml-1 transition-transform duration-300 group-hover:rotate-180" />
-      </button>
-      <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50" role="menu">
-        <div className="bg-white/95 backdrop-blur-lg rounded-lg p-3 shadow-xl border border-border/30">
+          
+          {/* Separator */}
+          <div className="my-2 border-t border-border/30" />
+          
+          {/* Careers Section */}
+          <div className="px-4 py-1 text-xs font-semibold text-primary/70 uppercase tracking-wide">Careers</div>
           <Link to="/careers/internships" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Internship Opportunities
           </Link>
           <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Job Opportunities
           </a>
+          
+          {/* Separator */}
+          <div className="my-2 border-t border-border/30" />
+          
+          {/* Blog */}
+          <Link to="/blog" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+            Blog
+          </Link>
         </div>
       </div>
     </div>
-
-    <Link 
-      to="/blog" 
-      className={cn(
-        "relative px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary", 
-        isActive('/blog') 
-          ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
-          : "text-muted-foreground"
-      )}
-    >
-      Blog
-    </Link>
     
     <a 
       href="https://careeredge.nhrms.com" 
@@ -147,12 +133,5 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
     >
       Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
     </a>
-    
-    <Link 
-      to="/contact" 
-      className="px-4 py-2 text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-full transition-all shadow-sm hover:shadow-md"
-    >
-      Contact Us
-    </Link>
   </>
 );

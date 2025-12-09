@@ -14,6 +14,98 @@ export type Database = {
   }
   public: {
     Tables: {
+      job_applications: {
+        Row: {
+          cover_letter: string | null
+          created_at: string
+          email: string
+          id: string
+          job_id: string
+          linkedin_url: string | null
+          name: string
+          phone: string
+          resume_url: string | null
+          status: string
+        }
+        Insert: {
+          cover_letter?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          job_id: string
+          linkedin_url?: string | null
+          name: string
+          phone: string
+          resume_url?: string | null
+          status?: string
+        }
+        Update: {
+          cover_letter?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          job_id?: string
+          linkedin_url?: string | null
+          name?: string
+          phone?: string
+          resume_url?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      jobs: {
+        Row: {
+          created_at: string
+          department: string
+          description: string
+          id: string
+          is_active: boolean
+          job_type: string
+          location: string
+          qualifications: string[]
+          responsibilities: string[]
+          salary_range: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          department: string
+          description: string
+          id?: string
+          is_active?: boolean
+          job_type?: string
+          location: string
+          qualifications?: string[]
+          responsibilities?: string[]
+          salary_range?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          department?: string
+          description?: string
+          id?: string
+          is_active?: boolean
+          job_type?: string
+          location?: string
+          qualifications?: string[]
+          responsibilities?: string[]
+          salary_range?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       labour_code_leads: {
         Row: {
           company_name: string
