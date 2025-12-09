@@ -41,16 +41,19 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <NavItems isActive={isActive} />
-            <div className="ml-4 pl-4 border-l border-muted">
-              <PhoneButton />
+            <NavItems isActive={isActive} isScrolled={isScrolled} />
+            <div className={cn("ml-4 pl-4 border-l", isScrolled ? "border-muted" : "border-white/30")}>
+              <PhoneButton isScrolled={isScrolled} />
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
             <button 
-              className="text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors" 
+              className={cn(
+                "p-2 rounded-full transition-colors",
+                isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
+              )} 
               onClick={toggleMobileMenu} 
               aria-label="Toggle menu"
             >
