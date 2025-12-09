@@ -6,12 +6,100 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Input validation functions
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 255;
+}
+
+function isValidPhone(phone: string): boolean {
+  // Allow 5-20 characters, digits, spaces, dashes, parentheses, and plus sign
+  const phoneRegex = /^[\d\s\-\(\)\+]{5,20}$/;
+  return phoneRegex.test(phone);
+}
+
+function isValidLeadType(type: string): type is 'consultation' | 'whitepaper' {
+  return type === 'consultation' || type === 'whitepaper';
+}
+
+function sanitizeString(str: string, maxLength: number): string {
+  return str.trim().slice(0, maxLength);
+}
+
 interface LeadRequest {
   name: string;
   email: string;
   phone: string;
   company_name: string;
   lead_type: 'consultation' | 'whitepaper';
+}
+
+interface ValidationResult {
+  valid: boolean;
+  errors: string[];
+  data?: LeadRequest;
+}
+
+function validateLeadData(data: unknown): ValidationResult {
+  const errors: string[] = [];
+  
+  if (!data || typeof data !== 'object') {
+    return { valid: false, errors: ['Invalid request body'] };
+  }
+  
+  const raw = data as Record<string, unknown>;
+  
+  // Validate name
+  if (!raw.name || typeof raw.name !== 'string' || raw.name.trim().length === 0) {
+    errors.push('Name is required');
+  } else if (raw.name.length > 100) {
+    errors.push('Name must be 100 characters or less');
+  }
+  
+  // Validate email
+  if (!raw.email || typeof raw.email !== 'string') {
+    errors.push('Email is required');
+  } else if (!isValidEmail(raw.email.trim())) {
+    errors.push('Invalid email format');
+  }
+  
+  // Validate phone
+  if (!raw.phone || typeof raw.phone !== 'string') {
+    errors.push('Phone is required');
+  } else if (!isValidPhone(raw.phone.trim())) {
+    errors.push('Invalid phone format (5-20 characters, digits and common separators only)');
+  }
+  
+  // Validate company_name
+  if (!raw.company_name || typeof raw.company_name !== 'string' || raw.company_name.trim().length === 0) {
+    errors.push('Company name is required');
+  } else if (raw.company_name.length > 200) {
+    errors.push('Company name must be 200 characters or less');
+  }
+  
+  // Validate lead_type
+  if (!raw.lead_type || typeof raw.lead_type !== 'string') {
+    errors.push('Lead type is required');
+  } else if (!isValidLeadType(raw.lead_type)) {
+    errors.push('Lead type must be "consultation" or "whitepaper"');
+  }
+  
+  if (errors.length > 0) {
+    return { valid: false, errors };
+  }
+  
+  // Return sanitized data
+  return {
+    valid: true,
+    errors: [],
+    data: {
+      name: sanitizeString(raw.name as string, 100),
+      email: (raw.email as string).trim().toLowerCase(),
+      phone: sanitizeString(raw.phone as string, 20),
+      company_name: sanitizeString(raw.company_name as string, 200),
+      lead_type: raw.lead_type as 'consultation' | 'whitepaper',
+    }
+  };
 }
 
 serve(async (req) => {
@@ -21,16 +109,21 @@ serve(async (req) => {
   }
 
   try {
-    const leadData: LeadRequest = await req.json();
-    console.log('Received lead submission:', { ...leadData, phone: '[REDACTED]' });
-
-    // Validate required fields
-    if (!leadData.name || !leadData.email || !leadData.phone || !leadData.company_name) {
+    const rawData = await req.json();
+    
+    // Validate and sanitize input
+    const validation = validateLeadData(rawData);
+    
+    if (!validation.valid || !validation.data) {
+      console.log('Validation failed:', validation.errors);
       return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
+        JSON.stringify({ error: 'Validation failed', details: validation.errors }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+    
+    const leadData = validation.data;
+    console.log('Received validated lead submission:', { ...leadData, phone: '[REDACTED]' });
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
@@ -126,9 +219,6 @@ serve(async (req) => {
       console.warn('Zoho credentials not configured, skipping CRM sync');
     }
 
-    // Send notification email to marketing.ops@nhrms.com
-    // (You can add email notification here using Resend or similar service)
-
     return new Response(
       JSON.stringify({ 
         success: true, 
@@ -144,7 +234,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in submit-labour-code-lead function:', error);
     return new Response(
-      JSON.stringify({ error: String(error) }),
+      JSON.stringify({ error: 'An unexpected error occurred' }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
