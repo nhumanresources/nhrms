@@ -23,7 +23,7 @@ const Sitemap = () => {
       'description': 'Strategic 360 Degree HR Management Consulting Firm',
       'contactPoint': {
         '@type': 'ContactPoint',
-        'telephone': '+1-314-301-8402',
+        'telephone': '+1-314-485-4747',
         'contactType': 'customer service'
       },
       'sameAs': [
