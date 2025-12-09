@@ -51,6 +51,20 @@ const heroSlides: HeroSlide[] = [
     cta: { text: "Discover Our Story", link: "/who-we-are" }
   },
   {
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070",
+    imagePosition: "center",
+    headline: (
+      <>
+        Implementation of
+        <br />
+        <span className="text-secondary">New Labour Codes</span>
+      </>
+    ),
+    subheadline: "India's Labour Law Reform",
+    description: "Navigate India's transformative labour code consolidation with expert guidance. From 29 laws to 4 comprehensive codes – ensure your organization is compliant.",
+    cta: { text: "Get Compliant", link: "/labour-codes" }
+  },
+  {
     image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2051",
     imagePosition: "center",
     headline: "People. Systems. Success.",
