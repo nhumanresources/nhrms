@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Briefcase, TrendingUp, Monitor, Shield, Calculator, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Users, Briefcase, TrendingUp, Monitor, Shield, Calculator, ChevronLeft, ChevronRight, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const services = [
@@ -57,6 +57,15 @@ const services = [
     image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800",
     link: "/services/organization-strategy",
     stats: "100+ Organizations"
+  },
+  {
+    icon: Scale,
+    title: "Implementation of Labour Codes",
+    tagline: "Navigate Compliance with Confidence",
+    description: "Expert guidance on India's new labour codes. Assessment, implementation, and ongoing compliance support for your organization.",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800",
+    link: "/labour-codes",
+    stats: "16+ Years Experience"
   }
 ];
 
