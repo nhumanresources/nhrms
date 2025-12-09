@@ -106,12 +106,19 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
     
     <a 
       href="https://careeredge.nhrms.com" 
-      className="px-2 py-1 text-sm font-semibold text-primary hover:text-primary/80 ml-2 bg-primary/10 rounded-full flex items-center transition-all hover:bg-primary/20"
+      className="px-2 py-1 text-sm font-semibold text-primary hover:text-primary/80 bg-primary/10 rounded-full flex items-center transition-all hover:bg-primary/20"
       title="Career Edge – Your assistant to Job Seekers"
       target="_blank"
       rel="noopener noreferrer"
     >
       Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
     </a>
+    
+    <Link 
+      to="/contact" 
+      className="px-4 py-2 text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-full transition-all shadow-sm hover:shadow-md"
+    >
+      Contact Us
+    </Link>
   </>
 );

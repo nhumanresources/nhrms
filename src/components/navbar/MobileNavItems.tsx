@@ -113,7 +113,16 @@ export const MobileNavItems = () => (
     >
       Career Edge <span className="sr-only">(assistant to Job Seekers)</span>
     </a>
-    <div className="border-t border-border/50 mt-2 pt-2">
+    
+    {/* Contact CTA Button */}
+    <Link 
+      to="/contact" 
+      className="mx-3 mt-3 px-4 py-3 text-sm font-semibold text-center text-primary-foreground bg-primary hover:bg-primary/90 rounded-lg transition-all shadow-sm"
+    >
+      Contact Us
+    </Link>
+    
+    <div className="border-t border-border/50 mt-3 pt-2">
       <a href="tel:+13144854747" className="flex items-center px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
         <Phone size={16} className="mr-2 text-primary" /> +1-314-485-4747
       </a>
