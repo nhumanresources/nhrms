@@ -36,8 +36,6 @@ export default function ContactForm() {
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
     
-    console.log("Sending form data to info@nhrms.com", values);
-    
     // Create a form and submit it programmatically to the FormSubmit.co service
     const formElement = document.createElement('form');
     formElement.method = 'POST';
