@@ -139,8 +139,8 @@ export default function NHRMSAcquiresCareeredge() {
           <a className="block underline hover:text-primary" href="mailto:info@nhrms.com">
             info@nhrms.com
           </a>
-          <a className="block underline hover:text-primary" href="tel:+13143018402">
-            +1 (314) 301-8402
+          <a className="block underline hover:text-primary" href="tel:+13144854747">
+            +1-314-485-4747
           </a>
         </div>
       </div>

@@ -198,7 +198,7 @@ const Cookies = () => {
             </p>
             <div className="mt-2">
               <p>Email: privacy@nhrms.com</p>
-              <p>Phone: +1 (314) 301-8402</p>
+              <p>Phone: +1-314-485-4747</p>
               <p>Address: nHRMS Inc., 123 Corporate Plaza, Suite 500, St. Louis, MO 63101</p>
             </div>
             <div className="mt-4">
