@@ -100,6 +100,30 @@ export const MobileNavItems = () => (
         </div>
       </details>
     </div>
+
+    <div className="px-3 py-2">
+      <details className="group">
+        <summary className="flex items-center text-sm font-medium cursor-pointer">
+          Careers <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
+        </summary>
+        <div className="mt-2 ml-2 space-y-1 border-l-2 border-primary/20 pl-2">
+          <Link to="/careers/internships" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Internship Opportunities
+          </Link>
+          <a href="https://jobs.nhrms.com/jobs/Careers" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Job Opportunities
+          </a>
+        </div>
+      </details>
+    </div>
+
+    <Link 
+      to="/blog"
+      className="block px-3 py-2 text-sm font-medium hover:bg-white rounded-md transition-colors"
+    >
+      Blog
+    </Link>
+
     {/* Career Edge mobile nav – Job Seekers Assistant link */}
     <a 
       href="https://careeredge.nhrms.com"
