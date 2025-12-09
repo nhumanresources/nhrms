@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -13,16 +13,27 @@ import {
   LogOut,
   BarChart,
   Menu,
-  X
+  X,
+  Loader2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { fadeIn, slideInLeft } from '@/lib/animations';
 import { toast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, isLoading, signOut } = useAuth();
+
+  // Redirect to auth if not logged in
+  useEffect(() => {
+    if (!isLoading && !user) {
+      navigate('/auth');
+    }
+  }, [user, isLoading, navigate]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,12 +47,6 @@ export default function Dashboard() {
     handleResize();
     window.addEventListener('resize', handleResize);
     
-    // Show a welcome toast when the dashboard loads
-    toast({
-      title: "Welcome to nHRMS Dashboard",
-      description: "You are now logged in to the system.",
-    });
-    
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -52,6 +57,29 @@ export default function Dashboard() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const handleLogout = async () => {
+    await signOut();
+    toast({
+      title: "Signed Out",
+      description: "You have been successfully signed out",
+    });
+    navigate('/');
+  };
+
+  // Show loading while checking auth
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  // Don't render dashboard if not authenticated
+  if (!user) {
+    return null;
+  }
 
   // Extract the current page from the pathname
   const currentPath = location.pathname.split('/')[2] || '';
@@ -98,7 +126,13 @@ export default function Dashboard() {
           </div>
 
           <div className="p-4 border-t border-border/50">
-            <SidebarItem icon={<LogOut size={20} />} text="Logout" href="/login" expanded={isSidebarOpen} />
+            <button
+              onClick={handleLogout}
+              className="flex items-center px-2 py-2 rounded-md transition-colors text-muted-foreground hover:bg-primary/5 hover:text-foreground w-full"
+            >
+              <LogOut size={20} />
+              {isSidebarOpen && <span className="ml-3">Sign Out</span>}
+            </button>
           </div>
         </div>
       </aside>
@@ -124,7 +158,7 @@ export default function Dashboard() {
                 <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
-                JD
+                {user.email?.charAt(0).toUpperCase() || 'U'}
               </div>
             </div>
           </div>
@@ -144,7 +178,15 @@ export default function Dashboard() {
               <MobileNavItem icon={<FileText size={20} />} text="Knowledge" href="/dashboard/knowledge" />
               <MobileNavItem icon={<BarChart size={20} />} text="Reports" href="/dashboard/reports" />
               <MobileNavItem icon={<Settings size={20} />} text="Settings" href="/dashboard/settings" />
-              <MobileNavItem icon={<LogOut size={20} />} text="Logout" href="/login" />
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center px-2 py-2 rounded-md transition-colors text-muted-foreground hover:bg-primary/5 hover:text-foreground w-full"
+                >
+                  <LogOut size={20} />
+                  <span className="ml-3">Sign Out</span>
+                </button>
+              </li>
             </ul>
           </div>
         </header>

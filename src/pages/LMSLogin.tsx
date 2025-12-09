@@ -1,18 +1,16 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { setLoggedIn } from '@/utils/loginHelper';
-import { Lock } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Lock, Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -23,11 +21,19 @@ export default function LMSLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { user, isLoading: authLoading, signIn } = useAuth();
   
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "LMS Login - nHRMS Internal";
   }, []);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (!authLoading && user) {
+      navigate('/dashboard');
+    }
+  }, [user, authLoading, navigate]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,27 +44,33 @@ export default function LMSLogin() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    // Check if it's an internal email first
+    if (!values.email.endsWith('@nhrms.com')) {
+      toast({
+        variant: "destructive",
+        title: "Access Denied",
+        description: "This system is for internal use only",
+      });
+      return;
+    }
+
     setIsLoading(true);
     
     try {
-      // Simulate login process - in a real implementation, this would connect to a backend
-      console.log('Login attempt with:', values.email);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const { error } = await signIn(values.email, values.password);
       
-      // Check if it's an internal email (this is a simple check for demonstration)
-      if (values.email.endsWith('@nhrms.com')) {
-        setLoggedIn();
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Login failed",
+          description: error.message,
+        });
+      } else {
         toast({
           title: "Success",
           description: "Welcome to the Learning Management System",
         });
         navigate('/dashboard');
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Access Denied",
-          description: "This system is for internal use only",
-        });
       }
     } catch (error) {
       toast({
@@ -70,6 +82,14 @@ export default function LMSLogin() {
       setIsLoading(false);
     }
   };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-primary/10 to-gray-100">
@@ -157,7 +177,14 @@ export default function LMSLogin() {
                   className="w-full" 
                   disabled={isLoading}
                 >
-                  {isLoading ? "Signing in..." : "Sign in"}
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Signing in...
+                    </>
+                  ) : (
+                    "Sign in"
+                  )}
                 </Button>
               </form>
             </Form>
