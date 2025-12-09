@@ -81,6 +81,13 @@ export default function Footer() {
                   HR Advisory
                 </Link>
               </li>
+              <li className="text-muted-foreground font-semibold text-sm mt-4">COMPLIANCE</li>
+              <li>
+                <Link to="/labour-codes" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <ArrowRight className="h-3 w-3 mr-2" />
+                  Implementation of Labour Codes
+                </Link>
+              </li>
             </ul>
           </div>
 
