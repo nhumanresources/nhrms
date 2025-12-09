@@ -52,7 +52,7 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
       <button 
         className={cn(
           "relative flex items-center px-2 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
-          isActive('/research') || isActive('/case-studies')
+          isActive('/research') || isActive('/case-studies') || isActive('/research-opportunities')
             ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-[3px] after:w-full after:bg-primary after:rounded-full" 
             : "text-muted-foreground"
         )}
@@ -68,6 +68,9 @@ export const NavItems = ({ isActive }: { isActive: (path: string) => boolean }) 
           </Link>
           <Link to="/case-studies" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
             Case Studies
+          </Link>
+          <Link to="/research-opportunities" className="block px-4 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+            Research Opportunities
           </Link>
         </div>
       </div>
