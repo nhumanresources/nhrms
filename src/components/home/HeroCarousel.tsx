@@ -85,7 +85,7 @@ const heroSlides: HeroSlide[] = [
     imagePosition: "center",
     headline: (
       <>
-        HR Technology
+        HR-Tech
         <br />
         <span className="text-secondary">That Works</span>
       </>
