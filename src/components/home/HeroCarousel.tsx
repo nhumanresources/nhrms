@@ -91,7 +91,7 @@ const heroSlides: HeroSlide[] = [
       </>
     ),
     subheadline: "Digital Transformation",
-    description: "Implement cutting-edge HR systems that streamline operations and empower your workforce.",
+    description: "Smart HR systems. Seamless operations. Empowered teams.",
     cta: { text: "Explore Solutions", link: "/services/hr-tech" }
   },
   {
