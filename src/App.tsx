@@ -61,6 +61,7 @@ import HRRoadmap from "./pages/HRRoadmap";
 import LMSLogin from "./pages/LMSLogin";
 import LabourCodes from "./pages/LabourCodes";
 import EmployerAdvisory from "./pages/EmployerAdvisory";
+import ComplianceServices from "./pages/services/ComplianceServices";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -120,6 +121,7 @@ const App = () => {
             <Route path="/learning-solutions" element={<LearningServices />} />
             <Route path="/labour-codes" element={<LabourCodes />} />
             <Route path="/employer-advisory-labour-codes" element={<EmployerAdvisory />} />
+            <Route path="/services/compliance" element={<ComplianceServices />} />
             
             <Route path="/services/internship-programs" element={<InternshipPrograms />} />
             <Route path="/services/total-rewards" element={<TotalRewards />} />

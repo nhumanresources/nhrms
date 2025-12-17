@@ -35,6 +35,11 @@ export const serviceCategories: ServiceCategoryType[] = [
         name: "HR Technology",
         link: "/services/hr-tech",
         description: "Implementation and optimization of HR technology systems."
+      },
+      {
+        name: "Compliance Services",
+        link: "/services/compliance",
+        description: "Navigate India's complex labor laws with expert compliance management."
       }
     ]
   },
