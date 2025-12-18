@@ -2,6 +2,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import SocialShareButtons from '@/components/SocialShareButtons';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -53,10 +54,15 @@ export default function TimelessContribution() {
           <article className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-6">Timeless Contribution to the Discipline of Organisational Behaviour</h1>
             
-            <div className="flex items-center justify-between mb-8 text-sm text-muted-foreground border-y border-border py-3">
+            <div className="flex items-center justify-between mb-4 text-sm text-muted-foreground border-y border-border py-3">
               <span>Published on May 2, 2025</span>
               <span>Source: BusinessManager.in</span>
             </div>
+            
+            <SocialShareButtons 
+              title="Timeless Contribution to the Discipline of Organisational Behaviour" 
+              className="mb-8"
+            />
             
             <div className="aspect-video mb-8 overflow-hidden rounded-lg">
               <img 

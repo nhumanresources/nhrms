@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SocialShareButtons from "@/components/SocialShareButtons";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -39,6 +40,11 @@ const LeadershipDevelopment = () => {
                 </div>
               </div>
             </div>
+            
+            <SocialShareButtons 
+              title="The Impact of Leadership Development Programs on Organizational Performance" 
+              className="mt-6"
+            />
           </div>
           
           <div className="prose prose-blue max-w-none text-muted-foreground">

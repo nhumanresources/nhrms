@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SocialShareButtons from '@/components/SocialShareButtons';
 import { ArrowLeft, Calendar, BarChart, Target, Users, LineChart, Rocket, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -53,6 +54,11 @@ export default function HRTechPlatformLaunch() {
                     <Users className="mr-1 h-4 w-4" /> HR-Tech
                   </span>
                 </div>
+                
+                <SocialShareButtons 
+                  title="HR-Tech Platform Launch: Go-to-Market Strategy for Performance Management SaaS" 
+                  className="mt-6"
+                />
               </div>
             </div>
           </div>

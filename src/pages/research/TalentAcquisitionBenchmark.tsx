@@ -2,8 +2,9 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SocialShareButtons from '@/components/SocialShareButtons';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Download, Share2 } from 'lucide-react';
+import { ArrowLeft, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function TalentAcquisitionBenchmark() {
@@ -29,7 +30,7 @@ export default function TalentAcquisitionBenchmark() {
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-border/50 p-6 md:p-10">
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold mb-2">Talent Acquisition Benchmark Study</h1>
                 <p className="text-muted-foreground">Published November 2024 • 42 pages</p>
@@ -38,11 +39,13 @@ export default function TalentAcquisitionBenchmark() {
                 <Button variant="outline" size="sm" className="gap-2">
                   <Download className="h-4 w-4" /> Download PDF
                 </Button>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Share2 className="h-4 w-4" /> Share
-                </Button>
               </div>
             </div>
+            
+            <SocialShareButtons 
+              title="Talent Acquisition Benchmark Study" 
+              className="mb-8"
+            />
 
             <div className="prose max-w-none">
               <div className="bg-blue-50 p-6 rounded-lg mb-8">

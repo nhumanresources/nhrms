@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SocialShareButtons from '@/components/SocialShareButtons';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { hrNews } from '@/data/newsItems';
@@ -349,7 +350,12 @@ export default function BlogArticle() {
                 </span>
               </div>
               
-              <h1 className="text-3xl md:text-4xl font-bold mb-6">{article.title}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold mb-4">{article.title}</h1>
+              
+              <SocialShareButtons 
+                title={article.title} 
+                className="mb-6"
+              />
               
               <div className="prose max-w-none">
                 <p className="text-lg mb-6">{article.snippet}</p>
