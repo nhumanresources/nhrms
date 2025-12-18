@@ -1,35 +1,9 @@
 
 import { Link } from "react-router-dom";
 import { BookOpen, Briefcase, Link2 } from "lucide-react";
-import { Linkedin, Twitter, Facebook } from "lucide-react";
+import SocialShareButtons from "@/components/SocialShareButtons";
 
 export default function NHRMSAcquiresCareeredge() {
-  // Helper to get current page URL
-  const currentUrl =
-    typeof window !== "undefined"
-      ? window.location.href
-      : "https://nhrms.com/press-releases/nhrms-acquires-careeredge";
-
-  const title =
-    "nHRMS Acquires CareerEdge to Empower Job Seekers and Expand HR Solutions";
-
-  const summary =
-    "nHRMS acquires CareerEdge, expanding solutions for job seekers and employers. Learn more in the official press release.";
-
-  const linkedinShare = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-    currentUrl
-  )}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(
-    summary
-  )}`;
-
-  const twitterShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-    currentUrl
-  )}&text=${encodeURIComponent(title)}`;
-
-  const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-    currentUrl
-  )}`;
-
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
       {/* Hero Section */}
@@ -99,36 +73,10 @@ export default function NHRMSAcquiresCareeredge() {
 
       {/* Social Sharing Block */}
       <div className="mt-8 mb-6">
-        <h3 className="font-semibold mb-3 text-lg">Share this Press Release</h3>
-        <div className="flex gap-4">
-          <a
-            href={linkedinShare}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Share on LinkedIn"
-            className="hover:bg-blue-100 rounded-full p-2 transition"
-          >
-            <Linkedin className="w-6 h-6 text-blue-700" />
-          </a>
-          <a
-            href={twitterShare}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Share on Twitter"
-            className="hover:bg-blue-100 rounded-full p-2 transition"
-          >
-            <Twitter className="w-6 h-6 text-blue-500" />
-          </a>
-          <a
-            href={facebookShare}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Share on Facebook"
-            className="hover:bg-blue-100 rounded-full p-2 transition"
-          >
-            <Facebook className="w-6 h-6 text-blue-600" />
-          </a>
-        </div>
+        <SocialShareButtons 
+          title="nHRMS Acquires CareerEdge to Empower Job Seekers and Expand HR Solutions"
+          summary="nHRMS acquires CareerEdge, expanding solutions for job seekers and employers."
+        />
       </div>
 
       {/* Contact Block */}

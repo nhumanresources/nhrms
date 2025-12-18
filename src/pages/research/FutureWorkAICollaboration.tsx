@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SocialShareButtons from '@/components/SocialShareButtons';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -28,12 +29,17 @@ export default function FutureWorkAICollaboration() {
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-border/50 p-6 md:p-10">
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold mb-2">Future of Work: AI and Human Collaboration</h1>
                 <p className="text-muted-foreground">Published January 2025 • 34 pages</p>
               </div>
             </div>
+            
+            <SocialShareButtons 
+              title="Future of Work: AI and Human Collaboration" 
+              className="mb-8"
+            />
 
             <div className="prose max-w-none">
               <div className="bg-blue-50 p-6 rounded-lg mb-8">

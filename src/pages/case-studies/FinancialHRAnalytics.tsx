@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SocialShareButtons from "@/components/SocialShareButtons";
 import { ArrowLeft, Building, Users, TrendingUp, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -55,6 +56,11 @@ const FinancialHRAnalytics = () => {
                 </div>
               </div>
             </div>
+            
+            <SocialShareButtons 
+              title="Transforming HR Decision-Making with Advanced Analytics at Global Bank" 
+              className="mt-6"
+            />
           </div>
           
           <div className="prose prose-blue max-w-none text-muted-foreground mb-10">
