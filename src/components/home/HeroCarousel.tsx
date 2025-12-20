@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { GradientOrb, PremiumBadge } from '@/components/ui/decorative-elements';
+import { GradientOrb } from '@/components/ui/decorative-elements';
 
 // Visual letter breakdown component for nHRMS
-const NHRMSBreakdown = () => (
+const NHRMSBreakdown = ({ isVisible }: { isVisible: boolean }) => (
   <div className="flex flex-wrap gap-3 md:gap-4 mt-6 mb-8 relative z-20">
     {[
       { letter: 'n', word: 'Nurturing', delay: 0 },
@@ -13,11 +13,17 @@ const NHRMSBreakdown = () => (
       { letter: 'R', word: 'Resources', delay: 200 },
       { letter: 'M', word: 'Management', delay: 300 },
       { letter: 'S', word: 'Systems', delay: 400 },
-    ].map((item) => (
+    ].map((item, index) => (
       <div 
         key={item.letter}
-        className="flex items-center gap-2 bg-white/20 backdrop-blur-lg rounded-xl px-4 py-3 border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-105 animate-fade-in shadow-lg"
-        style={{ animationDelay: `${item.delay}ms`, boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}
+        className={`flex items-center gap-2 bg-white/20 backdrop-blur-lg rounded-xl px-4 py-3 border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-105 shadow-lg ${
+          isVisible ? 'animate-carousel-in opacity-100' : 'opacity-0'
+        }`}
+        style={{ 
+          animationDelay: `${300 + item.delay}ms`,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+          animationFillMode: 'both'
+        }}
       >
         <span className="text-secondary font-heading text-2xl md:text-3xl font-bold" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>{item.letter}</span>
         <span className="text-white text-sm md:text-base font-semibold" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>{item.word}</span>
@@ -115,18 +121,40 @@ const heroSlides: HeroSlide[] = [
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [displayedSlide, setDisplayedSlide] = useState(0);
+  const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const transitionToSlide = useCallback((newIndex: number) => {
+    if (isTransitioning || newIndex === currentSlide) return;
+    
+    setIsTransitioning(true);
+    
+    // After exit animation, update the displayed slide
+    transitionTimeoutRef.current = setTimeout(() => {
+      setDisplayedSlide(newIndex);
+      setCurrentSlide(newIndex);
+      
+      // Reset transitioning after entry animation completes
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 100);
+    }, 400);
+  }, [isTransitioning, currentSlide]);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  }, []);
+    const newIndex = (currentSlide + 1) % heroSlides.length;
+    transitionToSlide(newIndex);
+  }, [currentSlide, transitionToSlide]);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-  }, []);
+    const newIndex = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+    transitionToSlide(newIndex);
+  }, [currentSlide, transitionToSlide]);
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index);
     setIsAutoPlaying(false);
+    transitionToSlide(index);
   };
 
   useEffect(() => {
@@ -135,11 +163,20 @@ export default function HeroCarousel() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, nextSlide]);
 
-  const slide = heroSlides[currentSlide];
+  useEffect(() => {
+    return () => {
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const slide = heroSlides[displayedSlide];
+  const contentVisible = !isTransitioning && displayedSlide === currentSlide;
 
   return (
     <section className="relative h-[92vh] min-h-[650px] max-h-[950px] overflow-hidden">
-      {/* Background Images with Premium Overlay */}
+      {/* Background Images with Ken Burns Effect */}
       {heroSlides.map((s, index) => (
         <div
           key={index}
@@ -150,8 +187,13 @@ export default function HeroCarousel() {
           <img
             src={s.image}
             alt=""
-            className="w-full h-full object-cover scale-105"
-            style={{ objectPosition: s.imagePosition || 'center' }}
+            className={`w-full h-full object-cover ${
+              index === currentSlide ? 'animate-ken-burns' : ''
+            }`}
+            style={{ 
+              objectPosition: s.imagePosition || 'center',
+              transformOrigin: index % 2 === 0 ? 'center left' : 'center right'
+            }}
           />
           {/* Premium multi-layer gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
@@ -176,7 +218,12 @@ export default function HeroCarousel() {
             
             {/* Premium Badge */}
             {slide.badge && (
-              <div className="mb-6 animate-fade-in relative z-30">
+              <div 
+                className={`mb-6 relative z-30 ${
+                  contentVisible ? 'animate-carousel-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: '0ms', animationFillMode: 'both' }}
+              >
                 <span 
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold shadow-xl"
                   style={{ 
@@ -192,43 +239,72 @@ export default function HeroCarousel() {
             )}
 
             <p 
-              className="text-secondary font-bold text-sm md:text-base uppercase tracking-widest mb-4 animate-fade-in"
-              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+              className={`text-secondary font-bold text-sm md:text-base uppercase tracking-widest mb-4 ${
+                contentVisible ? 'animate-carousel-in' : 'opacity-0'
+              }`}
+              style={{ 
+                textShadow: '0 2px 10px rgba(0,0,0,0.5)',
+                animationDelay: '100ms',
+                animationFillMode: 'both'
+              }}
             >
               {slide.subheadline}
             </p>
             <h1 
-              key={`headline-${currentSlide}`}
-              className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.1] animate-fade-in"
-              style={{ textShadow: '0 4px 20px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4)' }}
+              key={`headline-${displayedSlide}`}
+              className={`font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.1] ${
+                contentVisible ? 'animate-carousel-in' : 'opacity-0'
+              }`}
+              style={{ 
+                textShadow: '0 4px 20px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4)',
+                animationDelay: '200ms',
+                animationFillMode: 'both'
+              }}
             >
               {slide.headline}
             </h1>
             
             {/* Visual letter breakdown for first slide */}
             {slide.hasBreakdown ? (
-              <div className="animate-fade-in" style={{ animationDelay: '150ms' }}>
-                <NHRMSBreakdown />
+              <div>
+                <NHRMSBreakdown isVisible={contentVisible} />
                 <p 
-                  className="text-xl md:text-2xl text-white max-w-2xl leading-relaxed font-medium"
-                  style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+                  className={`text-xl md:text-2xl text-white max-w-2xl leading-relaxed font-medium ${
+                    contentVisible ? 'animate-carousel-in' : 'opacity-0'
+                  }`}
+                  style={{ 
+                    textShadow: '0 2px 10px rgba(0,0,0,0.5)',
+                    animationDelay: '700ms',
+                    animationFillMode: 'both'
+                  }}
                 >
                   We nurture organizations through people-first HR solutions.
                 </p>
               </div>
             ) : slide.description && (
               <p 
-                key={`desc-${currentSlide}`}
-                className="text-lg md:text-xl text-white mb-8 max-w-2xl leading-relaxed animate-fade-in font-medium"
-                style={{ animationDelay: '150ms', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+                key={`desc-${displayedSlide}`}
+                className={`text-lg md:text-xl text-white mb-8 max-w-2xl leading-relaxed font-medium ${
+                  contentVisible ? 'animate-carousel-in' : 'opacity-0'
+                }`}
+                style={{ 
+                  animationDelay: '300ms', 
+                  textShadow: '0 2px 10px rgba(0,0,0,0.5)',
+                  animationFillMode: 'both'
+                }}
               >
                 {slide.description}
               </p>
             )}
             
             <div 
-              className="flex flex-col sm:flex-row gap-4 mt-10 animate-fade-in"
-              style={{ animationDelay: '250ms' }}
+              className={`flex flex-col sm:flex-row gap-4 mt-10 ${
+                contentVisible ? 'animate-carousel-in' : 'opacity-0'
+              }`}
+              style={{ 
+                animationDelay: slide.hasBreakdown ? '800ms' : '400ms',
+                animationFillMode: 'both'
+              }}
             >
               <Button 
                 size="lg" 
@@ -260,6 +336,7 @@ export default function HeroCarousel() {
         onClick={() => { prevSlide(); setIsAutoPlaying(false); }}
         className="absolute left-4 md:left-8 bottom-20 md:bottom-24 z-20 w-12 h-12 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300 border border-white/20 hover:scale-110"
         aria-label="Previous slide"
+        disabled={isTransitioning}
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
@@ -267,22 +344,23 @@ export default function HeroCarousel() {
         onClick={() => { nextSlide(); setIsAutoPlaying(false); }}
         className="absolute right-4 md:right-8 bottom-20 md:bottom-24 z-20 w-12 h-12 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md flex items-center justify-center text-white transition-all duration-300 border border-white/20 hover:scale-110"
         aria-label="Next slide"
+        disabled={isTransitioning}
       >
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Slide Indicators - Enhanced */}
+      {/* Slide Indicators - Enhanced with pulse animation */}
       <div className="absolute bottom-28 md:bottom-32 left-1/2 -translate-x-1/2 z-20 flex gap-3">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
+            disabled={isTransitioning}
             className={`h-2.5 rounded-full transition-all duration-500 ${
               index === currentSlide 
-                ? 'w-10 bg-gradient-to-r from-secondary to-accent shadow-lg' 
+                ? 'w-10 bg-gradient-to-r from-secondary to-accent shadow-lg animate-indicator-pulse' 
                 : 'w-2.5 bg-white/40 hover:bg-white/60'
             }`}
-            style={index === currentSlide ? { boxShadow: '0 0 15px hsl(var(--secondary) / 0.5)' } : undefined}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
