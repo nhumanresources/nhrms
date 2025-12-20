@@ -62,6 +62,7 @@ import LMSLogin from "./pages/LMSLogin";
 import LabourCodes from "./pages/LabourCodes";
 import EmployerAdvisory from "./pages/EmployerAdvisory";
 import ComplianceServices from "./pages/services/ComplianceServices";
+import RSS from "./pages/RSS";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -156,6 +157,9 @@ const App = () => {
             <Route path="/hr360-solution-hub/*" element={<Index />} />
             
             <Route path="/partners" element={<Partners />} />
+            
+            {/* RSS Feed */}
+            <Route path="/rss" element={<RSS />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>

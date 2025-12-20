@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen, Link as LinkIcon } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight, Briefcase, BookOpen, Link as LinkIcon, Rss } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Footer() {
@@ -18,17 +18,25 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a href="https://www.linkedin.com/company/n-hrms/" target="_blank" rel="noopener noreferrer" 
-                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
+                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors"
+                 aria-label="Follow us on LinkedIn">
                 <Linkedin size={20} />
               </a>
               <a href="https://x.com/nhrms" target="_blank" rel="noopener noreferrer" 
-                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
+                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors"
+                 aria-label="Follow us on X (Twitter)">
                 <Twitter size={20} />
               </a>
               <a href="https://fb.com/nhrms" target="_blank" rel="noopener noreferrer" 
-                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors">
+                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors"
+                 aria-label="Follow us on Facebook">
                 <Facebook size={20} />
               </a>
+              <Link to="/rss" 
+                 className="bg-primary/5 hover:bg-primary/10 text-primary p-2 rounded-full transition-colors"
+                 aria-label="Subscribe to RSS Feed">
+                <Rss size={20} />
+              </Link>
             </div>
           </div>
 
