@@ -3,24 +3,61 @@ import { ServiceCategoryType } from "./types";
 
 export const serviceCategories: ServiceCategoryType[] = [
   {
-    id: "solutions",
-    title: "Solutions",
+    id: "hr-technology",
+    title: "HR Technology Solutions",
     items: [
       {
-        name: "Executive Search",
-        link: "/services/executive-search",
-        description: "Find exceptional leaders who align with your organization's vision."
+        name: "HR Tech Advisory",
+        link: "/services/hr-tech",
+        description: "Strategic guidance for HR technology selection and implementation."
       },
+      {
+        name: "System Implementation",
+        link: "/services/hr-tech",
+        description: "End-to-end implementation support for HR technology systems."
+      },
+      {
+        name: "Integration Services",
+        link: "/services/hr-tech",
+        description: "Seamless integration of HR systems with your existing tech stack."
+      },
+      {
+        name: "HR Tech Optimization",
+        link: "/services/hr-tech",
+        description: "Maximize ROI from your existing HR technology investments."
+      }
+    ]
+  },
+  {
+    id: "strategic-advisory",
+    title: "Strategic Advisory",
+    items: [
       {
         name: "HR Advisory",
         link: "/services/hr-advisory",
         description: "Strategic consulting to optimize your human capital strategy."
       },
       {
+        name: "Organization Strategy",
+        link: "/services/organization-strategy",
+        description: "Align your organizational design with business objectives."
+      },
+      {
+        name: "Executive Search",
+        link: "/services/executive-search",
+        description: "Find exceptional leaders who align with your organization's vision."
+      },
+      {
         name: "Go to Market",
         link: "/services/go-to-market",
         description: "Specialized strategies to bring your HR solutions to market."
-      },
+      }
+    ]
+  },
+  {
+    id: "talent-solutions",
+    title: "Talent Solutions",
+    items: [
       {
         name: "Talent Acquisition",
         link: "/services/talent-acquisition",
@@ -32,56 +69,41 @@ export const serviceCategories: ServiceCategoryType[] = [
         description: "Build-Operate-Transfer HR teams and fractional HR solutions."
       },
       {
-        name: "HR Technology",
-        link: "/services/hr-tech",
-        description: "Implementation and optimization of HR technology systems."
-      },
-      {
-        name: "Compliance Services",
-        link: "/services/compliance",
-        description: "Navigate India's complex labor laws with expert compliance management."
-      }
-    ]
-  },
-  {
-    id: "services",
-    title: "Services",
-    items: [
-      {
-        name: "Organization Strategy",
-        link: "/services/organization-strategy",
-        description: "Align your organizational design with business objectives."
-      },
-      {
         name: "Total Rewards",
         link: "/services/total-rewards",
         description: "Develop compensation and benefits strategies to attract talent."
       },
       {
-        name: "Leadership Development",
-        link: "/services/leadership-&-professional-development",
-        description: "Build leadership capabilities across your organization."
-      },
-      {
         name: "Career Development",
         link: "/services/career-development",
         description: "Create pathways for employee growth and advancement."
-      },
-      {
-        name: "Diversity & Inclusion",
-        link: "/services/hr-advisory",
-        description: "Build inclusive cultures that embrace diversity."
-      },
-      {
-        name: "Workforce Transformation",
-        link: "/services/hr-advisory",
-        description: "Navigate change and prepare your workforce for the future."
       }
     ]
   },
   {
-    id: "learning",
-    title: "Learning",
+    id: "compliance-operations",
+    title: "Compliance & Operations",
+    items: [
+      {
+        name: "Compliance Services",
+        link: "/services/compliance",
+        description: "Navigate India's complex labor laws with expert compliance management."
+      },
+      {
+        name: "Labour Codes",
+        link: "/labour-codes",
+        description: "Guidance on India's new labour code framework implementation."
+      },
+      {
+        name: "Statutory Compliance",
+        link: "/services/compliance",
+        description: "Timely management of PF, ESI, Gratuity, and other statutory obligations."
+      }
+    ]
+  },
+  {
+    id: "learning-enablement",
+    title: "Learning & Enablement",
     items: [
       {
         name: "Learning Solutions",
@@ -99,9 +121,9 @@ export const serviceCategories: ServiceCategoryType[] = [
         description: "Structured programs for students seeking HR experience."
       },
       {
-        name: "Research Opportunities",
-        link: "/research",
-        description: "Participate in cutting-edge HR research and studies."
+        name: "Leadership Development",
+        link: "/services/leadership-&-professional-development",
+        description: "Build leadership capabilities across your organization."
       }
     ]
   }
