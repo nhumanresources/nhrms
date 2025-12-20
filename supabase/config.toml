@@ -2,3 +2,6 @@ project_id = "hkdynattjciuwbxcasvw"
 
 [functions.submit-labour-code-lead]
 verify_jwt = false
+
+[functions.rss-feed]
+verify_jwt = false

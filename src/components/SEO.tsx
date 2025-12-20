@@ -39,6 +39,9 @@ const SEO = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={url} />
       
+      {/* RSS Feed Auto-Discovery */}
+      <link rel="alternate" type="application/rss+xml" title="nHRMS RSS Feed" href="https://nhrms.com/rss.xml" />
+      
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={ogUrl || url} />
