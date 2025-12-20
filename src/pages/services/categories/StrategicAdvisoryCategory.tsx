@@ -13,8 +13,10 @@ import {
   ArrowRight, 
   CheckCircle,
   Building2,
-  Users
+  Users,
+  Sparkles
 } from 'lucide-react';
+import { GradientOrb, PremiumBadge, ServiceIconWrapper } from '@/components/ui/decorative-elements';
 
 const advisoryServices = [
   {
@@ -75,14 +77,20 @@ export default function StrategicAdvisoryCategory() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-transparent to-primary/60" />
           </div>
+          <div className="absolute inset-0 bg-diagonal-pattern opacity-20" />
+          
+          {/* Decorative Elements */}
+          <GradientOrb className="absolute -top-40 -right-40 opacity-25" size="xl" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-20" size="lg" />
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center px-4 py-2 bg-secondary/20 text-secondary rounded-full text-sm font-semibold mb-6">
+              <PremiumBadge variant="light" className="mb-6">
                 <Target className="h-4 w-4 mr-2" />
                 Strategic Advisory
-              </span>
+              </PremiumBadge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Strategic HR Advisory
               </h1>
@@ -91,10 +99,10 @@ export default function StrategicAdvisoryCategory() {
                 build leadership capabilities, and drive sustainable growth.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white" asChild>
+                <Button size="lg" className="btn-primary-premium" asChild>
                   <Link to="/contact">Schedule Advisory Session</Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white/10 bg-transparent" asChild>
+                <Button variant="outline" size="lg" className="border-2 border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm" asChild>
                   <Link to="/who-we-are">Meet Our Advisors</Link>
                 </Button>
               </div>
@@ -103,10 +111,17 @@ export default function StrategicAdvisoryCategory() {
         </section>
 
         {/* Services Grid */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-subtle-pattern opacity-50" />
+          <GradientOrb className="absolute top-20 right-10 opacity-10" size="lg" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Advisory Services</h2>
+              <PremiumBadge variant="warm" className="mb-4">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Advisory Services
+              </PremiumBadge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">Advisory Services</h2>
               <p className="text-lg text-muted-foreground">
                 C-suite level guidance for your most critical HR and organizational challenges.
               </p>
@@ -114,18 +129,18 @@ export default function StrategicAdvisoryCategory() {
             
             <div className="grid md:grid-cols-2 gap-8">
               {advisoryServices.map((service, index) => (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 border hover:border-primary/30">
+                <Card key={index} className="card-premium group">
                   <CardHeader>
-                    <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="h-7 w-7 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <ServiceIconWrapper variant="warm">
+                      <service.icon className="h-7 w-7 text-secondary" />
+                    </ServiceIconWrapper>
+                    <CardTitle className="text-xl mt-4">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-base mb-4">
                       {service.description}
                     </CardDescription>
-                    <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary/80" asChild>
+                    <Button variant="ghost" className="p-0 h-auto text-secondary hover:text-secondary/80 group-hover:translate-x-1 transition-transform" asChild>
                       <Link to={service.link} className="flex items-center">
                         Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -138,10 +153,17 @@ export default function StrategicAdvisoryCategory() {
         </section>
 
         {/* Client Outcomes Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-muted/30 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+          <GradientOrb className="absolute -bottom-20 right-20 opacity-15" size="xl" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
+                <PremiumBadge variant="navy" className="mb-4">
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Proven Results
+                </PremiumBadge>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Client Outcomes</h2>
                 <p className="text-lg text-muted-foreground mb-8">
                   Our strategic advisory engagements consistently deliver measurable impact 
@@ -149,31 +171,28 @@ export default function StrategicAdvisoryCategory() {
                 </p>
                 <div className="space-y-4">
                   {clientOutcomes.map((outcome, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <div key={index} className="flex items-start gap-3 group hover-lift">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="h-4 w-4 text-white" />
+                      </div>
                       <span className="text-foreground">{outcome}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-secondary/10 via-accent/5 to-primary/10 rounded-3xl p-8 border border-secondary/20">
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center p-6 bg-background rounded-xl shadow-sm">
-                    <div className="text-4xl font-bold text-primary mb-2">16+</div>
-                    <div className="text-sm text-muted-foreground">Years Experience</div>
-                  </div>
-                  <div className="text-center p-6 bg-background rounded-xl shadow-sm">
-                    <div className="text-4xl font-bold text-primary mb-2">423+</div>
-                    <div className="text-sm text-muted-foreground">Clients Served</div>
-                  </div>
-                  <div className="text-center p-6 bg-background rounded-xl shadow-sm">
-                    <div className="text-4xl font-bold text-primary mb-2">200+</div>
-                    <div className="text-sm text-muted-foreground">Executives Placed</div>
-                  </div>
-                  <div className="text-center p-6 bg-background rounded-xl shadow-sm">
-                    <div className="text-4xl font-bold text-primary mb-2">50+</div>
-                    <div className="text-sm text-muted-foreground">Industries Served</div>
-                  </div>
+                  {[
+                    { value: "16+", label: "Years Experience" },
+                    { value: "423+", label: "Clients Served" },
+                    { value: "200+", label: "Executives Placed" },
+                    { value: "50+", label: "Industries Served" }
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center p-6 bg-background/80 backdrop-blur-sm rounded-2xl shadow-sm hover-lift card-glow">
+                      <div className="text-4xl font-bold text-gradient-warm mb-2">{stat.value}</div>
+                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -181,8 +200,10 @@ export default function StrategicAdvisoryCategory() {
         </section>
 
         {/* Who We Serve */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-subtle-pattern opacity-30" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Who We Serve</h2>
               <p className="text-lg text-muted-foreground">
@@ -196,12 +217,12 @@ export default function StrategicAdvisoryCategory() {
                 { icon: Building2, title: "CEOs & Founders", desc: "Build high-performing organizations with the right talent and culture." },
                 { icon: Target, title: "Board & Investors", desc: "Ensure leadership readiness and organizational capability for growth." }
               ].map((audience, index) => (
-                <Card key={index} className="text-center border-0 shadow-md">
+                <Card key={index} className="card-premium text-center">
                   <CardContent className="pt-8 pb-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <audience.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">{audience.title}</h3>
+                    <ServiceIconWrapper variant="navy" className="mx-auto">
+                      <audience.icon className="h-7 w-7 text-primary" />
+                    </ServiceIconWrapper>
+                    <h3 className="font-semibold text-lg mb-2 mt-4">{audience.title}</h3>
                     <p className="text-sm text-muted-foreground">{audience.desc}</p>
                   </CardContent>
                 </Card>
@@ -211,21 +232,25 @@ export default function StrategicAdvisoryCategory() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
+        <section className="py-24 bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-diagonal-pattern opacity-20" />
+          <GradientOrb className="absolute -top-20 -right-20 opacity-20" size="xl" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-15" size="lg" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready for Strategic Transformation?</h2>
-              <p className="text-xl opacity-90 mb-8">
+              <p className="text-xl text-white/90 mb-8">
                 Schedule a confidential discussion with our senior advisors to explore 
                 how we can support your organization's strategic objectives.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild>
+                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white shadow-lg hover:shadow-xl transition-all" asChild>
                   <Link to="/contact" className="inline-flex items-center">
                     Contact Our Team <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10" asChild>
+                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm" asChild>
                   <Link to="/services/executive-search">Executive Search</Link>
                 </Button>
               </div>
