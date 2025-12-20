@@ -221,8 +221,10 @@ serve(async (req) => {
       },
     });
   } catch (error) {
+    // Log detailed error server-side for debugging
     console.error('Error generating RSS feed:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    // Return generic error message to client - avoid exposing internal details
+    return new Response(JSON.stringify({ error: 'Unable to generate feed. Please try again later.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });

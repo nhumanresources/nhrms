@@ -1,6 +1,6 @@
-
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SocialShareButtons from '@/components/SocialShareButtons';
@@ -360,8 +360,8 @@ export default function BlogArticle() {
               <div className="prose max-w-none">
                 <p className="text-lg mb-6">{article.snippet}</p>
                 
-                {/* Render the dynamic content for this article */}
-                <div dangerouslySetInnerHTML={{ __html: blogContents[article.id]?.content || 
+                {/* Render the dynamic content for this article - sanitized with DOMPurify for XSS protection */}
+                <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blogContents[article.id]?.content || 
                   `<p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
@@ -387,7 +387,7 @@ export default function BlogArticle() {
                   <h3>Moving Forward</h3>
                   <p>
                     Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-                  </p>`
+                  </p>`)
                 }} />
               </div>
             </div>
