@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -282,7 +283,7 @@ export default function CaseStudies() {
                             Industry: {study.industry}
                           </DialogDescription>
                         </DialogHeader>
-                        <div className="mt-4 prose prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: study.content }} />
+                        <div className="mt-4 prose prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(study.content) }} />
                       </DialogContent>
                     </Dialog>
                   </CardFooter>
