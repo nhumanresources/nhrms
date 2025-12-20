@@ -6,7 +6,7 @@ import { GradientOrb, PremiumBadge } from '@/components/ui/decorative-elements';
 
 // Visual letter breakdown component for nHRMS
 const NHRMSBreakdown = () => (
-  <div className="flex flex-wrap gap-3 md:gap-4 mt-6 mb-8">
+  <div className="flex flex-wrap gap-3 md:gap-4 mt-6 mb-8 relative z-20">
     {[
       { letter: 'n', word: 'Nurturing', delay: 0 },
       { letter: 'H', word: 'Human', delay: 100 },
@@ -16,11 +16,11 @@ const NHRMSBreakdown = () => (
     ].map((item) => (
       <div 
         key={item.letter}
-        className="flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-xl px-4 py-3 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 animate-fade-in"
-        style={{ animationDelay: `${item.delay}ms` }}
+        className="flex items-center gap-2 bg-white/20 backdrop-blur-lg rounded-xl px-4 py-3 border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-105 animate-fade-in shadow-lg"
+        style={{ animationDelay: `${item.delay}ms`, boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}
       >
-        <span className="text-secondary font-heading text-2xl md:text-3xl font-bold drop-shadow-lg">{item.letter}</span>
-        <span className="text-white/95 text-sm md:text-base font-medium">{item.word}</span>
+        <span className="text-secondary font-heading text-2xl md:text-3xl font-bold" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>{item.letter}</span>
+        <span className="text-white text-sm md:text-base font-semibold" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>{item.word}</span>
       </div>
     ))}
   </div>
@@ -170,23 +170,37 @@ export default function HeroCarousel() {
       {/* Content */}
       <div className="relative z-10 h-full flex items-center">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl">
+          {/* Content backdrop for better readability */}
+          <div className="max-w-3xl relative">
+            <div className="absolute -inset-6 bg-gradient-to-r from-primary/60 via-primary/40 to-transparent rounded-3xl backdrop-blur-sm -z-10" />
+            
             {/* Premium Badge */}
             {slide.badge && (
-              <div className="mb-6 animate-fade-in">
-                <PremiumBadge variant="warm">
+              <div className="mb-6 animate-fade-in relative z-30">
+                <span 
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold shadow-xl"
+                  style={{ 
+                    background: 'linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--accent)) 100%)',
+                    color: 'hsl(var(--primary))',
+                    boxShadow: '0 4px 25px rgba(0,0,0,0.4), 0 0 30px hsl(var(--secondary) / 0.4)'
+                  }}
+                >
                   <Sparkles className="w-4 h-4" />
                   {slide.badge}
-                </PremiumBadge>
+                </span>
               </div>
             )}
 
-            <p className="text-secondary font-semibold text-sm md:text-base uppercase tracking-widest mb-4 animate-fade-in">
+            <p 
+              className="text-secondary font-bold text-sm md:text-base uppercase tracking-widest mb-4 animate-fade-in"
+              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+            >
               {slide.subheadline}
             </p>
             <h1 
               key={`headline-${currentSlide}`}
-              className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.1] animate-fade-in drop-shadow-2xl"
+              className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.1] animate-fade-in"
+              style={{ textShadow: '0 4px 20px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4)' }}
             >
               {slide.headline}
             </h1>
@@ -195,15 +209,18 @@ export default function HeroCarousel() {
             {slide.hasBreakdown ? (
               <div className="animate-fade-in" style={{ animationDelay: '150ms' }}>
                 <NHRMSBreakdown />
-                <p className="text-xl md:text-2xl text-white/90 max-w-2xl leading-relaxed font-light">
+                <p 
+                  className="text-xl md:text-2xl text-white max-w-2xl leading-relaxed font-medium"
+                  style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+                >
                   We nurture organizations through people-first HR solutions.
                 </p>
               </div>
             ) : slide.description && (
               <p 
                 key={`desc-${currentSlide}`}
-                className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed animate-fade-in font-light"
-                style={{ animationDelay: '150ms' }}
+                className="text-lg md:text-xl text-white mb-8 max-w-2xl leading-relaxed animate-fade-in font-medium"
+                style={{ animationDelay: '150ms', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
               >
                 {slide.description}
               </p>
