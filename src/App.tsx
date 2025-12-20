@@ -63,7 +63,11 @@ import LabourCodes from "./pages/LabourCodes";
 import EmployerAdvisory from "./pages/EmployerAdvisory";
 import ComplianceServices from "./pages/services/ComplianceServices";
 import RSS from "./pages/RSS";
-
+import HRTechnologyCategory from "./pages/services/categories/HRTechnologyCategory";
+import StrategicAdvisoryCategory from "./pages/services/categories/StrategicAdvisoryCategory";
+import TalentSolutionsCategory from "./pages/services/categories/TalentSolutionsCategory";
+import ComplianceOperationsCategory from "./pages/services/categories/ComplianceOperationsCategory";
+import LearningEnablementCategory from "./pages/services/categories/LearningEnablementCategory";
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
   
@@ -123,6 +127,13 @@ const App = () => {
             <Route path="/labour-codes" element={<LabourCodes />} />
             <Route path="/employer-advisory-labour-codes" element={<EmployerAdvisory />} />
             <Route path="/services/compliance" element={<ComplianceServices />} />
+            
+            {/* Service Category Landing Pages */}
+            <Route path="/services/hr-technology" element={<HRTechnologyCategory />} />
+            <Route path="/services/strategic-advisory" element={<StrategicAdvisoryCategory />} />
+            <Route path="/services/talent-solutions" element={<TalentSolutionsCategory />} />
+            <Route path="/services/compliance-operations" element={<ComplianceOperationsCategory />} />
+            <Route path="/services/learning-enablement" element={<LearningEnablementCategory />} />
             
             <Route path="/services/internship-programs" element={<InternshipPrograms />} />
             <Route path="/services/total-rewards" element={<TotalRewards />} />
