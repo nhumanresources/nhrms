@@ -43,7 +43,7 @@ const heroSlides: HeroSlide[] = [
     imagePosition: "center right",
     headline: (
       <>
-        Nurturing Human Resources
+        nurturing Human Resources
         <br />
         <span className="text-gradient-warm">&</span> Management Systems
       </>
