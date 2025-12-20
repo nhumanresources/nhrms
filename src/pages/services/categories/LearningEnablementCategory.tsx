@@ -14,8 +14,10 @@ import {
   BookOpen,
   Target,
   TrendingUp,
-  CheckCircle
+  CheckCircle,
+  Sparkles
 } from 'lucide-react';
+import { GradientOrb, PremiumBadge, ServiceIconWrapper } from '@/components/ui/decorative-elements';
 
 const learningServices = [
   {
@@ -93,14 +95,20 @@ export default function LearningEnablementCategory() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-transparent to-primary/60" />
           </div>
+          <div className="absolute inset-0 bg-diagonal-pattern opacity-20" />
+          
+          {/* Decorative Elements */}
+          <GradientOrb className="absolute -top-40 -right-40 opacity-25" size="xl" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-20" size="lg" />
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center px-4 py-2 bg-secondary/20 text-secondary rounded-full text-sm font-semibold mb-6">
+              <PremiumBadge variant="light" className="mb-6">
                 <GraduationCap className="h-4 w-4 mr-2" />
                 Learning & Enablement
-              </span>
+              </PremiumBadge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Learning & Enablement
               </h1>
@@ -109,10 +117,10 @@ export default function LearningEnablementCategory() {
                 world-class learning solutions and development programs.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white" asChild>
+                <Button size="lg" className="btn-primary-premium" asChild>
                   <Link to="/contact">Discuss Training Needs</Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white/10 bg-transparent" asChild>
+                <Button variant="outline" size="lg" className="border-2 border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm" asChild>
                   <Link to="/learning-solutions">View Programs</Link>
                 </Button>
               </div>
@@ -121,13 +129,14 @@ export default function LearningEnablementCategory() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-12 bg-muted/50">
-          <div className="container mx-auto px-4">
+        <section className="py-14 bg-gradient-to-r from-secondary via-secondary/95 to-accent relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+          <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div key={index} className="text-center group hover-lift">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="text-sm text-white/80">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -135,10 +144,17 @@ export default function LearningEnablementCategory() {
         </section>
 
         {/* Services Grid */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-subtle-pattern opacity-50" />
+          <GradientOrb className="absolute top-20 right-10 opacity-10" size="lg" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Learning Services</h2>
+              <PremiumBadge variant="warm" className="mb-4">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Our Services
+              </PremiumBadge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">Learning Services</h2>
               <p className="text-lg text-muted-foreground">
                 Comprehensive development solutions for individuals and organizations.
               </p>
@@ -146,18 +162,18 @@ export default function LearningEnablementCategory() {
             
             <div className="grid md:grid-cols-2 gap-8">
               {learningServices.map((service, index) => (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 border hover:border-primary/30">
+                <Card key={index} className="card-premium group">
                   <CardHeader>
-                    <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="h-7 w-7 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <ServiceIconWrapper variant="warm">
+                      <service.icon className="h-7 w-7 text-secondary" />
+                    </ServiceIconWrapper>
+                    <CardTitle className="text-xl mt-4">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-base mb-4">
                       {service.description}
                     </CardDescription>
-                    <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary/80" asChild>
+                    <Button variant="ghost" className="p-0 h-auto text-secondary hover:text-secondary/80 group-hover:translate-x-1 transition-transform" asChild>
                       <Link to={service.link} className="flex items-center">
                         Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -170,9 +186,16 @@ export default function LearningEnablementCategory() {
         </section>
 
         {/* Program Categories */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-muted/30 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-15" size="xl" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
+              <PremiumBadge variant="navy" className="mb-4">
+                <BookOpen className="h-4 w-4 mr-2" />
+                Program Categories
+              </PremiumBadge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Training Programs</h2>
               <p className="text-lg text-muted-foreground">
                 Skill development across key competency areas.
@@ -181,7 +204,7 @@ export default function LearningEnablementCategory() {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {programCategories.map((category, index) => (
-                <Card key={index} className="border-0 shadow-md">
+                <Card key={index} className="card-premium">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg">{category.title}</CardTitle>
                   </CardHeader>
@@ -189,7 +212,9 @@ export default function LearningEnablementCategory() {
                     <div className="space-y-2">
                       {category.programs.map((program, idx) => (
                         <div key={idx} className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-primary" />
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-secondary/30 to-accent/30 flex items-center justify-center">
+                            <CheckCircle className="h-3 w-3 text-secondary" />
+                          </div>
                           <span className="text-sm text-muted-foreground">{program}</span>
                         </div>
                       ))}
@@ -202,8 +227,10 @@ export default function LearningEnablementCategory() {
         </section>
 
         {/* Delivery Formats */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-subtle-pattern opacity-30" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Flexible Delivery Formats</h2>
@@ -218,10 +245,10 @@ export default function LearningEnablementCategory() {
                     { icon: TrendingUp, title: "Self-Paced E-Learning", desc: "Flexible modules accessible anytime, anywhere" },
                     { icon: Target, title: "Blended Learning", desc: "Combination of formats for optimal outcomes" }
                   ].map((format, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div key={index} className="flex gap-4 group hover-lift">
+                      <ServiceIconWrapper variant="navy" className="flex-shrink-0">
                         <format.icon className="h-5 w-5 text-primary" />
-                      </div>
+                      </ServiceIconWrapper>
                       <div>
                         <h4 className="font-medium">{format.title}</h4>
                         <p className="text-sm text-muted-foreground">{format.desc}</p>
@@ -230,7 +257,7 @@ export default function LearningEnablementCategory() {
                   ))}
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-secondary/10 via-accent/5 to-primary/10 rounded-3xl p-8 border border-secondary/20">
                 <h3 className="text-xl font-semibold mb-6">Corporate Training Benefits</h3>
                 <div className="space-y-3">
                   {[
@@ -242,12 +269,14 @@ export default function LearningEnablementCategory() {
                     "Measurable learning outcomes and ROI tracking"
                   ].map((benefit, index) => (
                     <div key={index} className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="h-3 w-3 text-white" />
+                      </div>
                       <span className="text-foreground">{benefit}</span>
                     </div>
                   ))}
                 </div>
-                <Button className="w-full mt-6" asChild>
+                <Button className="w-full mt-6 btn-primary-premium" asChild>
                   <Link to="/contact">Request Corporate Training Quote</Link>
                 </Button>
               </div>
@@ -256,12 +285,16 @@ export default function LearningEnablementCategory() {
         </section>
 
         {/* Internship Highlight */}
-        <section className="py-16 bg-secondary/10">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-gradient-to-r from-secondary/10 via-accent/5 to-secondary/10 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+          <GradientOrb className="absolute -top-20 -right-20 opacity-15" size="lg" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-flex items-center px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-medium mb-4">
+              <PremiumBadge variant="warm" className="mb-4">
+                <GraduationCap className="h-4 w-4 mr-2" />
                 For Students
-              </span>
+              </PremiumBadge>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Launch Your HR Career With Us
               </h2>
@@ -270,12 +303,12 @@ export default function LearningEnablementCategory() {
                 mentorship, and career exposure for aspiring HR professionals.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button asChild size="lg">
+                <Button size="lg" className="btn-primary-premium" asChild>
                   <Link to="/services/internship-programs">
                     View Internship Programs <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="border-2 border-secondary/30 hover:bg-secondary/10" asChild>
                   <Link to="/careers/internships">
                     Current Openings
                   </Link>
@@ -286,21 +319,25 @@ export default function LearningEnablementCategory() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
+        <section className="py-24 bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-diagonal-pattern opacity-20" />
+          <GradientOrb className="absolute -top-20 -right-20 opacity-20" size="xl" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-15" size="lg" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Invest in Your People</h2>
-              <p className="text-xl opacity-90 mb-8">
+              <p className="text-xl text-white/90 mb-8">
                 Transform your organization through continuous learning and development. 
                 Let us design a program tailored to your needs.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild>
+                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white shadow-lg hover:shadow-xl transition-all" asChild>
                   <Link to="/contact" className="inline-flex items-center">
                     Contact Us <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10" asChild>
+                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm" asChild>
                   <Link to="/learning-solutions">Explore Programs</Link>
                 </Button>
               </div>

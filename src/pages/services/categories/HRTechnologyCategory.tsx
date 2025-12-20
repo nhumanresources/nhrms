@@ -15,8 +15,10 @@ import {
   CheckCircle,
   Zap,
   Shield,
-  Users
+  Users,
+  Sparkles
 } from 'lucide-react';
+import { GradientOrb, PremiumBadge, ServiceIconWrapper } from '@/components/ui/decorative-elements';
 
 const hrTechServices = [
   {
@@ -89,32 +91,35 @@ export default function HRTechnologyCategory() {
       />
       <Navbar />
       <main className="flex-grow pt-16">
-        {/* Hero Section - Premium styling for primary category */}
+        {/* Hero Section */}
         <section className="relative py-28 md:py-36 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-future-100 via-future-300/40 to-neural-200/60" />
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1920')] bg-cover bg-center opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1920')] bg-cover bg-center opacity-15" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" />
+          <div className="absolute inset-0 bg-diagonal-pattern opacity-30" />
+          
+          {/* Decorative Elements */}
+          <GradientOrb className="absolute -top-40 -right-40 opacity-30" size="xl" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-20" size="lg" />
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl">
-              <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-future-600 to-neural-600 text-white rounded-full text-sm font-semibold mb-6">
+              <PremiumBadge variant="light" className="mb-6">
                 <Monitor className="h-4 w-4 mr-2" />
                 Core Expertise
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-future-600 to-neural-600 bg-clip-text text-transparent">
-                  HR Technology Solutions
-                </span>
+              </PremiumBadge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
+                HR Technology Solutions
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
+              <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl">
                 Your trusted Systems Integrator for end-to-end HR technology advisory, 
                 implementation, and optimization. Transform your HR function with the right technology.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-gradient-to-r from-future-600 to-neural-600 hover:from-neural-600 hover:to-future-600 text-white shadow-lg" asChild>
+                <Button size="lg" className="btn-primary-premium" asChild>
                   <Link to="/contact">Request Technology Assessment</Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-2" asChild>
+                <Button variant="outline" size="lg" className="border-2 border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm" asChild>
                   <Link to="/case-studies">View Case Studies</Link>
                 </Button>
               </div>
@@ -123,12 +128,13 @@ export default function HRTechnologyCategory() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-12 bg-gradient-to-r from-future-600 to-neural-600">
-          <div className="container mx-auto px-4">
+        <section className="py-12 bg-gradient-to-r from-secondary via-secondary/95 to-accent relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+          <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center text-white">
-                  <div className="text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
+                <div key={index} className="text-center group hover-lift">
+                  <div className="text-4xl md:text-5xl font-bold mb-2 text-white">{stat.value}</div>
                   <div className="text-white/80">{stat.label}</div>
                 </div>
               ))}
@@ -137,10 +143,17 @@ export default function HRTechnologyCategory() {
         </section>
 
         {/* Services Grid */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-subtle-pattern opacity-50" />
+          <GradientOrb className="absolute top-20 right-10 opacity-10" size="lg" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our HR Technology Services</h2>
+              <PremiumBadge variant="warm" className="mb-4">
+                <Sparkles className="h-4 w-4 mr-2" />
+                Our Services
+              </PremiumBadge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">Our HR Technology Services</h2>
               <p className="text-lg text-muted-foreground">
                 Comprehensive technology solutions across the entire HR technology lifecycle.
               </p>
@@ -148,18 +161,18 @@ export default function HRTechnologyCategory() {
             
             <div className="grid md:grid-cols-2 gap-8">
               {hrTechServices.map((service, index) => (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-future-300">
+                <Card key={index} className="card-premium group">
                   <CardHeader>
-                    <div className="w-14 h-14 bg-gradient-to-br from-future-100 to-neural-100 rounded-xl flex items-center justify-center mb-4 group-hover:from-future-200 group-hover:to-neural-200 transition-colors">
-                      <service.icon className="h-7 w-7 text-future-600" />
-                    </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <ServiceIconWrapper variant="warm">
+                      <service.icon className="h-7 w-7 text-secondary" />
+                    </ServiceIconWrapper>
+                    <CardTitle className="text-xl mt-4">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-base mb-4">
                       {service.description}
                     </CardDescription>
-                    <Button variant="ghost" className="p-0 h-auto text-future-600 hover:text-future-700" asChild>
+                    <Button variant="ghost" className="p-0 h-auto text-secondary hover:text-secondary/80 group-hover:translate-x-1 transition-transform" asChild>
                       <Link to={service.link} className="flex items-center">
                         Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -172,8 +185,11 @@ export default function HRTechnologyCategory() {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-muted/30 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-15" size="xl" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Partner With Us</h2>
               <p className="text-lg text-muted-foreground">
@@ -183,10 +199,10 @@ export default function HRTechnologyCategory() {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {benefits.map((benefit, index) => (
-                <Card key={index} className="text-center border-0 shadow-md">
+                <Card key={index} className="card-premium text-center">
                   <CardContent className="pt-8 pb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-future-100 to-neural-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <benefit.icon className="h-6 w-6 text-future-600" />
+                    <div className="w-14 h-14 bg-gradient-to-br from-secondary/20 to-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                      <benefit.icon className="h-7 w-7 text-secondary" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
                     <p className="text-sm text-muted-foreground">{benefit.description}</p>
@@ -198,8 +214,10 @@ export default function HRTechnologyCategory() {
         </section>
 
         {/* Approach Section */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-subtle-pattern opacity-30" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Implementation Approach</h2>
               <p className="text-lg text-muted-foreground">
@@ -214,8 +232,8 @@ export default function HRTechnologyCategory() {
                 { step: "3", title: "Implement", desc: "Configure, integrate, and deploy with precision" },
                 { step: "4", title: "Optimize", desc: "Continuous improvement and value realization" }
               ].map((phase, index) => (
-                <div key={index} className="relative">
-                  <div className="bg-gradient-to-br from-future-600 to-neural-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                <div key={index} className="relative group hover-lift">
+                  <div className="bg-gradient-to-br from-secondary to-accent text-white w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-xl mb-4 shadow-lg group-hover:shadow-xl transition-shadow">
                     {phase.step}
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{phase.title}</h3>
@@ -227,8 +245,12 @@ export default function HRTechnologyCategory() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-gradient-to-br from-future-700 to-neural-700 text-white">
-          <div className="container mx-auto px-4">
+        <section className="py-24 bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-diagonal-pattern opacity-20" />
+          <GradientOrb className="absolute -top-20 -right-20 opacity-20" size="xl" />
+          <GradientOrb className="absolute -bottom-20 -left-20 opacity-15" size="lg" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your HR Technology?</h2>
               <p className="text-xl text-white/90 mb-8">
@@ -236,12 +258,12 @@ export default function HRTechnologyCategory() {
                 that drive measurable business value.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-white text-future-700 hover:bg-white/90 shadow-lg" asChild>
+                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white shadow-lg hover:shadow-xl transition-all" asChild>
                   <Link to="/contact" className="inline-flex items-center">
                     Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10" asChild>
+                <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm" asChild>
                   <Link to="/services/hr-tech">Explore Services</Link>
                 </Button>
               </div>
