@@ -161,6 +161,23 @@ export default {
           '0%': { transform: 'translateY(-20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' }
         },
+        // Carousel-specific keyframes
+        'carousel-content-in': {
+          '0%': { opacity: '0', transform: 'translateX(30px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' }
+        },
+        'carousel-content-out': {
+          '0%': { opacity: '1', transform: 'translateX(0)' },
+          '100%': { opacity: '0', transform: 'translateX(-30px)' }
+        },
+        'ken-burns': {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.08)' }
+        },
+        'indicator-pulse': {
+          '0%, 100%': { boxShadow: '0 0 15px hsl(var(--secondary) / 0.5)' },
+          '50%': { boxShadow: '0 0 25px hsl(var(--secondary) / 0.8)' }
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -173,6 +190,11 @@ export default {
         'slide-in-left': 'slide-in-left 0.5s ease-out',
         'slide-in-bottom': 'slide-in-bottom 0.5s ease-out',
         'slide-in-top': 'slide-in-top 0.5s ease-out',
+        // Carousel animations
+        'carousel-in': 'carousel-content-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'carousel-out': 'carousel-content-out 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'ken-burns': 'ken-burns 7s ease-out forwards',
+        'indicator-pulse': 'indicator-pulse 2s ease-in-out infinite',
       }
     }
   },
