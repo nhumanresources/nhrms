@@ -62,7 +62,7 @@ import LMSLogin from "./pages/LMSLogin";
 import LabourCodes from "./pages/LabourCodes";
 import EmployerAdvisory from "./pages/EmployerAdvisory";
 import ComplianceServices from "./pages/services/ComplianceServices";
-import ComplianceCalendar from "./pages/ComplianceCalendar";
+import ComplianceCalendar from "./pages/ComplianceCalendarNew";
 import RSS from "./pages/RSS";
 import HRTechnologyCategory from "./pages/services/categories/HRTechnologyCategory";
 import StrategicAdvisoryCategory from "./pages/services/categories/StrategicAdvisoryCategory";
