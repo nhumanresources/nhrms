@@ -62,6 +62,7 @@ import LMSLogin from "./pages/LMSLogin";
 import LabourCodes from "./pages/LabourCodes";
 import EmployerAdvisory from "./pages/EmployerAdvisory";
 import ComplianceServices from "./pages/services/ComplianceServices";
+import ComplianceCalendar from "./pages/ComplianceCalendar";
 import RSS from "./pages/RSS";
 import HRTechnologyCategory from "./pages/services/categories/HRTechnologyCategory";
 import StrategicAdvisoryCategory from "./pages/services/categories/StrategicAdvisoryCategory";
@@ -125,6 +126,7 @@ const App = () => {
             <Route path="/services/hr-tech-solutions" element={<HRTechSolutions />} />
             <Route path="/learning-solutions" element={<LearningServices />} />
             <Route path="/labour-codes" element={<LabourCodes />} />
+            <Route path="/compliance-calendar" element={<ComplianceCalendar />} />
             <Route path="/employer-advisory-labour-codes" element={<EmployerAdvisory />} />
             <Route path="/services/compliance" element={<ComplianceServices />} />
             
