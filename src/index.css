@@ -145,7 +145,8 @@
   }
 
   .text-gradient-warm {
-    @apply bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-amber-300 via-orange-400 to-amber-400 bg-clip-text text-transparent;
+    filter: drop-shadow(0 2px 8px rgba(251, 191, 36, 0.5));
   }
 
   /* Premium Background Patterns */
