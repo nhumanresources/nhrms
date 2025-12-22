@@ -38,12 +38,14 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import { 
   labourLawCompliances, 
   stateWisePTDueDates, 
   frequencyColors,
   type ComplianceItem 
 } from '@/data/complianceCalendar';
+import { generateCompliancePDF } from '@/utils/generateCompliancePDF';
 
 const months = [
   'All Months', 'January', 'February', 'March', 'April', 'May', 'June',
@@ -55,11 +57,25 @@ const frequencies = ['All', 'Monthly', 'Quarterly', 'Half-Yearly', 'Annual', 'As
 export default function ComplianceCalendar() {
   const [selectedFrequency, setSelectedFrequency] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('labour-law');
+  const [activeTab, setActiveTab] = useState<'labour-law' | 'state-pt'>('labour-law');
+  const [isExporting, setIsExporting] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleExportPDF = async () => {
+    setIsExporting(true);
+    try {
+      generateCompliancePDF(activeTab, filteredCompliances, selectedFrequency);
+      toast.success('PDF downloaded successfully!');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast.error('Failed to generate PDF. Please try again.');
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   const filteredCompliances = labourLawCompliances.filter(item => {
     const matchesFrequency = selectedFrequency === 'All' || item.frequency === selectedFrequency;
@@ -156,7 +172,7 @@ export default function ComplianceCalendar() {
         {/* Main Content */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'labour-law' | 'state-pt')} className="space-y-8">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <TabsList className="bg-muted/50 p-1">
                   <TabsTrigger value="labour-law" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
@@ -190,6 +206,15 @@ export default function ComplianceCalendar() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <Button 
+                    onClick={handleExportPDF}
+                    disabled={isExporting}
+                    variant="outline"
+                    className="gap-2"
+                  >
+                    <Download className="w-4 h-4" />
+                    {isExporting ? 'Exporting...' : 'Download PDF'}
+                  </Button>
                 </div>
               </div>
 
