@@ -69,6 +69,12 @@ import StrategicAdvisoryCategory from "./pages/services/categories/StrategicAdvi
 import TalentSolutionsCategory from "./pages/services/categories/TalentSolutionsCategory";
 import ComplianceOperationsCategory from "./pages/services/categories/ComplianceOperationsCategory";
 import LearningEnablementCategory from "./pages/services/categories/LearningEnablementCategory";
+import AcademyHome from "./pages/academy/AcademyHome";
+import CourseCatalog from "./pages/academy/CourseCatalog";
+import CoursePage from "./pages/academy/CoursePage";
+import LearningPaths from "./pages/academy/LearningPaths";
+import Resources from "./pages/academy/Resources";
+
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
   
@@ -173,6 +179,13 @@ const App = () => {
             
             {/* RSS Feed */}
             <Route path="/rss" element={<RSS />} />
+            
+            {/* nHRMS Academy Routes */}
+            <Route path="/academy" element={<AcademyHome />} />
+            <Route path="/academy/courses" element={<CourseCatalog />} />
+            <Route path="/academy/courses/:courseId" element={<CoursePage />} />
+            <Route path="/academy/learning-paths" element={<LearningPaths />} />
+            <Route path="/academy/resources" element={<Resources />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
