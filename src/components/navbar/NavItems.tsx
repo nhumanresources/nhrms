@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavItemsProps {
@@ -151,6 +151,21 @@ export const NavItems = ({ isActive, isScrolled }: NavItemsProps) => {
           </div>
         </div>
       </div>
+      
+      {/* Academy - Featured Navigation Item */}
+      <Link 
+        to="/academy"
+        className={cn(
+          "relative px-3 py-1.5 text-sm font-semibold rounded-full flex items-center gap-1.5 transition-all duration-200",
+          isScrolled 
+            ? "text-white bg-primary hover:bg-primary/90" 
+            : "text-primary bg-white hover:bg-white/90",
+          isActive('/academy') && "ring-2 ring-offset-2 ring-primary/50"
+        )}
+      >
+        <GraduationCap size={16} />
+        Academy
+      </Link>
       
       <a 
         href="https://careeredge.nhrms.com" 

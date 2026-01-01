@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ChevronDown, Phone } from 'lucide-react';
+import { ChevronDown, Phone, GraduationCap } from 'lucide-react';
 
 export const MobileNavItems = () => (
   <>
@@ -120,6 +120,30 @@ export const MobileNavItems = () => (
           <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Blog</div>
           <Link to="/blog" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Blog
+          </Link>
+        </div>
+      </details>
+    </div>
+
+    {/* nHRMS Academy Section */}
+    <div className="px-3 py-2">
+      <details className="group">
+        <summary className="flex items-center text-sm font-medium cursor-pointer text-primary">
+          <GraduationCap size={16} className="mr-1" />
+          Academy <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
+        </summary>
+        <div className="mt-2 ml-2 space-y-1 border-l-2 border-primary/20 pl-2">
+          <Link to="/academy" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors font-medium">
+            Academy Home
+          </Link>
+          <Link to="/academy/courses" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            All Courses
+          </Link>
+          <Link to="/academy/learning-paths" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Learning Paths
+          </Link>
+          <Link to="/academy/resources" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Free Resources
           </Link>
         </div>
       </details>
