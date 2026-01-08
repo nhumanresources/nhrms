@@ -77,6 +77,11 @@ export const serviceCategories: ServiceCategoryType[] = [
         name: "Career Development",
         link: "/services/career-development",
         description: "Create pathways for employee growth and advancement."
+      },
+      {
+        name: "Performance Management",
+        link: "/services/performance-management",
+        description: "Design and run high-impact performance management systems."
       }
     ]
   },
