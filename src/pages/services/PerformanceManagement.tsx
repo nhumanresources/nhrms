@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,21 +9,51 @@ import {
   TrendingUp, 
   Users, 
   BarChart3, 
-  Settings, 
   Award,
   CheckCircle2,
   ArrowRight,
   Lightbulb,
   Cog,
   LineChart,
-  ClipboardCheck
+  ClipboardCheck,
+  Download,
+  FileText,
+  Loader2
 } from "lucide-react";
-
+import { generatePMSChecklist, generateGoalSettingTemplate } from "@/utils/generatePMSResources";
+import { toast } from "sonner";
 const PerformanceManagement = () => {
+  const [downloadingChecklist, setDownloadingChecklist] = useState(false);
+  const [downloadingTemplate, setDownloadingTemplate] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Performance Management Systems | nHRMS";
   }, []);
+
+  const handleDownloadChecklist = () => {
+    setDownloadingChecklist(true);
+    try {
+      generatePMSChecklist();
+      toast.success("PMS Implementation Checklist downloaded successfully!");
+    } catch (error) {
+      toast.error("Failed to download checklist. Please try again.");
+    } finally {
+      setDownloadingChecklist(false);
+    }
+  };
+
+  const handleDownloadTemplate = () => {
+    setDownloadingTemplate(true);
+    try {
+      generateGoalSettingTemplate();
+      toast.success("Goal-Setting Templates downloaded successfully!");
+    } catch (error) {
+      toast.error("Failed to download template. Please try again.");
+    } finally {
+      setDownloadingTemplate(false);
+    }
+  };
 
   const services = [
     {
@@ -259,7 +289,119 @@ const PerformanceManagement = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Resources Section */}
+      <section className="py-20 md:py-28 bg-muted/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 mb-4">
+              <Download className="w-4 h-4 text-primary" />
+              <span className="text-primary text-sm font-medium">Free Resources</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              PMS Implementation Toolkit
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Download practical tools to kickstart your performance management transformation
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Checklist Card */}
+            <Card className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30 overflow-hidden">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                  <ClipboardCheck className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  PMS Implementation Checklist
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  A comprehensive step-by-step checklist covering all four phases of PMS implementation—from discovery to optimization.
+                </p>
+                <ul className="space-y-2 mb-6 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    20+ actionable items
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    Pro tips included
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    Print-ready format
+                  </li>
+                </ul>
+                <Button 
+                  onClick={handleDownloadChecklist}
+                  disabled={downloadingChecklist}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  {downloadingChecklist ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="mr-2 h-4 w-4" />
+                      Download PDF
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Template Card */}
+            <Card className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30 overflow-hidden">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                  <Target className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  Goal-Setting Templates
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Ready-to-use SMART goals and OKR templates with examples to help your teams set clear, measurable objectives.
+                </p>
+                <ul className="space-y-2 mb-6 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    SMART goals worksheet
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    OKR framework template
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    Real-world examples
+                  </li>
+                </ul>
+                <Button 
+                  onClick={handleDownloadTemplate}
+                  disabled={downloadingTemplate}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  {downloadingTemplate ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="mr-2 h-4 w-4" />
+                      Download PDF
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
