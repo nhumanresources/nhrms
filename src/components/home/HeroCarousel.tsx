@@ -213,13 +213,13 @@ export default function HeroCarousel() {
       <div className="relative z-10 h-full flex items-center">
         <div className="container mx-auto px-4 md:px-6">
           {/* Content backdrop for better readability */}
-          <div className="max-w-3xl relative">
+          <div className="max-w-3xl relative pt-8 md:pt-12">
             <div className="absolute -inset-6 bg-gradient-to-r from-primary/60 via-primary/40 to-transparent rounded-3xl backdrop-blur-sm -z-10" />
             
             {/* Premium Badge */}
             {slide.badge && (
               <div 
-                className={`mb-6 relative z-30 ${
+                className={`mt-4 md:mt-8 mb-6 relative z-30 ${
                   contentVisible ? 'animate-carousel-in' : 'opacity-0'
                 }`}
                 style={{ animationDelay: '0ms', animationFillMode: 'both' }}
