@@ -49,6 +49,7 @@ import TotalRewards from "./pages/services/TotalRewards";
 import OrganizationStrategy from "./pages/services/OrganizationStrategy";
 import CareerDevelopment from "./pages/services/CareerDevelopment";
 import Certifications from "./pages/services/Certifications";
+import PerformanceManagement from "./pages/services/PerformanceManagement";
 import LeadershipDevelopmentService from "./pages/services/LeadershipDevelopmentService";
 import Mail from "./pages/Mail";
 import Sitemap from "./components/Sitemap";
@@ -149,6 +150,7 @@ const App = () => {
             <Route path="/services/career-development" element={<CareerDevelopment />} />
             <Route path="/services/certifications" element={<Certifications />} />
             <Route path="/services/leadership-&-professional-development" element={<LeadershipDevelopmentService />} />
+            <Route path="/services/performance-management" element={<PerformanceManagement />} />
             
             <Route path="/services/:serviceName" element={<DefaultServicePage />} />
             
