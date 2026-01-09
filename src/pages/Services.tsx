@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import ServicesMenu from '@/components/services-menu';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, FileText, UserSearch, BarChart, Briefcase, Monitor, GraduationCap, Sparkles } from 'lucide-react';
+import { ArrowRight, FileText, UserSearch, BarChart, Briefcase, Monitor, GraduationCap, Sparkles, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GradientOrb, PremiumBadge, ServiceIconWrapper } from '@/components/ui/decorative-elements';
 
@@ -56,6 +56,13 @@ export default function Services() {
       description: "Implementation and optimization of HR technology systems.",
       link: "/services/hr-tech",
       gradient: 'accent' as const
+    },
+    {
+      icon: Target,
+      title: "Performance Management",
+      description: "Design and run high-impact performance management systems for your organization.",
+      link: "/services/performance-management",
+      gradient: 'warm' as const
     }
   ];
 
