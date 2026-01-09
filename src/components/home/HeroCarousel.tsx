@@ -115,6 +115,21 @@ const heroSlides: HeroSlide[] = [
     description: "Get enterprise-level HR expertise without the overhead. Build, operate, and transfer with confidence.",
     cta: { text: "Learn More", link: "/services/bot-hr-teams" },
     badge: "Enterprise Quality"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
+    imagePosition: "center",
+    headline: (
+      <>
+        Drive Performance
+        <br />
+        <span className="text-gradient-warm">Excellence</span>
+      </>
+    ),
+    subheadline: "Performance Management Systems",
+    description: "Design, implement, and run high-impact PMS that aligns employee goals with business outcomes.",
+    cta: { text: "Explore PMS", link: "/services/performance-management" },
+    badge: "Goal-Setting Experts"
   }
 ];
 
