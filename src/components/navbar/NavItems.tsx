@@ -70,6 +70,14 @@ export const NavItems = ({ isActive, isScrolled }: NavItemsProps) => {
               All Services
             </Link>
             <div className="my-2 border-t border-border/30" />
+            <div className="px-4 py-1 text-xs font-semibold text-primary/70 uppercase tracking-wide">Talent Solutions</div>
+            <Link to="/services/performance-management" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+              Performance Management
+            </Link>
+            <Link to="/services/talent-acquisition" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+              Talent Acquisition
+            </Link>
+            <div className="my-2 border-t border-border/30" />
             <div className="px-4 py-1 text-xs font-semibold text-primary/70 uppercase tracking-wide">Compliance</div>
             <Link to="/labour-codes" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
               Implementation of Labour Codes

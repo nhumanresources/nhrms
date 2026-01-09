@@ -45,6 +45,11 @@ export const MobileNavItems = () => (
             Fractional HR Solutions (BOT)
           </Link>
           
+          <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Talent</div>
+          <Link to="/services/performance-management" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Performance Management
+          </Link>
+          
           <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Growth</div>
           <Link to="/services/go-to-market" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Go to Market Strategy & Execution
