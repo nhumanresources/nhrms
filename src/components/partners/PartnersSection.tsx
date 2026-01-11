@@ -32,6 +32,18 @@ export default function PartnersSection() {
       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Zoho_logo.svg/512px-Zoho_logo.svg.png",
       description: "Business Software Suite & HR Solutions",
       category: "HR Tech"
+    },
+    {
+      name: "Udemy Business",
+      logo: "https://logos-world.net/wp-content/uploads/2021/11/Udemy-Logo.png",
+      description: "Corporate Learning & Development Platform",
+      category: "Knowledge"
+    },
+    {
+      name: "NPA Worldwide",
+      logo: "https://npaworldwide.com/wp-content/uploads/2021/06/npa-worldwide-logo.svg",
+      description: "Global Recruitment Network",
+      category: "Recruitment"
     }
   ];
 
