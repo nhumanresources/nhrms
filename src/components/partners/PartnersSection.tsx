@@ -10,12 +10,6 @@ export default function PartnersSection() {
       category: "HR Tech"
     },
     {
-      name: "Oracle",
-      logo: "https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png",
-      description: "Enterprise Technology Solutions",
-      category: "Enterprise"
-    },
-    {
       name: "Microsoft",
       logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
       description: "Enterprise Technology Solutions",
