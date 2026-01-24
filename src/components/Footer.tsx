@@ -222,7 +222,7 @@ export default function Footer() {
 
         <div className="border-t border-border/50 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © 2009-{currentYear} nHRMS Inc. All rights reserved.
+            © 2009-{currentYear} nHRMS Inc. All rights reserved. | An RYT Group Firm
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">

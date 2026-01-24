@@ -21,6 +21,10 @@ const Sitemap = () => {
       'url': 'https://nhrms.com',
       'logo': 'https://nhrms.com/logo.png',
       'description': 'Strategic 360 Degree HR Management Consulting Firm',
+      'parentOrganization': {
+        '@type': 'Organization',
+        'name': 'RYT Group'
+      },
       'contactPoint': {
         '@type': 'ContactPoint',
         'telephone': '+1-314-485-4747',

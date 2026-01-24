@@ -22,6 +22,9 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
+            <span className="inline-block bg-white/20 text-white/90 text-xs px-3 py-1 rounded-full mb-3">
+              An RYT Group Firm
+            </span>
             <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
               About nHRMS
             </p>
