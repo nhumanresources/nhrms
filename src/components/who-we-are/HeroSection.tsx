@@ -22,9 +22,9 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="inline-block bg-white/20 text-white/90 text-xs px-3 py-1 rounded-full mb-3">
+            <a href="https://rytadvisory.com" target="_blank" rel="noopener noreferrer" className="inline-block bg-white/20 text-white/90 hover:bg-white/30 text-xs px-3 py-1 rounded-full mb-3 transition-colors">
               An RYT Group Firm
-            </span>
+            </a>
             <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
               About nHRMS
             </p>

@@ -126,7 +126,7 @@ export default function AcademyFooter() {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} nHRMS Academy. All rights reserved. | An RYT Group Firm
+              © {currentYear} nHRMS Academy. All rights reserved. | <a href="https://rytadvisory.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">An RYT Group Firm</a>
             </p>
             <div className="flex gap-6">
               <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
