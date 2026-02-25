@@ -2,72 +2,167 @@ import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Check, UserSearch, BarChart, Users, ArrowRight, CheckCircle2, FileCheck, Briefcase, Star } from 'lucide-react';
+import { Check, UserSearch, BarChart, Users, ArrowRight, CheckCircle2, FileCheck, Briefcase, Star, Globe, MapPin, Award, Target, Shield, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import SEO from '@/components/SEO';
 
 export default function ExecutiveSearch() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const regions = [
+    { name: "North America", cities: "New York, San Francisco, Toronto, Chicago" },
+    { name: "Europe", cities: "London, Frankfurt, Amsterdam, Paris" },
+    { name: "Middle East & Africa", cities: "Dubai, Riyadh, Johannesburg, Nairobi" },
+    { name: "Asia Pacific", cities: "Singapore, Mumbai, Sydney, Tokyo" },
+    { name: "India", cities: "Mumbai, Bangalore, Delhi NCR, Hyderabad" },
+    { name: "Latin America", cities: "São Paulo, Mexico City, Buenos Aires" },
+  ];
+
+  const industries = [
+    "Technology & SaaS", "Financial Services & Banking", "Healthcare & Life Sciences",
+    "Manufacturing & Industrial", "Consumer & Retail", "Energy & Infrastructure",
+    "Professional Services", "Media & Entertainment", "Telecommunications",
+    "Automotive & Mobility", "Real Estate & Hospitality", "Education & EdTech"
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO 
+        title="Worldwide Executive Search | nHRMS"
+        description="nHRMS delivers world-class executive search across 30+ countries. Find exceptional C-suite and senior leaders with our proven A-Method© Scorecard framework."
+      />
       <Navbar />
       <main className="flex-grow pt-20">
-        {/* Hero Section */}
-        <section className="py-16 md:py-24 bg-primary/5">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+        {/* Hero Section - Premium Dark */}
+        <section className="relative py-20 md:py-32 bg-foreground overflow-hidden">
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }} />
+          {/* Gradient accent */}
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent" />
+          
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-6">Executive Search</h1>
-                <p className="text-xl text-muted-foreground mb-8">
-                  Finding exceptional leaders who drive organizational success through our proven executive search methodology.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">Tailored search strategies aligned with your organizational objectives</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">Deep industry knowledge and extensive candidate networks</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">Comprehensive assessment of leadership capabilities and cultural fit</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <p className="text-muted-foreground">Jeff Smart's A-Method© Scorecard for evidence-based selection</p>
-                  </div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Globe className="h-5 w-5 text-primary" />
+                  <span className="text-primary font-medium text-sm uppercase tracking-widest">Worldwide Executive Search</span>
                 </div>
-                <div className="mt-8">
-                  <Button asChild>
-                    <Link to="/contact">Request a Consultation</Link>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-6 leading-tight">
+                  Leaders Who Shape <br className="hidden md:block" />
+                  <span className="text-primary">the Future</span>
+                </h1>
+                <p className="text-lg text-background/70 mb-8 max-w-lg leading-relaxed">
+                  We identify, assess, and place exceptional C-suite and senior executives across 30+ countries. Our worldwide reach, combined with deep local expertise, ensures the right leadership fit — anywhere in the world.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button size="lg" asChild className="text-base">
+                    <Link to="/contact">
+                      Start Your Search <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild className="text-base border-background/20 text-background hover:bg-background/10">
+                    <a href="#process">Our Methodology</a>
                   </Button>
                 </div>
               </div>
-              <div className="relative rounded-xl overflow-hidden aspect-video md:aspect-square">
-                <img 
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1920"
-                  alt="Executive meeting discussing leadership search"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent"></div>
+              <div className="hidden lg:block">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-4">
+                    <div className="bg-background/5 border border-background/10 rounded-2xl p-6 backdrop-blur-sm">
+                      <div className="text-4xl font-bold text-primary mb-1">30+</div>
+                      <div className="text-background/60 text-sm">Countries Served</div>
+                    </div>
+                    <div className="bg-background/5 border border-background/10 rounded-2xl p-6 backdrop-blur-sm">
+                      <div className="text-4xl font-bold text-primary mb-1">92%</div>
+                      <div className="text-background/60 text-sm">Placement Success Rate</div>
+                    </div>
+                  </div>
+                  <div className="space-y-4 mt-8">
+                    <div className="bg-background/5 border border-background/10 rounded-2xl p-6 backdrop-blur-sm">
+                      <div className="text-4xl font-bold text-primary mb-1">500+</div>
+                      <div className="text-background/60 text-sm">Executive Placements</div>
+                    </div>
+                    <div className="bg-background/5 border border-background/10 rounded-2xl p-6 backdrop-blur-sm">
+                      <div className="text-4xl font-bold text-primary mb-1">12+</div>
+                      <div className="text-background/60 text-sm">Industry Verticals</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Scorecard Framework Section */}
-        <section className="py-16 bg-background">
+        {/* Global Reach Section */}
+        <section className="py-16 md:py-20 bg-background">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">The A-Method© Scorecard Framework</h2>
-              <p className="text-muted-foreground">
-                Our executive search process incorporates Jeff Smart's renowned A-Method© Scorecard framework to ensure objective, data-driven hiring decisions.
+            <div className="text-center mb-14">
+              <span className="text-primary font-medium text-sm uppercase tracking-widest mb-3 block">Global Presence</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Search Without Borders</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Our executive search practice operates across six continents, with on-the-ground expertise in key markets worldwide.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {regions.map((region) => (
+                <div key={region.name} className="group relative bg-card border border-border/50 rounded-xl p-6 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-3">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    <h3 className="text-lg font-semibold">{region.name}</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{region.cities}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* What We Search For */}
+        <section className="py-16 md:py-20 bg-muted/30">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center mb-14">
+              <span className="text-primary font-medium text-sm uppercase tracking-widest mb-3 block">Leadership Roles</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Roles We Specialize In</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                From C-suite to senior functional leaders, we search for executives who transform organizations.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { icon: Target, title: "C-Suite", desc: "CEO, COO, CFO, CTO, CHRO, CMO, CIO" },
+                { icon: Users, title: "Board & Advisory", desc: "Independent Directors, Advisory Board Members" },
+                { icon: Award, title: "Senior VPs & Directors", desc: "SVP, VP, Senior Directors across functions" },
+                { icon: Zap, title: "Functional Heads", desc: "Country Heads, Business Unit Leads, Practice Heads" },
+              ].map((role) => (
+                <div key={role.title} className="bg-background border border-border/50 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <role.icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{role.title}</h3>
+                  <p className="text-sm text-muted-foreground">{role.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* A-Method Scorecard Section */}
+        <section id="process" className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="max-w-3xl mx-auto text-center mb-14">
+              <span className="text-primary font-medium text-sm uppercase tracking-widest mb-3 block">Our Framework</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">The A-Method© Scorecard Framework</h2>
+              <p className="text-muted-foreground text-lg">
+                We use Jeff Smart's renowned A-Method© Scorecard to ensure objective, evidence-based hiring decisions — globally.
               </p>
             </div>
             
@@ -86,10 +181,10 @@ export default function ExecutiveSearch() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">
-                        The A-Method© Scorecard is a structured evaluation framework developed by Jeff Smart that transforms traditional, subjective hiring into an objective, evidence-based process. It provides a consistent method for defining role requirements, evaluating candidates, and making hiring decisions.
+                        The A-Method© Scorecard is a structured evaluation framework that transforms traditional, subjective hiring into an objective, evidence-based process. It provides a consistent method for defining role requirements, evaluating candidates, and making hiring decisions.
                       </p>
                       <p className="text-muted-foreground">
-                        Unlike traditional job descriptions that focus on responsibilities and qualifications, the Scorecard focuses on outcomes and competencies, creating a clear definition of what "good" looks like for each role, along with metrics to evaluate success.
+                        Unlike traditional job descriptions that focus on responsibilities and qualifications, the Scorecard focuses on outcomes and competencies, creating a clear definition of what "good" looks like — regardless of geography or culture.
                       </p>
                       <div className="mt-6 bg-primary/5 rounded-lg p-6">
                         <div className="flex items-start">
@@ -111,51 +206,26 @@ export default function ExecutiveSearch() {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-8">
-                        <div className="flex items-start">
-                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                            <span className="text-primary font-bold">1</span>
+                        {[
+                          { num: "1", title: "Mission", desc: "A clear statement of the role's purpose and how it contributes to organizational success. This provides alignment with strategic objectives and sets the context for performance expectations." },
+                          { num: "2", title: "Outcomes", desc: "Specific, measurable results the person in the role must achieve, typically within the first 6-18 months. These are the 'what' of the role — concrete accomplishments with timeframes.", list: ["3-8 critical outcomes", "Specific, measurable, and time-bound", "Aligned with organizational priorities"] },
+                          { num: "3", title: "Competencies", desc: "The 'how' of the role — behaviors, skills, and traits required for success. These include both technical competencies specific to the role and leadership competencies that align with your organizational culture.", list: ["Technical competencies (role-specific expertise)", "Leadership competencies (cultural and behavioral fit)", "Each competency includes observable behaviors"] },
+                        ].map((item) => (
+                          <div key={item.num} className="flex items-start">
+                            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                              <span className="text-primary font-bold">{item.num}</span>
+                            </div>
+                            <div>
+                              <h4 className="text-xl font-medium mb-2">{item.title}</h4>
+                              <p className="text-muted-foreground">{item.desc}</p>
+                              {item.list && (
+                                <ul className="mt-3 pl-5 list-disc text-muted-foreground">
+                                  {item.list.map((l) => <li key={l}>{l}</li>)}
+                                </ul>
+                              )}
+                            </div>
                           </div>
-                          <div>
-                            <h4 className="text-xl font-medium mb-2">Mission</h4>
-                            <p className="text-muted-foreground">
-                              A clear statement of the role's purpose and how it contributes to organizational success. This provides alignment with strategic objectives and sets the context for performance expectations.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start">
-                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                            <span className="text-primary font-bold">2</span>
-                          </div>
-                          <div>
-                            <h4 className="text-xl font-medium mb-2">Outcomes</h4>
-                            <p className="text-muted-foreground">
-                              Specific, measurable results the person in the role must achieve, typically within the first 6-18 months. These are the "what" of the role — concrete accomplishments with timeframes.
-                            </p>
-                            <ul className="mt-3 pl-5 list-disc text-muted-foreground">
-                              <li>3-8 critical outcomes</li>
-                              <li>Specific, measurable, and time-bound</li>
-                              <li>Aligned with organizational priorities</li>
-                            </ul>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start">
-                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                            <span className="text-primary font-bold">3</span>
-                          </div>
-                          <div>
-                            <h4 className="text-xl font-medium mb-2">Competencies</h4>
-                            <p className="text-muted-foreground">
-                              The "how" of the role — behaviors, skills, and traits required for success. These include both technical competencies specific to the role and leadership competencies that align with your organizational culture.
-                            </p>
-                            <ul className="mt-3 pl-5 list-disc text-muted-foreground">
-                              <li>Technical competencies (role-specific expertise)</li>
-                              <li>Leadership competencies (cultural and behavioral fit)</li>
-                              <li>Each competency includes observable behaviors</li>
-                            </ul>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </CardContent>
                   </Card>
@@ -168,65 +238,22 @@ export default function ExecutiveSearch() {
                     </CardHeader>
                     <CardContent>
                       <div className="grid md:grid-cols-2 gap-6">
-                        <div className="flex items-start">
-                          <CheckCircle2 className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium mb-1">Alignment</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Creates alignment among stakeholders on what success looks like before the search begins.
-                            </p>
+                        {[
+                          { title: "Alignment", desc: "Creates alignment among stakeholders on what success looks like before the search begins." },
+                          { title: "Objectivity", desc: "Reduces subjective bias in assessment through specific, measurable criteria." },
+                          { title: "Focus", desc: "Keeps the search focused on candidates who can deliver specific outcomes." },
+                          { title: "Accountability", desc: "Provides a clear framework for performance management after hiring." },
+                          { title: "Interview Quality", desc: "Enables focused, structured interviews that assess candidates against specific outcomes." },
+                          { title: "Onboarding Acceleration", desc: "Provides new hires with a clear roadmap for success from day one." },
+                        ].map((b) => (
+                          <div key={b.title} className="flex items-start">
+                            <CheckCircle2 className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
+                            <div>
+                              <h4 className="font-medium mb-1">{b.title}</h4>
+                              <p className="text-sm text-muted-foreground">{b.desc}</p>
+                            </div>
                           </div>
-                        </div>
-                        
-                        <div className="flex items-start">
-                          <CheckCircle2 className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium mb-1">Objectivity</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Reduces subjective bias in assessment through specific, measurable criteria.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start">
-                          <CheckCircle2 className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium mb-1">Focus</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Keeps the search focused on candidates who can deliver specific outcomes, not just those with impressive backgrounds.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start">
-                          <CheckCircle2 className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium mb-1">Accountability</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Provides a clear framework for performance management after hiring.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start">
-                          <CheckCircle2 className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium mb-1">Interview Quality</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Enables focused, structured interviews that assess candidates against specific outcomes and competencies.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start">
-                          <CheckCircle2 className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                          <div>
-                            <h4 className="font-medium mb-1">Onboarding Acceleration</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Provides new hires with a clear roadmap for success from day one.
-                            </p>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                       
                       <div className="mt-8 bg-primary/5 p-6 rounded-lg">
@@ -248,180 +275,118 @@ export default function ExecutiveSearch() {
         </section>
 
         {/* Process Section */}
-        <section className="py-16 bg-primary/5">
+        <section className="py-16 md:py-20 bg-muted/30">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Our Executive Search Process</h2>
-              <p className="text-muted-foreground">
-                A systematic and proven approach to identifying and securing the ideal leadership talent for your organization.
+            <div className="max-w-3xl mx-auto text-center mb-14">
+              <span className="text-primary font-medium text-sm uppercase tracking-widest mb-3 block">The Process</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Executive Search Process</h2>
+              <p className="text-muted-foreground text-lg">
+                A systematic and proven approach to identifying and securing leadership talent — across borders and time zones.
               </p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-background border border-border/50 p-6 rounded-lg">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-primary font-bold">01</span>
+              {[
+                { step: "01", title: "Discovery & Strategy", desc: "In-depth consultations to understand your organizational needs, culture, and leadership requirements — contextualized for your market.", items: ["Stakeholder interviews", "Scorecard development", "Global market mapping"] },
+                { step: "02", title: "Search & Assessment", desc: "We leverage worldwide networks and proprietary databases to identify and rigorously assess potential candidates across geographies.", items: ["Cross-border talent mapping", "Structured scorecard interviews", "Rigorous reference checking"] },
+                { step: "03", title: "Selection & Onboarding", desc: "We facilitate the selection process and provide ongoing support to ensure a smooth transition — including cross-cultural integration.", items: ["Final candidate presentation", "Offer negotiation support", "Onboarding & integration planning"] },
+              ].map((p) => (
+                <div key={p.step} className="bg-background border border-border/50 p-8 rounded-xl">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-primary font-bold">{p.step}</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{p.title}</h3>
+                  <p className="text-muted-foreground mb-4">{p.desc}</p>
+                  <ul className="space-y-2 text-sm">
+                    {p.items.map((item) => (
+                      <li key={item} className="flex items-center">
+                        <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-xl font-medium mb-3">Discovery & Strategy</h3>
-                <p className="text-muted-foreground mb-4">
-                  We conduct in-depth consultations to understand your organizational needs, culture, and leadership requirements.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Stakeholder interviews
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Scorecard development
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Search strategy creation
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="bg-background border border-border/50 p-6 rounded-lg">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-primary font-bold">02</span>
-                </div>
-                <h3 className="text-xl font-medium mb-3">Search & Assessment</h3>
-                <p className="text-muted-foreground mb-4">
-                  Our team leverages industry networks and proprietary databases to identify and rigorously assess potential candidates.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Market mapping & research
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Structured scorecard interviews
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Rigorous reference checking
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="bg-background border border-border/50 p-6 rounded-lg">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-primary font-bold">03</span>
-                </div>
-                <h3 className="text-xl font-medium mb-3">Selection & Onboarding</h3>
-                <p className="text-muted-foreground mb-4">
-                  We facilitate the selection process and provide ongoing support to ensure a smooth transition for the new executive.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Final candidate presentation
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Offer negotiation support
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-4 w-4 text-primary mr-2" />
-                    Onboarding & integration planning
-                  </li>
-                </ul>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Industries Section */}
-        <section className="py-16 bg-background">
+        <section className="py-16 md:py-20 bg-background">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Industries We Serve</h2>
-              <p className="text-muted-foreground">
-                Our executive search expertise spans across various sectors, with specialized knowledge of industry-specific leadership requirements.
+            <div className="text-center mb-14">
+              <span className="text-primary font-medium text-sm uppercase tracking-widest mb-3 block">Industry Expertise</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Industries We Serve Worldwide</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Deep domain expertise across 12+ industry verticals, with an understanding of sector-specific leadership demands in every market.
               </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Technology</h3>
-              </div>
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Financial Services</h3>
-              </div>
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Healthcare</h3>
-              </div>
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Life Sciences</h3>
-              </div>
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Manufacturing</h3>
-              </div>
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Consumer Goods</h3>
-              </div>
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Professional Services</h3>
-              </div>
-              <div className="bg-background p-6 rounded-lg text-center hover:shadow-md transition-shadow border border-border/50">
-                <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary/60" />
-                <h3 className="font-medium">Energy & Utilities</h3>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {industries.map((industry) => (
+                <div key={industry} className="bg-card border border-border/50 p-5 rounded-xl text-center hover:border-primary/30 hover:shadow-md transition-all duration-300">
+                  <Briefcase className="h-7 w-7 mx-auto mb-3 text-primary/60" />
+                  <h3 className="font-medium text-sm">{industry}</h3>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-16 bg-primary/5">
+        {/* Why nHRMS for Executive Search */}
+        <section className="py-16 md:py-20 bg-muted/30">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="flex justify-center mb-4">
-                  <Users className="h-10 w-10 text-primary" />
+            <div className="text-center mb-14">
+              <span className="text-primary font-medium text-sm uppercase tracking-widest mb-3 block">Why nHRMS</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">The nHRMS Advantage</h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {[
+                { icon: Globe, title: "Worldwide Reach, Local Depth", desc: "Searches executed across 30+ countries with on-the-ground market intelligence and cultural understanding." },
+                { icon: Shield, title: "Confidential & Discreet", desc: "Every engagement is handled with the highest level of confidentiality for both clients and candidates." },
+                { icon: FileCheck, title: "Proven Methodology", desc: "A-Method© Scorecard ensures evidence-based, objective hiring — eliminating costly mis-hires." },
+                { icon: Award, title: "Exclusive Networks", desc: "Access to passive candidates and hidden talent pools that traditional recruiting cannot reach." },
+                { icon: Target, title: "Guaranteed Outcomes", desc: "Performance-backed placements with replacement guarantees that reflect our confidence in every search." },
+                { icon: Users, title: "An RYT Group Firm", desc: "Backed by the RYT Group's ecosystem of advisory and consulting capabilities for a holistic approach." },
+              ].map((adv) => (
+                <div key={adv.title} className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <adv.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">{adv.title}</h3>
+                    <p className="text-sm text-muted-foreground">{adv.desc}</p>
+                  </div>
                 </div>
-                <h3 className="text-3xl font-bold mb-2">423</h3>
-                <p className="text-muted-foreground">Clients Across 14 Countries</p>
-              </div>
-              <div>
-                <div className="flex justify-center mb-4">
-                  <BarChart className="h-10 w-10 text-primary" />
-                </div>
-                <h3 className="text-3xl font-bold mb-2">92%</h3>
-                <p className="text-muted-foreground">Success Rate with Scorecard Method</p>
-              </div>
-              <div>
-                <div className="flex justify-center mb-4">
-                  <UserSearch className="h-10 w-10 text-primary" />
-                </div>
-                <h3 className="text-3xl font-bold mb-2">30+</h3>
-                <p className="text-muted-foreground">Industries Served</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-primary/10">
-          <div className="container mx-auto px-4 md:px-6">
+        <section className="relative py-20 bg-foreground overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }} />
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to Find Your Next Leader?</h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Let's discuss how our executive search services can help you identify and secure exceptional talent for your organization.
+              <Globe className="h-12 w-12 text-primary mx-auto mb-6" />
+              <h2 className="text-3xl md:text-4xl font-bold text-background mb-4">Ready to Find Your Next Leader?</h2>
+              <p className="text-lg text-background/70 mb-8 max-w-xl mx-auto">
+                Whether you're hiring a CEO in New York or a Country Head in Singapore, our worldwide executive search delivers results.
               </p>
-              <Button size="lg" asChild>
-                <Link to="/contact" className="inline-flex items-center">
-                  Contact Our Team <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" asChild className="text-base">
+                  <Link to="/contact">
+                    Start a Search <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="text-base border-background/20 text-background hover:bg-background/10">
+                  <Link to="/services/strategic-advisory">Explore Advisory Services</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
