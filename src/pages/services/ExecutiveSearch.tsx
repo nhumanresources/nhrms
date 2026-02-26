@@ -51,9 +51,13 @@ export default function ExecutiveSearch() {
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-4">
                   <Globe className="h-5 w-5 text-primary" />
                   <span className="text-primary font-medium text-sm uppercase tracking-widest">Worldwide Executive Search</span>
+                </div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full mb-6">
+                  <Award className="h-3.5 w-3.5 text-primary" />
+                  <span className="text-xs font-medium text-primary">NPA Worldwide Partner</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-6 leading-tight">
                   Leaders Who Shape <br className="hidden md:block" />

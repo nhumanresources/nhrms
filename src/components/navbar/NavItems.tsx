@@ -66,6 +66,11 @@ export const NavItems = ({ isActive, isScrolled }: NavItemsProps) => {
         </button>
         <div className="absolute left-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-[100]" role="menu">
           <div className="bg-white rounded-lg p-3 shadow-xl border border-border/30">
+            <Link to="/services/executive-search" className="block px-4 py-3 bg-primary/5 border border-primary/20 rounded-md transition-colors hover:bg-primary/10" role="menuitem">
+              <span className="text-sm font-semibold text-foreground">Executive Search</span>
+              <span className="block text-[11px] text-muted-foreground mt-0.5">NPA Worldwide Partner</span>
+            </Link>
+            <div className="my-2 border-t border-border/30" />
             <Link to="/services" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors font-medium" role="menuitem">
               All Services
             </Link>

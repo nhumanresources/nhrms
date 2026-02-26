@@ -32,6 +32,10 @@ export const MobileNavItems = () => (
           Our Focus <ChevronDown size={16} className="ml-1 transition-transform group-open:rotate-180" />
         </summary>
         <div className="mt-2 ml-2 space-y-1 border-l-2 border-primary/20 pl-2">
+          <Link to="/services/executive-search" className="block px-3 py-2 bg-primary/5 rounded-md font-medium text-sm transition-colors hover:bg-primary/10">
+            Executive Search
+            <span className="block text-[11px] text-muted-foreground">NPA Worldwide Partner</span>
+          </Link>
           <div className="px-2 py-1 text-xs font-semibold text-primary/70">Build</div>
           <Link to="/services/executive-search" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Executive Search
