@@ -2,10 +2,11 @@ import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Check, UserSearch, BarChart, Users, ArrowRight, CheckCircle2, FileCheck, Briefcase, Star, Globe, MapPin, Award, Target, Shield, Zap } from 'lucide-react';
+import { Check, UserSearch, BarChart, Users, ArrowRight, CheckCircle2, FileCheck, Briefcase, Star, Globe, MapPin, Award, Target, Shield, Zap, Quote } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import SEO from '@/components/SEO';
 
 export default function ExecutiveSearch() {
@@ -360,6 +361,52 @@ export default function ExecutiveSearch() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Success Stories Slider */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center mb-14">
+              <span className="text-primary font-medium text-sm uppercase tracking-widest mb-3 block">Success Stories</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Hear from organizations that found their transformative leaders through nHRMS Executive Search.
+              </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto px-8 md:px-14">
+              <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                <CarouselContent>
+                  {[
+                    { quote: "nHRMS helped us find our CTO across three continents. Their A-Method© Scorecard approach gave us confidence that we were making the right choice — and it proved exactly that.", name: "Rajesh Mehta", role: "CEO", company: "Global FinTech Company, Singapore" },
+                    { quote: "We needed a Country Head for our Middle East expansion. nHRMS delivered three exceptional shortlisted candidates within four weeks — all with deep regional expertise.", name: "Sarah Johnson", role: "CHRO", company: "Fortune 500 Manufacturing, USA" },
+                    { quote: "The level of confidentiality and professionalism throughout our board-level search was outstanding. nHRMS understood our culture and found leaders who truly fit.", name: "Dr. Ananya Sharma", role: "Managing Director", company: "Healthcare Group, India" },
+                    { quote: "From our first consultation to final onboarding support, the nHRMS team operated as a true extension of our leadership team. A world-class executive search experience.", name: "Michael Chen", role: "Group CEO", company: "Technology Conglomerate, Hong Kong" },
+                    { quote: "Their global network is unmatched. We hired our CFO from a talent pool we would never have accessed through traditional recruiting channels.", name: "Emma Okafor", role: "Board Chair", company: "Energy & Infrastructure, Nigeria" },
+                  ].map((testimonial, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 p-2">
+                      <Card className="h-full border-border/50 bg-card">
+                        <CardContent className="p-8 flex flex-col justify-between h-full">
+                          <div>
+                            <Quote className="h-8 w-8 text-primary/30 mb-4" />
+                            <p className="text-muted-foreground leading-relaxed mb-6 italic">
+                              "{testimonial.quote}"
+                            </p>
+                          </div>
+                          <div className="border-t border-border/50 pt-4">
+                            <p className="font-semibold">{testimonial.name}</p>
+                            <p className="text-sm text-muted-foreground">{testimonial.role}, {testimonial.company}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="bg-background border border-border" />
+                <CarouselNext className="bg-background border border-border" />
+              </Carousel>
             </div>
           </div>
         </section>
