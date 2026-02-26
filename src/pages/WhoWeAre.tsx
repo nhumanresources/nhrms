@@ -29,7 +29,7 @@ export default function WhoWeAre() {
     },
     {
       name: "Usha Sai",
-      title: "Partner",
+      title: "Partner - Talent Acquisition",
       bio: "Usha brings 15+ years of operational leadership experience, specializing in scaling professional services organizations and optimizing service delivery.",
       linkedin: "https://linkedin.com/in/ushasai/"
     },

@@ -84,6 +84,21 @@ const heroSlides: HeroSlide[] = [
     badge: "Strategic Partner"
   },
   {
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070",
+    imagePosition: "center",
+    headline: (
+      <>
+        Worldwide
+        <br />
+        <span className="text-gradient-warm">Executive Search</span>
+      </>
+    ),
+    subheadline: "NPA Worldwide Partner",
+    description: "Find exceptional C-suite and senior leaders across 30+ countries. Our global reach and A-Method© Scorecard ensure the right leadership fit — anywhere in the world.",
+    cta: { text: "Explore Executive Search", link: "/services/executive-search" },
+    badge: "500+ Leaders Placed Globally"
+  },
+  {
     image: "https://images.unsplash.com/photo-600880292089-90a7e086ee0c?q=80&w=2070",
     imagePosition: "top center",
     headline: "Build Winning Teams",
