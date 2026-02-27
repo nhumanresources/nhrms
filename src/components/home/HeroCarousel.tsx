@@ -367,9 +367,9 @@ export default function HeroCarousel() {
                 className="border-2 border-white/30 text-white hover:bg-white hover:text-primary px-8 py-6 text-lg bg-white/10 backdrop-blur-sm rounded-xl transition-all duration-300" 
                 asChild
               >
-                <Link to="/contact">
+                <a href="mailto:krishna@nhrms.com">
                   Schedule Consultation
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

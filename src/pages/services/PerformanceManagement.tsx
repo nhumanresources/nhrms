@@ -158,10 +158,10 @@ const PerformanceManagement = () => {
                 className="bg-white text-primary hover:bg-white/90 font-semibold px-8"
                 asChild
               >
-                <Link to="/contact">
+                <a href="mailto:krishna@nhrms.com">
                   Schedule Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                </a>
               </Button>
               <Button 
                 size="lg" 

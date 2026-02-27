@@ -114,9 +114,9 @@ export default function WorkStudyManpower() {
 
             <div className="flex flex-wrap gap-3">
               <Button size="lg" className="btn-primary-premium" asChild>
-                <Link to="/contact" className="flex items-center gap-2">
+                <a href="mailto:krishna@nhrms.com" className="flex items-center gap-2">
                   Schedule Consultation <ArrowRight className="h-5 w-5" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
@@ -190,9 +190,9 @@ export default function WorkStudyManpower() {
                 nHRMS draws on the full spectrum of industrial engineering and organizational effectiveness tools — adapting the right approach to each client's unique context, industry, and challenges.
               </p>
               <Button size="lg" className="btn-primary-premium" asChild>
-                <Link to="/contact" className="flex items-center gap-2">
+                <a href="mailto:krishna@nhrms.com" className="flex items-center gap-2">
                   Schedule a Consultation <ArrowRight className="h-5 w-5" />
-                </Link>
+                </a>
               </Button>
             </div>
             <div className="grid grid-cols-2 gap-3">

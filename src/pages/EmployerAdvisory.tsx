@@ -597,7 +597,7 @@ export default function EmployerAdvisory() {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
-                  <Link to="/contact">Schedule a Consultation</Link>
+                  <a href="mailto:krishna@nhrms.com">Schedule a Consultation</a>
                 </Button>
               </div>
             </div>

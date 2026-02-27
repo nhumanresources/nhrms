@@ -33,10 +33,10 @@ export default function CTASection() {
             </Button>
             
             <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg rounded-xl transition-all duration-300" asChild>
-              <Link to="/contact" className="flex items-center">
+              <a href="mailto:krishna@nhrms.com" className="flex items-center">
                 <Phone className="mr-2 h-5 w-5" />
                 Schedule Consultation
-              </Link>
+              </a>
             </Button>
           </div>
           
