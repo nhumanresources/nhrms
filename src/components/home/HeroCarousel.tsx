@@ -99,6 +99,21 @@ const heroSlides: HeroSlide[] = [
     badge: "500+ Leaders Placed Globally"
   },
   {
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070",
+    imagePosition: "center",
+    headline: (
+      <>
+        Work Study &{' '}
+        <br />
+        <span className="text-gradient-warm">Manpower Productivity</span>
+      </>
+    ),
+    subheadline: "Consulting Services",
+    description: "Transform your workforce with precision work study, time & motion analysis, and data-driven manpower planning. 40% average productivity gain for clients.",
+    cta: { text: "Explore Work Study", link: "/services/work-study-manpower" },
+    badge: "40% Avg Productivity Gain"
+  },
+  {
     image: "https://images.unsplash.com/photo-600880292089-90a7e086ee0c?q=80&w=2070",
     imagePosition: "top center",
     headline: "Build Winning Teams",

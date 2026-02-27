@@ -103,6 +103,11 @@ export const serviceCategories: ServiceCategoryType[] = [
         name: "Statutory Compliance",
         link: "/services/compliance",
         description: "Timely management of PF, ESI, Gratuity, and other statutory obligations."
+      },
+      {
+        name: "Work Study & Manpower Productivity",
+        link: "/services/work-study-manpower",
+        description: "Precision work study, time & motion analysis, and manpower productivity consulting."
       }
     ]
   },

@@ -50,6 +50,7 @@ import OrganizationStrategy from "./pages/services/OrganizationStrategy";
 import CareerDevelopment from "./pages/services/CareerDevelopment";
 import Certifications from "./pages/services/Certifications";
 import PerformanceManagement from "./pages/services/PerformanceManagement";
+import WorkStudyManpower from "./pages/services/WorkStudyManpower";
 import LeadershipDevelopmentService from "./pages/services/LeadershipDevelopmentService";
 import Mail from "./pages/Mail";
 import Sitemap from "./components/Sitemap";
@@ -151,6 +152,7 @@ const App = () => {
             <Route path="/services/certifications" element={<Certifications />} />
             <Route path="/services/leadership-&-professional-development" element={<LeadershipDevelopmentService />} />
             <Route path="/services/performance-management" element={<PerformanceManagement />} />
+            <Route path="/services/work-study-manpower" element={<WorkStudyManpower />} />
             
             <Route path="/services/:serviceName" element={<DefaultServicePage />} />
             
