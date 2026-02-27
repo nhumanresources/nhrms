@@ -225,7 +225,7 @@ export default function TotalRewards() {
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button variant="secondary" size="lg" asChild>
-                  <Link to="/contact">Schedule a Consultation</Link>
+                  <a href="mailto:krishna@nhrms.com">Schedule a Consultation</a>
                 </Button>
                 <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" size="lg" asChild>
                   <Link to="/case-studies">View Client Success Stories</Link>

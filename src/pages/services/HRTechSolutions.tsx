@@ -48,7 +48,7 @@ export default function HRTechSolutions() {
                 Expert analysis, selection, and implementation of HR technology solutions tailored for enterprises and MSMEs.
               </p>
               <Button size="lg" className="bg-blue-700 hover:bg-blue-800" asChild>
-                <Link to="/contact">Schedule a Consultation</Link>
+                <a href="mailto:krishna@nhrms.com">Schedule a Consultation</a>
               </Button>
             </div>
           </div>

@@ -130,9 +130,9 @@ export default function HRTech() {
                 Ready to make informed HR technology decisions that drive business value? Our consultants are here to help you navigate the complex world of HR tech.
               </p>
               <Button size="lg" className="bg-white text-future-700 hover:bg-white/90 shadow-lg px-8 py-3 rounded-md" asChild>
-                <Link to="/contact" className="inline-flex items-center">
+                <a href="mailto:krishna@nhrms.com" className="inline-flex items-center">
                   Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

@@ -404,12 +404,12 @@ export default function ComplianceCalendar() {
               </div>
 
               <div className="flex flex-wrap justify-center gap-4">
-                <Link to="/contact">
+                <a href="mailto:krishna@nhrms.com">
                   <Button size="lg" className="btn-primary-premium">
                     <Phone className="mr-2 w-4 h-4" />
                     Schedule Free Consultation
                   </Button>
-                </Link>
+                </a>
                 <Link to="/services/compliance">
                   <Button size="lg" variant="outline">
                     View Compliance Services

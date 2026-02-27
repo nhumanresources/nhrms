@@ -33,10 +33,10 @@ export default function HeroSection() {
             </Button>
             
             <Button variant="outline" size="lg" className="border-border bg-card hover:bg-muted text-foreground px-8" asChild>
-              <Link to="/contact" className="flex items-center">
+              <a href="mailto:krishna@nhrms.com" className="flex items-center">
                 <Phone className="mr-2 h-4 w-4" />
                 Schedule Consultation
-              </Link>
+              </a>
             </Button>
           </div>
           

@@ -37,7 +37,7 @@ export default function HeroSection() {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-2" asChild>
-                  <Link to="/contact">Schedule a Consultation</Link>
+                  <a href="mailto:krishna@nhrms.com">Schedule a Consultation</a>
                 </Button>
               </div>
               
