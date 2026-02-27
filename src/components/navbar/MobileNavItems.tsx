@@ -77,6 +77,11 @@ export const MobileNavItems = () => (
           <Link to="/labour-codes" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Implementation of Labour Codes
           </Link>
+          
+          <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Consulting</div>
+          <Link to="/services/work-study-manpower" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            Work Study & Manpower Productivity
+          </Link>
         </div>
       </details>
     </div>

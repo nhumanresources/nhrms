@@ -87,6 +87,11 @@ export const NavItems = ({ isActive, isScrolled }: NavItemsProps) => {
             <Link to="/labour-codes" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
               Implementation of Labour Codes
             </Link>
+            <div className="my-2 border-t border-border/30" />
+            <div className="px-4 py-1 text-xs font-semibold text-primary/70 uppercase tracking-wide">Consulting</div>
+            <Link to="/services/work-study-manpower" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+              Work Study & Manpower Productivity
+            </Link>
           </div>
         </div>
       </div>
