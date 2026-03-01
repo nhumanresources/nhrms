@@ -1,10 +1,10 @@
 import { 
   Users, 
-  Calculator, 
+  Search, 
   Shield, 
   Monitor, 
   Briefcase, 
-  TrendingUp,
+  ClipboardCheck,
   ArrowRight,
   Sparkles
 } from 'lucide-react';
@@ -14,24 +14,24 @@ import { ServiceIconWrapper, GradientOrb, PremiumBadge } from '@/components/ui/d
 export default function WhatWeOfferSection() {
   const services = [
     {
+      icon: Search,
+      title: "Executive Search",
+      description: "NPA Worldwide Partner. Find exceptional leaders who align with your organization's vision and drive transformative growth.",
+      link: "/services/executive-search",
+      gradient: 'warm' as const
+    },
+    {
       icon: Users,
       title: "Talent Acquisition",
       description: "Strategic recruitment and executive search for specialized roles across technology, engineering, and leadership positions.",
       link: "/services/talent-acquisition",
-      gradient: 'warm' as const
+      gradient: 'navy' as const
     },
     {
       icon: Briefcase,
       title: "HR Advisory & Consulting",
       description: "Strategic HR consulting to optimize organizational structure, policies, and people processes for sustainable growth.",
       link: "/services/hr-advisory",
-      gradient: 'navy' as const
-    },
-    {
-      icon: TrendingUp,
-      title: "Leadership Development",
-      description: "Executive coaching and leadership development programs to build high-performing management teams.",
-      link: "/services/leadership-development",
       gradient: 'accent' as const
     },
     {
@@ -43,16 +43,16 @@ export default function WhatWeOfferSection() {
     },
     {
       icon: Shield,
-      title: "Organizational Strategy",
-      description: "Design and implement scalable organizational structures aligned with business objectives and growth plans.",
-      link: "/services/organization-strategy",
+      title: "Compliance & Labour Codes",
+      description: "Navigate India's complex labor laws with expert compliance management and new labour code implementation guidance.",
+      link: "/labour-codes",
       gradient: 'navy' as const
     },
     {
-      icon: Calculator,
-      title: "Fractional HR Solutions",
-      description: "BOT (Build-Operate-Transfer) HR teams - flexible fractional HR solutions for complete department setup and management.",
-      link: "/services/bot-hr-teams",
+      icon: ClipboardCheck,
+      title: "Work Study & Manpower Productivity",
+      description: "Precision work study, time & motion analysis, and manpower productivity consulting for operational excellence.",
+      link: "/services/work-study-manpower",
       gradient: 'accent' as const
     }
   ];
