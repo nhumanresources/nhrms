@@ -1,71 +1,60 @@
 
 
-## Re-align "Our Focus" Menu and "What We Do" Section
+## Restructure "Our Focus" Menu and Fix Go-to-Market / BOT Pages
 
 ### Problem
-The three places that list services are inconsistent:
-- **"Our Focus" desktop dropdown** only shows 5 items (Executive Search, Performance Mgmt, Talent Acquisition, Labour Codes, Work Study) -- missing HR Advisory, HR Tech, BOT, Go to Market, Leadership Dev
-- **"What We Do" homepage section** shows 6 different items (Talent Acquisition, HR Advisory, Leadership Dev, HR Tech, Org Strategy, Fractional HR) -- missing Executive Search, Work Study, Compliance, Performance Mgmt
-- **Mobile menu** has a completely different grouping (Build/Operate/Talent/Growth/Advisory/Compliance/Consulting) with duplicated Executive Search entry
-
-### Unified Service Categories
-Align all three around these **5 consistent categories**, matching `serviceCategories.ts`:
-
-| Category | Services |
-|----------|----------|
-| **Executive Search** (featured) | NPA Worldwide Partner -- stays elevated |
-| **Talent Solutions** | Talent Acquisition, Fractional HR (BOT), Performance Management, Total Rewards |
-| **Strategic Advisory** | HR Advisory, Organization Strategy, Go to Market |
-| **HR Technology** | HR Tech Advisory, HR Tech Solutions |
-| **Compliance & Operations** | Labour Codes, Compliance Services, Work Study & Manpower Productivity |
-
----
+1. **Go-to-Market (GTM)** is listed under "Strategic Advisory" but its focus is HR-Tech product launches -- it belongs under **HR Technology**
+2. **Fractional HR Solutions (BOT)** is listed in the "Our Focus" dropdown but shouldn't be -- remove it from the menu
+3. **Executive Search** is a standalone featured item but should move under **Talent Solutions** category
+4. **BOT HR Teams page** (`/services/bot-hr-teams`) never mentions nHRMS branding -- needs to reference "nHRMS" as the service provider
 
 ### Changes
 
-#### 1. Desktop "Our Focus" Dropdown (`src/components/navbar/NavItems.tsx`)
+#### 1. Desktop Nav (`src/components/navbar/NavItems.tsx`)
 
-Restructure the dropdown to show all key services organized by category:
+Restructure the "Our Focus" dropdown:
 
-```
-Executive Search (featured, NPA badge) -- stays as-is
----
-All Services link
+- **Remove** the standalone featured Executive Search block at the top
+- **Add** Executive Search as first item under **Talent Solutions** (with "NPA Worldwide Partner" subtitle)
+- **Remove** Fractional HR Solutions (BOT) from **Talent Solutions**
+- **Move** Go to Market from **Strategic Advisory** to **HR Technology** (renamed to "Go-to-Market for Tech Products")
+- Keep All Services link at top
+
+Final structure:
+```text
+All Services
 ---
 TALENT SOLUTIONS
+  Executive Search (NPA Worldwide Partner)
   Talent Acquisition
-  Fractional HR Solutions (BOT)
   Performance Management
 ---
 STRATEGIC ADVISORY
   HR Advisory
   Organization Strategy
-  Go to Market
 ---
 HR TECHNOLOGY
   HR Tech Solutions
+  Go-to-Market for Tech Products
 ---
 COMPLIANCE & OPERATIONS
   Labour Codes
   Work Study & Manpower Productivity
 ```
 
-#### 2. Mobile "Our Focus" Section (`src/components/navbar/MobileNavItems.tsx`)
+#### 2. Mobile Nav (`src/components/navbar/MobileNavItems.tsx`)
 
-Restructure to match the same categories as desktop. Remove duplicate Executive Search entry. Use consistent category headers: Talent Solutions, Strategic Advisory, HR Technology, Compliance & Operations.
+Mirror the same restructuring:
+- Move Executive Search under Talent Solutions (keep the highlighted style)
+- Remove Fractional HR Solutions (BOT)
+- Move Go to Market under HR Technology
 
-#### 3. "What We Do" Homepage Section (`src/components/home/WhatWeOfferSection.tsx`)
+#### 3. BOT HR Teams Page (`src/pages/services/BOTHRTeams.tsx`)
 
-Update the 6 service cards to represent the key offerings consistently with the nav:
-
-1. **Executive Search** -- "NPA Worldwide Partner. Find exceptional leaders globally." (links to `/services/executive-search`)
-2. **Talent Acquisition** -- keep existing (links to `/services/talent-acquisition`)
-3. **HR Advisory & Consulting** -- keep existing (links to `/services/hr-advisory`)
-4. **HR Technology Solutions** -- keep existing (links to `/services/hr-tech`)
-5. **Compliance & Labour Codes** -- replace "Organizational Strategy" card with compliance focus (links to `/labour-codes`)
-6. **Work Study & Manpower Productivity** -- replace "Fractional HR Solutions" card (links to `/services/work-study-manpower`)
-
-This ensures every highlighted homepage service has a matching prominent entry in the nav menu.
+Add nHRMS branding throughout:
+- Hero subtitle: "by nHRMS" or "nHRMS Fractional HR Solutions"
+- Reference nHRMS in section descriptions (e.g., "nHRMS designs and establishes your HR function...")
+- Add nHRMS mention in CTA section
 
 ---
 
@@ -73,7 +62,7 @@ This ensures every highlighted homepage service has a matching prominent entry i
 
 | File | Change |
 |------|--------|
-| `src/components/navbar/NavItems.tsx` (lines 68-95) | Restructure "Our Focus" dropdown with all 4 categories + services |
-| `src/components/navbar/MobileNavItems.tsx` (lines 29-86) | Restructure mobile "Our Focus" with matching categories, remove duplicate Executive Search |
-| `src/components/home/WhatWeOfferSection.tsx` (lines 15-58) | Update service cards array to feature Executive Search, Compliance, and Work Study |
+| `src/components/navbar/NavItems.tsx` (lines 68-112) | Remove standalone Executive Search, add it under Talent Solutions, remove BOT, move GTM to HR Technology |
+| `src/components/navbar/MobileNavItems.tsx` (lines 29-75) | Same restructuring for mobile menu |
+| `src/pages/services/BOTHRTeams.tsx` | Add nHRMS branding in hero, process section, and CTA |
 
