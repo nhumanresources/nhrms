@@ -1,38 +1,71 @@
 
 
-## Highlight Executive Search in Navigation
+## Re-align "Our Focus" Menu and "What We Do" Section
 
-### Overview
-Make Executive Search stand out as a premium service in the "Our Focus" dropdown and mobile menu, with NPA Worldwide partner branding.
+### Problem
+The three places that list services are inconsistent:
+- **"Our Focus" desktop dropdown** only shows 5 items (Executive Search, Performance Mgmt, Talent Acquisition, Labour Codes, Work Study) -- missing HR Advisory, HR Tech, BOT, Go to Market, Leadership Dev
+- **"What We Do" homepage section** shows 6 different items (Talent Acquisition, HR Advisory, Leadership Dev, HR Tech, Org Strategy, Fractional HR) -- missing Executive Search, Work Study, Compliance, Performance Mgmt
+- **Mobile menu** has a completely different grouping (Build/Operate/Talent/Growth/Advisory/Compliance/Consulting) with duplicated Executive Search entry
+
+### Unified Service Categories
+Align all three around these **5 consistent categories**, matching `serviceCategories.ts`:
+
+| Category | Services |
+|----------|----------|
+| **Executive Search** (featured) | NPA Worldwide Partner -- stays elevated |
+| **Talent Solutions** | Talent Acquisition, Fractional HR (BOT), Performance Management, Total Rewards |
+| **Strategic Advisory** | HR Advisory, Organization Strategy, Go to Market |
+| **HR Technology** | HR Tech Advisory, HR Tech Solutions |
+| **Compliance & Operations** | Labour Codes, Compliance Services, Work Study & Manpower Productivity |
 
 ---
 
 ### Changes
 
-#### 1. Desktop Nav - "Our Focus" Dropdown (`src/components/navbar/NavItems.tsx`)
+#### 1. Desktop "Our Focus" Dropdown (`src/components/navbar/NavItems.tsx`)
 
-Add Executive Search as a **featured item** at the top of the dropdown, before "All Services", with a subtle highlight style and NPA Worldwide partner badge.
+Restructure the dropdown to show all key services organized by category:
 
-**Structure inside the dropdown (lines 68-86):**
 ```
-Executive Search (featured, with gold/primary accent bg + "NPA Worldwide Partner" badge)
----separator---
-All Services
----separator---
-Talent Solutions section (existing)
----separator---
-Compliance section (existing)
+Executive Search (featured, NPA badge) -- stays as-is
+---
+All Services link
+---
+TALENT SOLUTIONS
+  Talent Acquisition
+  Fractional HR Solutions (BOT)
+  Performance Management
+---
+STRATEGIC ADVISORY
+  HR Advisory
+  Organization Strategy
+  Go to Market
+---
+HR TECHNOLOGY
+  HR Tech Solutions
+---
+COMPLIANCE & OPERATIONS
+  Labour Codes
+  Work Study & Manpower Productivity
 ```
 
-The Executive Search link will use a distinct background (`bg-primary/5 border border-primary/20`) and include a small "NPA Worldwide Partner" tag in muted text to differentiate it from regular menu items.
+#### 2. Mobile "Our Focus" Section (`src/components/navbar/MobileNavItems.tsx`)
 
-#### 2. Mobile Nav - "Our Focus" Section (`src/components/navbar/MobileNavItems.tsx`)
+Restructure to match the same categories as desktop. Remove duplicate Executive Search entry. Use consistent category headers: Talent Solutions, Strategic Advisory, HR Technology, Compliance & Operations.
 
-Add Executive Search as the **first item** under "Our Focus" with a highlighted style (`bg-primary/5 rounded-md font-medium`) and a small "NPA Worldwide Partner" subtext, placed before the "Build" category.
+#### 3. "What We Do" Homepage Section (`src/components/home/WhatWeOfferSection.tsx`)
 
-#### 3. Executive Search Page - NPA Badge (`src/pages/services/ExecutiveSearch.tsx`)
+Update the 6 service cards to represent the key offerings consistently with the nav:
 
-Add an "NPA Worldwide Partner" badge in the hero section to reinforce the partnership. A small inline badge near the hero subtitle area using a subtle pill style.
+1. **Executive Search** -- "NPA Worldwide Partner. Find exceptional leaders globally." (links to `/services/executive-search`)
+2. **Talent Acquisition** -- keep existing (links to `/services/talent-acquisition`)
+3. **HR Advisory & Consulting** -- keep existing (links to `/services/hr-advisory`)
+4. **HR Technology Solutions** -- keep existing (links to `/services/hr-tech`)
+5. **Compliance & Labour Codes** -- replace "Organizational Strategy" card with compliance focus (links to `/labour-codes`)
+6. **Work Study & Manpower Productivity** -- replace "Fractional HR Solutions" card (links to `/services/work-study-manpower`)
+
+This ensures every highlighted homepage service has a matching prominent entry in the nav menu.
 
 ---
 
@@ -40,12 +73,7 @@ Add an "NPA Worldwide Partner" badge in the hero section to reinforce the partne
 
 | File | Change |
 |------|--------|
-| `src/components/navbar/NavItems.tsx` | Add featured Executive Search link with NPA badge at top of "Our Focus" dropdown (lines 68-86) |
-| `src/components/navbar/MobileNavItems.tsx` | Add highlighted Executive Search entry at top of "Our Focus" section (around line 33) |
-| `src/pages/services/ExecutiveSearch.tsx` | Add NPA Worldwide Partner badge in hero section |
+| `src/components/navbar/NavItems.tsx` (lines 68-95) | Restructure "Our Focus" dropdown with all 4 categories + services |
+| `src/components/navbar/MobileNavItems.tsx` (lines 29-86) | Restructure mobile "Our Focus" with matching categories, remove duplicate Executive Search |
+| `src/components/home/WhatWeOfferSection.tsx` (lines 15-58) | Update service cards array to feature Executive Search, Compliance, and Work Study |
 
-### Design Approach
-- Executive Search gets a visually distinct card-like treatment in the dropdown (light primary background, border)
-- "NPA Worldwide Partner" shown as a small muted-text tag beneath the link name
-- Mobile follows same pattern with highlighted background
-- No structural changes to existing menu items - Executive Search is simply elevated above them
