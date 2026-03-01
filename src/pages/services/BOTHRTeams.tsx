@@ -20,9 +20,9 @@ export default function BOTHRTeams() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Build Operate Transfer HR Teams</h1>
-                <p className="text-lg text-primary font-medium mb-4">Fractional HR Solutions</p>
+                <p className="text-lg text-primary font-medium mb-4">nHRMS Fractional HR Solutions</p>
                 <p className="text-xl text-muted-foreground mb-8">
-                  End-to-end HR team development and transition services to establish effective HR operations aligned with your business needs. Access experienced HR professionals on a fractional basis.
+                   nHRMS provides end-to-end HR team development and transition services to establish effective HR operations aligned with your business needs. Access experienced HR professionals on a fractional basis.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
@@ -61,8 +61,8 @@ export default function BOTHRTeams() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Our BOT Approach</h2>
-              <p className="text-muted-foreground">
-                A three-phase process to establish, operate, and transition effective HR teams.
+                <p className="text-muted-foreground">
+                nHRMS follows a three-phase process to establish, operate, and transition effective HR teams.
               </p>
             </div>
             
@@ -73,7 +73,7 @@ export default function BOTHRTeams() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">BUILD</h3>
                 <p className="text-muted-foreground mb-4">
-                  We design and establish your HR function based on your organizational needs and industry best practices.
+                   nHRMS designs and establishes your HR function based on your organizational needs and industry best practices.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start space-x-2">
@@ -97,7 +97,7 @@ export default function BOTHRTeams() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">OPERATE</h3>
                 <p className="text-muted-foreground mb-4">
-                  Our experienced professionals manage your HR operations while continuously improving processes and outcomes.
+                   nHRMS's experienced professionals manage your HR operations while continuously improving processes and outcomes.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start space-x-2">
@@ -121,7 +121,7 @@ export default function BOTHRTeams() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">TRANSFER</h3>
                 <p className="text-muted-foreground mb-4">
-                  We ensure a seamless transition of HR operations to your internal team through comprehensive knowledge transfer.
+                   nHRMS ensures a seamless transition of HR operations to your internal team through comprehensive knowledge transfer.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start space-x-2">
@@ -251,9 +251,9 @@ export default function BOTHRTeams() {
         <section className="py-16 bg-primary/10">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Establish an Effective HR Function</h2>
+              <h2 className="text-3xl font-bold mb-4">Establish an Effective HR Function with nHRMS</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Let's discuss how our Build Operate Transfer model can help you establish a high-performing HR function aligned with your business goals.
+                Let's discuss how nHRMS's Build Operate Transfer model can help you establish a high-performing HR function aligned with your business goals.
               </p>
               <Button size="lg" asChild>
                 <Link to="/contact" className="inline-flex items-center">
