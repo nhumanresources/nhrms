@@ -16,7 +16,7 @@ const LabourCodesReadiness = () => {
         title="Ready for New Labour Codes? | nHRMS"
         description="Is your organization ready for India's new Labour Codes? nHRMS provides integrated Legal + Finance + HR advisory for SMEs with 50-500 employees."
         keywords="labour codes India, labour code readiness, HR compliance, wage restructuring, PF ESIC gratuity, SME compliance"
-        url="https://nhrms.com/labour-codes/readiness"
+        canonicalUrl="https://nhrms.com/labour-codes/readiness"
       />
       <Navbar />
       <main className="flex-grow">
