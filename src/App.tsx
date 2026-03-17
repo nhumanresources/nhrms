@@ -62,6 +62,7 @@ import TimelessContribution from "./pages/press-releases/TimelessContribution";
 import HRRoadmap from "./pages/HRRoadmap";
 import LMSLogin from "./pages/LMSLogin";
 import LabourCodes from "./pages/LabourCodes";
+import LabourCodesReadiness from "./pages/LabourCodesReadiness";
 import EmployerAdvisory from "./pages/EmployerAdvisory";
 import ComplianceServices from "./pages/services/ComplianceServices";
 import ComplianceCalendar from "./pages/ComplianceCalendarNew";
