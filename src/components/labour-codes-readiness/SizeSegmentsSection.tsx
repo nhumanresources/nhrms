@@ -19,7 +19,7 @@ const segments = [
     range: '250 – 500 Employees',
     label: 'Complex Enough, No Dedicated Team',
     description:
-      'Your workforce is complex enough to have real exposure — multiple worker categories, multi-state operations, significant payroll costs — but you likely don't have a dedicated compliance team to manage the transition.',
+      "Your workforce is complex enough to have real exposure — multiple worker categories, multi-state operations, significant payroll costs — but you likely don't have a dedicated compliance team to manage the transition.",
     risks: [
       'Mixed workforce (permanent, contract, fixed-term, gig) requiring reclassification',
       'Multi-state operations with varying implementation timelines',

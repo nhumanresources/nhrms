@@ -20,7 +20,7 @@ const triggers = [
   {
     icon: ShieldAlert,
     title: 'No Dedicated HR Compliance Function',
-    description: 'Without a specialised compliance team, you're relying on general HR to interpret complex legal and financial changes — a risky proposition.',
+    description: "Without a specialised compliance team, you're relying on general HR to interpret complex legal and financial changes — a risky proposition.",
   },
   {
     icon: Wallet,
