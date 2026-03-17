@@ -62,6 +62,7 @@ import TimelessContribution from "./pages/press-releases/TimelessContribution";
 import HRRoadmap from "./pages/HRRoadmap";
 import LMSLogin from "./pages/LMSLogin";
 import LabourCodes from "./pages/LabourCodes";
+import LabourCodesReadiness from "./pages/LabourCodesReadiness";
 import EmployerAdvisory from "./pages/EmployerAdvisory";
 import ComplianceServices from "./pages/services/ComplianceServices";
 import ComplianceCalendar from "./pages/ComplianceCalendarNew";
@@ -134,6 +135,7 @@ const App = () => {
             <Route path="/services/hr-tech-solutions" element={<HRTechSolutions />} />
             <Route path="/learning-solutions" element={<LearningServices />} />
             <Route path="/labour-codes" element={<LabourCodes />} />
+            <Route path="/labour-codes/readiness" element={<LabourCodesReadiness />} />
             <Route path="/compliance-calendar" element={<ComplianceCalendar />} />
             <Route path="/employer-advisory-labour-codes" element={<EmployerAdvisory />} />
             <Route path="/services/compliance" element={<ComplianceServices />} />
