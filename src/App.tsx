@@ -135,6 +135,7 @@ const App = () => {
             <Route path="/services/hr-tech-solutions" element={<HRTechSolutions />} />
             <Route path="/learning-solutions" element={<LearningServices />} />
             <Route path="/labour-codes" element={<LabourCodes />} />
+            <Route path="/labour-codes/readiness" element={<LabourCodesReadiness />} />
             <Route path="/compliance-calendar" element={<ComplianceCalendar />} />
             <Route path="/employer-advisory-labour-codes" element={<EmployerAdvisory />} />
             <Route path="/services/compliance" element={<ComplianceServices />} />
