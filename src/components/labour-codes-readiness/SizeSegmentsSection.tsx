@@ -7,7 +7,7 @@ const segments = [
     range: '75 – 150 Employees',
     label: 'Growing Fast, Starting to Formalise',
     description:
-      'You're scaling quickly and beginning to formalise HR policies. The new Labour Codes will fundamentally change how you structure wages, contracts, and social security — getting it right now prevents costly corrections later.',
+      "You're scaling quickly and beginning to formalise HR policies. The new Labour Codes will fundamentally change how you structure wages, contracts, and social security — getting it right now prevents costly corrections later.",
     risks: [
       'Ad-hoc contracts that don't meet new standing order requirements',
       'Wage structures that create unexpected PF and gratuity liabilities',
