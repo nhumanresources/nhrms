@@ -168,7 +168,7 @@ export default function HeroCarousel() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayedSlide, setDisplayedSlide] = useState(0);
-  const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const transitionToSlide = useCallback((newIndex: number) => {
     if (isTransitioning || newIndex === currentSlide) return;
