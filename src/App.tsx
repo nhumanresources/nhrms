@@ -67,6 +67,7 @@ import EmployerAdvisory from "./pages/EmployerAdvisory";
 import ComplianceServices from "./pages/services/ComplianceServices";
 import ComplianceCalendar from "./pages/ComplianceCalendarNew";
 import RSS from "./pages/RSS";
+import WCRM from "./pages/WCRM";
 import HRTechnologyCategory from "./pages/services/categories/HRTechnologyCategory";
 import StrategicAdvisoryCategory from "./pages/services/categories/StrategicAdvisoryCategory";
 import TalentSolutionsCategory from "./pages/services/categories/TalentSolutionsCategory";
