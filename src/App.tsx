@@ -115,6 +115,9 @@ const App = () => {
             {/* LMS Login Route */}
             <Route path="/lms-login" element={<LMSLogin />} />
             
+            {/* WCRM Internal Tool */}
+            <Route path="/wcrm" element={<WCRM />} />
+            
             {/* HR Roadmap Route */}
             <Route path="/hr-roadmap" element={<HRRoadmap />} />
             
