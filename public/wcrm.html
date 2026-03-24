@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>nHRMS WCRM — Internal Tool</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#25D366;--dgreen:#128C7E;--lgreen:#DCF8C6;
+  --primary:#075E54;--sidebar:#1F2C34;--sbhover:#2A3942;
+  --danger:#e53935;--warn:#FB8C00;--blue:#1565C0;
+  --bg:#f0f2f5;--card:#fff;--border:#e0e0e0;--muted:#888;
+}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:#1a1a1a;height:100vh;overflow:hidden}
+button{cursor:pointer;border:none;outline:none;font-family:inherit}
+input,select,textarea{font-family:inherit;outline:none}
+.hidden{display:none!important}
+
+/* ── LOGIN ── */
+#loginPage{
+  height:100vh;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#075E54 0%,#128C7E 50%,#0d2a26 100%);
+}
+.lcard{background:#fff;border-radius:20px;padding:44px 38px;width:380px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.llogo{text-align:center;margin-bottom:28px}
+.licon{width:68px;height:68px;background:var(--green);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px}
+.licon svg{width:40px;height:40px;fill:#fff}
+.lcard h2{font-size:20px;color:var(--primary);text-align:center;font-weight:700}
+.lcard p{color:var(--muted);font-size:12px;text-align:center;margin-top:3px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:5px}
+.fg input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;transition:.2s}
+.fg input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(37,211,102,.15)}
+.lerr{background:#fff5f5;border:1px solid #ffcdd2;color:#c62828;padding:9px 13px;border-radius:7px;font-size:12px;margin-bottom:14px;display:none}
+.btnLogin{width:100%;padding:13px;background:var(--green);color:#fff;border-radius:9px;font-size:15px;font-weight:700;transition:.2s;margin-top:4px}
+.btnLogin:hover{background:var(--dgreen)}
+
+/* ── APP SHELL ── */
+#app{display:flex;height:100vh;overflow:hidden}
+.sb{width:230px;min-width:230px;background:var(--sidebar);color:#fff;display:flex;flex-direction:column}
+.sbHead{padding:16px 14px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px}
+.sbHead .ico{width:34px;height:34px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sbHead .ico svg{width:20px;height:20px;fill:#fff}
+.sbHead .br{font-size:14px;font-weight:700;line-height:1.3}
+.sbHead .br small{font-size:10px;color:rgba(255,255,255,.45);display:block;font-weight:400}
+.ubadge{margin:10px;background:rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;display:flex;align-items:center;gap:9px}
+.uav{width:34px;height:34px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.uname{font-size:12px;font-weight:600}
+.urole{font-size:10px;color:rgba(255,255,255,.45)}
+.urole.mgr{color:#FFD700}
+nav{flex:1;padding:6px 0;overflow-y:auto}
+.ni{display:flex;align-items:center;gap:10px;padding:11px 18px;color:rgba(255,255,255,.65);font-size:13px;cursor:pointer;border-left:3px solid transparent;transition:.15s}
+.ni:hover{background:var(--sbhover);color:#fff}
+.ni.active{background:var(--sbhover);color:#fff;border-left-color:var(--green)}
+.ni svg{width:17px;height:17px;flex-shrink:0}
+.nbadge{margin-left:auto;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:8px;min-width:18px;text-align:center}
+.sbFoot{padding:12px;border-top:1px solid rgba(255,255,255,.08)}
+.btnOut{width:100%;padding:9px;background:rgba(255,68,68,.15);color:#ff8a8a;border-radius:7px;font-size:12px;font-weight:600;transition:.2s}
+.btnOut:hover{background:rgba(255,68,68,.3);color:#fff}
+
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{padding:14px 22px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.topbar h2{font-size:17px;font-weight:700;color:var(--primary)}
+.tactions{display:flex;gap:8px;align-items:center}
+.content{flex:1;overflow-y:auto;padding:20px}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:8px 16px;border-radius:7px;font-size:13px;font-weight:600;transition:.2s;cursor:pointer;border:none}
+.btn-g{background:var(--green);color:#fff}.btn-g:hover{background:var(--dgreen)}
+.btn-s{background:#f4f4f4;color:#333;border:1px solid var(--border)}.btn-s:hover{background:#e8e8e8}
+.btn-d{background:#fff5f5;color:var(--danger);border:1px solid #ffcdd2}.btn-d:hover{background:var(--danger);color:#fff}
+.btn-b{background:#e3f2fd;color:var(--blue);border:1px solid #bbdefb}.btn-b:hover{background:var(--blue);color:#fff}
+.btn-sm{padding:5px 10px;font-size:11px;border-radius:5px}
+
+/* ── STATS ── */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:20px}
+.scard{background:#fff;border-radius:12px;padding:18px;display:flex;align-items:center;gap:13px;box-shadow:0 1px 3px rgba(0,0,0,.07);border-left:4px solid}
+.scard.t{border-color:var(--primary)}.scard.h{border-color:var(--danger)}.scard.w{border-color:var(--warn)}.scard.c{border-color:var(--blue)}.scard.f{border-color:#9C27B0}
+.sico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.scard.t .sico{background:#e8f5e9}.scard.h .sico{background:#ffebee}.scard.w .sico{background:#fff3e0}.scard.c .sico{background:#e3f2fd}.scard.f .sico{background:#f3e5f5}
+.sico svg{width:22px;height:22px}
+.scard.t .sico svg{fill:var(--primary)}.scard.h .sico svg{fill:var(--danger)}.scard.w .sico svg{fill:var(--warn)}.scard.c .sico svg{fill:var(--blue)}.scard.f .sico svg{fill:#9C27B0}
+.snum{font-size:26px;font-weight:700;line-height:1}.slbl{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ── TOOLBAR ── */
+.tbar{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.srch{flex:1;min-width:150px;padding:8px 12px 8px 34px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bbb'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") no-repeat 9px center/17px}
+.fsel{padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;background:#fff;color:#333}
+
+/* ── TABLE ── */
+.tw{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+table{width:100%;border-collapse:collapse}
+thead tr{background:var(--primary)}
+th{padding:11px 13px;text-align:left;font-size:11px;font-weight:600;color:#fff;white-space:nowrap}
+td{padding:11px 13px;font-size:12px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f8fffe}
+.sbadge{display:inline-block;padding:3px 9px;border-radius:16px;font-size:10px;font-weight:700}
+.sH{background:#ffebee;color:var(--danger)}.sW{background:#fff3e0;color:var(--warn)}.sC{background:#e3f2fd;color:var(--blue)}
+.tag{display:inline-block;padding:2px 7px;background:#e8f5e9;color:var(--dgreen);border-radius:3px;font-size:10px;margin:1px}
+.abtns{display:flex;gap:5px;flex-wrap:wrap}
+.plink{color:var(--dgreen);font-weight:600;text-decoration:none;font-size:12px}.plink:hover{text-decoration:underline}
+.empty{text-align:center;padding:50px;color:var(--muted)}
+.empty svg{width:52px;height:52px;fill:#ddd;display:block;margin:0 auto 12px}
+
+/* ── BROADCAST ── */
+.bwrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:860px){.bwrap{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.card h3{font-size:14px;font-weight:700;color:var(--primary);border-bottom:1px solid var(--border);padding-bottom:9px;margin-bottom:14px}
+.mta{width:100%;height:150px;padding:10px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;resize:vertical;line-height:1.5}
+.mta:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(37,211,102,.12)}
+.cc{text-align:right;font-size:10px;color:var(--muted);margin-top:3px}
+.tmpls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tmpl{padding:5px 10px;background:#f5f5f5;border:1px solid var(--border);border-radius:5px;font-size:11px;color:#555;transition:.2s;cursor:pointer}
+.tmpl:hover{background:var(--lgreen);border-color:var(--green);color:var(--dgreen)}
+.chklist{max-height:380px;overflow-y:auto;border:1.5px solid var(--border);border-radius:9px}
+.chkall{padding:9px 13px;background:#f8f8f8;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#555}
+.chkall input,.chi input[type=checkbox]{width:15px;height:15px;accent-color:var(--green);cursor:pointer}
+.chi{display:flex;align-items:center;gap:9px;padding:9px 13px;border-bottom:1px solid #f5f5f5;cursor:pointer;transition:.15s}
+.chi:last-child{border-bottom:none}.chi:hover{background:#f8fffe}
+.ci-n{font-size:12px;font-weight:600}.ci-p{font-size:11px;color:var(--muted)}
+.bfoot{margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sc{font-size:12px;color:var(--muted)}
+.btnBC{padding:11px 22px;background:var(--green);color:#fff;border-radius:9px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:7px;transition:.2s}
+.btnBC:hover{background:var(--dgreen)}.btnBC:disabled{background:#bbb;cursor:not-allowed}
+.waPanel{background:#f0faf0;border:1px solid #c8e6c9;border-radius:10px;padding:14px;margin-top:14px}
+.waPanel h4{font-size:13px;font-weight:700;color:var(--dgreen);margin-bottom:10px}
+.wali{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.wali:last-child{border-bottom:none}
+.wn{font-size:12px;font-weight:600;flex:1}.wp{font-size:11px;color:var(--muted);margin-right:6px}
+.btnWA{padding:5px 12px;background:var(--green);color:#fff;border-radius:5px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;text-decoration:none;transition:.2s}
+.btnWA:hover{background:var(--dgreen)}
+.btnAll{width:100%;padding:10px;background:var(--primary);color:#fff;border-radius:7px;font-size:13px;font-weight:700;margin-top:10px;transition:.2s}
+.btnAll:hover{background:var(--dgreen)}
+
+/* ── LOG ── */
+.logi{background:#fff;border-radius:10px;padding:14px;margin-bottom:9px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:3px solid var(--green)}
+.lh{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.lav{width:33px;height:33px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0}
+.lmn{font-size:13px;font-weight:600}.lmd{font-size:11px;color:var(--muted);margin-top:1px}
+.ldt{font-size:10px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.lmsg{font-size:12px;color:#444;background:#f8f8f8;border-radius:7px;padding:8px 11px;line-height:1.5}
+.lph{font-size:11px;color:var(--dgreen);font-weight:600;margin-top:5px}
+
+/* ── DUE LIST ── */
+.dlist{display:flex;flex-direction:column;gap:7px}
+.di{background:#fff;border-radius:9px;padding:12px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:3px solid var(--green)}
+.din{font-weight:600;font-size:13px}.dii{font-size:11px;color:var(--muted);margin-top:2px}
+.did{font-size:11px;font-weight:600;color:#9C27B0}
+.stitle{font-size:14px;font-weight:700;color:#333;margin-bottom:10px;margin-top:4px}
+
+/* ── MODAL ── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:16px}
+.md{background:#fff;border-radius:14px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.mh{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
+.mh h3{font-size:16px;font-weight:700;color:var(--primary)}
+.mcl{width:30px;height:30px;border-radius:50%;background:#f4f4f4;color:#666;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;cursor:pointer;transition:.2s}
+.mcl:hover{background:#e0e0e0}
+.mb{padding:20px 22px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fc{display:flex;flex-direction:column;gap:4px}
+.fc.full{grid-column:1/-1}
+.fc label{font-size:11px;font-weight:600;color:#555}
+.fc input,.fc select,.fc textarea{padding:9px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;transition:.2s}
+.fc input:focus,.fc select:focus,.fc textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(37,211,102,.12)}
+.fc textarea{resize:vertical;min-height:70px}
+.mf{padding:14px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+
+/* ── IMPORT ── */
+.imp{background:#f8fffe;border:2px dashed var(--green);border-radius:10px;padding:20px;text-align:center;margin-bottom:14px;cursor:pointer;transition:.2s}
+.imp:hover{background:var(--lgreen)}
+.imp svg{width:32px;height:32px;fill:var(--green);display:block;margin:0 auto 8px}
+.imp p{font-size:13px;color:var(--dgreen);font-weight:600}
+.imp small{font-size:11px;color:var(--muted)}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:20px;right:20px;z-index:9999;background:#333;color:#fff;padding:10px 18px;border-radius:9px;font-size:12px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.3);transform:translateY(80px);opacity:0;transition:.3s;pointer-events:none}
+#toast.show{transform:translateY(0);opacity:1}
+#toast.ok{background:var(--dgreen)}
+#toast.err{background:var(--danger)}
+
+/* ── SPINNER ── */
+.spin-wrap{display:flex;align-items:center;justify-content:center;height:150px}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div class="lcard">
+    <div class="llogo">
+      <div class="licon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L.057 23.527a.5.5 0 0 0 .614.614l5.675-1.471A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.892 0-3.667-.5-5.203-1.377l-.372-.217-3.856.999.999-3.856-.217-.372A9.945 9.945 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg></div>
+      <h2>nHRMS WCRM</h2>
+      <p>Internal Tool — Team Edition</p>
+    </div>
+    <div class="lerr" id="lerr"></div>
+    <div class="fg"><label>Username</label><input id="lu" placeholder="e.g. usha, sachit…" autocomplete="username"/></div>
+    <div class="fg"><label>Password</label><input id="lp" type="password" placeholder="Password" autocomplete="current-password"/></div>
+    <button class="btnLogin" onclick="doLogin()">Sign In →</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+  <aside class="sb">
+    <div class="sbHead">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L.057 23.527a.5.5 0 0 0 .614.614l5.675-1.471A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.892 0-3.667-.5-5.203-1.377l-.372-.217-3.856.999.999-3.856-.217-.372A9.945 9.945 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg></div>
+      <div class="br">nHRMS WCRM<small>Internal Tool</small></div>
+    </div>
+    <div class="ubadge"><div class="uav" id="uav">U</div><div><div class="uname" id="uname">User</div><div class="urole" id="urole">User</div></div></div>
+    <nav>
+      <div class="ni active" onclick="nav('dash')" data-p="dash"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>Dashboard</div>
+      <div class="ni" onclick="nav('contacts')" data-p="contacts"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Contacts<span class="nbadge" id="ctBadge">0</span></div>
+      <div class="ni" onclick="nav('broadcast')" data-p="broadcast"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>Broadcast</div>
+      <div class="ni" onclick="nav('history')" data-p="history"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>History</div>
+      <div class="ni" onclick="nav('import')" data-p="import"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>Import Contacts</div>
+      <div class="ni" onclick="nav('clients')" data-p="clients"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>Client Database<span class="nbadge" id="clBadge">0</span></div>
+    </nav>
+    <div class="sbFoot"><button class="btnOut" onclick="logout()">⇠ Sign Out</button></div>
+  </aside>
+  <main class="main">
+    <div class="topbar"><h2 id="ptitle">Dashboard</h2><div class="tactions" id="tact"></div></div>
+    <div class="content" id="content"><div class="spin-wrap"><div class="spinner"></div></div></div>
+  </main>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="mo hidden" id="cModal">
+  <div class="md">
+    <div class="mh"><h3 id="mTitle">Add Contact</h3><div class="mcl" onclick="closeMod()">✕</div></div>
+    <div class="mb">
+      <input type="hidden" id="fIdx"/>
+      <div class="fr">
+        <div class="fc"><label>Full Name *</label><input id="fN" placeholder="e.g. Rahul Sharma"/></div>
+        <div class="fc"><label>Phone (with country code) *</label><input id="fP" placeholder="919876543210"/></div>
+      </div>
+      <div class="fr">
+        <div class="fc"><label>Email</label><input id="fE" type="email" placeholder="email@example.com"/></div>
+        <div class="fc"><label>Company</label><input id="fC" placeholder="Company name"/></div>
+      </div>
+      <div class="fr">
+        <div class="fc"><label>Position / Designation</label><input id="fPos" placeholder="e.g. HR Manager, Director"/></div>
+        <div class="fc"><label>Client Name</label>
+          <select id="fCl"><option value="">— Select Client —</option></select>
+        </div>
+      </div>
+      <div class="fr">
+        <div class="fc" id="faCol"><label>Assigned To</label><select id="fA"></select></div>
+        <div class="fc"><label>Status</label>
+          <select id="fS"><option value="Hot">🔴 Hot</option><option value="Warm" selected>🟡 Warm</option><option value="Cold">🔵 Cold</option></select>
+        </div>
+      </div>
+      <div class="fr">
+        <div class="fc"><label>Follow-Up Date</label><input id="fF" type="date"/></div>
+        <div class="fc"><label>Tags (comma separated)</label><input id="fT" placeholder="VIP, Lead"/></div>
+      </div>
+      <div class="fr"><div class="fc full"><label>Notes</label><textarea id="fNo" placeholder="Notes…"></textarea></div></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-s" onclick="closeMod()">Cancel</button>
+      <button class="btn btn-g" onclick="saveContact()">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT MODAL -->
+<div class="mo hidden" id="clModal">
+  <div class="md">
+    <div class="mh"><h3 id="clMTitle">Add Client</h3><div class="mcl" onclick="closeClMod()">✕</div></div>
+    <div class="mb">
+      <input type="hidden" id="clIdx"/>
+      <div class="fr">
+        <div class="fc"><label>Client Name *</label><input id="clN" placeholder="e.g. Infosys, TCS"/></div>
+        <div class="fc"><label>Industry</label><input id="clI" placeholder="e.g. IT, Banking"/></div>
+      </div>
+      <div class="fr">
+        <div class="fc"><label>Contact Person</label><input id="clCP" placeholder="Key contact at client"/></div>
+        <div class="fc"><label>Client Phone</label><input id="clPh" placeholder="919876543210"/></div>
+      </div>
+      <div class="fr">
+        <div class="fc"><label>Client Email</label><input id="clEm" type="email" placeholder="hr@client.com"/></div>
+        <div class="fc"><label>Location / City</label><input id="clLoc" placeholder="Mumbai, Hyderabad…"/></div>
+      </div>
+      <div class="fr"><div class="fc full"><label>Notes</label><textarea id="clNo" placeholder="Any notes about this client…"></textarea></div></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-s" onclick="closeClMod()">Cancel</button>
+      <button class="btn btn-g" onclick="saveClient()">💾 Save Client</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════
+//  DATA & STATE
+// ════════════════════════════════════════════
+const USERS = [
+  {u:'usha',    p:'usha@123',    role:'Manager', name:'Usha'},
+  {u:'sachit',  p:'sachit@123',  role:'User',    name:'Sachit'},
+  {u:'sonali',  p:'sonali@123',  role:'User',    name:'Sonali'},
+  {u:'dipti',   p:'dipti@123',   role:'User',    name:'Dipti'},
+  {u:'saranya', p:'saranya@123', role:'User',    name:'Saranya'},
+  {u:'ooha',    p:'ooha@123',    role:'User',    name:'Ooha'},
+  {u:'purnima', p:'purnima@123', role:'User',    name:'Purnima'},
+  {u:'divya',   p:'divya@123',   role:'User',    name:'Divya'},
+  {u:'venisha', p:'venisha@123', role:'User',    name:'Venisha'},
+  {u:'samradhi',p:'samradhi@123',role:'User',    name:'Samradhi'},
+];
+
+const TEMPLATES = [
+  {l:'Follow-up', t:'Hi {name}, just following up on our last conversation. Would love to connect at your convenience! 😊'},
+  {l:'Proposal',  t:'Dear {name}, hope you are doing well! Sharing our updated proposal for your review. Do let us know your thoughts. 🙏'},
+  {l:'Demo',      t:'Hi {name}! We\'d love to show you a quick product demo. When works best for you? 📅'},
+  {l:'Greeting',  t:'Hi {name}! Warm greetings from the team 😊 Just checking in — let us know if there\'s anything we can help with!'},
+  {l:'Reminder',  t:'Hi {name}, this is a gentle reminder about our upcoming discussion. Looking forward to connecting! 🗓'},
+];
+
+let S = {user:null}; // session
+let _broadcastLinks = [];
+let _broadcastItems = [];
+
+function LS(k, d){ try{ return JSON.parse(localStorage.getItem(k))||d }catch(e){ return d } }
+function SS(k,v){ localStorage.setItem(k, JSON.stringify(v)) }
+
+function getContacts(){
+  const all = LS('crm_contacts',[]);
+  if(S.user && S.user.role==='Manager') return all;
+  return all.filter(c=>c.assigned===(S.user?S.user.u:''));
+}
+function allContacts(){ return LS('crm_contacts',[]) }
+function saveContacts(arr){ SS('crm_contacts',arr) }
+function getClients(){ return LS('crm_clients',[]) }
+function saveClients(arr){ SS('crm_clients',arr) }
+function getLog(){ return LS('crm_log',[]) }
+function addLog(entry){ const l=getLog(); l.unshift(entry); SS('crm_log',l.slice(0,500)) }
+
+// ════════════════════════════════════════════
+//  AUTH
+// ════════════════════════════════════════════
+function doLogin(){
+  const u=document.getElementById('lu').value.trim().toLowerCase();
+  const p=document.getElementById('lp').value;
+  const found=USERS.find(x=>x.u===u && x.p===p);
+  if(!found){ showErr('Invalid username or password.'); return; }
+  S.user=found;
+  sessionStorage.setItem('crm_sess', JSON.stringify(found));
+  initApp();
+}
+function logout(){
+  S.user=null; sessionStorage.removeItem('crm_sess');
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('loginPage').classList.remove('hidden');
+  document.getElementById('lu').value='';
+  document.getElementById('lp').value='';
+}
+function showErr(m){ const e=document.getElementById('lerr'); e.textContent=m; e.style.display='block'; }
+document.getElementById('lp').onkeydown=e=>{ if(e.key==='Enter') doLogin(); };
+
+function initApp(){
+  document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  document.getElementById('uav').textContent=S.user.name[0];
+  document.getElementById('uname').textContent=S.user.name;
+  const rEl=document.getElementById('urole');
+  rEl.textContent=S.user.role==='Manager'?'⭐ Manager':'Team Member';
+  if(S.user.role==='Manager') rEl.classList.add('mgr');
+  updateBadge(); nav('dash');
+}
+
+function updateBadge(){
+  document.getElementById('ctBadge').textContent=getContacts().length;
+  const cb=document.getElementById('clBadge');
+  if(cb) cb.textContent=getClients().length;
+}
+
+// ════════════════════════════════════════════
+//  NAVIGATION
+// ════════════════════════════════════════════
+function nav(page){
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  const el=document.querySelector(`.ni[data-p="${page}"]`);
+  if(el) el.classList.add('active');
+  const titles={dash:'Dashboard',contacts:'Contacts',broadcast:'Broadcast Messages',history:'Message History',import:'Import Contacts',clients:'Client Database'};
+  document.getElementById('ptitle').textContent=titles[page]||page;
+  document.getElementById('tact').innerHTML='';
+  if(page==='dash')      renderDash();
+  if(page==='contacts')  renderContacts();
+  if(page==='broadcast') renderBroadcast();
+  if(page==='history')   renderHistory();
+  if(page==='import')    renderImport();
+  if(page==='clients')   renderClients();
+}
+
+// ════════════════════════════════════════════
+//  DASHBOARD
+// ════════════════════════════════════════════
+function renderDash(){
+  const cts=getContacts();
+  const today=new Date(); today.setHours(0,0,0,0);
+  const hot=cts.filter(c=>c.status==='Hot').length;
+  const warm=cts.filter(c=>c.status==='Warm').length;
+  const cold=cts.filter(c=>c.status==='Cold').length;
+  const dues=cts.filter(c=>c.followUp && new Date(c.followUp)<=today);
+
+  const dueHTML=dues.length===0
+    ?'<p style="color:var(--muted);font-size:13px;padding:16px;text-align:center">🎉 No overdue follow-ups!</p>'
+    :dues.map(c=>`<div class="di">
+        <div><div class="din">${x(c.name)}</div><div class="dii">${x(c.company||'')} · ${getUserName(c.assigned)}</div></div>
+        <div style="text-align:right"><div class="did">📅 ${c.followUp}</div><span class="sbadge s${c.status}">${c.status}</span></div>
+      </div>`).join('');
+
+  set(`<div class="sgrid">
+    <div class="scard t"><div class="sico"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><div class="snum">${cts.length}</div><div class="slbl">My Contacts</div></div></div>
+    <div class="scard h"><div class="sico"><svg viewBox="0 0 24 24"><path d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 11 1 0 2.5 0 3.5-1.5.509.956.5 2 .5 3A7.5 7.5 0 0 1 12 23z"/></svg></div><div><div class="snum" style="color:var(--danger)">${hot}</div><div class="slbl">Hot Leads</div></div></div>
+    <div class="scard w"><div class="sico"><svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20c4 0 4-2 8-2s4 2 8 2v-2c-4 0-4-2-8-2-1.13 0-1.9.16-2.53.33C14.28 12.28 16.5 10 17 8z"/></svg></div><div><div class="snum" style="color:var(--warn)">${warm}</div><div class="slbl">Warm Leads</div></div></div>
+    <div class="scard c"><div class="sico"><svg viewBox="0 0 24 24"><path d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22v-2z"/></svg></div><div><div class="snum" style="color:var(--blue)">${cold}</div><div class="slbl">Cold Leads</div></div></div>
+    <div class="scard f"><div class="sico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div><div><div class="snum" style="color:#9C27B0">${dues.length}</div><div class="slbl">Due Follow-ups</div></div></div>
+  </div>
+  <div class="stitle">📋 Overdue Follow-ups</div>
+  <div class="dlist">${dueHTML}</div>`);
+}
+
+// ════════════════════════════════════════════
+//  CONTACTS
+// ════════════════════════════════════════════
+function renderContacts(ft='', fs='all'){
+  document.getElementById('tact').innerHTML=`
+    <button class="btn btn-g" onclick="openAdd()">＋ Add Contact</button>`;
+
+  let cts=[...getContacts()];
+  if(ft){ const q=ft.toLowerCase(); cts=cts.filter(c=>(c.name||'').toLowerCase().includes(q)||(c.phone||'').includes(q)||(c.company||'').toLowerCase().includes(q)||(c.tags||'').toLowerCase().includes(q)); }
+  if(fs!=='all') cts=cts.filter(c=>c.status===fs);
+
+  const rows=cts.map((c,ri)=>`<tr>
+    <td><strong>${x(c.name)}</strong><br><span style="font-size:10px;color:var(--muted)">${x(c.company||'')}</span></td>
+    <td><a class="plink" href="https://wa.me/${x(c.phone)}" target="_blank">📱 ${x(c.phone)}</a></td>
+    <td style="font-size:11px">${x(c.email||'—')}</td>
+    <td style="font-size:11px;font-weight:600;color:#5c5c5c">${x(c.position||'—')}</td>
+    <td><span style="font-size:11px;background:#e8eaf6;color:#3949ab;padding:2px 7px;border-radius:4px;font-weight:600">${x(c.clientName||'—')}</span></td>
+    <td>${(c.tags||'').split(',').filter(Boolean).map(t=>`<span class="tag">${x(t.trim())}</span>`).join('')||'—'}</td>
+    <td><span class="sbadge s${c.status}">${c.status}</span></td>
+    <td style="font-size:11px">${getUserName(c.assigned)}</td>
+    <td style="font-size:11px;color:${c.followUp&&new Date(c.followUp)<=new Date()?'var(--danger)':'var(--muted)'}">${c.followUp||'—'}</td>
+    <td><div class="abtns">
+      <button class="btn btn-b btn-sm" onclick="openEdit(${getContactRealIdx(c)})">✏️</button>
+      <a class="btn btn-g btn-sm btnWA" href="https://wa.me/${x(c.phone)}" target="_blank">💬</a>
+      ${S.user.role==='Manager'?`<button class="btn btn-d btn-sm" onclick="delContact(${getContactRealIdx(c)})">🗑</button>`:''}
+    </div></td>
+  </tr>`).join('');
+
+  set(`<div class="tbar">
+    <input class="srch" id="sb" placeholder="Search name, phone, company…" value="${x(ft)}"
+      oninput="renderContacts(this.value,document.getElementById('sf').value)"/>
+    <select class="fsel" id="sf" onchange="renderContacts(document.getElementById('sb').value,this.value)">
+      <option value="all">All Status</option>
+      <option value="Hot" ${fs==='Hot'?'selected':''}>🔴 Hot</option>
+      <option value="Warm" ${fs==='Warm'?'selected':''}>🟡 Warm</option>
+      <option value="Cold" ${fs==='Cold'?'selected':''}>🔵 Cold</option>
+    </select>
+    <span style="font-size:12px;color:var(--muted)">${cts.length} contact${cts.length!==1?'s':''}</span>
+  </div>
+  <div class="tw">${cts.length===0
+    ?'<div class="empty"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg><p>No contacts yet — add one or import from CSV/Excel</p></div>'
+    :`<table><thead><tr><th>Name</th><th>Phone</th><th>Position</th><th>Client</th><th>Tags</th><th>Status</th><th>Assigned</th><th>Follow-up</th><th>Actions</th></tr></thead><tbody>${rows}</tbody></table>`
+  }</div>`);
+}
+
+function getContactRealIdx(c){
+  const all=allContacts();
+  return all.findIndex(a=>a.phone===c.phone && a.name===c.name);
+}
+
+function delContact(idx){
+  if(!confirm('Delete this contact?')) return;
+  const all=allContacts(); all.splice(idx,1); saveContacts(all);
+  updateBadge(); renderContacts(); toast('Deleted','ok');
+}
+
+// ════════════════════════════════════════════
+//  MODAL
+// ════════════════════════════════════════════
+function openAdd(){
+  document.getElementById('mTitle').textContent='Add New Contact';
+  ['fN','fP','fE','fC','fT','fNo','fPos'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('fF').value=''; document.getElementById('fS').value='Warm';
+  document.getElementById('fIdx').value='';
+  populateAssign(null); populateClientDrop(''); document.getElementById('cModal').classList.remove('hidden');
+}
+function openEdit(idx){
+  const c=allContacts()[idx]; if(!c) return;
+  document.getElementById('mTitle').textContent='Edit Contact';
+  document.getElementById('fIdx').value=idx;
+  document.getElementById('fN').value=c.name||'';
+  document.getElementById('fP').value=c.phone||'';
+  document.getElementById('fE').value=c.email||'';
+  document.getElementById('fC').value=c.company||'';
+  document.getElementById('fS').value=c.status||'Warm';
+  document.getElementById('fF').value=c.followUp||'';
+  document.getElementById('fT').value=c.tags||'';
+  document.getElementById('fNo').value=c.notes||'';
+  document.getElementById('fPos').value=c.position||'';
+  populateAssign(c.assigned); populateClientDrop(c.clientName||''); document.getElementById('cModal').classList.remove('hidden');
+}
+function closeMod(){ document.getElementById('cModal').classList.add('hidden'); }
+function populateAssign(cur){
+  const sel=document.getElementById('fA'), col=document.getElementById('faCol');
+  if(S.user.role!=='Manager'){ col.style.display='none'; }
+  else { col.style.display=''; sel.innerHTML=USERS.map(u=>`<option value="${u.u}" ${u.u===(cur||'')?'selected':''}>${u.name} (${u.role})</option>`).join(''); }
+}
+function populateClientDrop(curClient){
+  const sel=document.getElementById('fCl');
+  const clients=getClients();
+  sel.innerHTML='<option value="">— Select Client —</option>'+clients.map(c=>`<option value="${x(c.name)}" ${c.name===curClient?'selected':''}>${x(c.name)}${c.industry?' ('+x(c.industry)+')':''}</option>`).join('');
+}
+function saveContact(){
+  const name=document.getElementById('fN').value.trim(), phone=document.getElementById('fP').value.trim();
+  if(!name||!phone){ toast('Name & Phone required','err'); return; }
+  const idx=document.getElementById('fIdx').value;
+  const c={
+    name, phone,
+    email:document.getElementById('fE').value.trim(),
+    company:document.getElementById('fC').value.trim(),
+    position:document.getElementById('fPos').value.trim(),
+    clientName:document.getElementById('fCl').value,
+    assigned: S.user.role==='Manager' ? document.getElementById('fA').value : S.user.u,
+    status:document.getElementById('fS').value,
+    followUp:document.getElementById('fF').value,
+    tags:document.getElementById('fT').value.trim(),
+    notes:document.getElementById('fNo').value.trim(),
+    added: new Date().toISOString().split('T')[0]
+  };
+  const all=allContacts();
+  if(idx!=='') all[parseInt(idx)]=c; else all.push(c);
+  saveContacts(all); closeMod(); updateBadge();
+  renderContacts(); toast(idx!==''?'Contact updated ✓':'Contact added ✓','ok');
+}
+
+// ════════════════════════════════════════════
+//  BROADCAST
+// ════════════════════════════════════════════
+function renderBroadcast(){
+  const cts=getContacts();
+  const chi=cts.map(c=>`<label class="chi">
+    <input type="checkbox" class="cchk" data-name="${x(c.name)}" data-phone="${x(c.phone)}"/>
+    <div><div class="ci-n">${x(c.name)}</div><div class="ci-p">📱 ${x(c.phone)}${c.company?' · '+x(c.company):''}</div></div>
+    <span class="sbadge s${c.status}" style="margin-left:auto">${c.status}</span>
+  </label>`).join('');
+
+  const tmpls=TEMPLATES.map(t=>`<button class="tmpl" onclick="useTmpl(\`${t.t.replace(/`/g,'\\`')}\`)">${t.l}</button>`).join('');
+
+  set(`<div class="bwrap">
+    <div>
+      <div class="card">
+        <h3>✍️ Compose Message</h3>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Quick Templates:</div>
+        <div class="tmpls">${tmpls}</div>
+        <textarea class="mta" id="bmsg" placeholder="Type your message…&#10;Use {name} to personalise for each contact." oninput="updCC()"></textarea>
+        <div class="cc" id="cc">0 characters</div>
+        <div class="bfoot">
+          <span class="sc" id="selc">0 contacts selected</span>
+          <button class="btnBC" onclick="prepBC()">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            Prepare Broadcast
+          </button>
+        </div>
+        <div class="waPanel hidden" id="waP">
+          <h4>🚀 Links Ready — Click each to open WhatsApp Web</h4>
+          <div id="waL"></div>
+          <button class="btnAll" onclick="openAll()">📤 Open All Sequentially (2.5s gap)</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h3>👥 Select Recipients</h3>
+        <div class="chklist">
+          <div class="chkall"><input type="checkbox" id="chkAll" onchange="togAll(this)"/> <label for="chkAll">Select All (${cts.length})</label></div>
+          ${chi||'<div style="padding:18px;text-align:center;color:var(--muted);font-size:12px">No contacts — add some first</div>'}
+        </div>
+      </div>
+    </div>
+  </div>`);
+
+  document.querySelectorAll('.cchk').forEach(c=>c.addEventListener('change',updSel));
+}
+function useTmpl(t){ document.getElementById('bmsg').value=t; updCC(); }
+function updCC(){ document.getElementById('cc').textContent=(document.getElementById('bmsg').value||'').length+' characters'; }
+function togAll(el){ document.querySelectorAll('.cchk').forEach(c=>c.checked=el.checked); updSel(); }
+function updSel(){ const n=document.querySelectorAll('.cchk:checked').length; document.getElementById('selc').textContent=n+' contact'+(n!==1?'s':'')+' selected'; }
+function prepBC(){
+  const msg=(document.getElementById('bmsg').value||'').trim();
+  if(!msg){ toast('Write a message first','err'); return; }
+  const sel=[...document.querySelectorAll('.cchk:checked')];
+  if(!sel.length){ toast('Select at least 1 contact','err'); return; }
+  _broadcastItems=sel.map(c=>({name:c.dataset.name, phone:c.dataset.phone, msg:msg.replace(/\{name\}/gi,c.dataset.name)}));
+  _broadcastLinks=_broadcastItems.map(i=>`https://web.whatsapp.com/send?phone=${i.phone}&text=${encodeURIComponent(i.msg)}`);
+  document.getElementById('waL').innerHTML=_broadcastItems.map((it,i)=>`
+    <div class="wali">
+      <div class="wn">${x(it.name)}</div>
+      <div class="wp">${x(it.phone)}</div>
+      <a class="btnWA" href="${_broadcastLinks[i]}" target="_blank" onclick="logOne('${x(it.name)}','${x(it.phone)}',\`${it.msg.replace(/`/g,'\\`').replace(/'/g,"\\'")}\`)">
+        <svg viewBox="0 0 24 24" width="11" height="11"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L.057 23.527a.5.5 0 0 0 .614.614l5.675-1.471A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.892 0-3.667-.5-5.203-1.377l-.372-.217-3.856.999.999-3.856-.217-.372A9.945 9.945 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Open WA
+      </a>
+    </div>`).join('');
+  document.getElementById('waP').classList.remove('hidden');
+  toast(`${sel.length} links ready!`,'ok');
+}
+let _li=0;
+function openAll(){
+  if(!_broadcastLinks.length) return;
+  _li=0;
+  function next(){ if(_li<_broadcastLinks.length){ logOne(_broadcastItems[_li].name,_broadcastItems[_li].phone,_broadcastItems[_li].msg); window.open(_broadcastLinks[_li++],'_blank'); setTimeout(next,2500); } else toast('All links opened!','ok'); }
+  next();
+}
+function logOne(name,phone,msg){
+  addLog({id:'L'+Date.now(),date:new Date().toLocaleString(),by:S.user.name,name,phone,msg:msg.substring(0,120),ch:'WhatsApp'});
+}
+
+// ════════════════════════════════════════════
+//  HISTORY
+// ════════════════════════════════════════════
+function renderHistory(){
+  let log=getLog();
+  if(S.user.role!=='Manager') log=log.filter(l=>l.by===S.user.name);
+  const html=log.length===0
+    ?'<div class="empty"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg><p>No messages sent yet</p></div>'
+    :log.map(l=>`<div class="logi">
+        <div class="lh"><div class="lav">${(l.by||'?')[0]}</div>
+          <div><div class="lmn">To: ${x(l.name||'')}</div><div class="lmd">Sent by ${x(l.by||'')} via ${x(l.ch||'WhatsApp')}</div></div>
+          <div class="ldt">${x(l.date||'')}</div></div>
+        <div class="lmsg">${x(l.msg||'')}</div>
+        <div class="lph">📱 ${x(l.phone||'')}</div>
+      </div>`).join('');
+  set(`<div style="max-width:680px">${html}</div>`);
+}
+
+// ════════════════════════════════════════════
+//  IMPORT CONTACTS
+// ════════════════════════════════════════════
+function renderImport(){
+  set(`<div style="max-width:600px">
+    <div class="card">
+      <h3>📥 Import Contacts from CSV or Excel</h3>
+      <div class="imp" onclick="document.getElementById('fileIn').click()">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>
+        <p>Click to upload CSV file</p>
+        <small>Required columns: name, phone — optional: email, company, status, tags, notes, assigned</small>
+      </div>
+      <input type="file" id="fileIn" accept=".csv,.txt" class="hidden" onchange="handleImport(this)"/>
+      <div id="impRes"></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>📋 CSV Format Example</h3>
+      <pre style="font-size:11px;background:#f8f8f8;padding:12px;border-radius:7px;overflow-x:auto;line-height:1.7">name,phone,email,company,status,tags,assigned,notes
+Rahul Sharma,919876543210,rahul@example.com,ABC Corp,Hot,"VIP,Q1",sachit,Interested in plan
+Priya Mehta,919812345678,priya@example.com,XYZ Ltd,Warm,Prospect,sonali,Follow up on proposal
+Amit Verma,919998887776,,PQR Pvt,Cold,,dipti,Price sensitive</pre>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-s" onclick="downloadTemplate()">⬇️ Download CSV Template</button>
+        <button class="btn btn-d" onclick="clearAllContacts()">🗑 Clear All Contacts</button>
+      </div>
+    </div>
+  </div>`);
+}
+
+function handleImport(inp){
+  const f=inp.files[0]; if(!f) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const lines=e.target.result.split('\n').map(l=>l.trim()).filter(Boolean);
+    if(lines.length<2){ document.getElementById('impRes').innerHTML='<p style="color:red;font-size:13px">File seems empty or has no data rows.</p>'; return; }
+    const hdr=lines[0].split(',').map(h=>h.trim().toLowerCase().replace(/['"]/g,''));
+    const ni=hdr.indexOf('name'), pi=hdr.indexOf('phone');
+    if(ni<0||pi<0){ document.getElementById('impRes').innerHTML='<p style="color:red;font-size:13px">CSV must have "name" and "phone" columns.</p>'; return; }
+    const ei=hdr.indexOf('email'), ci=hdr.indexOf('company'), si=hdr.indexOf('status'), ti=hdr.indexOf('tags'), ai=hdr.indexOf('assigned'), nti=hdr.indexOf('notes');
+    let added=0, skipped=0;
+    const all=allContacts();
+    const existing=new Set(all.map(c=>c.phone));
+    for(let i=1;i<lines.length;i++){
+      const cols=lines[i].split(',').map(c=>c.trim().replace(/^["']|["']$/g,''));
+      const name=cols[ni]||'', phone=(cols[pi]||'').replace(/\D/g,'');
+      if(!name||!phone||phone.length<7){ skipped++; continue; }
+      if(existing.has(phone)){ skipped++; continue; }
+      all.push({
+        name, phone,
+        email:ei>=0?cols[ei]||'':'',
+        company:ci>=0?cols[ci]||'':'',
+        status:si>=0&&['Hot','Warm','Cold'].includes(cols[si])?cols[si]:'Warm',
+        tags:ti>=0?cols[ti]||'':'',
+        assigned:ai>=0&&cols[ai]?cols[ai].toLowerCase():S.user.u,
+        notes:nti>=0?cols[nti]||'':'',
+        added:new Date().toISOString().split('T')[0]
+      });
+      existing.add(phone); added++;
+    }
+    saveContacts(all); updateBadge();
+    document.getElementById('impRes').innerHTML=`<div style="background:#e8f5e9;border:1px solid #c8e6c9;border-radius:7px;padding:11px 14px;margin-top:12px;font-size:13px;color:#1b5e20">
+      ✅ Imported <strong>${added}</strong> contacts. Skipped <strong>${skipped}</strong> (duplicates or missing data).
+    </div>`;
+    inp.value='';
+  };
+  reader.readAsText(f);
+}
+
+function downloadTemplate(){
+  const csv='name,phone,email,company,status,tags,assigned,notes\nRahul Sharma,919876543210,rahul@example.com,ABC Corp,Hot,"VIP,Lead",sachit,Interested\nPriya Mehta,919812345678,priya@xyz.com,XYZ Ltd,Warm,Prospect,sonali,Follow up';
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='contacts_template.csv'; a.click();
+}
+
+function clearAllContacts(){
+  if(!confirm('Clear ALL contacts? This cannot be undone.')) return;
+  saveContacts([]); updateBadge(); renderImport(); toast('All contacts cleared','ok');
+}
+
+// ════════════════════════════════════════════
+//  UTILITIES
+// ════════════════════════════════════════════
+function set(html){ document.getElementById('content').innerHTML=html; }
+function x(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function getUserName(u){ const f=USERS.find(x=>x.u===u); return f?f.name:u||'—'; }
+
+let _tt;
+function toast(m,t){
+  const el=document.getElementById('toast');
+  el.textContent=m; el.className='show '+(t||'');
+  clearTimeout(_tt); _tt=setTimeout(()=>el.className='',3000);
+}
+
+// ════════════════════════════════════════════
+//  CLIENT DATABASE
+// ════════════════════════════════════════════
+function renderClients(){
+  if(S.user.role==='Manager'){
+    document.getElementById('tact').innerHTML=`<button class="btn btn-g" onclick="openAddClient()">＋ Add Client</button>`;
+  }
+  const clients=getClients();
+  const rows=clients.map((c,i)=>`<tr>
+    <td><strong>${x(c.name)}</strong></td>
+    <td style="font-size:11px">${x(c.industry||'—')}</td>
+    <td style="font-size:11px">${x(c.contactPerson||'—')}</td>
+    <td><a class="plink" href="https://wa.me/${x(c.phone||'')}" target="_blank">${c.phone?'📱 '+x(c.phone):'—'}</a></td>
+    <td style="font-size:11px">${x(c.email||'—')}</td>
+    <td style="font-size:11px">${x(c.location||'—')}</td>
+    <td style="font-size:11px;color:var(--muted)">${x((c.notes||'')).substring(0,40)}${c.notes&&c.notes.length>40?'…':''}</td>
+    <td><div class="abtns">
+      ${S.user.role==='Manager'?`<button class="btn btn-b btn-sm" onclick="openEditClient(${i})">✏️ Edit</button>
+      <button class="btn btn-d btn-sm" onclick="deleteClient(${i})">🗑</button>`:''}
+    </div></td>
+  </tr>`).join('');
+
+  set(`<div class="tw">${clients.length===0
+    ?'<div class="empty"><svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg><p>No clients yet — add your first client to get started</p></div>'
+    :`<table><thead><tr><th>Client Name</th><th>Industry</th><th>Contact Person</th><th>Phone</th><th>Email</th><th>Location</th><th>Notes</th><th>Actions</th></tr></thead><tbody>${rows}</tbody></table>`
+  }</div>`);
+}
+function openAddClient(){
+  document.getElementById('clMTitle').textContent='Add New Client';
+  ['clN','clI','clCP','clPh','clEm','clLoc','clNo'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('clIdx').value='';
+  document.getElementById('clModal').classList.remove('hidden');
+}
+function openEditClient(i){
+  const c=getClients()[i]; if(!c) return;
+  document.getElementById('clMTitle').textContent='Edit Client';
+  document.getElementById('clIdx').value=i;
+  document.getElementById('clN').value=c.name||'';
+  document.getElementById('clI').value=c.industry||'';
+  document.getElementById('clCP').value=c.contactPerson||'';
+  document.getElementById('clPh').value=c.phone||'';
+  document.getElementById('clEm').value=c.email||'';
+  document.getElementById('clLoc').value=c.location||'';
+  document.getElementById('clNo').value=c.notes||'';
+  document.getElementById('clModal').classList.remove('hidden');
+}
+function closeClMod(){ document.getElementById('clModal').classList.add('hidden'); }
+function saveClient(){
+  const name=document.getElementById('clN').value.trim();
+  if(!name){ toast('Client Name is required','err'); return; }
+  const idx=document.getElementById('clIdx').value;
+  const c={
+    name, industry:document.getElementById('clI').value.trim(),
+    contactPerson:document.getElementById('clCP').value.trim(),
+    phone:document.getElementById('clPh').value.trim(),
+    email:document.getElementById('clEm').value.trim(),
+    location:document.getElementById('clLoc').value.trim(),
+    notes:document.getElementById('clNo').value.trim()
+  };
+  const all=getClients();
+  if(idx!=='') all[parseInt(idx)]=c; else all.push(c);
+  saveClients(all); closeClMod(); updateBadge();
+  renderClients(); toast(idx!==''?'Client updated ✓':'Client added ✓','ok');
+}
+function deleteClient(i){
+  if(!confirm('Delete this client?')) return;
+  const all=getClients(); all.splice(i,1); saveClients(all);
+  updateBadge(); renderClients(); toast('Client deleted','ok');
+}
+
+// ── Auto-restore session ──
+(()=>{
+  const s=sessionStorage.getItem('crm_sess');
+  if(s){ try{ S.user=JSON.parse(s); initApp(); }catch(e){} }
+})();
+</script>
+</body>
+</html>
