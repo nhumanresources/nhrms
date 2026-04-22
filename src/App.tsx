@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { applySecurityMeasures } from "./utils/securityUtils";
 import { AuthProvider } from "./contexts/AuthContext";
+import { LMSProvider } from "./contexts/LMSContext";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -78,6 +79,12 @@ import CourseCatalog from "./pages/academy/CourseCatalog";
 import CoursePage from "./pages/academy/CoursePage";
 import LearningPaths from "./pages/academy/LearningPaths";
 import Resources from "./pages/academy/Resources";
+import LMSDashboard from "./pages/lms/LMSDashboard";
+import CourseBuilder from "./pages/lms/CourseBuilder";
+import MyCourses from "./pages/lms/MyCourses";
+import BrowseCourses from "./pages/lms/BrowseCourses";
+import CourseViewer from "./pages/lms/CourseViewer";
+import LMSSettings from "./pages/lms/LMSSettings";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -89,6 +96,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <LMSProvider>
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -197,9 +205,19 @@ const App = () => {
             <Route path="/academy/learning-paths" element={<LearningPaths />} />
             <Route path="/academy/resources" element={<Resources />} />
             
+            {/* LMS Routes */}
+            <Route path="/lms" element={<LMSDashboard />} />
+            <Route path="/lms/courses" element={<MyCourses />} />
+            <Route path="/lms/builder" element={<CourseBuilder />} />
+            <Route path="/lms/builder/:courseId" element={<CourseBuilder />} />
+            <Route path="/lms/browse" element={<BrowseCourses />} />
+            <Route path="/lms/course/:courseId" element={<CourseViewer />} />
+            <Route path="/lms/settings" element={<LMSSettings />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </TooltipProvider>
+        </LMSProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
