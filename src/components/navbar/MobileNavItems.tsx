@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ChevronDown, Phone, GraduationCap } from 'lucide-react';
+import { ChevronDown, Phone, GraduationCap, Bot } from 'lucide-react';
 
 export const MobileNavItems = () => (
   <>
@@ -112,7 +112,11 @@ export const MobileNavItems = () => (
           <Link to="/learning-solutions" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
             Learning Solutions
           </Link>
-          
+          <Link to="/lms" className="flex items-center gap-1.5 px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">
+            <Bot size={14} className="text-primary" />
+            LMS (Course Builder)
+          </Link>
+
           {/* Careers Section */}
           <div className="mt-2 px-2 py-1 text-xs font-semibold text-primary/70">Careers</div>
           <Link to="/careers/internships" className="block px-3 py-2 text-sm hover:bg-white rounded-md transition-colors">

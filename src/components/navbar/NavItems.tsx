@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ChevronDown, GraduationCap } from 'lucide-react';
+import { ChevronDown, GraduationCap, Bot } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavItemsProps {
@@ -145,7 +145,7 @@ export const NavItems = ({ isActive, isScrolled }: NavItemsProps) => {
           className={cn(
             "relative flex items-center px-2 py-1 text-sm font-medium transition-colors duration-200",
             getHoverClass(),
-            getTextClass(isActive('/hr-roadmap') || isActive('/learning-solutions') || isActive('/careers') || isActive('/blog'))
+            getTextClass(isActive('/hr-roadmap') || isActive('/learning-solutions') || isActive('/lms') || isActive('/careers') || isActive('/blog'))
           )}
           aria-haspopup="true" 
           aria-expanded="false"
@@ -162,7 +162,11 @@ export const NavItems = ({ isActive, isScrolled }: NavItemsProps) => {
             <Link to="/learning-solutions" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
               Learning Solutions
             </Link>
-            
+            <Link to="/lms" className="flex items-center gap-1.5 px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+              <Bot size={14} className="text-primary" />
+              LMS (Course Builder)
+            </Link>
+
             {/* Separator */}
             <div className="my-2 border-t border-border/30" />
             

@@ -35,7 +35,7 @@ export default function LMSLogin() {
   // Redirect if already logged in
   useEffect(() => {
     if (!authLoading && user) {
-      navigate('/dashboard');
+      navigate('/lms');
     }
   }, [user, authLoading, navigate]);
 
@@ -74,7 +74,7 @@ export default function LMSLogin() {
           title: "Success",
           description: "Welcome to the Learning Management System",
         });
-        navigate('/dashboard');
+        navigate('/lms');
       }
     } catch (error) {
       toast({
