@@ -78,6 +78,7 @@ import CourseCatalog from "./pages/academy/CourseCatalog";
 import CoursePage from "./pages/academy/CoursePage";
 import LearningPaths from "./pages/academy/LearningPaths";
 import Resources from "./pages/academy/Resources";
+import AcademyApplySummer2026 from "./pages/AcademyApplySummer2026";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -196,6 +197,7 @@ const App = () => {
             <Route path="/academy/courses/:courseId" element={<CoursePage />} />
             <Route path="/academy/learning-paths" element={<LearningPaths />} />
             <Route path="/academy/resources" element={<Resources />} />
+            <Route path="/academy/apply-summer-2026" element={<AcademyApplySummer2026 />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
