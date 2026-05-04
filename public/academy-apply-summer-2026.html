@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply — Associate HRTech Implementation | nHRMS Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-dark: #085041;
+    --teal-light: #E1F5EE;
+    --teal-mid: #9FE1CB;
+    --ink: #0F1A16;
+    --ink-mid: #2C3E35;
+    --muted: #6B8070;
+    --border: #D4E4DC;
+    --surface: #F6FAF8;
+    --white: #FFFFFF;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --error: #C0392B;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* Header banner */
+  .header {
+    background: var(--teal-dark);
+    padding: 2rem 2rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.2);
+  }
+  .header-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+  .academy-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal-mid);
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(26px, 5vw, 38px);
+    color: #FFFFFF;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .header h1 em { color: var(--teal-mid); font-style: italic; }
+  .header p {
+    font-size: 15px; color: rgba(255,255,255,0.65);
+    line-height: 1.6; max-width: 480px;
+    margin-bottom: 20px;
+  }
+  .header-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; font-weight: 500; padding: 5px 12px;
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+  }
+  .pill-comp { background: rgba(29,158,117,0.3); border-color: rgba(29,158,117,0.5); color: #9FE1CB; }
+
+  /* Form card */
+  .form-wrap {
+    max-width: 680px; margin: -1.5rem auto 3rem;
+    padding: 0 1.25rem;
+    position: relative; z-index: 2;
+  }
+  .form-card {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(8,80,65,0.08);
+  }
+
+  /* Section headers inside form */
+  .form-section {
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .form-section:last-child { border-bottom: none; }
+  .section-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* Fields */
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .field-grid { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field-full { grid-column: 1 / -1; }
+  label {
+    font-size: 13px; font-weight: 500; color: var(--ink-mid);
+  }
+  label span.req { color: var(--teal); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 13px;
+    width: 100%;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
+    background: var(--white);
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B8070' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+  textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+  /* Checkbox/radio group */
+  .check-group { display: flex; flex-direction: column; gap: 8px; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    cursor: pointer; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: 8px;
+    transition: border-color 0.12s, background 0.12s;
+    font-size: 13px; color: var(--ink-mid);
+  }
+  .check-item:hover { border-color: var(--teal-mid); background: var(--teal-light); }
+  .check-item input { margin-top: 2px; accent-color: var(--teal); flex-shrink: 0; }
+
+  /* Horizontal checkbox group */
+  .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+
+  /* Consent block */
+  .consent-block {
+    background: var(--teal-light);
+    border: 1px solid var(--teal-mid);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: var(--teal-dark); line-height: 1.6;
+  }
+  .consent-block input { margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+
+  /* Submit */
+  .submit-area { padding: 1.5rem 1.75rem; background: var(--surface); border-top: 1px solid var(--border); }
+  .submit-btn {
+    width: 100%;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+  .submit-btn:hover { background: var(--teal-dark); }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-note {
+    text-align: center; margin-top: 10px;
+    font-size: 12px; color: var(--muted);
+  }
+
+  /* Progress bar */
+  .prog-bar { height: 3px; background: var(--teal-light); }
+  .prog-fill { height: 100%; width: 0%; background: var(--teal); transition: width 0.3s; }
+
+  /* Footer */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 12px; color: var(--muted);
+  }
+
+  /* Success state */
+  .success-screen {
+    display: none;
+    text-align: center; padding: 3rem 2rem;
+  }
+  .success-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--teal-light); margin: 0 auto 1.25rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .success-icon svg { width: 32px; height: 32px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <p class="academy-label">nHRMS Academy · Summer 2025</p>
+    <h1>Begin your journey in<br><em>HRTech Implementation</em></h1>
+    <p>30 seats. 3 weeks of world-class training. Product-led certifications. A real role waiting for you on the other side.</p>
+    <div class="header-pills">
+      <span class="pill pill-comp">₹20,000/month onwards</span>
+      <span class="pill">Bangalore · In-person</span>
+      <span class="pill">6–12 months HR exp. required</span>
+      <span class="pill">Non-recruitment HR only</span>
+    </div>
+  </div>
+</div>
+
+<div class="form-wrap">
+  <div class="form-card">
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+
+    <form id="appForm" novalidate>
+
+      <!-- Section 1: Personal details -->
+      <div class="form-section">
+        <p class="section-title">Personal details</p>
+        <div class="field-grid">
+          <div class="field">
+            <label for="fname">First name <span class="req">*</span></label>
+            <input type="text" id="fname" name="fname" placeholder="Priya" required>
+          </div>
+          <div class="field">
+            <label for="lname">Last name <span class="req">*</span></label>
+            <input type="text" id="lname" name="lname" placeholder="Sharma" required>
+          </div>
+          <div class="field">
+            <label for="email">Email address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="priya@email.com" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98XXX XXXXX" required>
+          </div>
+          <div class="field">
+            <label for="city">Current city <span class="req">*</span></label>
+            <input type="text" id="city" name="city" placeholder="Bengaluru" required>
+          </div>
+          <div class="field">
+            <label for="linkedin">LinkedIn profile URL</label>
+            <input type="text" id="linkedin" name="linkedin" placeholder="linkedin.com/in/yourname">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Education -->
+      <div class="form-section">
+        <p class="section-title">Education</p>
+        <div class="field-grid">
+          <div class="field">
+            <label for="degree">Highest qualification <span class="req">*</span></label>
+            <select id="degree" name="degree" required>
+              <option value="" disabled selected>Select qualification</option>
+              <option>B.Com / BBA / B.Sc</option>
+              <option>MBA / PGDM (HR)</option>
+              <option>MBA / PGDM (other)</option>
+              <option>MA / MSc (HR / Labour Studies)</option>
+              <option>Other postgraduate</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="passyear">Year of graduation <span class="req">*</span></label>
+            <select id="passyear" name="passyear" required>
+              <option value="" disabled selected>Select year</option>
+              <option>2025</option><option>2024</option><option>2023</option>
+              <option>2022</option><option>2021</option><option>2020 or earlier</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: HR experience -->
+      <div class="form-section">
+        <p class="section-title">HR experience</p>
+        <div class="field-grid">
+          <div class="field">
+            <label for="exp">Total HR experience <span class="req">*</span></label>
+            <select id="exp" name="exp" required>
+              <option value="" disabled selected>Select range</option>
+              <option>6 months – 9 months</option>
+              <option>9 months – 1 year</option>
+              <option>More than 1 year (please note: programme is for up to 1 year exp.)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="current_role">Current / most recent job title <span class="req">*</span></label>
+            <input type="text" id="current_role" name="current_role" placeholder="HR Executive" required>
+          </div>
+          <div class="field">
+            <label for="employer">Current / most recent employer <span class="req">*</span></label>
+            <input type="text" id="employer" name="employer" placeholder="Company name" required>
+          </div>
+          <div class="field">
+            <label for="industry">Industry <span class="req">*</span></label>
+            <select id="industry" name="industry" required>
+              <option value="" disabled selected>Select industry</option>
+              <option>IT / Software / SaaS</option>
+              <option>Manufacturing</option>
+              <option>BFSI</option>
+              <option>Retail / FMCG</option>
+              <option>Healthcare</option>
+              <option>Staffing / HR Services</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="hr_function">Primary HR function you work(ed) in <span class="req">*</span></label>
+            <div class="check-grid" style="margin-top: 6px;">
+              <label class="check-item"><input type="checkbox" name="hrfn" value="HR Ops"> HR operations</label>
+              <label class="check-item"><input type="checkbox" name="hrfn" value="Payroll"> Payroll & compliance</label>
+              <label class="check-item"><input type="checkbox" name="hrfn" value="HRBP"> HRBP</label>
+              <label class="check-item"><input type="checkbox" name="hrfn" value="L&D"> L&D / training</label>
+              <label class="check-item"><input type="checkbox" name="hrfn" value="Comp&Ben"> Comp & ben</label>
+              <label class="check-item"><input type="checkbox" name="hrfn" value="ER"> Employee relations</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: HRMS exposure -->
+      <div class="form-section">
+        <p class="section-title">HRMS & tech exposure</p>
+        <div class="field-grid">
+          <div class="field field-full">
+            <label>HRMS tools you have used <span class="req">*</span></label>
+            <div class="check-grid" style="margin-top: 6px;">
+              <label class="check-item"><input type="checkbox" name="hrms" value="Keka"> Keka</label>
+              <label class="check-item"><input type="checkbox" name="hrms" value="GreytHR"> GreytHR</label>
+              <label class="check-item"><input type="checkbox" name="hrms" value="Darwinbox"> Darwinbox</label>
+              <label class="check-item"><input type="checkbox" name="hrms" value="Zoho People"> Zoho People</label>
+              <label class="check-item"><input type="checkbox" name="hrms" value="SAP SuccessFactors"> SAP SuccessFactors</label>
+              <label class="check-item"><input type="checkbox" name="hrms" value="Other"> Other</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="excel_skill">MS Excel proficiency <span class="req">*</span></label>
+            <select id="excel_skill" name="excel_skill" required>
+              <option value="" disabled selected>Select level</option>
+              <option>Basic (data entry, simple filters)</option>
+              <option>Intermediate (VLOOKUP, pivot tables)</option>
+              <option>Advanced (macros, complex formulas)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="stat_knowledge">Statutory compliance knowledge <span class="req">*</span></label>
+            <select id="stat_knowledge" name="stat_knowledge" required>
+              <option value="" disabled selected>Select level</option>
+              <option>Aware but not hands-on</option>
+              <option>Have processed PF / ESI filings</option>
+              <option>Handled TDS, Form 16, annual returns</option>
+              <option>Wage Code 2019 knowledge as well</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="why">Why do you want to transition into HRTech Implementation? <span class="req">*</span></label>
+            <textarea id="why" name="why" placeholder="Tell us in 3–5 lines what draws you to this role and why now..." required></textarea>
+          </div>
+          <div class="field field-full">
+            <label for="strength">What is your strongest HR skill and how would it help you in this role?</label>
+            <textarea id="strength" name="strength" placeholder="e.g. I've been processing payroll for 50+ employees and understand exactly what can go wrong in a misconfigured salary structure..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Logistics -->
+      <div class="form-section">
+        <p class="section-title">Availability & logistics</p>
+        <div class="field-grid">
+          <div class="field">
+            <label for="location_confirm">Can you attend in-person in Bangalore? <span class="req">*</span></label>
+            <select id="location_confirm" name="location_confirm" required>
+              <option value="" disabled selected>Select</option>
+              <option>Yes, I am based in Bangalore</option>
+              <option>Yes, I can relocate to Bangalore</option>
+              <option>No, I cannot attend in-person</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="notice">Current notice period / availability</label>
+            <select id="notice" name="notice">
+              <option value="" disabled selected>Select</option>
+              <option>Immediately available</option>
+              <option>Within 2 weeks</option>
+              <option>Within 1 month</option>
+              <option>More than 1 month</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="referral">How did you hear about this programme?</label>
+            <select id="referral" name="referral">
+              <option value="" disabled selected>Select</option>
+              <option>LinkedIn</option>
+              <option>Referred by a friend / colleague</option>
+              <option>HR community / WhatsApp group</option>
+              <option>nHRMS Academy website</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ref_name">Referrer name (if applicable)</label>
+            <input type="text" id="ref_name" name="ref_name" placeholder="Name of person who referred you">
+          </div>
+        </div>
+      </div>
+
+      <!-- Consent -->
+      <div class="form-section">
+        <label class="consent-block">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span>I confirm that the information provided is accurate. I understand that selection is subject to a skill validation assessment, and that this programme requires in-person attendance in Bangalore. I consent to nHRMS Academy contacting me regarding this application. <span class="req">*</span></span>
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-area">
+        <button type="submit" class="submit-btn">Submit application →</button>
+        <p class="submit-note">You'll receive a confirmation on your email within 24 hours. Shortlisted candidates will be invited for a skill validation call.</p>
+      </div>
+
+    </form>
+
+    <!-- Success -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="14" fill="#1D9E75"/>
+          <path d="M9 16.5l4.5 4.5 9-9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 style="font-family:'DM Serif Display',serif; font-size:24px; color:var(--teal-dark); margin-bottom:10px;">Application submitted!</h2>
+      <p style="font-size:14px; color:var(--muted); max-width:380px; margin:0 auto; line-height:1.7;">Thank you for applying to the nHRMS Academy HRTech Implementation cohort. We'll review your application and reach out within 24–48 hours.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  nHRMS Academy · Bangalore, India · Summer 2025 · 30 seats only<br>
+  <span style="color:var(--teal);">Associate – HRTech Implementation</span>
+</footer>
+
+<script>
+  const form = document.getElementById('appForm');
+  const prog = document.getElementById('prog');
+  const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+  function updateProgress() {
+    let filled = 0;
+    fields.forEach(f => {
+      if (f.type === 'checkbox') { if (f.checked) filled++; }
+      else if (f.value.trim()) filled++;
+    });
+    prog.style.width = Math.round((filled / fields.length) * 100) + '%';
+  }
+
+  form.addEventListener('input', updateProgress);
+  form.addEventListener('change', updateProgress);
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const consent = document.getElementById('consent');
+    if (!consent.checked) {
+      consent.closest('.consent-block').style.borderColor = '#C0392B';
+      return;
+    }
+    prog.style.width = '100%';
+    form.style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
