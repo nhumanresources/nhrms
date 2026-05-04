@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply — Associate HRTech Implementation | nHRMS Academy</title>
+<title>Apply — Associate HRTech Implementation Summer 2026 | nHRMS Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -231,7 +231,7 @@
 
 <div class="header">
   <div class="header-inner">
-    <p class="academy-label">nHRMS Academy · Summer 2025</p>
+    <p class="academy-label">nHRMS Academy · Summer 2026</p>
     <h1>Begin your journey in<br><em>HRTech Implementation</em></h1>
     <p>30 seats. 3 weeks of world-class training. Product-led certifications. A real role waiting for you on the other side.</p>
     <div class="header-pills">
@@ -247,7 +247,12 @@
   <div class="form-card">
     <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
 
-    <form id="appForm" novalidate>
+    <form id="appForm" action="https://formsubmit.co/krishna@nhrms.com" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="nHRMS Academy Summer 2026 Application">
+      <input type="hidden" name="_cc" value="sambradhi.hegde@nhrms.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://nhrms.com/academy/apply-summer-2026?success=true">
 
       <!-- Section 1: Personal details -->
       <div class="form-section">
@@ -471,7 +476,7 @@
 </div>
 
 <footer>
-  nHRMS Academy · Bangalore, India · Summer 2025 · 30 seats only<br>
+  nHRMS Academy · Bangalore, India · Summer 2026 · 30 seats only<br>
   <span style="color:var(--teal);">Associate – HRTech Implementation</span>
 </footer>
 
@@ -492,17 +497,21 @@
   form.addEventListener('input', updateProgress);
   form.addEventListener('change', updateProgress);
 
+  // Show success screen if returning from FormSubmit
+  if (new URLSearchParams(window.location.search).get('success') === 'true') {
+    form.style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+  }
+
   form.addEventListener('submit', function(e) {
-    e.preventDefault();
     const consent = document.getElementById('consent');
     if (!consent.checked) {
+      e.preventDefault();
       consent.closest('.consent-block').style.borderColor = '#C0392B';
       return;
     }
     prog.style.width = '100%';
-    form.style.display = 'none';
-    document.getElementById('successScreen').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Allow native submit to FormSubmit.co
   });
 </script>
 </body>
