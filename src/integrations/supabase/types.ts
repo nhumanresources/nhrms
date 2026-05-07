@@ -14,6 +14,111 @@ export type Database = {
   }
   public: {
     Tables: {
+      academy_applications: {
+        Row: {
+          city: string
+          cohort: string
+          consent: boolean
+          created_at: string
+          current_job_role: string | null
+          degree: string | null
+          email: string
+          email_error: string | null
+          email_sent: boolean | null
+          employer: string | null
+          excel_skill: string | null
+          experience: string | null
+          first_name: string
+          hr_functions: string[] | null
+          hrms_tools: string[] | null
+          id: string
+          industry: string | null
+          ip_address: string | null
+          last_name: string
+          linkedin: string | null
+          location_confirm: string | null
+          notice: string | null
+          pass_year: string | null
+          phone: string
+          ref_name: string | null
+          referral: string | null
+          resume_url: string | null
+          stat_knowledge: string | null
+          status: string
+          strength: string | null
+          user_agent: string | null
+          why_programme: string | null
+        }
+        Insert: {
+          city: string
+          cohort?: string
+          consent?: boolean
+          created_at?: string
+          current_job_role?: string | null
+          degree?: string | null
+          email: string
+          email_error?: string | null
+          email_sent?: boolean | null
+          employer?: string | null
+          excel_skill?: string | null
+          experience?: string | null
+          first_name: string
+          hr_functions?: string[] | null
+          hrms_tools?: string[] | null
+          id?: string
+          industry?: string | null
+          ip_address?: string | null
+          last_name: string
+          linkedin?: string | null
+          location_confirm?: string | null
+          notice?: string | null
+          pass_year?: string | null
+          phone: string
+          ref_name?: string | null
+          referral?: string | null
+          resume_url?: string | null
+          stat_knowledge?: string | null
+          status?: string
+          strength?: string | null
+          user_agent?: string | null
+          why_programme?: string | null
+        }
+        Update: {
+          city?: string
+          cohort?: string
+          consent?: boolean
+          created_at?: string
+          current_job_role?: string | null
+          degree?: string | null
+          email?: string
+          email_error?: string | null
+          email_sent?: boolean | null
+          employer?: string | null
+          excel_skill?: string | null
+          experience?: string | null
+          first_name?: string
+          hr_functions?: string[] | null
+          hrms_tools?: string[] | null
+          id?: string
+          industry?: string | null
+          ip_address?: string | null
+          last_name?: string
+          linkedin?: string | null
+          location_confirm?: string | null
+          notice?: string | null
+          pass_year?: string | null
+          phone?: string
+          ref_name?: string | null
+          referral?: string | null
+          resume_url?: string | null
+          stat_knowledge?: string | null
+          status?: string
+          strength?: string | null
+          user_agent?: string | null
+          why_programme?: string | null
+        }
+        Relationships: []
+      }
       job_applications: {
         Row: {
           cover_letter: string | null
