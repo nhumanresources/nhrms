@@ -336,12 +336,7 @@
   <div class="form-card">
     <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
 
-    <form id="appForm" action="https://formsubmit.co/krishna@nhrms.com" method="POST" novalidate>
-      <input type="hidden" name="_subject" value="nHRMS Academy Summer 2026 Application">
-      <input type="hidden" name="_cc" value="sambradhi.hegde@nhrms.in">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://nhrms.com/academy/apply-summer-2026?success=true">
+    <form id="appForm" method="POST" enctype="multipart/form-data" novalidate>
 
       <!-- Section 1: Personal details -->
       <div class="form-section">
@@ -542,10 +537,20 @@
         </label>
       </div>
 
+      <!-- Resume upload -->
+      <div class="form-section">
+        <p class="section-title">Resume (optional but recommended)</p>
+        <div class="field">
+          <label for="resume">Upload your CV (PDF / DOC / DOCX, max 5MB)</label>
+          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        </div>
+      </div>
+
       <!-- Submit -->
       <div class="submit-area">
-        <button type="submit" class="submit-btn">Submit application →</button>
+        <button type="submit" class="submit-btn" id="submitBtn">Submit application →</button>
         <p class="submit-note">You'll receive a confirmation on your email within 24 hours. Shortlisted candidates will be invited for a skill validation call.</p>
+        <p id="formError" style="color:#C0392B;font-size:13px;margin-top:10px;display:none;"></p>
       </div>
 
     </form>
@@ -592,15 +597,38 @@
     document.getElementById('successScreen').style.display = 'block';
   }
 
-  form.addEventListener('submit', function(e) {
+  const SUBMIT_URL = 'https://hkdynattjciuwbxcasvw.supabase.co/functions/v1/submit-academy-application';
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
     const consent = document.getElementById('consent');
+    const errorEl = document.getElementById('formError');
+    const btn = document.getElementById('submitBtn');
+    errorEl.style.display = 'none';
+
     if (!consent.checked) {
-      e.preventDefault();
       consent.closest('.consent-block').style.borderColor = '#C0392B';
       return;
     }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
     prog.style.width = '100%';
-    // Allow native submit to FormSubmit.co
+
+    try {
+      const fd = new FormData(form);
+      const res = await fetch(SUBMIT_URL, { method: 'POST', body: fd });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Submission failed');
+      form.style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      errorEl.textContent = 'Something went wrong: ' + (err.message || 'Please try again.');
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Submit application →';
+    }
   });
 </script>
 </body>
