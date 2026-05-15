@@ -322,9 +322,9 @@ export default function FreeHRComplianceAudit() {
                   <p className="text-sm font-medium text-muted-foreground mb-2">Speak with a specialist</p>
                   <h3 className="font-heading text-2xl font-bold mb-4">Book a Compliance Review Call</h3>
                   <p className="text-muted-foreground mb-6">A focused 30-minute walkthrough of your specific compliance situation.</p>
-                  <Link to="/contact">
-                    <Button size="lg" className="btn-primary-premium gap-2">Book a Review <ArrowRight className="h-4 w-4" /></Button>
-                  </Link>
+                  <Button size="lg" className="btn-primary-premium gap-2" onClick={() => openTopmate(form)}>
+                    Book a Review <ArrowRight className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
               <div className="card-premium p-8 rounded-2xl border border-border bg-card">
