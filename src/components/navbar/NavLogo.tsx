@@ -14,8 +14,7 @@ export const NavLogo = ({ isScrolled = false }: NavLogoProps) => {
       aria-label="n Human Resources & Management Systems Home"
     >
       <div className={cn(
-        "font-bold text-sm md:text-lg transition-all hover:opacity-80",
-        isScrolled ? "text-primary" : "text-white"
+        "font-bold text-sm md:text-lg transition-all hover:opacity-80 text-gradient-warm drop-shadow-sm"
       )}>
         nHRMS
       </div>
