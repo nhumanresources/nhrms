@@ -79,6 +79,7 @@ import CoursePage from "./pages/academy/CoursePage";
 import LearningPaths from "./pages/academy/LearningPaths";
 import Resources from "./pages/academy/Resources";
 import AcademyApplySummer2026 from "./pages/AcademyApplySummer2026";
+import FreeHRComplianceAudit from "./pages/FreeHRComplianceAudit";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
