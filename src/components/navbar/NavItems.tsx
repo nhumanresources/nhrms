@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ChevronDown, GraduationCap } from 'lucide-react';
+import { ChevronDown, GraduationCap, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavItemsProps {
