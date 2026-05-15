@@ -197,11 +197,9 @@ export default function FreeHRComplianceAudit() {
                       Get My Audit Report <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>
-                  <Link to="/contact">
-                    <Button size="lg" variant="outline" className="gap-2">
-                      <Phone className="h-4 w-4" /> Schedule Expert Review
-                    </Button>
-                  </Link>
+                  <Button size="lg" variant="outline" className="gap-2" onClick={() => openTopmate(form)}>
+                    <CalendarClock className="h-4 w-4" /> Book a Review Call
+                  </Button>
                 </div>
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Results in 5 business days</div>
