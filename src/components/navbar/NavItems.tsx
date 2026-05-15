@@ -108,6 +108,13 @@ export const NavItems = ({ isActive, isScrolled }: NavItemsProps) => {
             <Link to="/services/work-study-manpower" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
               Work Study & Manpower Productivity
             </Link>
+            <Link to="/free-hr-compliance-audit" className="block px-4 py-3 mt-1 bg-gradient-to-r from-secondary/10 to-accent/10 border border-secondary/30 rounded-md transition-colors hover:from-secondary/15 hover:to-accent/15" role="menuitem">
+              <span className="text-sm font-semibold text-secondary flex items-center gap-1.5">
+                <Sparkles size={14} />
+                Free HR Compliance Audit
+              </span>
+              <span className="block text-[11px] text-muted-foreground mt-0.5">Get a no-cost compliance health check</span>
+            </Link>
           </div>
         </div>
       </div>
