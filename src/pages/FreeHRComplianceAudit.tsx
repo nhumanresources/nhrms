@@ -216,7 +216,10 @@ export default function FreeHRComplianceAudit() {
                       <CheckCircle2 className="h-8 w-8 text-secondary" />
                     </div>
                     <h3 className="font-heading text-2xl font-bold">Request received</h3>
-                    <p className="text-muted-foreground">A compliance specialist will reach out within 1 business day to schedule your audit walkthrough.</p>
+                    <p className="text-muted-foreground">We've opened our calendar in a new tab so you can lock in your compliance review call. Don't see it? Use the button below.</p>
+                    <Button size="lg" className="btn-primary-premium gap-2" onClick={() => openTopmate(lastLead ?? undefined)}>
+                      <CalendarClock className="h-4 w-4" /> Book My Review Call
+                    </Button>
                     <Button variant="outline" onClick={() => setSubmitted(false)}>Submit another</Button>
                   </div>
                 ) : (
