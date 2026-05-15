@@ -145,8 +145,11 @@ export default function FreeHRComplianceAudit() {
         body: { ...form, lead_type: 'consultation' },
       });
       if (error) throw error;
+      setLastLead(form);
       setSubmitted(true);
-      toast({ title: 'Audit request received', description: 'A compliance specialist will reach out within 1 business day.' });
+      toast({ title: 'Audit request received', description: 'Opening calendar to book your review call…' });
+      // Open Topmate booking with prefilled lead details
+      openTopmate(form);
       setForm({ name: '', email: '', phone: '', company_name: '' });
     } catch (err) {
       console.error(err);
