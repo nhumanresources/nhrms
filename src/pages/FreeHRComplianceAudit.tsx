@@ -430,11 +430,14 @@ export default function FreeHRComplianceAudit() {
                   <a href="#audit-form">
                     <Button size="lg" variant="secondary" className="gap-2">Get My Audit Report <ArrowRight className="h-4 w-4" /></Button>
                   </a>
-                  <Link to="/contact">
-                    <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 gap-2">
-                      <Phone className="h-4 w-4" /> Contact Us
-                    </Button>
-                  </Link>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 gap-2"
+                    onClick={() => openTopmate(form)}
+                  >
+                    <CalendarClock className="h-4 w-4" /> Book a Review Call
+                  </Button>
                 </div>
               </div>
             </div>
