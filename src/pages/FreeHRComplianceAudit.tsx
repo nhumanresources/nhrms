@@ -110,11 +110,28 @@ const faqs = [
   { q: 'Do you review contractor and payroll compliance specifically?', a: 'Yes, both are core. For payroll: wage structures vs the Code on Wages, minimum wage compliance, deduction accuracy, F&F. For contractors: principal employer obligations, agreements, statutory coverage, Form V & VI records.' },
 ];
 
+const TOPMATE_URL = 'https://topmate.io/recruiter';
+
+const buildTopmateUrl = (lead?: { name?: string; email?: string; phone?: string; company_name?: string }) => {
+  const params = new URLSearchParams();
+  if (lead?.name) params.set('name', lead.name);
+  if (lead?.email) params.set('email', lead.email);
+  if (lead?.phone) params.set('phone', lead.phone);
+  if (lead?.company_name) params.set('company', lead.company_name);
+  const qs = params.toString();
+  return qs ? `${TOPMATE_URL}?${qs}` : TOPMATE_URL;
+};
+
+const openTopmate = (lead?: { name?: string; email?: string; phone?: string; company_name?: string }) => {
+  window.open(buildTopmateUrl(lead), '_blank', 'noopener,noreferrer');
+};
+
 export default function FreeHRComplianceAudit() {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', company_name: '' });
+  const [lastLead, setLastLead] = useState<typeof form | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
