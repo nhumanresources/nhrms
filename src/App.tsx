@@ -199,6 +199,8 @@ const App = () => {
             <Route path="/academy/learning-paths" element={<LearningPaths />} />
             <Route path="/academy/resources" element={<Resources />} />
             <Route path="/academy/apply-summer-2026" element={<AcademyApplySummer2026 />} />
+            <Route path="/free-hr-compliance-audit" element={<FreeHRComplianceAudit />} />
+            <Route path="/free-hr-compliance-audit-india" element={<Navigate to="/free-hr-compliance-audit" replace />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
