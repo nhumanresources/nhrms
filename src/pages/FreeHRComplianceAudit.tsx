@@ -110,11 +110,28 @@ const faqs = [
   { q: 'Do you review contractor and payroll compliance specifically?', a: 'Yes, both are core. For payroll: wage structures vs the Code on Wages, minimum wage compliance, deduction accuracy, F&F. For contractors: principal employer obligations, agreements, statutory coverage, Form V & VI records.' },
 ];
 
+const TOPMATE_URL = 'https://topmate.io/recruiter';
+
+const buildTopmateUrl = (lead?: { name?: string; email?: string; phone?: string; company_name?: string }) => {
+  const params = new URLSearchParams();
+  if (lead?.name) params.set('name', lead.name);
+  if (lead?.email) params.set('email', lead.email);
+  if (lead?.phone) params.set('phone', lead.phone);
+  if (lead?.company_name) params.set('company', lead.company_name);
+  const qs = params.toString();
+  return qs ? `${TOPMATE_URL}?${qs}` : TOPMATE_URL;
+};
+
+const openTopmate = (lead?: { name?: string; email?: string; phone?: string; company_name?: string }) => {
+  window.open(buildTopmateUrl(lead), '_blank', 'noopener,noreferrer');
+};
+
 export default function FreeHRComplianceAudit() {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', company_name: '' });
+  const [lastLead, setLastLead] = useState<typeof form | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -128,8 +145,11 @@ export default function FreeHRComplianceAudit() {
         body: { ...form, lead_type: 'consultation' },
       });
       if (error) throw error;
+      setLastLead(form);
       setSubmitted(true);
-      toast({ title: 'Audit request received', description: 'A compliance specialist will reach out within 1 business day.' });
+      toast({ title: 'Audit request received', description: 'Opening calendar to book your review call…' });
+      // Open Topmate booking with prefilled lead details
+      openTopmate(form);
       setForm({ name: '', email: '', phone: '', company_name: '' });
     } catch (err) {
       console.error(err);
@@ -177,11 +197,9 @@ export default function FreeHRComplianceAudit() {
                       Get My Audit Report <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>
-                  <Link to="/contact">
-                    <Button size="lg" variant="outline" className="gap-2">
-                      <Phone className="h-4 w-4" /> Schedule Expert Review
-                    </Button>
-                  </Link>
+                  <Button size="lg" variant="outline" className="gap-2" onClick={() => openTopmate(form)}>
+                    <CalendarClock className="h-4 w-4" /> Book a Review Call
+                  </Button>
                 </div>
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Results in 5 business days</div>
@@ -198,7 +216,10 @@ export default function FreeHRComplianceAudit() {
                       <CheckCircle2 className="h-8 w-8 text-secondary" />
                     </div>
                     <h3 className="font-heading text-2xl font-bold">Request received</h3>
-                    <p className="text-muted-foreground">A compliance specialist will reach out within 1 business day to schedule your audit walkthrough.</p>
+                    <p className="text-muted-foreground">We've opened our calendar in a new tab so you can lock in your compliance review call. Don't see it? Use the button below.</p>
+                    <Button size="lg" className="btn-primary-premium gap-2" onClick={() => openTopmate(lastLead ?? undefined)}>
+                      <CalendarClock className="h-4 w-4" /> Book My Review Call
+                    </Button>
                     <Button variant="outline" onClick={() => setSubmitted(false)}>Submit another</Button>
                   </div>
                 ) : (
@@ -301,9 +322,9 @@ export default function FreeHRComplianceAudit() {
                   <p className="text-sm font-medium text-muted-foreground mb-2">Speak with a specialist</p>
                   <h3 className="font-heading text-2xl font-bold mb-4">Book a Compliance Review Call</h3>
                   <p className="text-muted-foreground mb-6">A focused 30-minute walkthrough of your specific compliance situation.</p>
-                  <Link to="/contact">
-                    <Button size="lg" className="btn-primary-premium gap-2">Book a Review <ArrowRight className="h-4 w-4" /></Button>
-                  </Link>
+                  <Button size="lg" className="btn-primary-premium gap-2" onClick={() => openTopmate(form)}>
+                    Book a Review <ArrowRight className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
               <div className="card-premium p-8 rounded-2xl border border-border bg-card">
@@ -409,11 +430,14 @@ export default function FreeHRComplianceAudit() {
                   <a href="#audit-form">
                     <Button size="lg" variant="secondary" className="gap-2">Get My Audit Report <ArrowRight className="h-4 w-4" /></Button>
                   </a>
-                  <Link to="/contact">
-                    <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 gap-2">
-                      <Phone className="h-4 w-4" /> Contact Us
-                    </Button>
-                  </Link>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 gap-2"
+                    onClick={() => openTopmate(form)}
+                  >
+                    <CalendarClock className="h-4 w-4" /> Book a Review Call
+                  </Button>
                 </div>
               </div>
             </div>
