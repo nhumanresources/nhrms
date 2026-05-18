@@ -29,8 +29,7 @@ export default function CTASectionRedesigned() {
             <span className="text-secondary"> Success Story</span> Together
           </h2>
           <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Join 423 organizations across 14 countries that trust nHRMS for their HR transformation. 
-            Schedule a consultation and discover how we can elevate your people strategy.
+            423 organizations across 14 countries already trust us with their people strategy. Let's talk about yours.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

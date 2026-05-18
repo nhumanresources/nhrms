@@ -23,7 +23,7 @@ const features = [
   },
   {
     icon: Shield,
-    title: "End-to-End Solutions",
+    title: "One partner across hire, develop, comply, and scale",
     description: "From recruitment to technology, we cover the complete HR spectrum."
   },
   {
@@ -51,9 +51,7 @@ export default function WhyChooseUsRedesigned() {
               <span className="text-primary"> HR Excellence</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              At nHRMS, we don't just provide HR services – we become an extension of your team. 
-              Our consultants bring deep industry knowledge, innovative solutions, and a commitment 
-              to your success that sets us apart.
+              We don't sit outside your org chart — we plug into it. Sixteen years of HR thinking, embedded in your team.
             </p>
             
           </div>

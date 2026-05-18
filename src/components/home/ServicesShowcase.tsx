@@ -111,7 +111,7 @@ export default function ServicesShowcase() {
             Comprehensive <span className="text-gradient">HR Solutions</span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            End-to-end human resource services designed to help organizations attract, develop, and retain exceptional talent across industries.
+            From hire to retire — end-to-end HR built around how your business actually grows.
           </p>
         </div>
 
