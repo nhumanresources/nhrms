@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HR-Tech Orientation Baseline Assessment</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+         color: #1F2937; background: #F8FAFC; margin: 0; padding: 24px; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  header { background: linear-gradient(135deg, #1F3864 0%, #2E5BA8 100%);
+           color: #fff; padding: 28px 32px; border-radius: 14px;
+           box-shadow: 0 8px 24px rgba(31,56,100,0.18); }
+  header h1 { margin: 0 0 4px 0; font-size: 24px; letter-spacing: 0.2px; }
+  header p { margin: 0; opacity: 0.92; font-size: 14px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px 26px;
+          margin-top: 18px; box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+          border: 1px solid #E5E7EB; }
+  h2.section-title { color: #1F3864; font-size: 17px; margin: 0 0 4px 0;
+                     border-bottom: 2px solid #1F3864; padding-bottom: 6px; }
+  .section-meta { color: #6B7280; font-size: 12.5px; font-style: italic; margin-bottom: 12px; }
+  .q { padding: 14px 0; border-bottom: 1px dashed #E5E7EB; }
+  .q:last-child { border-bottom: none; }
+  .q-meta { color: #1F3864; font-size: 11.5px; font-weight: 600;
+            letter-spacing: 0.3px; text-transform: uppercase; opacity: 0.85; }
+  .q-stem { font-size: 14.5px; margin: 6px 0 10px 0; line-height: 1.45; }
+  .opt { display: flex; align-items: flex-start; gap: 10px;
+         padding: 7px 10px; border-radius: 8px; margin: 4px 0;
+         border: 1px solid #E5E7EB; cursor: pointer; transition: all .12s;
+         font-size: 13.5px; line-height: 1.4; background: #fff; }
+  .opt:hover { background: #F1F5F9; }
+  .opt input { margin-top: 3px; }
+  .opt.correct { background: #ECFDF5; border-color: #10B981; }
+  .opt.wrong { background: #FEF2F2; border-color: #EF4444; }
+  .opt.locked { cursor: default; }
+  .opt.locked:hover { background: #fff; }
+  .opt.locked.correct:hover { background: #ECFDF5; }
+  .opt.locked.wrong:hover { background: #FEF2F2; }
+  textarea { width: 100%; min-height: 70px; padding: 8px 10px;
+             border: 1px solid #D1D5DB; border-radius: 8px;
+             font-family: inherit; font-size: 13.5px; resize: vertical; }
+  textarea:focus { outline: 2px solid #1F3864; outline-offset: 1px; }
+  .input-line { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+  .input-line label { flex: 1 1 220px; font-size: 13px; color: #374151; }
+  .input-line input { width: 100%; padding: 8px 10px; margin-top: 4px;
+                      border: 1px solid #D1D5DB; border-radius: 8px;
+                      font-size: 13.5px; font-family: inherit; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+  button { background: #1F3864; color: #fff; border: none;
+           padding: 11px 22px; border-radius: 8px; font-size: 14px;
+           font-weight: 600; cursor: pointer; transition: opacity .12s; }
+  button:hover { opacity: 0.92; }
+  button.ghost { background: #fff; color: #1F3864; border: 1.5px solid #1F3864; }
+  button.danger { background: #DC2626; }
+  .progress { background: #E5E7EB; height: 6px; border-radius: 3px;
+              margin-top: 12px; overflow: hidden; }
+  .progress > div { height: 100%; background: #10B981; width: 0%;
+                    transition: width .2s; }
+  .progress-text { font-size: 12px; color: #6B7280; margin-top: 6px; }
+  .scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+               gap: 12px; margin-top: 14px; }
+  .stat { background: #F1F5F9; border: 1px solid #E5E7EB;
+          border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .stat .label { font-size: 11.5px; color: #6B7280; text-transform: uppercase;
+                 letter-spacing: 0.5px; }
+  .stat .value { font-size: 22px; font-weight: 700; color: #1F3864;
+                 margin-top: 4px; }
+  .band { padding: 14px 18px; border-radius: 10px; margin-top: 14px;
+          font-weight: 600; font-size: 14.5px; }
+  .band.b1 { background: #ECFDF5; color: #065F46; border: 1px solid #10B981; }
+  .band.b2 { background: #EFF6FF; color: #1E3A8A; border: 1px solid #3B82F6; }
+  .band.b3 { background: #FFFBEB; color: #92400E; border: 1px solid #F59E0B; }
+  .band.b4 { background: #FEF2F2; color: #991B1B; border: 1px solid #EF4444; }
+  .answer-key { margin-top: 10px; padding: 10px 14px;
+                background: #F0FDF4; border-left: 4px solid #10B981;
+                border-radius: 0 8px 8px 0; font-size: 13.5px;
+                line-height: 1.5; }
+  .answer-key .lbl { font-weight: 700; color: #065F46; }
+  .answer-key .why { color: #4B5563; font-size: 12.5px;
+                     font-style: italic; margin-top: 4px; }
+  .scenario-feedback { font-size: 12px; color: #6B7280;
+                       font-style: italic; margin-top: 4px; }
+  .toolbar { position: sticky; top: 0; z-index: 30;
+             background: rgba(248,250,252,0.94); backdrop-filter: blur(6px);
+             padding: 10px 0; margin: 0 -24px; padding: 10px 24px;
+             border-bottom: 1px solid #E5E7EB; display: none; }
+  .toolbar.show { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .toolbar .live-score { font-weight: 700; color: #1F3864; }
+  .hidden { display: none !important; }
+  .pill { display: inline-block; background: #EEF2FF; color: #1F3864;
+          padding: 2px 8px; border-radius: 999px; font-size: 11px;
+          font-weight: 600; margin-right: 6px; }
+  .footer-note { color: #6B7280; font-size: 12px; margin-top: 16px;
+                 text-align: center; }
+  @media print {
+    body { background: #fff; padding: 12px; }
+    .toolbar, .actions, button { display: none !important; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="toolbar" id="toolbar">
+    <div><span class="live-score" id="liveScore">0 / 50 answered</span></div>
+    <div>
+      <button id="btnSubmitTop">Submit Test</button>
+    </div>
+  </div>
+
+  <header>
+    <h1>HR-Tech Orientation Programme</h1>
+    <p>Week 1 &middot; Baseline Assessment of HR Knowledge &middot; 50 questions &middot; 100 marks &middot; ~60 minutes</p>
+    <p style="margin-top:8px;font-size:13px;">Powered by <a href="https://nhrms.com" target="_blank" rel="noopener" style="color:#fff;font-weight:600;text-decoration:underline;">nhrms.com</a></p>
+  </header>
+
+  <!-- INTRO / CANDIDATE INFO -->
+  <div class="card" id="introCard">
+    <h2 class="section-title">Before you begin</h2>
+    <p style="font-size:13.5px;line-height:1.55;color:#374151;">
+      This is a <b>diagnostic baseline</b> to personalize your learning path for Weeks 1&ndash;2.
+      It contains <b>50 questions</b> across 5 sections in four formats (MCQ, True/False, Short Answer, Scenario).
+      <b>No negative marking.</b> Indian regulatory context applies (PF, ESI, Gratuity, POSH, Labour Codes, DPDP Act).
+      Your responses to short answer / scenario questions are <i>not auto-scored</i> &mdash; the system reveals model answers after submission for trainer-led calibration.
+    </p>
+    <div class="input-line">
+      <label>Full Name
+        <input id="cName" type="text" placeholder="e.g., Priya Sharma" />
+      </label>
+      <label>Employee / Reg. ID
+        <input id="cId" type="text" placeholder="e.g., EMP-1042" />
+      </label>
+      <label>Experience (years)
+        <input id="cExp" type="text" placeholder="e.g., 1.5" />
+      </label>
+      <label>Email
+        <input id="cEmail" type="email" placeholder="you@company.com" />
+      </label>
+    </div>
+    <div class="actions">
+      <button id="btnStart">Start the test</button>
+    </div>
+  </div>
+
+  <!-- TEST BODY -->
+  <div id="testBody" class="hidden"></div>
+
+  <!-- SUBMIT BLOCK -->
+  <div class="card hidden" id="submitCard">
+    <h2 class="section-title">Ready to submit?</h2>
+    <p style="font-size:13.5px;color:#374151;">
+      Once submitted, your answers will be locked, score will be calculated,
+      and the model answers + explanations will be revealed.
+    </p>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="progress-text" id="progressText">0 of 50 answered</div>
+    <div class="actions">
+      <button id="btnSubmit">Submit Test</button>
+      <button class="ghost" id="btnSaveDraft">Save draft (browser)</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card hidden" id="resultCard">
+    <h2 class="section-title">Your Result</h2>
+    <div id="bandBox"></div>
+    <div class="scorecard" id="scorecard"></div>
+    <h3 style="color:#1F3864;font-size:14.5px;margin-top:18px;">Section-wise Breakdown</h3>
+    <div class="scorecard" id="sectionScores"></div>
+    <div class="actions">
+      <button class="ghost" id="btnDownloadResult">Download result (.json)</button>
+      <button class="ghost" id="btnPrint">Print result card</button>
+      <button class="danger" id="btnReset">Reset and retake</button>
+    </div>
+    <p class="footer-note">Auto-scored: MCQ and True/False. Short answer and scenario questions are reviewed by the trainer using the model answers shown beside each question.</p>
+  </div>
+
+</div>
+
+<script>
+const DATA = {"sections": {"A": "Section A — Core HR Fundamentals", "B": "Section B — Talent Acquisition & Recruiting", "C": "Section C — Compensation & Benefits (India)", "D": "Section D — Performance, L&D, Employee Relations & Compliance", "E": "Section E — HR-Tech & HRIS"}, "section_meta": {"A": "8 questions • 16 marks", "B": "7 questions • 14 marks", "C": "7 questions • 14 marks", "D": "8 questions • 16 marks", "E": "20 questions • 40 marks"}, "questions": [{"id": 1, "section": "A", "type": "mcq", "diff": "B", "q": "The primary objective of the modern HR function is to:", "ans": "C", "exp": "Modern HR is a strategic business partner; ops tasks like payroll are sub-functions, not the primary objective.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["Process payroll and maintain attendance", "Enforce company rules and discipline", "Align people strategy with business outcomes", "Handle hiring and firing only"]}, {"id": 2, "section": "A", "type": "mcq", "diff": "B", "q": "Which of the following represents the correct order of the employee lifecycle?", "ans": "A", "exp": "The standard lifecycle begins at employer branding (attract) and ends at offboarding (exit).", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["Attract → Hire → Onboard → Develop → Retain → Exit", "Hire → Attract → Onboard → Retain → Develop → Exit", "Onboard → Hire → Develop → Attract → Exit → Retain", "Attract → Onboard → Hire → Retain → Exit → Develop"]}, {"id": 3, "section": "A", "type": "tf", "diff": "B", "q": "An HR Business Partner (HRBP) and an HR Generalist perform identical roles in every organization.", "ans": "False", "exp": "HRBPs typically operate at a more strategic, business-unit-embedded level; Generalists handle broader operational HR across multiple sub-functions.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 4, "section": "A", "type": "short", "diff": "B", "q": "Expand the following abbreviations: (a) HRBP   (b) SHRM   (c) HRD", "ans": "(a) Human Resource Business Partner  (b) Society for Human Resource Management  (c) Human Resource Development", "exp": "Standard HR acronyms expected to be known at this experience band.", "type_label": "Short Answer", "diff_label": "Basic"}, {"id": 5, "section": "A", "type": "mcq", "diff": "I", "q": "Which of these activities is STRATEGIC rather than operational HR work?", "ans": "B", "exp": "Workforce planning is forward-looking and tied to business strategy; the others are transactional.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Generating monthly attendance reports", "Workforce planning for the next 3 years", "Issuing offer letters", "Updating employee bank details"]}, {"id": 6, "section": "A", "type": "scenario", "diff": "I", "q": "Scenario: A new hire reports on Day 1 but no laptop, no system access, and no manager available. Which HR sub-function has primarily failed, and what is the FIRST corrective step you would take?", "ans": "Onboarding (pre-boarding handshake with IT/Admin/Manager has failed). First step: take ownership for the day, arrange a temporary workstation, escort employee, and trigger ticket to IT/Admin with SLA; flag root-cause to HRBP for process fix.", "exp": "Tests both diagnostic clarity (which function) and judgement (employee experience first, fix process second).", "type_label": "Scenario / Applied", "diff_label": "Intermediate"}, {"id": 7, "section": "A", "type": "tf", "diff": "B", "q": "The evolution of HR has moved from 'Personnel Management' to 'Strategic Human Resource Management' to 'People & Culture / HR Tech enabled' functions.", "ans": "True", "exp": "Standard evolution narrative used in most HR textbooks and industry orientations.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 8, "section": "A", "type": "short", "diff": "B", "q": "List any FOUR core sub-functions of HR.", "ans": "Any 4 of: Talent Acquisition, Onboarding, Compensation & Benefits, Performance Management, Learning & Development, Employee Relations, HR Operations/Payroll, HR Analytics, HRIS/HR-Tech, Diversity Equity & Inclusion, Total Rewards.", "exp": "Tests breadth of awareness of HR landscape.", "type_label": "Short Answer", "diff_label": "Basic"}, {"id": 9, "section": "B", "type": "mcq", "diff": "B", "q": "Which channel is generally the BEST source for passive candidates?", "ans": "B", "exp": "Passive candidates are not actively applying, so referrals and curated outreach (e.g., LinkedIn Recruiter, InMails) outperform broadcast channels.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["Job boards (Naukri, Indeed)", "Employee referrals & LinkedIn Recruiter", "Walk-in drives", "Print newspaper ads"]}, {"id": 10, "section": "B", "type": "tf", "diff": "B", "q": "A Job Description (JD) and a Job Specification (JS) are the same document.", "ans": "False", "exp": "JD = roles, responsibilities, deliverables. JS = the human attributes (qualifications, skills, experience) required to perform the JD.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 11, "section": "B", "type": "short", "diff": "B", "q": "Expand the abbreviations: (a) ATS   (b) JD   (c) NPS (in candidate context)", "ans": "(a) Applicant Tracking System  (b) Job Description  (c) Net Promoter Score (Candidate NPS measures candidate experience)", "exp": "Standard TA-side acronyms.", "type_label": "Short Answer", "diff_label": "Basic"}, {"id": 12, "section": "B", "type": "mcq", "diff": "I", "q": "Which order best represents a standard recruitment funnel?", "ans": "A", "exp": "Funnels narrow stage by stage from sourcing to onboarding; this is the canonical order.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Sourced → Screened → Interviewed → Offered → Hired → Onboarded", "Offered → Sourced → Screened → Hired → Interviewed → Onboarded", "Screened → Sourced → Hired → Interviewed → Offered → Onboarded", "Sourced → Offered → Interviewed → Screened → Hired → Onboarded"]}, {"id": 13, "section": "B", "type": "scenario", "diff": "A", "q": "Scenario: Three out of your last five offered candidates have ghosted you between offer-acceptance and joining. Identify TWO likely root causes and ONE structural intervention you would propose.", "ans": "Likely causes (any 2): counter-offers from current employer, long offer-to-join gap, weaker employer brand vs. competing offer, no engagement during notice period, mismatched expectations on role/comp. Intervention examples: structured 'offer-to-join' engagement plan (weekly touchpoints, pre-onboarding tasks, buddy assignment), shorter notice-to-DOJ window, sign-on bonus structured around joining.", "exp": "Tests recruiter maturity in moving from symptom (ghosting) to root cause and to a process fix.", "type_label": "Scenario / Applied", "diff_label": "Applied"}, {"id": 14, "section": "B", "type": "mcq", "diff": "I", "q": "Which metric most directly measures DIVERSITY in your hiring funnel?", "ans": "C", "exp": "Diversity hiring is measured by representation at each stage and where drop-offs occur; the other metrics measure speed, cost or close rate.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Time-to-hire", "Cost-per-hire", "Representation ratio at each funnel stage (e.g., % women shortlisted vs. % women hired)", "Offer-to-acceptance ratio"]}, {"id": 15, "section": "B", "type": "short", "diff": "I", "q": "Write the standard formula for: (a) Time-to-Hire   (b) Cost-per-Hire   (c) Offer Acceptance Rate", "ans": "(a) Time-to-Hire = Date of Offer Acceptance − Date Candidate Entered Pipeline.  (b) Cost-per-Hire = (Internal Recruiting Costs + External Recruiting Costs) / Number of Hires.  (c) Offer Acceptance Rate = (Offers Accepted / Offers Extended) × 100.", "exp": "These three are the most cited TA KPIs in HR-Tech dashboards.", "type_label": "Short Answer", "diff_label": "Intermediate"}, {"id": 16, "section": "C", "type": "mcq", "diff": "B", "q": "In India, the standard employer contribution to Provident Fund (EPF) on the employee's PF wages is:", "ans": "C", "exp": "Employer contributes 12% of PF wages — split into EPS (8.33%, capped) and EPF balance. Employee also contributes 12%.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["6%", "8.33%", "12%", "15%"]}, {"id": 17, "section": "C", "type": "tf", "diff": "B", "q": "Under the Payment of Gratuity Act, 1972, an employee in India becomes eligible for gratuity after completing 5 years of continuous service (with limited exceptions like death/disablement).", "ans": "True", "exp": "Continuous service of 5 years is the threshold; death/disablement waives the 5-year requirement. (Note: judicial precedents have read 4 years 240 days as qualifying.)", "type_label": "True / False", "diff_label": "Basic"}, {"id": 18, "section": "C", "type": "mcq", "diff": "I", "q": "Which of these is typically NOT part of an employee's Cost-to-Company (CTC)?", "ans": "D", "exp": "TDS is a deduction from the employee's salary, not a cost incurred by the company. The other three are real costs to the employer.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Basic Salary", "Employer PF contribution", "Gratuity provision", "Income Tax (TDS) deducted from employee"]}, {"id": 19, "section": "C", "type": "short", "diff": "B", "q": "What is the current wage threshold (gross monthly) for ESI applicability for employees in India?", "ans": "Rs. 21,000 per month (Rs. 25,000 for persons with disabilities).", "exp": "ESI Act applicability threshold; relevant for payroll & benefits config in HRIS.", "type_label": "Short Answer", "diff_label": "Basic"}, {"id": 20, "section": "C", "type": "scenario", "diff": "A", "q": "Scenario: A 4-year tenured employee at L3 earns Rs. 9 LPA. A new hire at the same L3 is joining at Rs. 13 LPA due to market correction. What is this phenomenon called, and outline TWO actions HR could take.", "ans": "Phenomenon: Salary compression / pay inversion. Actions (any 2): conduct compa-ratio analysis and propose internal market correction for tenured employees; introduce retention bonus or stock; review band ranges and re-benchmark; communicate transparently around comp philosophy.", "exp": "Tests applied compensation thinking. Pay compression is a known HR-Tech analytics use case.", "type_label": "Scenario / Applied", "diff_label": "Applied"}, {"id": 21, "section": "C", "type": "tf", "diff": "B", "q": "Variable pay (e.g., performance bonus) is a guaranteed component of CTC and must be paid in full each year.", "ans": "False", "exp": "Variable pay is contingent on individual / business performance and is NOT guaranteed; it is 'at risk' pay.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 22, "section": "C", "type": "mcq", "diff": "I", "q": "Under the Income Tax Act, HRA exemption for a salaried employee is the LEAST of:", "ans": "A", "exp": "Classic HRA exemption formula — least of three is exempt; 50% for metro (Mumbai, Delhi, Chennai, Kolkata), 40% for non-metro.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Actual HRA received; 50%/40% of (Basic+DA) for metro/non-metro; Rent paid − 10% of (Basic+DA)", "Actual HRA received; 25% of CTC; Rent paid", "Actual rent paid; 30% of Basic; HRA component", "50% of CTC; HRA received; Rent paid + 10%"]}, {"id": 23, "section": "D", "type": "mcq", "diff": "I", "q": "The 'bell curve' or forced distribution approach in performance management primarily aims to:", "ans": "B", "exp": "Forced distribution combats rating leniency by mandating a spread across rating buckets; it is increasingly debated and many firms have moved away from it.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Eliminate underperformers automatically", "Force rating differentiation to avoid leniency bias", "Increase total compensation outlay", "Replace 360-degree feedback"]}, {"id": 24, "section": "D", "type": "tf", "diff": "B", "q": "In a 360-degree feedback process, feedback from peers and reports is typically shared anonymously with the employee being reviewed.", "ans": "True", "exp": "Anonymity (except for manager input) is what enables candid peer/subordinate feedback in 360s.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 25, "section": "D", "type": "short", "diff": "B", "q": "Under the POSH Act, 2013 (Prevention of Sexual Harassment at the Workplace), an Internal Committee (IC) is mandatory for any workplace with at least how many employees?", "ans": "10 or more employees.", "exp": "POSH Act applicability threshold. Below 10, complaints go to the Local Committee.", "type_label": "Short Answer", "diff_label": "Basic"}, {"id": 26, "section": "D", "type": "mcq", "diff": "I", "q": "Kirkpatrick's 4 levels of training evaluation, in order, are:", "ans": "A", "exp": "Standard L&D evaluation model. Many HRIS LMS modules report against these four levels.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Reaction → Learning → Behavior → Results", "Learning → Reaction → Results → Behavior", "Results → Behavior → Learning → Reaction", "Reaction → Behavior → Learning → Results"]}, {"id": 27, "section": "D", "type": "scenario", "diff": "A", "q": "Scenario: An employee privately tells you their manager 'always shouts and never gives credit'. The employee asks you NOT to escalate. What do you do?", "ans": "Acknowledge and validate, but be transparent that depending on severity HR may have a duty to act (especially if it borders on harassment). Suggest options: coached conversation with manager, skip-level meeting, formal grievance, or informal mediation. If pattern or severity warrants, escalate per policy even without consent (after informing the employee). Document.", "exp": "Tests judgment between confidentiality, duty of care, and policy compliance — common ER situation.", "type_label": "Scenario / Applied", "diff_label": "Applied"}, {"id": 28, "section": "D", "type": "mcq", "diff": "I", "q": "The four new Indian Labour Codes (passed between 2019–2020) are:", "ans": "A", "exp": "Code on Wages (2019); Industrial Relations Code (2020); Code on Social Security (2020); Occupational Safety, Health & Working Conditions Code (2020). Most are notified, full implementation phased.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Code on Wages; Industrial Relations Code; Social Security Code; OSH&WC Code", "Code on Wages; Trade Unions Code; PF Code; Maternity Code", "Factories Code; Wages Code; Bonus Code; ESI Code", "Industrial Disputes Code; Contract Labour Code; PF Code; Gratuity Code"]}, {"id": 29, "section": "D", "type": "tf", "diff": "B", "q": "Probation period and its duration are explicitly defined and standardized under Indian central labour law.", "ans": "False", "exp": "Probation duration is governed by the employment contract / standing orders / state-specific Shops & Establishments Acts — there is no single central statutory probation period.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 30, "section": "D", "type": "short", "diff": "I", "q": "Define 'PIP' in performance management. When is it typically initiated?", "ans": "PIP = Performance Improvement Plan. A structured, time-bound (usually 30/60/90 day) plan with specific deliverables, support, and check-ins, initiated when an employee's performance is below expectations and needs documented remediation before any further action.", "exp": "Foundational ER concept — also a common HRIS workflow.", "type_label": "Short Answer", "diff_label": "Intermediate"}, {"id": 31, "section": "E", "type": "mcq", "diff": "B", "q": "HRIS stands for:", "ans": "B", "exp": "HRIS = Human Resource Information System — the system of record for employee data.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["Human Resource Internal System", "Human Resource Information System", "Human Resource Integration Suite", "Hybrid Resource Indexing System"]}, {"id": 32, "section": "E", "type": "mcq", "diff": "B", "q": "Which of the following is typically considered a CORE HRIS module?", "ans": "A", "exp": "Core HR / employee master data is the foundation module; the others are not HR systems.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["Employee Master Data / Core HR", "Marketing Automation", "ERP Inventory Management", "Customer Support Ticketing"]}, {"id": 33, "section": "E", "type": "tf", "diff": "B", "q": "An ATS (Applicant Tracking System) and an HRIS are exactly the same system.", "ans": "False", "exp": "ATS handles candidates (pre-hire); HRIS handles employees (post-hire). Many suites integrate both, but they are distinct modules with different data models.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 34, "section": "E", "type": "short", "diff": "I", "q": "Briefly explain the difference between HRIS, HRMS, and HCM.", "ans": "HRIS = system of record (core data, payroll, compliance). HRMS = HRIS + transactional processes (TA, time, performance). HCM = HRMS + strategic talent capabilities (succession, workforce planning, analytics, learning) viewing people as capital. In practice the terms overlap and vendors use them interchangeably.", "exp": "Tests conceptual understanding of HR-Tech stack layering.", "type_label": "Short Answer", "diff_label": "Intermediate"}, {"id": 35, "section": "E", "type": "mcq", "diff": "B", "q": "Workday, SAP SuccessFactors, Oracle HCM Cloud, and Darwinbox are best categorized as:", "ans": "B", "exp": "All four are end-to-end cloud HCM suites covering core HR through talent and analytics.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["ATS-only platforms", "Cloud-based HCM suites", "Payroll-only systems", "Learning Management Systems (LMS)"]}, {"id": 36, "section": "E", "type": "mcq", "diff": "I", "q": "A typical payroll system processes which of the following on every cycle?", "ans": "A", "exp": "Full payroll cycle covers gross-to-net: earnings + deductions (statutory and voluntary) + reimbursements → net pay + register/journals.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Earnings, statutory deductions (PF/ESI/TDS), reimbursements, and net pay", "Only basic salary", "Only TDS", "Only reimbursements"]}, {"id": 37, "section": "E", "type": "tf", "diff": "B", "q": "A cloud-based HRIS delivered on a subscription model is, by definition, a SaaS product.", "ans": "True", "exp": "SaaS = Software as a Service: multi-tenant, subscription-priced, vendor-hosted. Modern HRIS like Workday, Darwinbox fit this definition.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 38, "section": "E", "type": "short", "diff": "I", "q": "Expand 'API' and give ONE concrete example of how an API is used in HR-Tech.", "ans": "API = Application Programming Interface. Example: An ATS pushing a 'Hired' candidate's profile into the HRIS automatically via API so HR doesn't re-enter data; or HRIS sending pay data via API to a payroll engine; or SSO authentication via API.", "exp": "Foundational integration concept — APIs are how HR-Tech systems stay 'one source of truth'.", "type_label": "Short Answer", "diff_label": "Intermediate"}, {"id": 39, "section": "E", "type": "mcq", "diff": "B", "q": "Employee Self-Service (ESS) in an HRIS typically allows employees to:", "ans": "B", "exp": "ESS = transactional self-serve features. The other options are role-based or admin-only.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["Approve their own salary increments", "View payslips, apply for leave, update personal info", "Edit other employees' records", "Run org-wide payroll"]}, {"id": 40, "section": "E", "type": "scenario", "diff": "A", "q": "Scenario: Your company is migrating from a legacy on-prem HRIS to a new cloud HRIS. The implementation partner asks for 'data migration sign-off'. List THREE checks you would do before signing off.", "ans": "Any 3 of: (1) Record count reconciliation (source vs target totals match per entity — employees, dependents, comp records, leave balances). (2) Sample-based field-level accuracy audit (e.g., 30 random employees — every field reviewed). (3) Statutory data integrity (PF UAN, PAN, Aadhaar, bank, DOJ). (4) Historical data completeness (e.g., past appraisal cycles, training history). (5) Test transactions (leave apply, payroll dry run, exit). (6) Role-based access verified. (7) Audit log / data lineage available.", "exp": "This is a core HR-Tech implementation skill — distinguishes a junior from an intermediate practitioner.", "type_label": "Scenario / Applied", "diff_label": "Applied"}, {"id": 41, "section": "E", "type": "mcq", "diff": "I", "q": "HR analytics is commonly categorized into four levels. Which sequence is correct from least to most advanced?", "ans": "A", "exp": "Gartner analytics maturity model widely used in HR-Tech: what happened → why → what will happen → what should we do.", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["Descriptive → Diagnostic → Predictive → Prescriptive", "Predictive → Descriptive → Diagnostic → Prescriptive", "Prescriptive → Predictive → Descriptive → Diagnostic", "Diagnostic → Prescriptive → Descriptive → Predictive"]}, {"id": 42, "section": "E", "type": "tf", "diff": "I", "q": "India's Digital Personal Data Protection (DPDP) Act, 2023 has implications for how HR systems collect, store, and process employee personal data.", "ans": "True", "exp": "DPDP Act applies to processing of personal data, including by employers; HR systems must support consent, purpose limitation, data principal rights, breach notification, etc.", "type_label": "True / False", "diff_label": "Intermediate"}, {"id": 43, "section": "E", "type": "short", "diff": "I", "q": "Write the formula for Annualized Attrition Rate.", "ans": "Annualized Attrition Rate (%) = (Number of Exits in Period / Average Headcount in Period) × (12 / Number of Months in Period) × 100.  Simplified annual version: (Exits in Year / Average Headcount in Year) × 100.", "exp": "Most-used HR analytics metric. Several variants exist — accept any reasonable formula with numerator (exits) and denominator (avg headcount).", "type_label": "Short Answer", "diff_label": "Intermediate"}, {"id": 44, "section": "E", "type": "mcq", "diff": "I", "q": "Which of these is BEST classified as 'master data' in an HRIS (vs. transactional data)?", "ans": "B", "exp": "Master data = relatively static, reference data (employee ID, DOJ, position). Transactional data = event-based (leave applications, payroll runs, feedback).", "type_label": "Multiple Choice", "diff_label": "Intermediate", "opts": ["A leave application submitted yesterday", "An employee's date of joining and employee ID", "Today's payroll run register", "A performance feedback submitted this cycle"]}, {"id": 45, "section": "E", "type": "tf", "diff": "B", "q": "A 'single source of truth' principle means each piece of employee data has exactly one authoritative system where it is created and maintained.", "ans": "True", "exp": "Single source of truth (SSOT) avoids data drift between systems; downstream systems consume from the authoritative source.", "type_label": "True / False", "diff_label": "Basic"}, {"id": 46, "section": "E", "type": "mcq", "diff": "B", "q": "Which of these is an example of HR workflow automation in an HRIS?", "ans": "A", "exp": "Workflow automation = system-driven routing of approvals/notifications based on rules, with audit trail.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["A leave request that auto-routes to the line manager, then to skip-level on approval", "An employee manually emailing a leave request", "A printed leave form signed in ink", "A WhatsApp group message announcing a holiday"]}, {"id": 47, "section": "E", "type": "scenario", "diff": "A", "q": "Scenario: Recruiters complain that they have to enter the same candidate data into the ATS and again into the HRIS at the time of hiring. What is the standard HR-Tech solution, and what is ONE risk you must control for?", "ans": "Solution: Integrate ATS with HRIS so that on 'Hired' status in ATS, the candidate record flows into HRIS automatically (via API or middleware), creating the employee record. Risk to control: data mapping mismatches (e.g., field names, mandatory fields), duplicate or partial records, security/PII handling, sync failures (need error queue / retry).", "exp": "Tests systems thinking — common discovery question in HR-Tech projects.", "type_label": "Scenario / Applied", "diff_label": "Applied"}, {"id": 48, "section": "E", "type": "mcq", "diff": "B", "q": "In an HRIS rollout, the difference between a 'Power User' and an 'End User' is best described as:", "ans": "A", "exp": "Power Users are typically HR Ops / HRIS team members trained in configuration and able to support adoption.", "type_label": "Multiple Choice", "diff_label": "Basic", "opts": ["Power Users have admin/config rights and support end users; end users perform regular transactions", "Power Users only run reports; end users do everything else", "Power Users are vendors; end users are employees", "There is no difference"]}, {"id": 49, "section": "E", "type": "tf", "diff": "I", "q": "Meaningful HR analytics ALWAYS requires hiring a data scientist; HR business partners cannot use analytics without one.", "ans": "False", "exp": "Descriptive and diagnostic analytics — the majority of day-to-day HR analytics — are achievable using HRIS dashboards and tools like Excel/Power BI. Data science is needed mainly for predictive/prescriptive use cases.", "type_label": "True / False", "diff_label": "Intermediate"}, {"id": 50, "section": "E", "type": "scenario", "diff": "A", "q": "Scenario: 6 months after HRIS go-live, only 40% of employees are using the self-service portal — most still email HR. List THREE possible reasons and ONE intervention you would prioritize.", "ans": "Reasons (any 3): poor UX / not mobile-friendly; insufficient training / change management; HR still accepts email shortcuts; managers not enforcing; lack of single sign-on; trust/data accuracy issues. Intervention: 'Email-to-portal' policy — HR stops processing email requests after a clear cut-over date, paired with refreshed training, mobile access, and a help desk to handle stragglers.", "exp": "Adoption is the #1 risk after HR-Tech go-live; tests change management awareness.", "type_label": "Scenario / Applied", "diff_label": "Applied"}]};
+const state = {
+  started: false,
+  submitted: false,
+  answers: {}, // qid -> value
+  candidate: {},
+};
+
+const $ = (id) => document.getElementById(id);
+
+function totalQuestions() { return DATA.questions.length; }
+function autoScorableQs() {
+  return DATA.questions.filter(q => q.type === 'mcq' || q.type === 'tf');
+}
+
+function init() {
+  $('btnStart').addEventListener('click', startTest);
+  $('btnSubmit').addEventListener('click', submitTest);
+  $('btnSubmitTop').addEventListener('click', submitTest);
+  $('btnSaveDraft').addEventListener('click', saveDraft);
+  $('btnDownloadResult').addEventListener('click', downloadResult);
+  $('btnPrint').addEventListener('click', () => window.print());
+  $('btnReset').addEventListener('click', resetTest);
+  tryLoadDraft();
+}
+
+function tryLoadDraft() {
+  try {
+    const raw = localStorage.getItem('hrtech_baseline_draft');
+    if (raw) {
+      const d = JSON.parse(raw);
+      state.answers = d.answers || {};
+      state.candidate = d.candidate || {};
+      ['cName','cId','cExp','cEmail'].forEach(k => {
+        const inp = $(k);
+        if (inp && state.candidate[k]) inp.value = state.candidate[k];
+      });
+      // If candidate already started, jump back into test
+      if (Object.keys(state.answers).length > 0) {
+        // Soft-resume
+      }
+    }
+  } catch (e) {}
+}
+
+function startTest() {
+  state.candidate = {
+    cName: $('cName').value.trim(),
+    cId: $('cId').value.trim(),
+    cExp: $('cExp').value.trim(),
+    cEmail: $('cEmail').value.trim(),
+  };
+  if (!state.candidate.cName) {
+    alert('Please enter your name to begin.');
+    return;
+  }
+  state.started = true;
+  $('introCard').classList.add('hidden');
+  renderTest();
+  $('testBody').classList.remove('hidden');
+  $('submitCard').classList.remove('hidden');
+  $('toolbar').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateProgress();
+}
+
+function renderTest() {
+  const container = $('testBody');
+  container.innerHTML = '';
+  const sectionIds = Object.keys(DATA.sections);
+  sectionIds.forEach(sid => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    const h = document.createElement('h2');
+    h.className = 'section-title';
+    h.textContent = DATA.sections[sid];
+    card.appendChild(h);
+    const meta = document.createElement('div');
+    meta.className = 'section-meta';
+    meta.textContent = DATA.section_meta[sid];
+    card.appendChild(meta);
+
+    DATA.questions.filter(q => q.section === sid).forEach(q => {
+      card.appendChild(renderQuestion(q));
+    });
+    container.appendChild(card);
+  });
+}
+
+function renderQuestion(q) {
+  const div = document.createElement('div');
+  div.className = 'q';
+  div.id = 'q' + q.id;
+  div.innerHTML = `
+    <div class="q-meta">
+      <span class="pill">Q${q.id}</span>${q.type_label} &middot; ${q.diff_label}
+    </div>
+    <div class="q-stem">${escapeHtml(q.q)}</div>
+  `;
+
+  if (q.type === 'mcq') {
+    const labels = ['A','B','C','D'];
+    q.opts.forEach((opt, i) => {
+      const lbl = document.createElement('label');
+      lbl.className = 'opt';
+      lbl.dataset.qid = q.id;
+      lbl.dataset.value = labels[i];
+      lbl.innerHTML = `<input type="radio" name="q${q.id}" value="${labels[i]}"/>
+                       <span><b>${labels[i]}.</b> ${escapeHtml(opt)}</span>`;
+      lbl.querySelector('input').addEventListener('change', e => {
+        state.answers[q.id] = e.target.value;
+        updateProgress();
+      });
+      div.appendChild(lbl);
+    });
+  } else if (q.type === 'tf') {
+    ['True','False'].forEach(v => {
+      const lbl = document.createElement('label');
+      lbl.className = 'opt';
+      lbl.dataset.qid = q.id;
+      lbl.dataset.value = v;
+      lbl.innerHTML = `<input type="radio" name="q${q.id}" value="${v}"/>
+                       <span>${v}</span>`;
+      lbl.querySelector('input').addEventListener('change', e => {
+        state.answers[q.id] = e.target.value;
+        updateProgress();
+      });
+      div.appendChild(lbl);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.placeholder = q.type === 'scenario'
+      ? 'Write your response — root cause, action(s), reasoning.'
+      : 'Write your short answer.';
+    ta.addEventListener('input', e => {
+      state.answers[q.id] = e.target.value;
+      updateProgress();
+    });
+    div.appendChild(ta);
+    const note = document.createElement('div');
+    note.className = 'scenario-feedback';
+    note.textContent = q.type === 'scenario'
+      ? 'Trainer-reviewed. Model answer reveals after submission.'
+      : 'Trainer-reviewed. Model answer reveals after submission.';
+    div.appendChild(note);
+  }
+  return div;
+}
+
+function updateProgress() {
+  const total = totalQuestions();
+  let answered = 0;
+  DATA.questions.forEach(q => {
+    const v = state.answers[q.id];
+    if (v !== undefined && v !== null && String(v).trim() !== '') answered++;
+  });
+  const pct = Math.round((answered / total) * 100);
+  $('progressBar').style.width = pct + '%';
+  $('progressText').textContent = `${answered} of ${total} answered`;
+  $('liveScore').textContent = `${answered} / ${total} answered`;
+}
+
+function submitTest() {
+  if (state.submitted) return;
+  let answered = 0;
+  DATA.questions.forEach(q => {
+    const v = state.answers[q.id];
+    if (v !== undefined && v !== null && String(v).trim() !== '') answered++;
+  });
+  if (answered < totalQuestions()) {
+    const ok = confirm(`You have answered ${answered} of ${totalQuestions()} questions. Submit anyway?`);
+    if (!ok) return;
+  }
+  state.submitted = true;
+
+  // Score auto-gradable
+  let auto = autoScorableQs();
+  let autoCorrect = 0;
+  const sectionStats = {}; // sid -> { autoTotal, autoCorrect, manualTotal }
+  Object.keys(DATA.sections).forEach(sid => {
+    sectionStats[sid] = { autoTotal: 0, autoCorrect: 0, manualTotal: 0 };
+  });
+
+  DATA.questions.forEach(q => {
+    const s = sectionStats[q.section];
+    if (q.type === 'mcq' || q.type === 'tf') {
+      s.autoTotal++;
+      const userAns = state.answers[q.id];
+      const correct = isCorrect(q, userAns);
+      if (correct) { autoCorrect++; s.autoCorrect++; }
+      revealAnswerInline(q, userAns, correct);
+    } else {
+      s.manualTotal++;
+      revealAnswerInline(q, state.answers[q.id], null);
+    }
+  });
+
+  // Auto-marks: 2 per auto question; auto max:
+  const autoMax = auto.length * 2;
+  const manualMax = (totalQuestions() - auto.length) * 2;
+  const overallMax = autoMax + manualMax;
+  const autoScore = autoCorrect * 2;
+  // Estimated band uses ONLY auto score normalised over auto-max
+  const autoPct = autoMax ? Math.round((autoScore / autoMax) * 100) : 0;
+
+  // Scorecard
+  $('scorecard').innerHTML = `
+    <div class="stat"><div class="label">Auto Score</div><div class="value">${autoScore} / ${autoMax}</div></div>
+    <div class="stat"><div class="label">Auto %</div><div class="value">${autoPct}%</div></div>
+    <div class="stat"><div class="label">Trainer-Reviewed</div><div class="value">${totalQuestions()-auto.length} Qs</div></div>
+    <div class="stat"><div class="label">Test Total (after review)</div><div class="value">__ / ${overallMax}</div></div>
+  `;
+  // Section breakdown
+  $('sectionScores').innerHTML = Object.keys(DATA.sections).map(sid => {
+    const s = sectionStats[sid];
+    const pct = s.autoTotal ? Math.round((s.autoCorrect / s.autoTotal) * 100) : 0;
+    return `<div class="stat">
+      <div class="label">${escapeHtml(DATA.sections[sid].replace(/^Section /, 'Sec '))}</div>
+      <div class="value">${s.autoCorrect} / ${s.autoTotal}</div>
+      <div class="label">${pct}% &middot; +${s.manualTotal} manual</div>
+    </div>`;
+  }).join('');
+
+  // Band based on auto %
+  const bandBox = $('bandBox');
+  bandBox.innerHTML = bandText(autoPct);
+
+  // Lock inputs
+  document.querySelectorAll('input[type=radio]').forEach(el => el.disabled = true);
+  document.querySelectorAll('textarea').forEach(el => el.disabled = true);
+
+  $('submitCard').classList.add('hidden');
+  $('resultCard').classList.remove('hidden');
+  $('btnSubmitTop').disabled = true;
+  $('btnSubmitTop').textContent = 'Submitted';
+  $('resultCard').scrollIntoView({ behavior: 'smooth' });
+  emailResults();
+}
+
+function isCorrect(q, userAns) {
+  if (userAns === undefined || userAns === null) return false;
+  if (q.type === 'mcq') return String(userAns).trim() === String(q.ans).trim();
+  if (q.type === 'tf') return String(userAns).trim().toLowerCase() === String(q.ans).trim().toLowerCase();
+  return false;
+}
+
+function revealAnswerInline(q, userAns, correct) {
+  const qDiv = $('q' + q.id);
+  if (!qDiv) return;
+  // Lock and colorize options
+  if (q.type === 'mcq' || q.type === 'tf') {
+    qDiv.querySelectorAll('.opt').forEach(lbl => {
+      lbl.classList.add('locked');
+      const v = lbl.dataset.value;
+      if (v === q.ans) lbl.classList.add('correct');
+      if (userAns && v === userAns && v !== q.ans) lbl.classList.add('wrong');
+    });
+  }
+  const key = document.createElement('div');
+  key.className = 'answer-key';
+  key.innerHTML = `<span class="lbl">Model Answer:</span> ${escapeHtml(q.ans)}
+                   <div class="why"><b>Why:</b> ${escapeHtml(q.exp)}</div>`;
+  qDiv.appendChild(key);
+}
+
+function bandText(pct) {
+  let b, label, msg;
+  if (pct >= 80) { b='b1'; label='Stretch Track'; msg='Strong HR fundamentals and HR-Tech literacy. Suggested path: HR analytics deep-dive and HRIS configuration labs.'; }
+  else if (pct >= 60) { b='b2'; label='Standard Track'; msg='Solid baseline with targeted gaps. Suggested path: full Week 1 + Week 2 curriculum.'; }
+  else if (pct >= 40) { b='b3'; label='Foundation+ Track'; msg='Conceptual awareness with applied gaps. Suggested path: pre-reads + Week 1 + facilitated review.'; }
+  else { b='b4'; label='Foundation Track'; msg='Foundational gaps detected. Suggested path: bridge sessions before main programme.'; }
+  return `<div class="band ${b}"><div>${label} &middot; Auto Score ${pct}%</div>
+          <div style="font-weight:500;font-size:13px;margin-top:4px;">${msg}</div></div>`;
+}
+
+function saveDraft() {
+  try {
+    localStorage.setItem('hrtech_baseline_draft', JSON.stringify({
+      candidate: state.candidate, answers: state.answers, ts: new Date().toISOString()
+    }));
+    alert('Draft saved in this browser. You can resume on the same device.');
+  } catch (e) { alert('Could not save draft: ' + e.message); }
+}
+
+function downloadResult() {
+  const out = {
+    candidate: state.candidate,
+    submittedAt: new Date().toISOString(),
+    answers: state.answers,
+    scoring: collectScoring(),
+  };
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `HR_Baseline_Result_${(state.candidate.cName||'candidate').replace(/\s+/g,'_')}.json`;
+  a.click(); URL.revokeObjectURL(url);
+}
+
+function collectScoring() {
+  const rows = [];
+  let autoCorrect = 0, autoTotal = 0;
+  DATA.questions.forEach(q => {
+    const userAns = state.answers[q.id];
+    const auto = (q.type === 'mcq' || q.type === 'tf');
+    const correct = auto ? isCorrect(q, userAns) : null;
+    if (auto) { autoTotal++; if (correct) autoCorrect++; }
+    rows.push({ id: q.id, section: q.section, type: q.type,
+                userAnswer: userAns ?? null,
+                modelAnswer: q.ans, correct, autoScored: auto });
+  });
+  const autoMax = autoTotal * 2;
+  return { autoCorrect, autoTotal, autoMax, autoScore: autoCorrect*2,
+           autoPct: autoMax ? Math.round((autoCorrect*2/autoMax)*100):0,
+           detail: rows };
+}
+
+function resetTest() {
+  if (!confirm('Reset and retake? Your current answers and draft will be cleared.')) return;
+  localStorage.removeItem('hrtech_baseline_draft');
+  state.started=false; state.submitted=false;
+  state.answers={}; state.candidate={};
+  ['cName','cId','cExp','cEmail'].forEach(k => { const i=$(k); if(i) i.value=''; });
+  $('resultCard').classList.add('hidden');
+  $('submitCard').classList.add('hidden');
+  $('testBody').classList.add('hidden');
+  $('toolbar').classList.remove('show');
+  $('introCard').classList.remove('hidden');
+  $('btnSubmitTop').disabled = false;
+  $('btnSubmitTop').textContent = 'Submit Test';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, m => (
+    {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]
+  ));
+}
+
+function emailResults() {
+  try {
+    const scoring = collectScoring();
+    const c = state.candidate || {};
+    const lines = [];
+    lines.push('HR-Tech Orientation — Baseline Assessment Result');
+    lines.push('Submitted: ' + new Date().toLocaleString());
+    lines.push('');
+    lines.push('Candidate Name : ' + (c.cName || '-'));
+    lines.push('Employee/Cand ID: ' + (c.cId || '-'));
+    lines.push('Experience     : ' + (c.cExp || '-'));
+    lines.push('Email          : ' + (c.cEmail || '-'));
+    lines.push('');
+    lines.push('Auto Score : ' + scoring.autoScore + ' / ' + scoring.autoMax + '  (' + scoring.autoPct + '%)');
+    lines.push('Auto-Correct: ' + scoring.autoCorrect + ' / ' + scoring.autoTotal);
+    lines.push('');
+    lines.push('--- Answers ---');
+    scoring.detail.forEach(r => {
+      lines.push('Q' + r.id + ' [' + r.section + '/' + r.type + ']  Answer: ' + (r.userAnswer ?? '(blank)') +
+        (r.autoScored ? ('  | Correct: ' + (r.correct ? 'YES' : 'NO') + '  | Model: ' + r.modelAnswer) : '  | (manual review)'));
+    });
+    const payload = {
+      _subject: 'HR Baseline Test Result — ' + (c.cName || 'Candidate'),
+      _template: 'box',
+      _captcha: 'false',
+      candidate_name: c.cName || '',
+      candidate_id: c.cId || '',
+      candidate_experience: c.cExp || '',
+      candidate_email: c.cEmail || '',
+      auto_score: scoring.autoScore + ' / ' + scoring.autoMax,
+      auto_percent: scoring.autoPct + '%',
+      summary: lines.join('\n'),
+      full_result_json: JSON.stringify({ candidate: c, scoring }, null, 2)
+    };
+    fetch('https://formsubmit.co/ajax/sambradhi.hegde@nhrms.in', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(r => r.json()).then(() => {
+      console.log('Result emailed to sambradhi.hegde@nhrms.in');
+    }).catch(err => console.warn('Email send failed:', err));
+  } catch (e) { console.warn('emailResults error', e); }
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
