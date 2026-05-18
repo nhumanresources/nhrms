@@ -20,7 +20,7 @@ export default function HeroSection() {
           
           {/* Subtext */}
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            Strategic HR consulting that delivers measurable results for modern organizations through people expertise, systematic processes, and proven success.
+            People-first HR. Built to nurture organizations that scale.
           </p>
           
           {/* CTA Buttons */}
