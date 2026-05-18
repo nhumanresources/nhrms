@@ -14,7 +14,7 @@ export default function Footer() {
               <span className="text-xl font-semibold text-primary">Nurturing Human Resources & Management Systems</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
-              Comprehensive 360° HR Management solutions for modern organizations seeking excellence in today's competitive landscape.
+              People. Systems. Success. — 360° HR for organizations that are ready to scale.
             </p>
             <div className="flex space-x-4">
               <a href="https://www.linkedin.com/company/n-hrms/" target="_blank" rel="noopener noreferrer" 
