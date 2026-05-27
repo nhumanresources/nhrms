@@ -1006,7 +1006,6 @@ Krishna | nHRMS`;
             </div>
           )}
         </TabsContent>
-      </Tabs>
 
         {/* ── SCHEDULE ── */}
         <TabsContent value="schedule">
@@ -1113,6 +1112,7 @@ Krishna | nHRMS`;
         </TabsContent>
       </Tabs>
 
+      {/* Dialogs */}
       {/* Schedule Dialog */}
       <Dialog open={showScheduleDialog} onOpenChange={setShowScheduleDialog}>
         <DialogContent className="max-w-md">
