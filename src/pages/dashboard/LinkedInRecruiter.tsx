@@ -30,6 +30,12 @@ import {
   Sparkles,
   RotateCcw,
   AlertCircle,
+  CalendarPlus,
+  ExternalLink,
+  Calendar,
+  Video,
+  Link2,
+  Copy,
 } from 'lucide-react';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -44,11 +50,19 @@ interface Candidate {
   education: string;
   matchScore: number;
   skills: string[];
-  status: 'new' | 'shortlisted' | 'messaged' | 'replied' | 'declined';
+  status: 'new' | 'shortlisted' | 'messaged' | 'replied' | 'declined' | 'scheduled';
   openToWork: boolean;
   connectionDegree: '1st' | '2nd' | '3rd';
   lastActive: string;
   conversation: Message[];
+  scheduledAt?: string;
+  meetingType?: 'video' | 'topmate';
+}
+
+interface CalendarSlot {
+  date: string;
+  time: string;
+  label: string;
 }
 
 interface Message {
@@ -219,10 +233,22 @@ function statusBadge(status: Candidate['status']) {
     messaged: { label: 'Messaged', className: 'bg-amber-50 text-amber-700' },
     replied: { label: 'Replied', className: 'bg-green-50 text-green-700' },
     declined: { label: 'Declined', className: 'bg-red-50 text-red-700' },
+    scheduled: { label: '📅 Scheduled', className: 'bg-teal-50 text-teal-700' },
   };
   const { label, className } = map[status];
   return <Badge className={`${className} border-0 text-xs font-medium`}>{label}</Badge>;
 }
+
+const TOPMATE_URL = 'https://topmate.io/recruiter';
+
+const CALENDAR_SLOTS: CalendarSlot[] = [
+  { date: 'Tomorrow', time: '10:00 AM', label: 'Tomorrow, 10:00 AM' },
+  { date: 'Tomorrow', time: '3:00 PM', label: 'Tomorrow, 3:00 PM' },
+  { date: 'Thursday', time: '11:00 AM', label: 'Thursday, 11:00 AM' },
+  { date: 'Thursday', time: '4:00 PM', label: 'Thursday, 4:00 PM' },
+  { date: 'Friday', time: '10:30 AM', label: 'Friday, 10:30 AM' },
+  { date: 'Friday', time: '2:00 PM', label: 'Friday, 2:00 PM' },
+];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -240,6 +266,11 @@ export default function LinkedInRecruiter() {
   const [replyText, setReplyText] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [aiGenerating, setAiGenerating] = useState(false);
+  const [showScheduleDialog, setShowScheduleDialog] = useState(false);
+  const [schedulingCandidate, setSchedulingCandidate] = useState<Candidate | null>(null);
+  const [selectedSlot, setSelectedSlot] = useState<CalendarSlot | null>(null);
+  const [meetingType, setMeetingType] = useState<'video' | 'topmate'>('topmate');
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const filteredJDs = MOCK_JDS.filter(
     (jd) =>
@@ -389,6 +420,77 @@ Krishna | nHRMS`;
     }, 2000);
   }
 
+  function openScheduleDialog(candidate: Candidate) {
+    setSchedulingCandidate(candidate);
+    setSelectedSlot(null);
+    setMeetingType('topmate');
+    setShowScheduleDialog(true);
+  }
+
+  function handleConfirmSchedule() {
+    if (!schedulingCandidate || !selectedSlot) return;
+    const confirmMsg: Message = {
+      id: Date.now().toString(),
+      sender: 'recruiter',
+      text: meetingType === 'topmate'
+        ? `Great! I've booked a slot for you — ${selectedSlot.label}.\n\nYou can confirm and join via my Topmate page:\n${TOPMATE_URL}\n\nLooking forward to speaking with you!`
+        : `Confirmed! I've blocked ${selectedSlot.label} on my calendar for our call.\n\nI'll send you a Google Meet invite shortly. Looking forward to it!`,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      type: 'message',
+      read: true,
+    };
+    setCandidates((prev) =>
+      prev.map((c) =>
+        c.id === schedulingCandidate.id
+          ? {
+              ...c,
+              status: 'scheduled',
+              scheduledAt: selectedSlot.label,
+              meetingType,
+              conversation: [...c.conversation, confirmMsg],
+            }
+          : c
+      )
+    );
+    if (selectedCandidate?.id === schedulingCandidate.id) {
+      setSelectedCandidate((prev) =>
+        prev ? { ...prev, status: 'scheduled', scheduledAt: selectedSlot.label, meetingType, conversation: [...prev.conversation, confirmMsg] } : prev
+      );
+    }
+    setShowScheduleDialog(false);
+    toast({
+      title: '📅 Meeting scheduled',
+      description: `${schedulingCandidate.name} — ${selectedSlot.label}`,
+    });
+  }
+
+  function handleCopyTopmateLink() {
+    navigator.clipboard.writeText(TOPMATE_URL).catch(() => {});
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
+  }
+
+  function handleShareTopmateInChat(candidateId: string) {
+    const msg: Message = {
+      id: Date.now().toString(),
+      sender: 'recruiter',
+      text: `Here's a quick link to book a slot directly on my calendar:\n👉 ${TOPMATE_URL}\n\nPick a time that works for you — I'm flexible!`,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      type: 'message',
+      read: true,
+    };
+    setCandidates((prev) =>
+      prev.map((c) =>
+        c.id === candidateId ? { ...c, conversation: [...c.conversation, msg] } : c
+      )
+    );
+    if (selectedCandidate?.id === candidateId) {
+      setSelectedCandidate((prev) =>
+        prev ? { ...prev, conversation: [...prev.conversation, msg] } : prev
+      );
+    }
+  }
+
   // ─── Render ────────────────────────────────────────────────────────────────
 
   return (
@@ -416,6 +518,7 @@ Krishna | nHRMS`;
           { label: 'Shortlist', icon: UserCheck, tab: 'shortlist', done: shortlisted.length > 0 },
           { label: 'Message / InMail', icon: Mail, tab: 'outreach', done: messaged.length > 0 },
           { label: 'Conversations', icon: MessageSquare, tab: 'conversations', done: conversations.length > 0 },
+          { label: 'Schedule', icon: CalendarPlus, tab: 'schedule', done: candidates.some((c) => c.status === 'scheduled') },
         ].map((step, i) => (
           <button
             key={step.tab}
@@ -434,7 +537,7 @@ Krishna | nHRMS`;
               <step.icon className="w-3.5 h-3.5" />
             )}
             {step.label}
-            {i < 3 && <ChevronRight className="w-3 h-3 ml-1 text-muted-foreground" />}
+            {i < 4 && <ChevronRight className="w-3 h-3 ml-1 text-muted-foreground" />}
           </button>
         ))}
       </div>
@@ -762,17 +865,42 @@ Krishna | nHRMS`;
                 {selectedCandidate && selectedCandidate.conversation.length > 0 ? (
                   <>
                     <CardHeader className="pb-3 border-b">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 flex-wrap">
                         <Avatar className="w-9 h-9">
                           <AvatarFallback className="bg-[#0077B5]/10 text-[#0077B5] text-xs font-semibold">
                             {selectedCandidate.name.split(' ').map((n) => n[0]).join('')}
                           </AvatarFallback>
                         </Avatar>
-                        <div>
+                        <div className="flex-1 min-w-0">
                           <p className="font-semibold text-sm">{selectedCandidate.name}</p>
                           <p className="text-xs text-muted-foreground">{selectedCandidate.title} · {selectedCandidate.company}</p>
+                          {selectedCandidate.scheduledAt && (
+                            <p className="text-xs text-teal-600 mt-0.5 flex items-center gap-1">
+                              <Calendar className="w-3 h-3" /> {selectedCandidate.scheduledAt}
+                            </p>
+                          )}
                         </div>
                         {statusBadge(selectedCandidate.status)}
+                        <div className="flex gap-1 ml-auto">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-7 text-xs"
+                            onClick={() => handleShareTopmateInChat(selectedCandidate.id)}
+                            title="Share Topmate link in chat"
+                          >
+                            <Link2 className="w-3 h-3 mr-1" /> Topmate
+                          </Button>
+                          {selectedCandidate.status !== 'scheduled' && (
+                            <Button
+                              size="sm"
+                              className="h-7 text-xs bg-teal-600 hover:bg-teal-700 text-white"
+                              onClick={() => openScheduleDialog(selectedCandidate)}
+                            >
+                              <CalendarPlus className="w-3 h-3 mr-1" /> Schedule
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </CardHeader>
                     <ScrollArea className="flex-1 p-4">
@@ -827,6 +955,205 @@ Krishna | nHRMS`;
           )}
         </TabsContent>
       </Tabs>
+
+        {/* ── SCHEDULE ── */}
+        <TabsContent value="schedule">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Topmate card */}
+            <Card className="border-teal-200 bg-teal-50/30">
+              <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Video className="w-4 h-4 text-teal-600" /> Topmate Booking
+                </CardTitle>
+                <CardDescription>Share your Topmate link for candidates to self-schedule</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-white border text-sm font-mono text-teal-700 break-all">
+                  {TOPMATE_URL}
+                </div>
+                <div className="flex gap-2">
+                  <Button variant="outline" size="sm" className="flex-1" onClick={handleCopyTopmateLink}>
+                    {linkCopied ? <CheckCircle2 className="w-3.5 h-3.5 mr-1.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 mr-1.5" />}
+                    {linkCopied ? 'Copied!' : 'Copy Link'}
+                  </Button>
+                  <Button size="sm" className="flex-1 bg-teal-600 hover:bg-teal-700 text-white" asChild>
+                    <a href={TOPMATE_URL} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-3.5 h-3.5 mr-1.5" /> Open
+                    </a>
+                  </Button>
+                </div>
+                <Separator />
+                <p className="text-xs text-muted-foreground">Send this link in any conversation to let candidates pick their own slot — no back-and-forth needed.</p>
+              </CardContent>
+            </Card>
+
+            {/* Calendar slots */}
+            <Card className="lg:col-span-2">
+              <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Calendar className="w-4 h-4" /> Available Slots This Week
+                </CardTitle>
+                <CardDescription>Click a slot to block it for a candidate</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+                  {CALENDAR_SLOTS.map((slot) => {
+                    const booked = candidates.find((c) => c.scheduledAt === slot.label);
+                    return (
+                      <div
+                        key={slot.label}
+                        className={`p-3 rounded-lg border text-sm ${
+                          booked
+                            ? 'bg-teal-50 border-teal-300 text-teal-700'
+                            : 'bg-white hover:border-[#0077B5]/60 hover:bg-[#0077B5]/5 cursor-pointer'
+                        }`}
+                      >
+                        <p className="font-medium">{slot.date}</p>
+                        <p className="text-xs text-muted-foreground">{slot.time}</p>
+                        {booked ? (
+                          <p className="text-xs text-teal-600 mt-1 font-medium truncate">📅 {booked.name}</p>
+                        ) : (
+                          <p className="text-xs text-muted-foreground mt-1">Available</p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <Separator className="mb-4" />
+
+                <div>
+                  <p className="text-sm font-semibold mb-3">Scheduled Interviews</p>
+                  {candidates.filter((c) => c.status === 'scheduled').length === 0 ? (
+                    <p className="text-sm text-muted-foreground">No interviews scheduled yet. Schedule from the Conversations tab.</p>
+                  ) : (
+                    <div className="space-y-2">
+                      {candidates.filter((c) => c.status === 'scheduled').map((c) => (
+                        <div key={c.id} className="flex items-center gap-3 p-3 rounded-lg border bg-teal-50/50">
+                          <Avatar className="w-8 h-8">
+                            <AvatarFallback className="bg-teal-100 text-teal-700 text-xs font-semibold">
+                              {c.name.split(' ').map((n) => n[0]).join('')}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium">{c.name}</p>
+                            <p className="text-xs text-muted-foreground">{c.title} · {c.company}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-xs text-teal-700 font-medium flex items-center gap-1">
+                              <Calendar className="w-3 h-3" />{c.scheduledAt}
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {c.meetingType === 'topmate' ? 'via Topmate' : 'Video Call'}
+                            </p>
+                          </div>
+                          <Button size="sm" variant="outline" className="h-7 text-xs ml-2" onClick={() => openScheduleDialog(c)}>
+                            Reschedule
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+      </Tabs>
+
+      {/* Schedule Dialog */}
+      <Dialog open={showScheduleDialog} onOpenChange={setShowScheduleDialog}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <CalendarPlus className="w-5 h-5 text-teal-600" />
+              Schedule Interview — {schedulingCandidate?.name}
+            </DialogTitle>
+            <DialogDescription>{schedulingCandidate?.title} · {schedulingCandidate?.company}</DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            {/* Meeting type */}
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground mb-2">MEETING TYPE</p>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => setMeetingType('topmate')}
+                  className={`flex items-center gap-2 p-3 rounded-lg border text-sm transition-all ${
+                    meetingType === 'topmate' ? 'border-teal-500 bg-teal-50 text-teal-700' : 'hover:border-muted-foreground/30'
+                  }`}
+                >
+                  <Video className="w-4 h-4" />
+                  <div className="text-left">
+                    <p className="font-medium text-xs">Topmate</p>
+                    <p className="text-xs text-muted-foreground">Self-book link</p>
+                  </div>
+                  {meetingType === 'topmate' && <CheckCircle2 className="w-3.5 h-3.5 ml-auto" />}
+                </button>
+                <button
+                  onClick={() => setMeetingType('video')}
+                  className={`flex items-center gap-2 p-3 rounded-lg border text-sm transition-all ${
+                    meetingType === 'video' ? 'border-teal-500 bg-teal-50 text-teal-700' : 'hover:border-muted-foreground/30'
+                  }`}
+                >
+                  <Calendar className="w-4 h-4" />
+                  <div className="text-left">
+                    <p className="font-medium text-xs">Video Call</p>
+                    <p className="text-xs text-muted-foreground">Google Meet</p>
+                  </div>
+                  {meetingType === 'video' && <CheckCircle2 className="w-3.5 h-3.5 ml-auto" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Slot picker */}
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground mb-2">SELECT A SLOT</p>
+              <div className="grid grid-cols-2 gap-2">
+                {CALENDAR_SLOTS.map((slot) => {
+                  const takenBy = candidates.find((c) => c.scheduledAt === slot.label && c.id !== schedulingCandidate?.id);
+                  return (
+                    <button
+                      key={slot.label}
+                      disabled={!!takenBy}
+                      onClick={() => setSelectedSlot(slot)}
+                      className={`p-2.5 rounded-lg border text-left text-sm transition-all ${
+                        takenBy
+                          ? 'opacity-40 cursor-not-allowed bg-muted'
+                          : selectedSlot?.label === slot.label
+                          ? 'border-teal-500 bg-teal-50 text-teal-700'
+                          : 'hover:border-teal-400 hover:bg-teal-50/50'
+                      }`}
+                    >
+                      <p className="font-medium text-xs">{slot.date}</p>
+                      <p className="text-xs text-muted-foreground">{slot.time}</p>
+                      {takenBy && <p className="text-xs text-red-500 mt-0.5">Taken</p>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {selectedSlot && meetingType === 'topmate' && (
+              <div className="p-3 rounded-lg bg-teal-50 border border-teal-200 text-xs text-teal-700">
+                The Topmate booking link <strong>{TOPMATE_URL}</strong> will be sent in the conversation thread.
+              </div>
+            )}
+
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setShowScheduleDialog(false)}>Cancel</Button>
+              <Button
+                className="bg-teal-600 hover:bg-teal-700 text-white"
+                disabled={!selectedSlot}
+                onClick={handleConfirmSchedule}
+              >
+                <CalendarPlus className="w-4 h-4 mr-2" />
+                Confirm & Block Slot
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Message / InMail Dialog */}
       <Dialog open={showMessageDialog} onOpenChange={setShowMessageDialog}>
