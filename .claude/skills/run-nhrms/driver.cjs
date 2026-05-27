@@ -14,7 +14,7 @@ const path = require('path');
 const PUPPETEER = path.resolve(__dirname, '../../../node_modules/puppeteer');
 const fs = require('fs');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-const BASE = 'http://localhost:5173';
+const BASE = 'http://localhost:5174';
 
 async function launch() {
   const p = require(PUPPETEER);
