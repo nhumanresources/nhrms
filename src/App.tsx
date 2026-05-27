@@ -202,7 +202,11 @@ const App = () => {
             <Route path="/academy/apply-summer-2026" element={<AcademyApplySummer2026 />} />
             <Route path="/free-hr-compliance-audit" element={<FreeHRComplianceAudit />} />
             <Route path="/free-hr-compliance-audit-india" element={<Navigate to="/free-hr-compliance-audit" replace />} />
-            
+
+            {/* LinkedIn Recruiter App */}
+            <Route path="/recruiter" element={<RecruiterApp />} />
+            <Route path="/recruiter/*" element={<RecruiterApp />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </TooltipProvider>
