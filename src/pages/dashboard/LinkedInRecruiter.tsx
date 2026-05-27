@@ -36,6 +36,7 @@ import {
   Video,
   Link2,
   Copy,
+  FileText,
 } from 'lucide-react';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -470,6 +471,29 @@ Krishna | nHRMS`;
     setTimeout(() => setLinkCopied(false), 2000);
   }
 
+  function handleShareJD(candidateId: string) {
+    if (!selectedJD) return;
+    const jdMsg: Message = {
+      id: Date.now().toString(),
+      sender: 'recruiter',
+      text: `Here's the full job details for your reference:\n\n📋 *${selectedJD.title}*\n🏢 ${selectedJD.company}\n📍 ${selectedJD.location}\n🕐 ${selectedJD.experience}\n\n${selectedJD.description}\n\n🔑 Key skills we're looking for:\n${selectedJD.skills.map((s) => `• ${s}`).join('\n')}\n\nHappy to answer any questions you have!`,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      type: 'message',
+      read: true,
+    };
+    setCandidates((prev) =>
+      prev.map((c) =>
+        c.id === candidateId ? { ...c, conversation: [...c.conversation, jdMsg] } : c
+      )
+    );
+    if (selectedCandidate?.id === candidateId) {
+      setSelectedCandidate((prev) =>
+        prev ? { ...prev, conversation: [...prev.conversation, jdMsg] } : prev
+      );
+    }
+    toast({ title: 'JD shared', description: 'Job description sent in the conversation thread.' });
+  }
+
   function handleShareTopmateInChat(candidateId: string) {
     const msg: Message = {
       id: Date.now().toString(),
@@ -881,7 +905,18 @@ Krishna | nHRMS`;
                           )}
                         </div>
                         {statusBadge(selectedCandidate.status)}
-                        <div className="flex gap-1 ml-auto">
+                        <div className="flex gap-1 ml-auto flex-wrap">
+                          {selectedJD && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs"
+                              onClick={() => handleShareJD(selectedCandidate.id)}
+                              title="Share JD in chat"
+                            >
+                              <FileText className="w-3 h-3 mr-1" /> Share JD
+                            </Button>
+                          )}
                           <Button
                             size="sm"
                             variant="outline"
@@ -905,22 +940,39 @@ Krishna | nHRMS`;
                     </CardHeader>
                     <ScrollArea className="flex-1 p-4">
                       <div className="space-y-4">
-                        {selectedCandidate.conversation.map((msg) => (
-                          <div key={msg.id} className={`flex ${msg.sender === 'recruiter' ? 'justify-end' : 'justify-start'}`}>
-                            <div
-                              className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm whitespace-pre-wrap ${
-                                msg.sender === 'recruiter'
-                                  ? 'bg-[#0077B5] text-white rounded-tr-sm'
-                                  : 'bg-muted text-foreground rounded-tl-sm'
-                              }`}
-                            >
-                              {msg.text}
-                              <div className={`text-xs mt-1 ${msg.sender === 'recruiter' ? 'text-white/70' : 'text-muted-foreground'}`}>
-                                {msg.timestamp} · {msg.type === 'inmail' ? 'InMail' : 'Message'}
+                        {selectedCandidate.conversation.map((msg) => {
+                          const isJD = msg.sender === 'recruiter' && msg.text.startsWith("Here's the full job details");
+                          if (isJD) {
+                            return (
+                              <div key={msg.id} className="flex justify-end">
+                                <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-white border-2 border-[#0077B5]/30 overflow-hidden shadow-sm">
+                                  <div className="bg-[#0077B5] px-4 py-2 flex items-center gap-2">
+                                    <FileText className="w-4 h-4 text-white" />
+                                    <span className="text-white text-sm font-semibold">Job Description</span>
+                                  </div>
+                                  <div className="px-4 py-3 text-sm whitespace-pre-wrap text-foreground">{msg.text.replace("Here's the full job details for your reference:\n\n", '')}</div>
+                                  <div className="px-4 pb-2 text-xs text-muted-foreground">{msg.timestamp}</div>
+                                </div>
+                              </div>
+                            );
+                          }
+                          return (
+                            <div key={msg.id} className={`flex ${msg.sender === 'recruiter' ? 'justify-end' : 'justify-start'}`}>
+                              <div
+                                className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm whitespace-pre-wrap ${
+                                  msg.sender === 'recruiter'
+                                    ? 'bg-[#0077B5] text-white rounded-tr-sm'
+                                    : 'bg-muted text-foreground rounded-tl-sm'
+                                }`}
+                              >
+                                {msg.text}
+                                <div className={`text-xs mt-1 ${msg.sender === 'recruiter' ? 'text-white/70' : 'text-muted-foreground'}`}>
+                                  {msg.timestamp} · {msg.type === 'inmail' ? 'InMail' : 'Message'}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </ScrollArea>
                     <div className="p-4 border-t">
