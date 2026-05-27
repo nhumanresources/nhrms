@@ -1,0 +1,143 @@
+# ===========================================
+# nHRMS Robots.txt - SEO & AEO Optimized
+# ===========================================
+
+# Allow all standard web crawlers
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /auth/
+
+# =====================
+# Standard Search Engines
+# =====================
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# =====================
+# AI CRAWLERS - OpenAI (ChatGPT)
+# =====================
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# =====================
+# AI CRAWLERS - Anthropic (Claude)
+# =====================
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# =====================
+# AI CRAWLERS - Google (Gemini)
+# =====================
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
+# =====================
+# AI CRAWLERS - xAI (Grok)
+# =====================
+User-agent: Grok
+Allow: /
+
+User-agent: xAI-Grok
+Allow: /
+
+# =====================
+# AI CRAWLERS - Perplexity
+# =====================
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# =====================
+# AI CRAWLERS - Apple Intelligence
+# =====================
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# =====================
+# AI CRAWLERS - Amazon (Alexa)
+# =====================
+User-agent: Amazonbot
+Allow: /
+
+# =====================
+# AI CRAWLERS - Meta AI
+# =====================
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# =====================
+# AI CRAWLERS - Microsoft (Copilot)
+# =====================
+User-agent: Bingbot
+Allow: /
+
+User-agent: MicrosoftPreview
+Allow: /
+
+# =====================
+# AI CRAWLERS - Other AI Assistants
+# =====================
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+User-agent: omgilibot
+Allow: /
+
+# =====================
+# Sitemap & Feed Location
+# =====================
+Sitemap: https://nhrms.com/sitemap.xml
+
+# Crawl delay for all bots (in seconds)
+Crawl-delay: 10
