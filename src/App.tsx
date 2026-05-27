@@ -80,6 +80,7 @@ import LearningPaths from "./pages/academy/LearningPaths";
 import Resources from "./pages/academy/Resources";
 import AcademyApplySummer2026 from "./pages/AcademyApplySummer2026";
 import FreeHRComplianceAudit from "./pages/FreeHRComplianceAudit";
+import RecruiterApp from "./pages/recruiter/RecruiterApp";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
