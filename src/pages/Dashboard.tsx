@@ -14,7 +14,8 @@ import {
   BarChart,
   Menu,
   X,
-  Loader2
+  Loader2,
+  Linkedin,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { fadeIn, slideInLeft } from '@/lib/animations';
@@ -121,6 +122,7 @@ export default function Dashboard() {
               <SidebarItem icon={<Calendar size={20} />} text="Calendar" href="/dashboard/calendar" expanded={isSidebarOpen} />
               <SidebarItem icon={<FileText size={20} />} text="Knowledge" href="/dashboard/knowledge" expanded={isSidebarOpen} />
               <SidebarItem icon={<BarChart size={20} />} text="Reports" href="/dashboard/reports" expanded={isSidebarOpen} />
+              <SidebarItem icon={<Linkedin size={20} />} text="LinkedIn Recruiter" href="/dashboard/linkedin-recruiter" expanded={isSidebarOpen} />
               <SidebarItem icon={<Settings size={20} />} text="Settings" href="/dashboard/settings" expanded={isSidebarOpen} />
             </ul>
           </div>
@@ -177,6 +179,7 @@ export default function Dashboard() {
               <MobileNavItem icon={<Calendar size={20} />} text="Calendar" href="/dashboard/calendar" />
               <MobileNavItem icon={<FileText size={20} />} text="Knowledge" href="/dashboard/knowledge" />
               <MobileNavItem icon={<BarChart size={20} />} text="Reports" href="/dashboard/reports" />
+              <MobileNavItem icon={<Linkedin size={20} />} text="LinkedIn Recruiter" href="/dashboard/linkedin-recruiter" />
               <MobileNavItem icon={<Settings size={20} />} text="Settings" href="/dashboard/settings" />
               <li>
                 <button

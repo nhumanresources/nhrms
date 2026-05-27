@@ -80,6 +80,7 @@ import LearningPaths from "./pages/academy/LearningPaths";
 import Resources from "./pages/academy/Resources";
 import AcademyApplySummer2026 from "./pages/AcademyApplySummer2026";
 import FreeHRComplianceAudit from "./pages/FreeHRComplianceAudit";
+import LinkedInRecruiter from "./pages/dashboard/LinkedInRecruiter";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -101,6 +102,7 @@ const App = () => {
             <Route path="/login" element={<Navigate to="/auth" replace />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/linkedin-recruiter" element={<LinkedInRecruiter />} />
             <Route path="/dashboard/*" element={<Dashboard />} />
             <Route path="/who-we-are" element={<WhoWeAre />} />
             <Route path="/culture" element={<Culture />} />
