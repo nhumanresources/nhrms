@@ -1,0 +1,2 @@
+[run]
+build:dev = "echo 'static site - no build step required'"
