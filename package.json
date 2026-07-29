@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "python3 -m http.server 8080",
+    "dev": "python3 -c \"import http.server,socketserver; socketserver.TCPServer.allow_reuse_address=True; httpd=socketserver.TCPServer(('0.0.0.0',8080), http.server.SimpleHTTPRequestHandler); print('serving on 8080'); httpd.serve_forever()\"",
     "build": "echo 'static site - nothing to build'",
     "build:dev": "echo 'static site - nothing to build'"
   }
