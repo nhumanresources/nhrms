@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Minimum Wages - Maharashtra | nHRMS</title>
-<meta name="description" content="Latest Maharashtra minimum wages by zone (I, II, III) and skill category — Un-Skilled, Semi-Skilled, Skilled — with official notifications and downloadable PDFs. Curated by nHRMS." />
+<title>Minimum Wages - Maharashtra (Shops & Establishments) | nHRMS</title>
+<meta name="description" content="Latest Maharashtra minimum wages for Shops & Establishments — Basic, HRA, VDA, per-day and per-month totals across Zones I, II, III for Unskilled, Semi-Skilled and Skilled categories. Curated by nHRMS." />
 <link rel="canonical" href="https://nhrms.com/mw-maharashtra.html" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Minimum Wages - Maharashtra | nHRMS" />
-<meta property="og:description" content="Latest Maharashtra minimum wages by zone and skill category with official notifications." />
+<meta property="og:title" content="Minimum Wages - Maharashtra (Shops & Establishments) | nHRMS" />
+<meta property="og:description" content="Zone-wise Basic + HRA + VDA breakdown for Maharashtra minimum wages, updated as per the latest Government of Maharashtra notification." />
 <meta property="og:url" content="https://nhrms.com/mw-maharashtra.html" />
 <link rel="icon" href="/favicon.png" type="image/png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,28 +32,30 @@
   .hero{background:linear-gradient(135deg,#1a1330 0%,#2b1a4a 60%,#3a1f2f 100%);color:#fff;padding:56px 24px 72px;text-align:center}
   .hero h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-0.02em}
   .hero h1 span{background:linear-gradient(90deg,#ffb347,#ff4d00);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p{color:#cbd0e0;max-width:720px;margin:14px auto 0;font-size:16px;line-height:1.6}
+  .hero p{color:#cbd0e0;max-width:760px;margin:14px auto 0;font-size:16px;line-height:1.6}
+  .meta-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+  .pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:500}
+  .pill b{color:#ffb347;font-weight:700}
   .container{max-width:1200px;margin:-40px auto 60px;padding:0 20px}
   .card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 20px 40px -20px rgba(15,23,42,.15);overflow:hidden}
   .card-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
   .card-head h2{font-size:20px;font-weight:700}
   .badge{display:inline-block;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:#fff3ec;color:var(--brand-b);border:1px solid #ffd8bf}
   .table-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;min-width:900px}
+  table{width:100%;border-collapse:collapse;min-width:820px}
   thead th{background:#faf5f0;color:#7a3b00;font-size:12px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;text-align:left;padding:14px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
-  tbody td{padding:14px 12px;border-bottom:1px solid #eef0f5;font-size:14px;vertical-align:top}
+  tbody td{padding:14px 12px;border-bottom:1px solid #eef0f5;font-size:14px;vertical-align:middle}
   tbody tr:hover{background:#fffaf5}
-  .zone{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:8px;background:#eef2ff;color:#4338ca;font-weight:700;font-size:13px}
+  .zone{display:inline-flex;align-items:center;justify-content:center;min-width:64px;height:26px;padding:0 10px;border-radius:8px;background:#eef2ff;color:#4338ca;font-weight:700;font-size:12px}
   .zone.z1{background:#fee2e2;color:#b91c1c}
   .zone.z2{background:#fef3c7;color:#92400e}
   .zone.z3{background:#dcfce7;color:#166534}
+  .cat{font-weight:600;color:var(--text)}
   .num{font-variant-numeric:tabular-nums;font-weight:600}
-  .dl{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(90deg,var(--brand-a),var(--brand-b));color:#fff!important;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:600}
-  .dl:hover{text-decoration:none;opacity:.9}
-  .dl.disabled{background:#e5e7eb;color:#94a3b8!important;pointer-events:none}
-  .remarks{color:var(--sub);font-size:13px;max-width:260px}
+  .num.total{color:var(--brand-b)}
   .legend{display:flex;flex-wrap:wrap;gap:16px;padding:16px 24px;background:#faf9f6;border-top:1px solid var(--border);font-size:13px;color:var(--sub)}
   .legend b{color:var(--text)}
+  .source{padding:14px 24px;border-top:1px solid var(--border);font-size:12px;color:var(--sub);background:#fff}
   .cta{margin-top:40px;background:linear-gradient(135deg,#fff7ef,#ffe9d6);border:1px solid #ffd8bf;border-radius:16px;padding:32px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
   .cta h3{font-size:22px;font-weight:700}
   .cta p{color:var(--sub);margin:8px 0 0;max-width:560px}
@@ -82,32 +84,44 @@
 
 <section class="hero">
   <h1>Minimum Wages — <span>Maharashtra</span></h1>
-  <p>Zone-wise statutory minimum wages for Un-Skilled, Semi-Skilled and Skilled categories, with official notifications and downloadable PDFs. Updated as per Government of Maharashtra notifications.</p>
+  <p>Shops &amp; Establishments — zone-wise Basic + HRA + VDA breakdown with per-day and per-month totals for Unskilled, Semi-Skilled and Skilled categories. Compiled from the latest Government of Maharashtra notification.</p>
+  <div class="meta-pills">
+    <span class="pill">Effective from <b>1st Jan, 2026</b></span>
+    <span class="pill">Updated as on <b>9th Feb, 2026</b></span>
+    <span class="pill">Sector: <b>Shops &amp; Establishments</b></span>
+  </div>
 </section>
 
 <main class="container">
   <div class="card">
     <div class="card-head">
-      <h2>Minimum Wages Notifications — Maharashtra</h2>
-      <span class="badge">Latest: 04 Feb 2026</span>
+      <h2>Minimum Wages — Shops &amp; Establishments (Jan 2026)</h2>
+      <span class="badge">Latest Notification</span>
     </div>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>S.N.</th><th>Valid From</th><th>Valid Till</th><th>Zone</th>
-            <th>Un-Skilled</th><th>Semi Skilled</th><th>Skilled</th><th>Highly Skilled</th>
-            <th>Remarks</th><th>Download</th>
+            <th>Class of Employment</th>
+            <th>Zone</th>
+            <th>Basic / Month</th>
+            <th>HRA / Month</th>
+            <th>VDA / Month</th>
+            <th>Total / Day</th>
+            <th>Total / Month</th>
           </tr>
         </thead>
         <tbody id="mw-body"></tbody>
       </table>
     </div>
     <div class="legend">
-      <div><b>Zone I</b> — Areas within Municipal Corporations & Cantonments</div>
+      <div><b>Zone I</b> — Areas within Municipal Corporations &amp; Cantonments</div>
       <div><b>Zone II</b> — Municipal Councils (A, B, C class)</div>
       <div><b>Zone III</b> — Remaining areas of the state</div>
-      <div><b>HRA</b> — 5% of Basic + DA (if employees > 50)</div>
+      <div><b>HRA</b> — 5% of Basic + DA (applicable if employees &gt; 50)</div>
+    </div>
+    <div class="source">
+      All figures in ₹. Source: Government of Maharashtra — Minimum Wages VDA Notification dated 4th Feb 2026, effective 1st Jan 2026. Provided for statutory reference only; verify with the official notification before payroll processing.
     </div>
   </div>
 
@@ -126,43 +140,30 @@
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
+  // [Category, Zone, Basic, HRA, VDA, Total/Day, Total/Month]
   const data = [
-    [1,"Jan 01, 2026","Jun 30, 2026","I",13921,14756,15532,"NA","Notification issued on 4th Feb 2026","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [2,"Jan 01, 2026","Jun 30, 2026","II",13325,14160,14936,"NA","Notification issued on 4th Feb 2026","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [3,"Jan 01, 2026","Jun 30, 2026","III",12728,13564,14340,"NA","Notification issued on 4th Feb 2026","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [4,"Jul 01, 2025","Dec 31, 2025","I",14054,14650,15246,"NA","Notification issued on 4th Aug 2025","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [5,"Jul 01, 2025","Dec 31, 2025","II",13278,13874,14470,"NA","Notification issued on 4th Aug 2025","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [6,"Jul 01, 2025","Dec 31, 2025","III",12442,13039,13635,"NA","Notification issued on 4th Aug 2025","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [7,"Jan 01, 2025","Jun 30, 2025","I",13635,14470,15246,"NA","Notification issued on 20th Feb 2025","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [8,"Jan 01, 2025","Jun 30, 2025","II",13039,13874,14650,"NA","Notification issued on 20th Feb 2025","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [9,"Jan 01, 2025","Jun 30, 2025","III",12442,13278,14054,"NA","Notification issued on 20th Feb 2025","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [10,"Jul 01, 2024","Dec 31, 2024","I",13271,14106,14882,"NA","Notification issued on 6th Aug 2024","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [11,"Jul 01, 2024","Dec 31, 2024","II",12675,13510,14286,"NA","Notification issued on 6th Aug 2024","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [12,"Jul 01, 2024","Dec 31, 2024","III",12078,12914,13690,"NA","Notification issued on 6th Aug 2024","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [13,"Jan 01, 2024","Jun 30, 2024","I",13089,13924,14700,"NA","HRA 5% of Basic + DA",""],
-    [14,"Jan 01, 2024","Jun 30, 2024","II",12493,13228,14104,"NA","HRA 5% of Basic + DA",""],
-    [15,"Jan 01, 2024","Jun 30, 2024","III",11896,12732,13508,"NA","HRA 5% of Basic + DA",""],
-    [16,"Jul 01, 2023","Dec 31, 2023","I",12699,13534,14310,"NA","5% HRA on Basic + DA (Sp. Allow.) if employees > 50","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [17,"Jul 01, 2023","Dec 31, 2023","II",12103,12938,13714,"NA","5% HRA on Basic + DA (Sp. Allow.) if employees > 50","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [18,"Jul 01, 2023","Dec 31, 2023","III",11506,12342,13118,"NA","5% HRA on Basic + DA (Sp. Allow.) if employees > 50","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [19,"Jul 01, 2020","Dec 31, 2020","I",10957,11792,12568,"NA","5% HRA on Basic + DA (Sp. Allow.) if employees > 50","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [20,"Jul 01, 2020","Dec 31, 2020","II",10361,10260,11972,"NA","5% HRA on Basic + DA (Sp. Allow.) if employees > 50","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"],
-    [21,"Jul 01, 2020","Dec 31, 2020","III",9764,10600,11376,"NA","5% HRA on Basic + DA (Sp. Allow.) if employees > 50","https://www.simpliance.in/India/LEI/minimum_wages/state-wise-details/maharashtra"]
+    ["Unskilled","I",10021,696.05,3900,535.41,13921],
+    ["Unskilled","II",9425,666.25,3900,512.50,13325],
+    ["Unskilled","III",8828,636.40,3900,489.54,12728],
+    ["Semi-Skilled","I",10856,737.80,3900,567.54,14756],
+    ["Semi-Skilled","II",10260,708.00,3900,544.62,14160],
+    ["Semi-Skilled","III",9664,678.20,3900,521.69,13564],
+    ["Skilled","I",11632,776.60,3900,597.38,15532],
+    ["Skilled","II",11036,746.80,3900,574.46,14936],
+    ["Skilled","III",10440,717.00,3900,551.54,14340]
   ];
-  const fmt = n => typeof n === 'number' ? n.toLocaleString('en-IN') : n;
+  const fmtInt = n => n.toLocaleString('en-IN');
+  const fmtDec = n => n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
   const zoneClass = z => z === 'I' ? 'z1' : z === 'II' ? 'z2' : 'z3';
   document.getElementById('mw-body').innerHTML = data.map(r => `
     <tr>
-      <td>${r[0]}</td>
-      <td>${r[1]}</td>
-      <td>${r[2]}</td>
-      <td><span class="zone ${zoneClass(r[3])}">${r[3]}</span></td>
-      <td class="num">₹ ${fmt(r[4])}</td>
-      <td class="num">₹ ${fmt(r[5])}</td>
-      <td class="num">₹ ${fmt(r[6])}</td>
-      <td class="num">${r[7]}</td>
-      <td class="remarks">${r[8]}</td>
-      <td>${r[9] ? `<a class="dl" href="${r[9]}" target="_blank" rel="noopener">⬇ PDF</a>` : `<span class="dl disabled">—</span>`}</td>
+      <td class="cat">${r[0]}</td>
+      <td><span class="zone ${zoneClass(r[1])}">Zone ${r[1]}</span></td>
+      <td class="num">₹ ${fmtInt(r[2])}</td>
+      <td class="num">₹ ${fmtDec(r[3])}</td>
+      <td class="num">₹ ${fmtInt(r[4])}</td>
+      <td class="num">₹ ${fmtDec(r[5])}</td>
+      <td class="num total">₹ ${fmtInt(r[6])}</td>
     </tr>
   `).join('');
 </script>
