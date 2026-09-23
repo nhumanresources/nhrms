@@ -21,8 +21,10 @@ Add a branded, gated campaign page at `/epf-wage-ceiling-advisory` that captures
 - Add a public `submit-epf-advisory-lead` function with CORS handling and matching server-side validation.
 - Store the lead first, then attempt Bigin sync. CRM failure will never roll back or discard the stored lead; it will mark the row `failed` for later retry.
 - Split Full Name on the first space; when there is no space, use the first name as the last name as requested.
-- Refresh Zoho OAuth through the configured India accounts domain and cache the short-lived access token in the warm function instance until shortly before expiry, avoiding a refresh on every request.
-- Upsert/deduplicate the Bigin Contact on Email and map name, email, mobile, organisation/account, tag, timestamped source description, plus sync status and returned record ID.
+- Refresh Zoho OAuth through the configured accounts domain, use the API domain returned by Zoho when available, and cache the short-lived access token in the warm function instance until shortly before expiry. Retry once after a 401; this avoids excessive refreshes and Zoho’s refresh-token rate limit.
+- Use Bigin’s native Contacts upsert endpoint with `duplicate_check_fields: ["Email"]`, then persist the returned record ID. Email should be configured as unique in Bigin for reliable native deduplication.
+- Resolve the organisation against Bigin Accounts, create it when missing, and pass its ID into the Contact’s `Account_Name` lookup. Bigin’s official documentation does not confirm that a plain account-name string auto-creates an Account, so this safer flow delivers the requested outcome explicitly.
+- Add `EPF Advisory Lead` through Bigin’s separate tag action after upsert, and map the timestamped lead-source description.
 - Add a code comment at the Bigin client boundary showing where the generic Zoho CRM connector could replace Self Client OAuth later. It will not be linked or used now because no Zoho CRM workspace connection is currently available.
 - Return a successful gated response once durable storage succeeds, even if Bigin is temporarily unavailable.
 
@@ -32,7 +34,7 @@ Add a branded, gated campaign page at `/epf-wage-ceiling-advisory` that captures
 
 ## Credentials and deployment
 - The required `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN`, `ZOHO_ACCOUNTS_DOMAIN`, and `ZOHO_API_DOMAIN` secrets are not currently configured.
-- After the code is ready, add those five values in Project Settings → Secrets. Suggested India domains are `https://accounts.zoho.in` and `https://www.zohoapis.in`; the exact values should match the Self Client’s data centre.
+- After the code is ready, add those five values in Project Settings → Secrets. Suggested India domains are `https://accounts.zoho.in` and `https://www.zohoapis.in`; the exact values must match the Self Client’s data centre. The Self Client needs Bigin Contacts/Accounts write access and tag access; native email search is not required when using upsert.
 - Do not publish the site, run the database migration, or deploy the function in this task. Everything will remain staged for review.
 
 ## Verification
