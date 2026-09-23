@@ -11,7 +11,10 @@ CREATE TABLE public.leads_epf_advisory (
   crm_sync_status text NOT NULL DEFAULT 'pending',
   crm_record_id text,
   crm_last_attempt_at timestamp with time zone,
-  crm_sync_error text
+  crm_sync_error text,
+  delivery_status text NOT NULL DEFAULT 'pending',
+  delivery_last_attempt_at timestamp with time zone,
+  delivery_error text
 );
 
 GRANT ALL ON public.leads_epf_advisory TO service_role;

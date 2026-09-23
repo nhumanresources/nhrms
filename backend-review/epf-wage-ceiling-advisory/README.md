@@ -8,4 +8,6 @@ After approval:
 2. Move `submit-epf-advisory-lead.ts` to `supabase/functions/submit-epf-advisory-lead/index.ts` so the managed function can deploy.
 3. Configure `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN`, `ZOHO_ACCOUNTS_DOMAIN`, and `ZOHO_API_DOMAIN` as backend secrets.
 4. Confirm that Email is a unique field for Bigin Contacts and that the Self Client has Bigin Contacts, Accounts, and tag write access.
-5. Supply the advisory PDF and configure both email delivery and a gated private download before enabling the form publicly.
+5. Create a private storage bucket and upload `assets/EPF_Wage_Ceiling_15k_to_25k_nHRMS_RYT.pdf`.
+6. Configure `EPF_ADVISORY_BUCKET`, `EPF_ADVISORY_PATH`, `RESEND_API_KEY`, and `EPF_ADVISORY_FROM_EMAIL` as backend secrets. The sender must use a verified email domain.
+7. Test both the email attachment and the 10-minute private download before enabling the form publicly.
