@@ -122,6 +122,54 @@ async function syncToBigin(lead: z.infer<typeof LeadSchema>) {
   return contactId;
 }
 
+const bytesToBase64 = (bytes: Uint8Array) => {
+  let binary = "";
+  const chunkSize = 0x8000;
+  for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(offset, offset + chunkSize));
+  }
+  return btoa(binary);
+};
+
+async function deliverAdvisory(
+  serviceClient: ReturnType<typeof createClient>,
+  lead: z.infer<typeof LeadSchema>,
+) {
+  const bucket = requireEnv("EPF_ADVISORY_BUCKET");
+  const path = requireEnv("EPF_ADVISORY_PATH");
+  const { data: signed, error: signedError } = await serviceClient.storage
+    .from(bucket)
+    .createSignedUrl(path, 600);
+  if (signedError || !signed?.signedUrl) throw new Error("Could not create the private advisory link");
+
+  const { data: pdf, error: downloadError } = await serviceClient.storage.from(bucket).download(path);
+  if (downloadError || !pdf) throw new Error("Could not load the advisory for email delivery");
+  const pdfBytes = new Uint8Array(await pdf.arrayBuffer());
+  const emailResponse = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${requireEnv("RESEND_API_KEY")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: requireEnv("EPF_ADVISORY_FROM_EMAIL"),
+      to: [lead.email.toLowerCase()],
+      reply_to: "krishna@nhrms.com",
+      subject: "Your EPF Wage Ceiling Revision employer briefing",
+      html: `<p>Hello ${lead.fullName.replace(/[<>&"']/g, "")},</p><p>Thank you for requesting the nHRMS employer briefing on the EPF wage ceiling revision.</p><p>Your PDF is attached. You can also <a href="${signed.signedUrl}">download it securely for the next 10 minutes</a>.</p><p>Regards,<br>nHRMS · An RYT Group Firm</p>`,
+      attachments: [{
+        filename: "EPF_Wage_Ceiling_15k_to_25k_nHRMS_RYT.pdf",
+        content: bytesToBase64(pdfBytes),
+      }],
+    }),
+  });
+  if (!emailResponse.ok) {
+    const body = await emailResponse.text();
+    throw new Error(`Advisory email failed (${emailResponse.status}): ${body.slice(0, 400)}`);
+  }
+  return signed.signedUrl;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (req.method !== "POST") return jsonResponse({ error: "Method not allowed" }, 405);
@@ -146,6 +194,8 @@ Deno.serve(async (req) => {
     updated_at: new Date().toISOString(),
     crm_sync_status: "pending",
     crm_sync_error: null,
+    delivery_status: "pending",
+    delivery_error: null,
   }, { onConflict: "email_normalized" }).select("id").single();
 
   if (storageError || !storedLead) {
@@ -165,5 +215,18 @@ Deno.serve(async (req) => {
       crm_sync_status: "failed", crm_last_attempt_at: new Date().toISOString(), crm_sync_error: message.slice(0, 1000),
     }).eq("id", storedLead.id);
   }
-  return jsonResponse({ success: true });
+  try {
+    const downloadUrl = await deliverAdvisory(serviceClient, lead);
+    await serviceClient.from("leads_epf_advisory").update({
+      delivery_status: "sent", delivery_last_attempt_at: new Date().toISOString(), delivery_error: null,
+    }).eq("id", storedLead.id);
+    return jsonResponse({ success: true, downloadUrl, downloadExpiresInSeconds: 600 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown advisory delivery failure";
+    console.error("EPF advisory delivery failed", message);
+    await serviceClient.from("leads_epf_advisory").update({
+      delivery_status: "failed", delivery_last_attempt_at: new Date().toISOString(), delivery_error: message.slice(0, 1000),
+    }).eq("id", storedLead.id);
+    return jsonResponse({ error: "Your details were saved, but the advisory could not be delivered. Please try again." }, 502);
+  }
 });
