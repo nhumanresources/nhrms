@@ -250,6 +250,75 @@ export type Database = {
         }
         Relationships: []
       }
+      leads_epf_advisory: {
+        Row: {
+          consent_at: string | null
+          consent_given: boolean
+          created_at: string
+          crm_deal_id: string | null
+          crm_last_attempt_at: string | null
+          crm_record_id: string | null
+          crm_sync_error: string | null
+          crm_sync_status: string
+          delivery_error: string | null
+          delivery_last_attempt_at: string | null
+          delivery_status: string
+          email: string
+          email_normalized: string
+          full_name: string
+          id: string
+          organisation_name: string
+          phone: string
+          phone_normalized: string
+          submitted_at: string
+          updated_at: string
+        }
+        Insert: {
+          consent_at?: string | null
+          consent_given?: boolean
+          created_at?: string
+          crm_deal_id?: string | null
+          crm_last_attempt_at?: string | null
+          crm_record_id?: string | null
+          crm_sync_error?: string | null
+          crm_sync_status?: string
+          delivery_error?: string | null
+          delivery_last_attempt_at?: string | null
+          delivery_status?: string
+          email: string
+          email_normalized: string
+          full_name: string
+          id?: string
+          organisation_name: string
+          phone: string
+          phone_normalized: string
+          submitted_at?: string
+          updated_at?: string
+        }
+        Update: {
+          consent_at?: string | null
+          consent_given?: boolean
+          created_at?: string
+          crm_deal_id?: string | null
+          crm_last_attempt_at?: string | null
+          crm_record_id?: string | null
+          crm_sync_error?: string | null
+          crm_sync_status?: string
+          delivery_error?: string | null
+          delivery_last_attempt_at?: string | null
+          delivery_status?: string
+          email?: string
+          email_normalized?: string
+          full_name?: string
+          id?: string
+          organisation_name?: string
+          phone?: string
+          phone_normalized?: string
+          submitted_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
