@@ -166,10 +166,11 @@ async function syncToBigin(lead: Lead) {
   if (!contactId) throw new Error("Bigin did not return a Contact record ID");
 
   await biginRequest(
-    `/Contacts/${encodeURIComponent(contactId)}/actions/add_tags?tag_names=${
-      encodeURIComponent(LEAD_TAGS.join(","))
-    }`,
-    { method: "POST", body: JSON.stringify({}) },
+    `/Contacts/${encodeURIComponent(contactId)}/actions/add_tags`,
+    {
+      method: "POST",
+      body: JSON.stringify({ tags: LEAD_TAGS.map((name) => ({ name })) }),
+    },
   );
 
   let dealId: string | undefined;
