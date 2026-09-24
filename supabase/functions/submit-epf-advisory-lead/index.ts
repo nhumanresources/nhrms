@@ -169,7 +169,7 @@ async function syncToBigin(lead: Lead) {
     `/Contacts/${encodeURIComponent(contactId)}/actions/add_tags`,
     {
       method: "POST",
-      body: JSON.stringify({ data: [{ tags: LEAD_TAGS }] }),
+      body: JSON.stringify({ data: [{ tags: LEAD_TAGS.map((name) => ({ name })) }] }),
     },
   );
 
