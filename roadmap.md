@@ -9,5 +9,6 @@
 - [x] Add Bigin Collaboration pipeline deal + assignee routing to the sync function.
 - [ ] Save Zoho Self Client secrets (ZOHO_CLIENT_ID/SECRET/REFRESH_TOKEN/ACCOUNTS_DOMAIN/API_DOMAIN) — user provided values.
 - [ ] Re-test form end to end with Bigin sync; verify contact, tags and pipeline deal land in Bigin.
-- [ ] Zoho Campaigns half: needs ZOHO_CAMPAIGNS_API_DOMAIN and mailing list key from user (pending).
+- [ ] Zoho Campaigns half: user provided ZOHO_CAMPAIGNS_API_DOMAIN + list key ("EPF Advisory Leads", ID 377232000000127001) — save secrets, add Campaigns sync to edge function, redeploy, test.
+- [ ] Save all 7 updated Zoho secrets via secure form (user must submit the form).
 - [ ] Email delivery of the PDF needs RESEND_API_KEY + EPF_ADVISORY_FROM_EMAIL (pending user).
