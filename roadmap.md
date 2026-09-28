@@ -19,3 +19,5 @@
 - [x] Saved ZOHO_CAMPAIGNS_API_DOMAIN + ZOHO_CAMPAIGNS_LIST_KEY; Campaigns listsubscribe now working for both leads.
 - [x] One-time grant exchange: ZOHO_GRANT_CODE -> refresh token stored server-side (zoho_oauth_state), used in place of the old secret.
 - [ ] BLOCKER: current grant scope lacks ZohoBigin.modules.ALL — Bigin contact/deal sync fails with 401. User must regenerate the Self Client grant code with ZohoBigin.modules.ALL + ZohoCampaigns.contact.ALL (or CREATE/UPDATE/READ) and share it.
+
+- [ ] Banner scroll lines: make all gradient lines solid orange (user, Sep 28)
