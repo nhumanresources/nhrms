@@ -54,6 +54,54 @@ const safeProviderError = (status: number, body: string) =>
 
 // Alternative integration point: a linked Lovable Zoho CRM connector could replace this
 // Self Client OAuth transport once its gateway is confirmed to expose Bigin modules.
+const sha256 = async (text: string) =>
+  Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text))))
+    .map((b) => b.toString(16).padStart(2, "0")).join("");
+
+let cachedRefreshToken: string | null = null;
+
+// One-time grant exchange: when ZOHO_GRANT_CODE is set and hasn't been used yet,
+// swap it for a refresh token and keep it in the backend-only zoho_oauth_state
+// table. That stored token takes priority over the ZOHO_REFRESH_TOKEN secret.
+async function getRefreshToken(): Promise<string> {
+  if (cachedRefreshToken) return cachedRefreshToken;
+  const db = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"), {
+    auth: { persistSession: false },
+  });
+  const { data: stored } = await db.from("zoho_oauth_state").select("refresh_token, grant_code_hash")
+    .eq("id", "default").maybeSingle();
+  const grantCode = Deno.env.get("ZOHO_GRANT_CODE")?.trim();
+  if (grantCode) {
+    const hash = await sha256(grantCode);
+    if (stored?.grant_code_hash !== hash) {
+      const response = await fetch(`${requireEnv("ZOHO_ACCOUNTS_DOMAIN").replace(/\/$/, "")}/oauth/v2/token`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          grant_type: "authorization_code",
+          client_id: requireEnv("ZOHO_CLIENT_ID"),
+          client_secret: requireEnv("ZOHO_CLIENT_SECRET"),
+          code: grantCode,
+        }),
+      });
+      const parsed = await response.json().catch(() => ({}));
+      if (parsed?.refresh_token) {
+        await db.from("zoho_oauth_state").upsert({
+          id: "default", refresh_token: parsed.refresh_token, grant_code_hash: hash,
+          scope: parsed.scope ?? null, api_domain: parsed.api_domain ?? null,
+          updated_at: new Date().toISOString(),
+        });
+        console.log("Zoho grant code exchanged; new refresh token stored. Scope:", parsed.scope ?? "n/a");
+        cachedRefreshToken = parsed.refresh_token;
+        return parsed.refresh_token;
+      }
+      console.error("Zoho grant code exchange failed:", parsed?.error ?? response.status);
+    }
+  }
+  cachedRefreshToken = stored?.refresh_token ?? requireEnv("ZOHO_REFRESH_TOKEN");
+  return cachedRefreshToken!;
+}
+
 async function getZohoToken(forceRefresh = false): Promise<ZohoToken> {
   if (!forceRefresh && cachedZohoToken && cachedZohoToken.expiresAt > Date.now() + 120_000) {
     return cachedZohoToken;
@@ -64,7 +112,7 @@ async function getZohoToken(forceRefresh = false): Promise<ZohoToken> {
     grant_type: "refresh_token",
     client_id: requireEnv("ZOHO_CLIENT_ID"),
     client_secret: requireEnv("ZOHO_CLIENT_SECRET"),
-    refresh_token: requireEnv("ZOHO_REFRESH_TOKEN"),
+    refresh_token: await getRefreshToken(),
   });
   const response = await fetch(`${accountsDomain}/oauth/v2/token`, {
     method: "POST",
