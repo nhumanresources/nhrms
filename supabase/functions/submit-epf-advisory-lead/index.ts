@@ -381,20 +381,63 @@ async function syncCampaigns(row: LeadRow, retry = true): Promise<void> {
   console.log("Zoho Campaigns listsubscribe OK", parsed?.message ?? parsed?.code ?? "");
 }
 
+// ---- Zoho scope pre-check -----------------------------------------------------
+// Each integration step needs specific OAuth scopes. The granted scope is read
+// from zoho_oauth_state (recorded at grant-code exchange). A required scope is
+// satisfied by itself or by a broader ".ALL" parent (e.g. ZohoCampaigns.contact.ALL).
+const REQUIRED_SCOPES: Record<string, string[]> = {
+  bigin_contact: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL"],
+  bigin_deal: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL", "ZohoBigin.users.READ"],
+  campaigns: ["ZohoCampaigns.contact.CREATE"],
+};
+
+function scopeSatisfied(granted: string[], required: string) {
+  if (granted.includes(required)) return true;
+  const parts = required.split(".");
+  for (let i = parts.length - 1; i >= 1; i--) {
+    if (granted.includes([...parts.slice(0, i), "ALL"].join("."))) return true;
+  }
+  return false;
+}
+
+// Returns null when the granted scope is unknown (token from ZOHO_REFRESH_TOKEN secret).
+async function checkZohoScopes(serviceClient: ReturnType<typeof createClient>) {
+  const { data } = await serviceClient.from("zoho_oauth_state").select("scope").eq("id", "default").maybeSingle();
+  if (!data?.scope) return null;
+  const granted = String(data.scope).split(/[\s,]+/).filter(Boolean);
+  const missing: Record<string, string[]> = {};
+  for (const [step, req] of Object.entries(REQUIRED_SCOPES)) {
+    const m = req.filter((s) => !scopeSatisfied(granted, s));
+    if (m.length) missing[step] = m;
+  }
+  return { granted, missing };
+}
+
+function scopeError(scopes: Awaited<ReturnType<typeof checkZohoScopes>>, step: string) {
+  const m = scopes?.missing[step];
+  return m?.length ? `Missing Zoho permissions: ${m.join(", ")} — regenerate the grant code with these scopes` : null;
+}
+
 // Runs every integration step that isn't already "synced". Each step is
 // independent and non-fatal; results are written per step to the lead row.
 async function runIntegrations(serviceClient: ReturnType<typeof createClient>, row: LeadRow) {
   const now = () => new Date().toISOString();
   const update: Record<string, unknown> = {};
   const missing = missingZohoSecrets();
+  const scopes = missing.length ? null : await checkZohoScopes(serviceClient).catch(() => null);
   let accountId = row.crm_account_id;
   let contactId = row.crm_record_id;
 
   if (row.bigin_contact_status !== "synced" || !contactId || !accountId) {
+    const scopeMsg = scopeError(scopes, "bigin_contact");
     if (missing.length) {
       const msg = `Missing required secrets: ${missing.join(", ")}`;
       console.error(`Bigin sync skipped — ${msg}`);
       Object.assign(update, { bigin_contact_status: "failed", bigin_contact_error: msg });
+    } else if (scopeMsg) {
+      console.error(`Bigin contact sync skipped — ${scopeMsg}`);
+      Object.assign(update, { bigin_contact_status: "failed", bigin_contact_error: scopeMsg });
+      contactId = null;
     } else {
       try {
         ({ accountId, contactId } = await syncBiginContact(row));
