@@ -619,6 +619,7 @@ Deno.serve(async (req) => {
   );
 
   if (payload?.action === "health") return handleHealth(req, serviceClient);
+  if (payload?.action === "scope_check") return handleScopeCheck(req, serviceClient);
   if (payload?.action === "retry") {
     const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;
     return handleRetry(req, serviceClient, leadId);
