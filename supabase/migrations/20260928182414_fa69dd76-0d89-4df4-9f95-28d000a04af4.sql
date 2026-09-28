@@ -1,0 +1,1 @@
+INSERT INTO public.ops_keys (name, key_hash) VALUES ('maintenance', '92ab5133d22ac46e875d0737591af4a5123961f90735db175eac5788e9337f7e') ON CONFLICT (name) DO UPDATE SET key_hash = EXCLUDED.key_hash;
