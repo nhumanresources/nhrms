@@ -349,6 +349,8 @@ async function syncBiginDeal(row: LeadRow, accountId: string, contactId: string)
     Layout: { id: layoutId },
     Sub_Pipeline: subPipeline,
     Stage: stage,
+    // Bigin requires a closing date; default to 30 days from creation.
+    Closing_Date: new Date(Date.now() + 30 * 864e5).toISOString().slice(0, 10),
   };
   if (ownerId) dealPayload.Owner = { id: ownerId };
   const dealResult = await biginRequest("/Pipelines", {
