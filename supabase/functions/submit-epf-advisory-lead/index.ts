@@ -185,66 +185,172 @@ async function addTagsToRecord(module: string, recordId: string) {
   }
 }
 
-async function syncToBigin(lead: Lead) {
-  const { firstName, lastName } = splitName(lead.fullName);
-  const timestamp = new Date().toISOString();
-  const accountId = await upsertAccount(lead.organisationName);
-  const ownerId = await findOwnerId(BIGIN_OWNER_EMAIL);
+type StepStatus = "synced" | "failed" | "skipped";
+type LeadRow = {
+  id: string; full_name: string; phone: string; organisation_name: string; email: string;
+  crm_account_id: string | null; crm_record_id: string | null;
+  bigin_contact_status: string; bigin_deal_status: string; campaigns_status: string;
+};
 
+const errMsg = (e: unknown) => (e instanceof Error ? e.message : String(e)).slice(0, 1000);
+
+async function syncBiginContact(row: LeadRow) {
+  const { firstName, lastName } = splitName(row.full_name);
+  const accountId = await upsertAccount(row.organisation_name);
+  const ownerId = await findOwnerId(BIGIN_OWNER_EMAIL);
   const contactPayload: Record<string, unknown> = {
     First_Name: firstName,
     Last_Name: lastName,
-    Email: lead.email.toLowerCase(),
-    Mobile: normalizePhone(lead.phone),
+    Email: row.email.toLowerCase(),
+    Mobile: normalizePhone(row.phone),
     Account_Name: { id: accountId },
     Description:
-      `Lead source: EPF Wage Ceiling Advisory (15k to 25k) — ${timestamp}. ` +
+      `Lead source: EPF Wage Ceiling Advisory (15k to 25k) — ${new Date().toISOString()}. ` +
       `Consent given for research and collaboration use.`,
   };
   if (ownerId) contactPayload.Owner = { id: ownerId };
-
   const contactResult = await biginRequest("/Contacts/upsert", {
     method: "POST",
     body: JSON.stringify({ data: [contactPayload], duplicate_check_fields: ["Email"] }),
   });
   const contactId = extractRecordId(contactResult);
   if (!contactId) throw new Error("Bigin did not return a Contact record ID");
-
   await addTagsToRecord("Contacts", contactId);
-
-  let dealId: string | undefined;
-  try {
-    const { pipeline, stage } = await findPipelineStage();
-    const dealPayload: Record<string, unknown> = {
-      Deal_Name: `${lead.organisationName} — EPF Advisory`,
-      Account_Name: { id: accountId },
-      Contact_Name: { id: contactId },
-      Description: `EPF Wage Ceiling Advisory lead (${timestamp}). Research & collaboration consent given.`,
-    };
-    if (pipeline) dealPayload.Pipeline = pipeline;
-    if (stage) dealPayload.Stage = stage;
-    if (ownerId) dealPayload.Owner = { id: ownerId };
-    const dealResult = await biginRequest("/Pipelines", {
-      method: "POST",
-      body: JSON.stringify({ data: [dealPayload] }),
-    });
-    dealId = extractRecordId(dealResult);
-    if (dealId) await addTagsToRecord("Pipelines", dealId);
-  } catch (error) {
-    console.error("Bigin pipeline deal creation failed", error instanceof Error ? error.message : error);
-  }
-
-  return { contactId, dealId };
+  return { accountId, contactId };
 }
 
-const bytesToBase64 = (bytes: Uint8Array) => {
-  let binary = "";
-  const chunkSize = 0x8000;
-  for (let offset = 0; offset < bytes.length; offset += chunkSize) {
-    binary += String.fromCharCode(...bytes.subarray(offset, offset + chunkSize));
+async function syncBiginDeal(row: LeadRow, accountId: string, contactId: string) {
+  const ownerId = await findOwnerId(BIGIN_OWNER_EMAIL);
+  const { pipeline, stage } = await findPipelineStage();
+  const dealPayload: Record<string, unknown> = {
+    Deal_Name: `${row.organisation_name} — EPF Advisory`,
+    Account_Name: { id: accountId },
+    Contact_Name: { id: contactId },
+    Description: `EPF Wage Ceiling Advisory lead (${new Date().toISOString()}). Research & collaboration consent given.`,
+  };
+  if (pipeline) dealPayload.Pipeline = pipeline;
+  if (stage) dealPayload.Stage = stage;
+  if (ownerId) dealPayload.Owner = { id: ownerId };
+  const dealResult = await biginRequest("/Pipelines", {
+    method: "POST",
+    body: JSON.stringify({ data: [dealPayload] }),
+  });
+  const dealId = extractRecordId(dealResult);
+  if (!dealId) throw new Error("Bigin did not return a Pipeline deal ID");
+  await addTagsToRecord("Pipelines", dealId);
+  return dealId;
+}
+
+// Zoho Campaigns: adds the lead to the "EPF Advisory Leads" list. The list's
+// autoresponder sends the follow-up email (Lovable sends no email itself).
+async function syncCampaigns(row: LeadRow, retry = true): Promise<void> {
+  const domain = requireEnv("ZOHO_CAMPAIGNS_API_DOMAIN").replace(/\/$/, "");
+  const listKey = requireEnv("ZOHO_CAMPAIGNS_LIST_KEY");
+  const token = await getZohoToken(!retry);
+  const { firstName, lastName } = splitName(row.full_name);
+  const contactinfo = JSON.stringify({
+    "First Name": firstName,
+    "Last Name": lastName,
+    "Contact Email": row.email.toLowerCase(),
+    "Company Name": row.organisation_name,
+    "Phone": normalizePhone(row.phone),
+  });
+  const params = new URLSearchParams({ resfmt: "JSON", listkey: listKey, contactinfo, source: "EPF Advisory Landing Page" });
+  const response = await fetch(`${domain}/api/v1.1/json/listsubscribe?${params}`, {
+    method: "POST",
+    headers: { Authorization: `Zoho-oauthtoken ${token.value}` },
+  });
+  if (response.status === 401 && retry) {
+    cachedZohoToken = null;
+    return syncCampaigns(row, false);
   }
-  return btoa(binary);
-};
+  const body = await response.text();
+  let parsed: any = {};
+  try { parsed = JSON.parse(body); } catch { /* non-JSON */ }
+  if (!response.ok || parsed?.status === "error") {
+    throw new Error(`Zoho Campaigns listsubscribe failed (${response.status}): ${body.slice(0, 600)}`);
+  }
+  console.log("Zoho Campaigns listsubscribe OK", parsed?.message ?? parsed?.code ?? "");
+}
+
+// Runs every integration step that isn't already "synced". Each step is
+// independent and non-fatal; results are written per step to the lead row.
+async function runIntegrations(serviceClient: ReturnType<typeof createClient>, row: LeadRow) {
+  const now = () => new Date().toISOString();
+  const update: Record<string, unknown> = {};
+  const missing = missingZohoSecrets();
+  let accountId = row.crm_account_id;
+  let contactId = row.crm_record_id;
+
+  if (row.bigin_contact_status !== "synced" || !contactId || !accountId) {
+    if (missing.length) {
+      const msg = `Missing required secrets: ${missing.join(", ")}`;
+      console.error(`Bigin sync skipped — ${msg}`);
+      Object.assign(update, { bigin_contact_status: "failed", bigin_contact_error: msg });
+    } else {
+      try {
+        ({ accountId, contactId } = await syncBiginContact(row));
+        Object.assign(update, {
+          bigin_contact_status: "synced", bigin_contact_error: null,
+          crm_account_id: accountId, crm_record_id: contactId,
+        });
+        console.log("Bigin contact synced", contactId);
+      } catch (e) {
+        console.error("Bigin contact sync failed", errMsg(e));
+        Object.assign(update, { bigin_contact_status: "failed", bigin_contact_error: errMsg(e) });
+        contactId = null;
+      }
+    }
+    update.crm_last_attempt_at = now();
+  }
+
+  if (row.bigin_deal_status !== "synced") {
+    if (!contactId || !accountId) {
+      Object.assign(update, { bigin_deal_status: "failed", bigin_deal_error: "Waiting on Bigin contact sync" });
+    } else {
+      try {
+        const dealId = await syncBiginDeal(row, accountId, contactId);
+        Object.assign(update, { bigin_deal_status: "synced", bigin_deal_error: null, crm_deal_id: dealId });
+        console.log("Bigin deal created", dealId);
+      } catch (e) {
+        console.error("Bigin deal creation failed", errMsg(e));
+        Object.assign(update, { bigin_deal_status: "failed", bigin_deal_error: errMsg(e) });
+      }
+    }
+  }
+
+  if (row.campaigns_status !== "synced") {
+    const missingCampaigns = [...missing, "ZOHO_CAMPAIGNS_API_DOMAIN", "ZOHO_CAMPAIGNS_LIST_KEY"]
+      .filter((n, i, a) => a.indexOf(n) === i && !Deno.env.get(n));
+    if (missingCampaigns.length) {
+      const msg = `Missing required secrets: ${missingCampaigns.join(", ")}`;
+      console.error(`Zoho Campaigns sync skipped — ${msg}`);
+      Object.assign(update, { campaigns_status: "failed", campaigns_error: msg });
+    } else {
+      try {
+        await syncCampaigns(row);
+        Object.assign(update, { campaigns_status: "synced", campaigns_error: null });
+      } catch (e) {
+        console.error("Zoho Campaigns sync failed", errMsg(e));
+        Object.assign(update, { campaigns_status: "failed", campaigns_error: errMsg(e) });
+      }
+    }
+    update.campaigns_last_attempt_at = now();
+  }
+
+  const contactOk = (update.bigin_contact_status ?? row.bigin_contact_status) === "synced";
+  const dealOk = (update.bigin_deal_status ?? row.bigin_deal_status) === "synced";
+  update.crm_sync_status = contactOk && dealOk ? "synced" : contactOk ? "partial" : "failed";
+  update.crm_sync_error = (update.bigin_contact_error ?? update.bigin_deal_error ?? null) as string | null;
+
+  if (Object.keys(update).length) {
+    await serviceClient.from("leads_epf_advisory").update(update).eq("id", row.id);
+  }
+  return update;
+}
+
+const LEAD_COLUMNS =
+  "id, full_name, phone, organisation_name, email, crm_account_id, crm_record_id, bigin_contact_status, bigin_deal_status, campaigns_status";
 
 async function createDownloadUrl(serviceClient: ReturnType<typeof createClient>) {
   const { data, error } = await serviceClient.storage
@@ -254,55 +360,53 @@ async function createDownloadUrl(serviceClient: ReturnType<typeof createClient>)
   return data.signedUrl;
 }
 
-async function emailAdvisory(
-  serviceClient: ReturnType<typeof createClient>,
-  lead: Lead,
-  downloadUrl: string,
-) {
-  const apiKey = Deno.env.get("RESEND_API_KEY");
-  const fromEmail = Deno.env.get("EPF_ADVISORY_FROM_EMAIL");
-  if (!apiKey || !fromEmail) return "skipped";
-
-  const { data: pdf, error } = await serviceClient.storage.from(ADVISORY_BUCKET).download(ADVISORY_PATH);
-  if (error || !pdf) throw new Error("Could not load the advisory for email delivery");
-  const pdfBytes = new Uint8Array(await pdf.arrayBuffer());
-  const safeName = lead.fullName.replace(/[<>&"']/g, "");
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [lead.email.toLowerCase()],
-      reply_to: "krishna@nhrms.com",
-      subject: "Your EPF Wage Ceiling Revision employer briefing",
-      html:
-        `<p>Hello ${safeName},</p>` +
-        `<p>Thank you for requesting the nHRMS employer briefing on the EPF wage ceiling revision.</p>` +
-        `<p>Your PDF is attached. You can also <a href="${downloadUrl}">download it securely for the next 10 minutes</a>.</p>` +
-        `<p>Regards,<br>nHRMS · An RYT Group Firm</p>`,
-      attachments: [{
-        filename: "EPF_Wage_Ceiling_15k_to_25k_nHRMS_RYT.pdf",
-        content: bytesToBase64(pdfBytes),
-      }],
-    }),
+// "Retry failed integrations": admin-only. Re-runs only the steps that are not
+// yet synced for each lead (or a single lead when leadId is given).
+async function handleRetry(req: Request, serviceClient: ReturnType<typeof createClient>, leadId?: string) {
+  const authHeader = req.headers.get("Authorization") ?? "";
+  const userClient = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_ANON_KEY"), {
+    global: { headers: { Authorization: authHeader } },
+    auth: { persistSession: false },
   });
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(`Advisory email failed (${response.status}): ${body.slice(0, 400)}`);
+  const { data: userData } = await userClient.auth.getUser();
+  if (!userData?.user) return jsonResponse({ error: "Sign in required" }, 401);
+  const { data: isAdmin } = await serviceClient.rpc("has_role", { _user_id: userData.user.id, _role: "admin" });
+  if (!isAdmin) return jsonResponse({ error: "Admins only" }, 403);
+
+  let query = serviceClient.from("leads_epf_advisory").select(LEAD_COLUMNS)
+    .or("bigin_contact_status.neq.synced,bigin_deal_status.neq.synced,campaigns_status.neq.synced")
+    .limit(50);
+  if (leadId) query = query.eq("id", leadId);
+  const { data: rows, error } = await query;
+  if (error) return jsonResponse({ error: error.message }, 500);
+
+  const results = [];
+  for (const row of (rows ?? []) as LeadRow[]) {
+    results.push({ id: row.id, ...(await runIntegrations(serviceClient, row)) });
   }
-  return "sent";
+  return jsonResponse({ success: true, retried: results.length, results });
 }
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (req.method !== "POST") return jsonResponse({ error: "Method not allowed" }, 405);
 
-  let payload: unknown;
+  let payload: any;
   try {
     payload = await req.json();
   } catch {
     return jsonResponse({ error: "Invalid request body" }, 400);
+  }
+
+  const serviceClient = createClient(
+    requireEnv("SUPABASE_URL"),
+    requireEnv("SUPABASE_SERVICE_ROLE_KEY"),
+    { auth: { persistSession: false } },
+  );
+
+  if (payload?.action === "retry") {
+    const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;
+    return handleRetry(req, serviceClient, leadId);
   }
 
   const parsed = LeadSchema.safeParse(payload);
@@ -314,12 +418,6 @@ Deno.serve(async (req) => {
   }
   const lead = parsed.data;
   const now = new Date().toISOString();
-
-  const serviceClient = createClient(
-    requireEnv("SUPABASE_URL"),
-    requireEnv("SUPABASE_SERVICE_ROLE_KEY"),
-    { auth: { persistSession: false } },
-  );
 
   const { data: storedLead, error: storageError } = await serviceClient
     .from("leads_epf_advisory")
@@ -333,12 +431,13 @@ Deno.serve(async (req) => {
       consent_given: true,
       consent_at: now,
       updated_at: now,
+      db_status: "saved",
       crm_sync_status: "pending",
       crm_sync_error: null,
       delivery_status: "pending",
       delivery_error: null,
     }, { onConflict: "email_normalized" })
-    .select("id")
+    .select(LEAD_COLUMNS)
     .single();
 
   if (storageError || !storedLead) {
@@ -346,47 +445,23 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: "We could not save your details. Please try again." }, 500);
   }
 
-  const missingSecrets = missingZohoSecrets();
-  if (missingSecrets.length > 0) {
-    console.error(
-      `Bigin sync skipped — missing required secrets: ${missingSecrets.join(", ")}`,
-    );
-    await serviceClient.from("leads_epf_advisory").update({
-      crm_sync_status: "failed",
-      crm_last_attempt_at: new Date().toISOString(),
-      crm_sync_error: `Missing required secrets: ${missingSecrets.join(", ")}`,
-    }).eq("id", storedLead.id);
-  } else {
-    try {
-      const { contactId, dealId } = await syncToBigin(lead);
-      await serviceClient.from("leads_epf_advisory").update({
-        crm_sync_status: "synced",
-        crm_record_id: contactId,
-        crm_deal_id: dealId ?? null,
-        crm_last_attempt_at: new Date().toISOString(),
-        crm_sync_error: null,
-      }).eq("id", storedLead.id);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Unknown CRM sync failure";
-      console.error("EPF lead CRM sync failed", message);
-      await serviceClient.from("leads_epf_advisory").update({
-        crm_sync_status: "failed",
-        crm_last_attempt_at: new Date().toISOString(),
-        crm_sync_error: message.slice(0, 1000),
-      }).eq("id", storedLead.id);
-    }
+  // A resubmission re-runs only the steps not already synced for this email.
+  try {
+    await runIntegrations(serviceClient, storedLead as LeadRow);
+  } catch (e) {
+    console.error("EPF integrations crashed (non-fatal)", errMsg(e));
   }
 
   let downloadUrl: string;
   try {
     downloadUrl = await createDownloadUrl(serviceClient);
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown delivery failure";
+    const message = errMsg(error);
     console.error("EPF advisory link failed", message);
     await serviceClient.from("leads_epf_advisory").update({
       delivery_status: "failed",
       delivery_last_attempt_at: new Date().toISOString(),
-      delivery_error: message.slice(0, 1000),
+      delivery_error: message,
     }).eq("id", storedLead.id);
     return jsonResponse(
       { error: "Your details were saved, but the advisory could not be delivered. Please try again." },
@@ -394,27 +469,17 @@ Deno.serve(async (req) => {
     );
   }
 
-  let deliveryStatus = "link_only";
-  let deliveryError: string | null = null;
-  try {
-    const result = await emailAdvisory(serviceClient, lead, downloadUrl);
-    deliveryStatus = result === "sent" ? "sent" : "link_only";
-  } catch (error) {
-    deliveryError = error instanceof Error ? error.message : "Unknown email failure";
-    console.error("EPF advisory email failed", deliveryError);
-    deliveryStatus = "email_failed";
-  }
-
+  // Email is handled by the Zoho Campaigns autoresponder — no email is sent here.
   await serviceClient.from("leads_epf_advisory").update({
-    delivery_status: deliveryStatus,
+    delivery_status: "link_only",
     delivery_last_attempt_at: new Date().toISOString(),
-    delivery_error: deliveryError?.slice(0, 1000) ?? null,
+    delivery_error: null,
   }).eq("id", storedLead.id);
 
   return jsonResponse({
     success: true,
     downloadUrl,
     downloadExpiresInSeconds: 600,
-    emailed: deliveryStatus === "sent",
+    emailed: false,
   });
 });
