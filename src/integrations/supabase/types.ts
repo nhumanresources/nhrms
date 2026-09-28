@@ -346,6 +346,24 @@ export type Database = {
         }
         Relationships: []
       }
+      ops_keys: {
+        Row: {
+          created_at: string
+          key_hash: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          key_hash: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          key_hash?: string
+          name?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -364,6 +382,33 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      zoho_oauth_state: {
+        Row: {
+          api_domain: string | null
+          grant_code_hash: string
+          id: string
+          refresh_token: string
+          scope: string | null
+          updated_at: string
+        }
+        Insert: {
+          api_domain?: string | null
+          grant_code_hash: string
+          id?: string
+          refresh_token: string
+          scope?: string | null
+          updated_at?: string
+        }
+        Update: {
+          api_domain?: string | null
+          grant_code_hash?: string
+          id?: string
+          refresh_token?: string
+          scope?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

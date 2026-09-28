@@ -54,6 +54,54 @@ const safeProviderError = (status: number, body: string) =>
 
 // Alternative integration point: a linked Lovable Zoho CRM connector could replace this
 // Self Client OAuth transport once its gateway is confirmed to expose Bigin modules.
+const sha256 = async (text: string) =>
+  Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text))))
+    .map((b) => b.toString(16).padStart(2, "0")).join("");
+
+let cachedRefreshToken: string | null = null;
+
+// One-time grant exchange: when ZOHO_GRANT_CODE is set and hasn't been used yet,
+// swap it for a refresh token and keep it in the backend-only zoho_oauth_state
+// table. That stored token takes priority over the ZOHO_REFRESH_TOKEN secret.
+async function getRefreshToken(): Promise<string> {
+  if (cachedRefreshToken) return cachedRefreshToken;
+  const db = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"), {
+    auth: { persistSession: false },
+  });
+  const { data: stored } = await db.from("zoho_oauth_state").select("refresh_token, grant_code_hash")
+    .eq("id", "default").maybeSingle();
+  const grantCode = Deno.env.get("ZOHO_GRANT_CODE")?.trim();
+  if (grantCode) {
+    const hash = await sha256(grantCode);
+    if (stored?.grant_code_hash !== hash) {
+      const response = await fetch(`${requireEnv("ZOHO_ACCOUNTS_DOMAIN").replace(/\/$/, "")}/oauth/v2/token`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          grant_type: "authorization_code",
+          client_id: requireEnv("ZOHO_CLIENT_ID"),
+          client_secret: requireEnv("ZOHO_CLIENT_SECRET"),
+          code: grantCode,
+        }),
+      });
+      const parsed = await response.json().catch(() => ({}));
+      if (parsed?.refresh_token) {
+        await db.from("zoho_oauth_state").upsert({
+          id: "default", refresh_token: parsed.refresh_token, grant_code_hash: hash,
+          scope: parsed.scope ?? null, api_domain: parsed.api_domain ?? null,
+          updated_at: new Date().toISOString(),
+        });
+        console.log("Zoho grant code exchanged; new refresh token stored. Scope:", parsed.scope ?? "n/a");
+        cachedRefreshToken = parsed.refresh_token;
+        return parsed.refresh_token;
+      }
+      console.error("Zoho grant code exchange failed:", parsed?.error ?? response.status);
+    }
+  }
+  cachedRefreshToken = stored?.refresh_token ?? requireEnv("ZOHO_REFRESH_TOKEN");
+  return cachedRefreshToken!;
+}
+
 async function getZohoToken(forceRefresh = false): Promise<ZohoToken> {
   if (!forceRefresh && cachedZohoToken && cachedZohoToken.expiresAt > Date.now() + 120_000) {
     return cachedZohoToken;
@@ -64,7 +112,7 @@ async function getZohoToken(forceRefresh = false): Promise<ZohoToken> {
     grant_type: "refresh_token",
     client_id: requireEnv("ZOHO_CLIENT_ID"),
     client_secret: requireEnv("ZOHO_CLIENT_SECRET"),
-    refresh_token: requireEnv("ZOHO_REFRESH_TOKEN"),
+    refresh_token: await getRefreshToken(),
   });
   const response = await fetch(`${accountsDomain}/oauth/v2/token`, {
     method: "POST",
@@ -360,9 +408,40 @@ async function createDownloadUrl(serviceClient: ReturnType<typeof createClient>)
   return data.signedUrl;
 }
 
+async function hasMaintenanceKey(req: Request, serviceClient: ReturnType<typeof createClient>) {
+  const key = req.headers.get("x-maintenance-key");
+  if (!key) return false;
+  const { data } = await serviceClient.from("ops_keys").select("key_hash").eq("name", "epf_maintenance").maybeSingle();
+  return !!data && data.key_hash === (await sha256(key));
+}
+
+// Health check (maintenance key only): reports missing secret NAMES, token
+// scope, Bigin org name and per-step lead counts. Never returns secret values.
+async function handleHealth(req: Request, serviceClient: ReturnType<typeof createClient>) {
+  if (!(await hasMaintenanceKey(req, serviceClient))) return jsonResponse({ error: "Forbidden" }, 403);
+  const all = [...REQUIRED_ZOHO_SECRETS, "ZOHO_CAMPAIGNS_API_DOMAIN", "ZOHO_CAMPAIGNS_LIST_KEY", "ZOHO_GRANT_CODE"];
+  const report: Record<string, unknown> = { missingSecrets: all.filter((n) => !Deno.env.get(n)) };
+  try {
+    await getRefreshToken();
+    const { data: st } = await serviceClient.from("zoho_oauth_state").select("scope, updated_at").eq("id", "default").maybeSingle();
+    report.refreshTokenSource = st ? "exchanged_grant_code" : "ZOHO_REFRESH_TOKEN secret";
+    report.grantScope = st?.scope ?? null;
+    const org = await biginRequest("/org", { method: "GET" });
+    const o = org?.org?.[0] ?? {};
+    report.biginOrg = { name: o.company_name, id: o.id, primaryEmail: o.primary_email };
+  } catch (e) {
+    report.zohoError = errMsg(e);
+  }
+  const { data: leads } = await serviceClient.from("leads_epf_advisory")
+    .select("bigin_contact_status, bigin_deal_status, campaigns_status, delivery_status");
+  report.leads = leads;
+  return jsonResponse(report);
+}
+
 // "Retry failed integrations": admin-only. Re-runs only the steps that are not
 // yet synced for each lead (or a single lead when leadId is given).
 async function handleRetry(req: Request, serviceClient: ReturnType<typeof createClient>, leadId?: string) {
+  if (!(await hasMaintenanceKey(req, serviceClient))) {
   const authHeader = req.headers.get("Authorization") ?? "";
   const userClient = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_ANON_KEY"), {
     global: { headers: { Authorization: authHeader } },
@@ -372,6 +451,7 @@ async function handleRetry(req: Request, serviceClient: ReturnType<typeof create
   if (!userData?.user) return jsonResponse({ error: "Sign in required" }, 401);
   const { data: isAdmin } = await serviceClient.rpc("has_role", { _user_id: userData.user.id, _role: "admin" });
   if (!isAdmin) return jsonResponse({ error: "Admins only" }, 403);
+  }
 
   let query = serviceClient.from("leads_epf_advisory").select(LEAD_COLUMNS)
     .or("bigin_contact_status.neq.synced,bigin_deal_status.neq.synced,campaigns_status.neq.synced")
@@ -404,6 +484,7 @@ Deno.serve(async (req) => {
     { auth: { persistSession: false } },
   );
 
+  if (payload?.action === "health") return handleHealth(req, serviceClient);
   if (payload?.action === "retry") {
     const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;
     return handleRetry(req, serviceClient, leadId);
