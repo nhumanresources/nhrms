@@ -227,23 +227,32 @@ async function findOwnerId(email: string): Promise<string | undefined> {
   }
 }
 
-async function findPipelineStage(): Promise<{ pipeline?: string; stage?: string }> {
-  try {
-    const result = await biginRequest(
-      `/settings/pipeline?layout_id=&module=Pipelines`,
-      { method: "GET" },
-    );
-    const pipelines = result?.pipeline ?? [];
-    const match =
-      pipelines.find((p: { display_value?: string }) =>
-        p.display_value?.toLowerCase() === BIGIN_PIPELINE.toLowerCase()
-      ) ?? pipelines[0];
-    const stage = match?.maps?.[0]?.display_value;
-    return { pipeline: match?.display_value, stage };
-  } catch (error) {
-    console.error("Bigin pipeline lookup failed", error instanceof Error ? error.message : error);
-    return {};
+// EPF deals go to Pipeline (layout) "Sales Pipeline" / sub-pipeline
+// "Sales Pipeline Standard" at its first stage. Stage names are read from the
+// layout's pipeline settings — never hardcoded.
+const BIGIN_LAYOUT_NAME = Deno.env.get("BIGIN_PIPELINE_LAYOUT") ?? "Sales Pipeline";
+const BIGIN_SUB_PIPELINE = Deno.env.get("BIGIN_SUB_PIPELINE") ?? "Sales Pipeline Standard";
+
+async function findPipelineStage(): Promise<{ layoutId: string; subPipeline: string; stage: string }> {
+  const layouts = await biginRequest(`/settings/layouts?module=Pipelines`, { method: "GET" });
+  const lower = (s?: string) => (s ?? "").trim().toLowerCase();
+  const layout = (layouts?.layouts ?? []).find((l: any) =>
+    lower(l.name) === lower(BIGIN_LAYOUT_NAME) || lower(l.display_label) === lower(BIGIN_LAYOUT_NAME)
+  );
+  if (!layout?.id) {
+    const names = (layouts?.layouts ?? []).map((l: any) => l.display_label ?? l.name).join(", ");
+    throw new Error(`Bigin pipeline "${BIGIN_LAYOUT_NAME}" not found (available: ${names || "none"})`);
   }
+  const result = await biginRequest(`/settings/pipeline?layout_id=${layout.id}`, { method: "GET" });
+  const subs = result?.pipeline ?? [];
+  const sub = subs.find((p: any) => lower(p.display_value) === lower(BIGIN_SUB_PIPELINE));
+  if (!sub) {
+    throw new Error(`Sub-pipeline "${BIGIN_SUB_PIPELINE}" not found (available: ${subs.map((p: any) => p.display_value).join(", ") || "none"})`);
+  }
+  const stages = [...(sub.maps ?? [])].sort((a: any, b: any) => (a.sequence_number ?? 0) - (b.sequence_number ?? 0));
+  const stage = stages[0]?.display_value;
+  if (!stage) throw new Error(`No stages found in sub-pipeline "${BIGIN_SUB_PIPELINE}"`);
+  return { layoutId: String(layout.id), subPipeline: sub.display_value, stage };
 }
 
 async function upsertAccount(organisationName: string) {
@@ -329,15 +338,16 @@ async function syncBiginContact(row: LeadRow) {
 
 async function syncBiginDeal(row: LeadRow, accountId: string, contactId: string) {
   const ownerId = await findOwnerId(BIGIN_OWNER_EMAIL);
-  const { pipeline, stage } = await findPipelineStage();
+  const { layoutId, subPipeline, stage } = await findPipelineStage();
   const dealPayload: Record<string, unknown> = {
     Deal_Name: `${row.organisation_name} — EPF Advisory`,
     Account_Name: { id: accountId },
     Contact_Name: { id: contactId },
     Description: `EPF Wage Ceiling Advisory lead (${new Date().toISOString()}). Research & collaboration consent given.`,
+    Layout: { id: layoutId },
+    Sub_Pipeline: subPipeline,
+    Stage: stage,
   };
-  if (pipeline) dealPayload.Pipeline = pipeline;
-  if (stage) dealPayload.Stage = stage;
   if (ownerId) dealPayload.Owner = { id: ownerId };
   const dealResult = await biginRequest("/Pipelines", {
     method: "POST",
