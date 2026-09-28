@@ -584,17 +584,8 @@ async function handleScopeCheck(req: Request, serviceClient: ReturnType<typeof c
 }
 
 async function handleRetry(req: Request, serviceClient: ReturnType<typeof createClient>, leadId?: string) {
-  if (false) {
-  const authHeader = req.headers.get("Authorization") ?? "";
-  const userClient = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_ANON_KEY"), {
-    global: { headers: { Authorization: authHeader } },
-    auth: { persistSession: false },
-  });
-  const { data: userData } = await userClient.auth.getUser();
-  if (!userData?.user) return jsonResponse({ error: "Sign in required" }, 401);
-  const { data: isAdmin } = await serviceClient.rpc("has_role", { _user_id: userData.user.id, _role: "admin" });
-  if (!isAdmin) return jsonResponse({ error: "Admins only" }, 403);
-  }
+  const denied = await requireAdmin(req, serviceClient);
+  if (denied) return denied;
 
   let query = serviceClient.from("leads_epf_advisory").select(LEAD_COLUMNS)
     .or("bigin_contact_status.neq.synced,bigin_deal_status.neq.synced,campaigns_status.neq.synced")
