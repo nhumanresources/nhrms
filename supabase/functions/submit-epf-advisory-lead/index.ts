@@ -1,5 +1,7 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
-import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
+import { corsHeaders as baseCors } from "npm:@supabase/supabase-js@2/cors";
+// Allow the admin page to send the maintenance key header.
+const corsHeaders = { ...baseCors, "Access-Control-Allow-Headers": `${baseCors["Access-Control-Allow-Headers"]}, x-maintenance-key` };
 import { z } from "npm:zod@3.24.2";
 
 const LeadSchema = z.object({
@@ -243,14 +245,16 @@ async function findPipelineStage(): Promise<{ layoutId: string; subPipeline: str
     const names = (layouts?.layouts ?? []).map((l: any) => l.display_label ?? l.name).join(", ");
     throw new Error(`Bigin pipeline "${BIGIN_LAYOUT_NAME}" not found (available: ${names || "none"})`);
   }
-  const result = await biginRequest(`/settings/pipeline?layout_id=${layout.id}`, { method: "GET" });
-  const subs = result?.pipeline ?? [];
+  // Layout detail holds the Sub_Pipeline picklist; each value "maps" to its own Stage list (in order).
+  const detail = await biginRequest(`/settings/layouts/${layout.id}?module=Pipelines`, { method: "GET" });
+  const fields = (detail?.layouts?.[0]?.sections ?? []).flatMap((s: any) => s.fields ?? []);
+  const subs = fields.find((f: any) => f.api_name === "Sub_Pipeline")?.pick_list_values ?? [];
   const sub = subs.find((p: any) => lower(p.display_value) === lower(BIGIN_SUB_PIPELINE));
   if (!sub) {
     throw new Error(`Sub-pipeline "${BIGIN_SUB_PIPELINE}" not found (available: ${subs.map((p: any) => p.display_value).join(", ") || "none"})`);
   }
-  const stages = [...(sub.maps ?? [])].sort((a: any, b: any) => (a.sequence_number ?? 0) - (b.sequence_number ?? 0));
-  const stage = stages[0]?.display_value;
+  const stages = sub.maps?.find((m: any) => m.api_name === "Stage")?.pick_list_values ?? [];
+  const stage = stages[0]?.actual_value ?? stages[0]?.display_value;
   if (!stage) throw new Error(`No stages found in sub-pipeline "${BIGIN_SUB_PIPELINE}"`);
   return { layoutId: String(layout.id), subPipeline: sub.display_value, stage };
 }
@@ -347,6 +351,8 @@ async function syncBiginDeal(row: LeadRow, accountId: string, contactId: string)
     Layout: { id: layoutId },
     Sub_Pipeline: subPipeline,
     Stage: stage,
+    // Bigin requires a closing date; default to 30 days from creation.
+    Closing_Date: new Date(Date.now() + 30 * 864e5).toISOString().slice(0, 10),
   };
   if (ownerId) dealPayload.Owner = { id: ownerId };
   const dealResult = await biginRequest("/Pipelines", {
@@ -629,6 +635,10 @@ Deno.serve(async (req) => {
   );
 
   if (payload?.action === "health") return handleHealth(req, serviceClient);
+  if (payload?.action === "probe" && typeof payload.path === "string" && payload.path.startsWith("/settings/")) {
+    if (!(await hasMaintenanceKey(req, serviceClient))) return jsonResponse({ error: "Forbidden" }, 403);
+    try { return jsonResponse(await biginRequest(payload.path, { method: "GET" })); } catch (e) { return jsonResponse({ error: errMsg(e) }); }
+  }
   if (payload?.action === "scope_check") return handleScopeCheck(req, serviceClient);
   if (payload?.action === "retry") {
     const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;

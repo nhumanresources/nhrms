@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Zoho Permissions Check · nHRMS Admin</title>
+<meta name="description" content="Internal admin view of Zoho permissions needed for EPF advisory lead sync." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{--navy:hsl(210 55% 22%);--orange:hsl(16 82% 52%);--gold:hsl(38 82% 55%);--cream:hsl(40 40% 97%);--ink:hsl(210 30% 15%);--muted:hsl(210 12% 45%);--line:hsl(210 20% 88%);--ok:hsl(150 55% 32%);--okbg:hsl(150 50% 94%);--bad:hsl(0 70% 45%);--badbg:hsl(0 80% 96%);--card:#fff}
+  *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink)}
+  header{background:var(--navy);color:var(--cream);padding:20px 24px}
+  header .brand{font-family:'Plus Jakarta Sans';font-weight:800;font-size:20px}header .brand b{color:var(--orange)}
+  header small{display:block;opacity:.75;font-size:12px}
+  main{max-width:880px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-family:'Plus Jakarta Sans';font-size:26px;margin:0 0 6px}p.lead{color:var(--muted);margin:0 0 24px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}
+  h2{font-family:'Plus Jakarta Sans';font-size:17px;margin:0 0 12px}
+  label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+  input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit}
+  button{background:var(--orange);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer;font:inherit}
+  button.ghost{background:transparent;color:var(--navy);border:1px solid var(--line)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .banner{padding:14px 16px;border-radius:10px;font-weight:600}
+  .banner.ok{background:var(--okbg);color:var(--ok)}.banner.bad{background:var(--badbg);color:var(--bad)}.banner.unk{background:hsl(38 90% 94%);color:hsl(30 70% 32%)}
+  table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;margin:2px 4px 2px 0;font-family:ui-monospace,monospace}
+  .pill.ok{background:var(--okbg);color:var(--ok)}.pill.bad{background:var(--badbg);color:var(--bad);font-weight:700}
+  code.box{display:block;background:hsl(210 30% 96%);padding:12px;border-radius:8px;font-size:13px;word-break:break-all}
+  .muted{color:var(--muted);font-size:13px}.err{color:var(--bad);font-size:13px;margin-top:8px}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<header><div class="brand"><b>n</b>HRMS Admin</div><small>An RYT Group Firm · Internal</small></header>
+<main>
+  <h1>Zoho permissions check</h1>
+  <p class="lead">Shows whether the Zoho connection has every permission the EPF advisory lead sync needs.</p>
+
+  <section class="card" id="auth">
+    <h2>Sign in</h2>
+    <p class="muted">Admin accounts only.</p>
+    <label for="email">Email</label><input id="email" type="email" autocomplete="username" />
+    <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" />
+    <details style="margin-top:12px"><summary class="muted">Use a maintenance key instead</summary>
+      <label for="mkey">Maintenance key</label><input id="mkey" type="password" autocomplete="off" />
+    </details>
+    <div class="row"><button id="signin">Run check</button></div>
+    <div class="err" id="autherr"></div>
+  </section>
+
+  <section id="result" class="hidden">
+    <div class="card"><div id="banner" class="banner"></div><p class="muted" id="checked"></p>
+      <div class="row"><button class="ghost" id="rerun">Re-run check</button><button class="ghost" id="signout">Sign out</button></div></div>
+
+    <div class="card"><h2>Lead-sync steps</h2>
+      <table><thead><tr><th>Step</th><th>Status</th><th>Needs</th></tr></thead><tbody id="steps"></tbody></table></div>
+
+    <div class="card"><h2>Required scopes</h2>
+      <p class="muted">Paste this into the Scope box when generating a Zoho Self Client grant code.</p>
+      <code class="box" id="scopeText"></code>
+      <div class="row"><button id="copy">Copy scopes</button><span class="muted" id="copied"></span></div></div>
+
+    <div class="card"><h2>Currently granted</h2><div id="granted"></div></div>
+  </section>
+</main>
+<script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+  const URL_ = "https://hkdynattjciuwbxcasvw.supabase.co";
+  const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrZHluYXR0amNpdXdieGNhc3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQzNDg5OTAsImV4cCI6MjA3OTkyNDk5MH0.YU796MQ8WiWuKp2uTwecHLPh4PYuS1IBMm6a89eZ5iw";
+  const sb = createClient(URL_, ANON);
+  const STEP_LABELS = { bigin_contact: "Bigin contact", bigin_deal: "Bigin deal (Sales Pipeline)", campaigns: "Campaigns list" };
+  // Full scope set to request, including org lookup used by the health check.
+  const EXTRA = ["ZohoBigin.org.READ", "ZohoCampaigns.contact.UPDATE", "ZohoCampaigns.contact.READ"];
+  const $ = (id) => document.getElementById(id);
+  let mkey = "";
+
+  async function runCheck() {
+    $("autherr").textContent = "";
+    const headers = { "Content-Type": "application/json", apikey: ANON };
+    if (mkey) headers["x-maintenance-key"] = mkey;
+    else {
+      const { data } = await sb.auth.getSession();
+      if (!data.session) return;
+      headers.Authorization = `Bearer ${data.session.access_token}`;
+    }
+    const res = await fetch(`${URL_}/functions/v1/submit-epf-advisory-lead`, { method: "POST", headers, body: JSON.stringify({ action: "scope_check" }) });
+    const d = await res.json().catch(() => ({}));
+    if (!res.ok) { $("autherr").textContent = d.error || `Check failed (${res.status})`; $("result").classList.add("hidden"); $("auth").classList.remove("hidden"); return; }
+    render(d);
+  }
+
+  function render(d) {
+    $("auth").classList.add("hidden"); $("result").classList.remove("hidden");
+    const b = $("banner");
+    if (d.status === "unknown") { b.className = "banner unk"; b.textContent = d.message; }
+    else if (d.ok) { b.className = "banner ok"; b.textContent = "All required Zoho permissions are granted."; }
+    else { b.className = "banner bad"; b.textContent = `Missing permissions: ${d.missingScopes.join(", ")}`; }
+    $("checked").textContent = `Checked ${new Date().toLocaleString()}`;
+    const missing = d.missingByStep || {};
+    $("steps").innerHTML = "";
+    for (const [step, req] of Object.entries(d.required || {})) {
+      const m = missing[step] || [];
+      const tr = document.createElement("tr");
+      const status = d.status === "unknown" ? "Unknown" : m.length ? "Blocked" : "Ready";
+      tr.innerHTML = `<td>${STEP_LABELS[step] || step}</td><td><span class="pill ${m.length ? "bad" : "ok"}">${status}</span></td><td></td>`;
+      for (const s of req) { const p = document.createElement("span"); p.className = `pill ${m.includes(s) ? "bad" : "ok"}`; p.textContent = s; tr.lastChild.appendChild(p); }
+      $("steps").appendChild(tr);
+    }
+    const all = [...new Set([...Object.values(d.required || {}).flat(), ...EXTRA])];
+    $("scopeText").textContent = all.join(",");
+    $("granted").innerHTML = "";
+    for (const s of d.granted || []) { const p = document.createElement("span"); p.className = "pill ok"; p.textContent = s; $("granted").appendChild(p); }
+    if (!(d.granted || []).length) $("granted").innerHTML = '<span class="muted">Not recorded.</span>';
+  }
+
+  $("signin").onclick = async () => {
+    mkey = $("mkey").value.trim();
+    if (!mkey) {
+      const { error } = await sb.auth.signInWithPassword({ email: $("email").value.trim(), password: $("password").value });
+      if (error) { $("autherr").textContent = error.message; return; }
+    }
+    runCheck();
+  };
+  $("rerun").onclick = runCheck;
+  $("signout").onclick = async () => { mkey = ""; await sb.auth.signOut(); $("result").classList.add("hidden"); $("auth").classList.remove("hidden"); };
+  $("copy").onclick = async () => { await navigator.clipboard.writeText($("scopeText").textContent); $("copied").textContent = "Copied"; setTimeout(() => $("copied").textContent = "", 2000); };
+  sb.auth.getSession().then(({ data }) => { if (data.session) runCheck(); });
+</script>
+</body>
+</html>

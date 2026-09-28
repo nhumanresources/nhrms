@@ -18,7 +18,7 @@
 - [ ] Regenerate Zoho refresh token with Bigin pipelines + Campaigns contact scopes (user).
 - [x] Saved ZOHO_CAMPAIGNS_API_DOMAIN + ZOHO_CAMPAIGNS_LIST_KEY; Campaigns listsubscribe now working for both leads.
 - [x] One-time grant exchange: ZOHO_GRANT_CODE -> refresh token stored server-side (zoho_oauth_state), used in place of the old secret.
-- [ ] BLOCKER: current grant scope lacks ZohoBigin.modules.ALL — Bigin contact/deal sync fails with 401. User must regenerate the Self Client grant code with ZohoBigin.modules.ALL + ZohoCampaigns.contact.ALL (or CREATE/UPDATE/READ) and share it.
+- [x] New grant code exchanged (full Bigin + Campaigns scope); Bigin org nHRMS; deals go to Sales Pipeline / Sales Pipeline Standard.
 
 - [x] Banner scroll lines: make all gradient lines solid orange (user, Sep 28)
 
@@ -33,3 +33,4 @@
 - [ ] P2: Case studies need real, verifiable proof points (client size, sector, timeline, savings) and named testimonials — BLOCKED: awaiting real data from user.
 - [ ] P2: Dedicated industry landing pages (manufacturing, logistics, retail, hospitality, healthcare) — not started, larger build.
 - [ ] P3: Blog/research relaunch (2026 calendar), nurture journeys, quarterly governance — not started.
+- [x] Admin page: latest Zoho scope check, missing permissions highlighted, affected sync steps, copy required scopes
