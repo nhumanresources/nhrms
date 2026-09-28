@@ -252,14 +252,23 @@ export type Database = {
       }
       leads_epf_advisory: {
         Row: {
+          bigin_contact_error: string | null
+          bigin_contact_status: string
+          bigin_deal_error: string | null
+          bigin_deal_status: string
+          campaigns_error: string | null
+          campaigns_last_attempt_at: string | null
+          campaigns_status: string
           consent_at: string | null
           consent_given: boolean
           created_at: string
+          crm_account_id: string | null
           crm_deal_id: string | null
           crm_last_attempt_at: string | null
           crm_record_id: string | null
           crm_sync_error: string | null
           crm_sync_status: string
+          db_status: string
           delivery_error: string | null
           delivery_last_attempt_at: string | null
           delivery_status: string
@@ -274,14 +283,23 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          bigin_contact_error?: string | null
+          bigin_contact_status?: string
+          bigin_deal_error?: string | null
+          bigin_deal_status?: string
+          campaigns_error?: string | null
+          campaigns_last_attempt_at?: string | null
+          campaigns_status?: string
           consent_at?: string | null
           consent_given?: boolean
           created_at?: string
+          crm_account_id?: string | null
           crm_deal_id?: string | null
           crm_last_attempt_at?: string | null
           crm_record_id?: string | null
           crm_sync_error?: string | null
           crm_sync_status?: string
+          db_status?: string
           delivery_error?: string | null
           delivery_last_attempt_at?: string | null
           delivery_status?: string
@@ -296,14 +314,23 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          bigin_contact_error?: string | null
+          bigin_contact_status?: string
+          bigin_deal_error?: string | null
+          bigin_deal_status?: string
+          campaigns_error?: string | null
+          campaigns_last_attempt_at?: string | null
+          campaigns_status?: string
           consent_at?: string | null
           consent_given?: boolean
           created_at?: string
+          crm_account_id?: string | null
           crm_deal_id?: string | null
           crm_last_attempt_at?: string | null
           crm_record_id?: string | null
           crm_sync_error?: string | null
           crm_sync_status?: string
+          db_status?: string
           delivery_error?: string | null
           delivery_last_attempt_at?: string | null
           delivery_status?: string
