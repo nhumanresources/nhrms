@@ -107,6 +107,17 @@ const extractRecordId = (result: any): string | undefined =>
 
 async function findOwnerId(email: string): Promise<string | undefined> {
   if (!email) return undefined;
+  const missingSecrets = missingZohoSecrets();
+  if (missingSecrets.length > 0) {
+    console.error(
+      `Bigin sync skipped — missing required secrets: ${missingSecrets.join(", ")}`,
+    );
+    await serviceClient.from("leads_epf_advisory").update({
+      crm_sync_status: "failed",
+      crm_last_attempt_at: new Date().toISOString(),
+      crm_sync_error: `Missing required secrets: ${missingSecrets.join(", ")}`,
+    }).eq("id", storedLead.id);
+  } else {
   try {
     const result = await biginRequest(`/users?type=ActiveUsers`, { method: "GET" });
     const match = (result?.users ?? []).find(
@@ -229,6 +240,7 @@ async function syncToBigin(lead: Lead) {
       body: JSON.stringify({ data: [dealPayload] }),
     });
     dealId = extractRecordId(dealResult);
+    if (dealId) await addTagsToRecord("Pipelines", dealId);
   } catch (error) {
     console.error("Bigin pipeline deal creation failed", error instanceof Error ? error.message : error);
   }
