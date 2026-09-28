@@ -629,6 +629,10 @@ Deno.serve(async (req) => {
   );
 
   if (payload?.action === "health") return handleHealth(req, serviceClient);
+  if (payload?.action === "probe" && typeof payload.path === "string" && payload.path.startsWith("/settings/")) {
+    if (!(await hasMaintenanceKey(req, serviceClient))) return jsonResponse({ error: "Forbidden" }, 403);
+    try { return jsonResponse(await biginRequest(payload.path, { method: "GET" })); } catch (e) { return jsonResponse({ error: errMsg(e) }); }
+  }
   if (payload?.action === "scope_check") return handleScopeCheck(req, serviceClient);
   if (payload?.action === "retry") {
     const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;
