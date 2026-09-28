@@ -151,6 +151,40 @@ async function upsertAccount(organisationName: string) {
   return accountId;
 }
 
+// Tagging is best-effort: tags are created first (Bigin rejects add_tags for
+// unknown tags), and any tag failure is logged without blocking the sync.
+async function ensureTags(module: string) {
+  await biginRequest(`/settings/tags?module=${encodeURIComponent(module)}`, {
+    method: "POST",
+    body: JSON.stringify({ tags: LEAD_TAGS.map((name) => ({ name })) }),
+  });
+}
+
+async function addTagsToRecord(module: string, recordId: string) {
+  try {
+    await ensureTags(module);
+  } catch (error) {
+    console.error(
+      `Bigin tag creation failed for ${module}`,
+      error instanceof Error ? error.message : error,
+    );
+  }
+  try {
+    await biginRequest(
+      `/${module}/${encodeURIComponent(recordId)}/actions/add_tags`,
+      {
+        method: "POST",
+        body: JSON.stringify({ tags: LEAD_TAGS.map((name) => ({ name })) }),
+      },
+    );
+  } catch (error) {
+    console.error(
+      `Bigin add_tags failed for ${module} ${recordId}`,
+      error instanceof Error ? error.message : error,
+    );
+  }
+}
+
 async function syncToBigin(lead: Lead) {
   const { firstName, lastName } = splitName(lead.fullName);
   const timestamp = new Date().toISOString();
@@ -176,13 +210,7 @@ async function syncToBigin(lead: Lead) {
   const contactId = extractRecordId(contactResult);
   if (!contactId) throw new Error("Bigin did not return a Contact record ID");
 
-  await biginRequest(
-    `/Contacts/${encodeURIComponent(contactId)}/actions/add_tags`,
-    {
-      method: "POST",
-      body: JSON.stringify({ tags: LEAD_TAGS.map((name) => ({ name })) }),
-    },
-  );
+  await addTagsToRecord("Contacts", contactId);
 
   let dealId: string | undefined;
   try {
