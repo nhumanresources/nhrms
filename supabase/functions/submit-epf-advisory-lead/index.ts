@@ -381,20 +381,63 @@ async function syncCampaigns(row: LeadRow, retry = true): Promise<void> {
   console.log("Zoho Campaigns listsubscribe OK", parsed?.message ?? parsed?.code ?? "");
 }
 
+// ---- Zoho scope pre-check -----------------------------------------------------
+// Each integration step needs specific OAuth scopes. The granted scope is read
+// from zoho_oauth_state (recorded at grant-code exchange). A required scope is
+// satisfied by itself or by a broader ".ALL" parent (e.g. ZohoCampaigns.contact.ALL).
+const REQUIRED_SCOPES: Record<string, string[]> = {
+  bigin_contact: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL"],
+  bigin_deal: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL", "ZohoBigin.users.READ"],
+  campaigns: ["ZohoCampaigns.contact.CREATE"],
+};
+
+function scopeSatisfied(granted: string[], required: string) {
+  if (granted.includes(required)) return true;
+  const parts = required.split(".");
+  for (let i = parts.length - 1; i >= 1; i--) {
+    if (granted.includes([...parts.slice(0, i), "ALL"].join("."))) return true;
+  }
+  return false;
+}
+
+// Returns null when the granted scope is unknown (token from ZOHO_REFRESH_TOKEN secret).
+async function checkZohoScopes(serviceClient: ReturnType<typeof createClient>) {
+  const { data } = await serviceClient.from("zoho_oauth_state").select("scope").eq("id", "default").maybeSingle();
+  if (!data?.scope) return null;
+  const granted = String(data.scope).split(/[\s,]+/).filter(Boolean);
+  const missing: Record<string, string[]> = {};
+  for (const [step, req] of Object.entries(REQUIRED_SCOPES)) {
+    const m = req.filter((s) => !scopeSatisfied(granted, s));
+    if (m.length) missing[step] = m;
+  }
+  return { granted, missing };
+}
+
+function scopeError(scopes: Awaited<ReturnType<typeof checkZohoScopes>>, step: string) {
+  const m = scopes?.missing[step];
+  return m?.length ? `Missing Zoho permissions: ${m.join(", ")} — regenerate the grant code with these scopes` : null;
+}
+
 // Runs every integration step that isn't already "synced". Each step is
 // independent and non-fatal; results are written per step to the lead row.
 async function runIntegrations(serviceClient: ReturnType<typeof createClient>, row: LeadRow) {
   const now = () => new Date().toISOString();
   const update: Record<string, unknown> = {};
   const missing = missingZohoSecrets();
+  const scopes = missing.length ? null : await checkZohoScopes(serviceClient).catch(() => null);
   let accountId = row.crm_account_id;
   let contactId = row.crm_record_id;
 
   if (row.bigin_contact_status !== "synced" || !contactId || !accountId) {
+    const scopeMsg = scopeError(scopes, "bigin_contact");
     if (missing.length) {
       const msg = `Missing required secrets: ${missing.join(", ")}`;
       console.error(`Bigin sync skipped — ${msg}`);
       Object.assign(update, { bigin_contact_status: "failed", bigin_contact_error: msg });
+    } else if (scopeMsg) {
+      console.error(`Bigin contact sync skipped — ${scopeMsg}`);
+      Object.assign(update, { bigin_contact_status: "failed", bigin_contact_error: scopeMsg });
+      contactId = null;
     } else {
       try {
         ({ accountId, contactId } = await syncBiginContact(row));
@@ -415,6 +458,10 @@ async function runIntegrations(serviceClient: ReturnType<typeof createClient>, r
   if (row.bigin_deal_status !== "synced") {
     if (!contactId || !accountId) {
       Object.assign(update, { bigin_deal_status: "failed", bigin_deal_error: "Waiting on Bigin contact sync" });
+    } else if (scopeError(scopes, "bigin_deal")) {
+      const msg = scopeError(scopes, "bigin_deal")!;
+      console.error(`Bigin deal creation skipped — ${msg}`);
+      Object.assign(update, { bigin_deal_status: "failed", bigin_deal_error: msg });
     } else {
       try {
         const dealId = await syncBiginDeal(row, accountId, contactId);
@@ -430,10 +477,14 @@ async function runIntegrations(serviceClient: ReturnType<typeof createClient>, r
   if (row.campaigns_status !== "synced") {
     const missingCampaigns = [...missing, "ZOHO_CAMPAIGNS_API_DOMAIN", "ZOHO_CAMPAIGNS_LIST_KEY"]
       .filter((n, i, a) => a.indexOf(n) === i && !Deno.env.get(n));
+    const campaignsScopeMsg = scopeError(scopes, "campaigns");
     if (missingCampaigns.length) {
       const msg = `Missing required secrets: ${missingCampaigns.join(", ")}`;
       console.error(`Zoho Campaigns sync skipped — ${msg}`);
       Object.assign(update, { campaigns_status: "failed", campaigns_error: msg });
+    } else if (campaignsScopeMsg) {
+      console.error(`Zoho Campaigns sync skipped — ${campaignsScopeMsg}`);
+      Object.assign(update, { campaigns_status: "failed", campaigns_error: campaignsScopeMsg });
     } else {
       try {
         await syncCampaigns(row);
@@ -500,18 +551,41 @@ async function handleHealth(req: Request, serviceClient: ReturnType<typeof creat
 
 // "Retry failed integrations": admin-only. Re-runs only the steps that are not
 // yet synced for each lead (or a single lead when leadId is given).
-async function handleRetry(req: Request, serviceClient: ReturnType<typeof createClient>, leadId?: string) {
-  if (!(await hasMaintenanceKey(req, serviceClient))) {
-  const authHeader = req.headers.get("Authorization") ?? "";
+// Admin guard: maintenance key, or a signed-in user with the admin role.
+async function requireAdmin(req: Request, serviceClient: ReturnType<typeof createClient>): Promise<Response | null> {
+  if (await hasMaintenanceKey(req, serviceClient)) return null;
   const userClient = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_ANON_KEY"), {
-    global: { headers: { Authorization: authHeader } },
+    global: { headers: { Authorization: req.headers.get("Authorization") ?? "" } },
     auth: { persistSession: false },
   });
   const { data: userData } = await userClient.auth.getUser();
   if (!userData?.user) return jsonResponse({ error: "Sign in required" }, 401);
   const { data: isAdmin } = await serviceClient.rpc("has_role", { _user_id: userData.user.id, _role: "admin" });
-  if (!isAdmin) return jsonResponse({ error: "Admins only" }, 403);
+  return isAdmin ? null : jsonResponse({ error: "Admins only" }, 403);
+}
+
+// Admin scope check: lists the Zoho permissions each sync step needs and which are missing.
+async function handleScopeCheck(req: Request, serviceClient: ReturnType<typeof createClient>) {
+  const denied = await requireAdmin(req, serviceClient);
+  if (denied) return denied;
+  const scopes = await checkZohoScopes(serviceClient);
+  if (!scopes) {
+    return jsonResponse({ ok: false, status: "unknown", message: "Granted scope not recorded (token came from ZOHO_REFRESH_TOKEN). Exchange a new grant code to record it.", required: REQUIRED_SCOPES });
   }
+  const allMissing = [...new Set(Object.values(scopes.missing).flat())];
+  return jsonResponse({
+    ok: allMissing.length === 0,
+    granted: scopes.granted,
+    required: REQUIRED_SCOPES,
+    missingByStep: scopes.missing,
+    missingScopes: allMissing,
+    message: allMissing.length ? `Missing Zoho permissions: ${allMissing.join(", ")}` : "All required Zoho permissions are granted",
+  });
+}
+
+async function handleRetry(req: Request, serviceClient: ReturnType<typeof createClient>, leadId?: string) {
+  const denied = await requireAdmin(req, serviceClient);
+  if (denied) return denied;
 
   let query = serviceClient.from("leads_epf_advisory").select(LEAD_COLUMNS)
     .or("bigin_contact_status.neq.synced,bigin_deal_status.neq.synced,campaigns_status.neq.synced")
@@ -545,6 +619,7 @@ Deno.serve(async (req) => {
   );
 
   if (payload?.action === "health") return handleHealth(req, serviceClient);
+  if (payload?.action === "scope_check") return handleScopeCheck(req, serviceClient);
   if (payload?.action === "retry") {
     const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;
     return handleRetry(req, serviceClient, leadId);
