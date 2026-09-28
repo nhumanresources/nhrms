@@ -19,6 +19,17 @@ const BIGIN_PIPELINE = Deno.env.get("BIGIN_PIPELINE_NAME") ?? "Collaboration";
 const BIGIN_OWNER_EMAIL = Deno.env.get("BIGIN_OWNER_EMAIL") ?? "";
 const LEAD_TAGS = ["EPF Advisory Lead", "Collaboration"];
 
+const REQUIRED_ZOHO_SECRETS = [
+  "ZOHO_CLIENT_ID",
+  "ZOHO_CLIENT_SECRET",
+  "ZOHO_REFRESH_TOKEN",
+  "ZOHO_ACCOUNTS_DOMAIN",
+  "ZOHO_API_DOMAIN",
+];
+
+const missingZohoSecrets = () =>
+  REQUIRED_ZOHO_SECRETS.filter((name) => !Deno.env.get(name));
+
 let cachedZohoToken: ZohoToken | null = null;
 
 const jsonResponse = (body: unknown, status = 200) =>
@@ -140,6 +151,40 @@ async function upsertAccount(organisationName: string) {
   return accountId;
 }
 
+// Tagging is best-effort: tags are created first (Bigin rejects add_tags for
+// unknown tags), and any tag failure is logged without blocking the sync.
+async function ensureTags(module: string) {
+  await biginRequest(`/settings/tags?module=${encodeURIComponent(module)}`, {
+    method: "POST",
+    body: JSON.stringify({ tags: LEAD_TAGS.map((name) => ({ name })) }),
+  });
+}
+
+async function addTagsToRecord(module: string, recordId: string) {
+  try {
+    await ensureTags(module);
+  } catch (error) {
+    console.error(
+      `Bigin tag creation failed for ${module}`,
+      error instanceof Error ? error.message : error,
+    );
+  }
+  try {
+    await biginRequest(
+      `/${module}/${encodeURIComponent(recordId)}/actions/add_tags`,
+      {
+        method: "POST",
+        body: JSON.stringify({ tags: LEAD_TAGS.map((name) => ({ name })) }),
+      },
+    );
+  } catch (error) {
+    console.error(
+      `Bigin add_tags failed for ${module} ${recordId}`,
+      error instanceof Error ? error.message : error,
+    );
+  }
+}
+
 async function syncToBigin(lead: Lead) {
   const { firstName, lastName } = splitName(lead.fullName);
   const timestamp = new Date().toISOString();
@@ -165,13 +210,7 @@ async function syncToBigin(lead: Lead) {
   const contactId = extractRecordId(contactResult);
   if (!contactId) throw new Error("Bigin did not return a Contact record ID");
 
-  await biginRequest(
-    `/Contacts/${encodeURIComponent(contactId)}/actions/add_tags`,
-    {
-      method: "POST",
-      body: JSON.stringify({ tags: LEAD_TAGS.map((name) => ({ name })) }),
-    },
-  );
+  await addTagsToRecord("Contacts", contactId);
 
   let dealId: string | undefined;
   try {
@@ -190,6 +229,7 @@ async function syncToBigin(lead: Lead) {
       body: JSON.stringify({ data: [dealPayload] }),
     });
     dealId = extractRecordId(dealResult);
+    if (dealId) await addTagsToRecord("Pipelines", dealId);
   } catch (error) {
     console.error("Bigin pipeline deal creation failed", error instanceof Error ? error.message : error);
   }
@@ -306,23 +346,35 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: "We could not save your details. Please try again." }, 500);
   }
 
-  try {
-    const { contactId, dealId } = await syncToBigin(lead);
-    await serviceClient.from("leads_epf_advisory").update({
-      crm_sync_status: "synced",
-      crm_record_id: contactId,
-      crm_deal_id: dealId ?? null,
-      crm_last_attempt_at: new Date().toISOString(),
-      crm_sync_error: null,
-    }).eq("id", storedLead.id);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown CRM sync failure";
-    console.error("EPF lead CRM sync failed", message);
+  const missingSecrets = missingZohoSecrets();
+  if (missingSecrets.length > 0) {
+    console.error(
+      `Bigin sync skipped — missing required secrets: ${missingSecrets.join(", ")}`,
+    );
     await serviceClient.from("leads_epf_advisory").update({
       crm_sync_status: "failed",
       crm_last_attempt_at: new Date().toISOString(),
-      crm_sync_error: message.slice(0, 1000),
+      crm_sync_error: `Missing required secrets: ${missingSecrets.join(", ")}`,
     }).eq("id", storedLead.id);
+  } else {
+    try {
+      const { contactId, dealId } = await syncToBigin(lead);
+      await serviceClient.from("leads_epf_advisory").update({
+        crm_sync_status: "synced",
+        crm_record_id: contactId,
+        crm_deal_id: dealId ?? null,
+        crm_last_attempt_at: new Date().toISOString(),
+        crm_sync_error: null,
+      }).eq("id", storedLead.id);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown CRM sync failure";
+      console.error("EPF lead CRM sync failed", message);
+      await serviceClient.from("leads_epf_advisory").update({
+        crm_sync_status: "failed",
+        crm_last_attempt_at: new Date().toISOString(),
+        crm_sync_error: message.slice(0, 1000),
+      }).eq("id", storedLead.id);
+    }
   }
 
   let downloadUrl: string;

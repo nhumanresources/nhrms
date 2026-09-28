@@ -11,4 +11,5 @@
 - [ ] Re-test form end to end with Bigin sync; verify contact, tags and pipeline deal land in Bigin.
 - [ ] Zoho Campaigns half: user provided ZOHO_CAMPAIGNS_API_DOMAIN + list key ("EPF Advisory Leads", ID 377232000000127001) — save secrets, add Campaigns sync to edge function, redeploy, test.
 - [ ] Save all 7 updated Zoho secrets via secure form (user must submit the form).
+- [x] Fix Bigin sync: tags created first via /settings/tags, add_tags non-fatal for Contacts + Pipelines, missing-secrets pre-check with clear logging. Deployed and verified (contact sync OK).
 - [ ] Email delivery of the PDF needs RESEND_API_KEY + EPF_ADVISORY_FROM_EMAIL (pending user).
