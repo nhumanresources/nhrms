@@ -346,23 +346,35 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: "We could not save your details. Please try again." }, 500);
   }
 
-  try {
-    const { contactId, dealId } = await syncToBigin(lead);
-    await serviceClient.from("leads_epf_advisory").update({
-      crm_sync_status: "synced",
-      crm_record_id: contactId,
-      crm_deal_id: dealId ?? null,
-      crm_last_attempt_at: new Date().toISOString(),
-      crm_sync_error: null,
-    }).eq("id", storedLead.id);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown CRM sync failure";
-    console.error("EPF lead CRM sync failed", message);
+  const missingSecrets = missingZohoSecrets();
+  if (missingSecrets.length > 0) {
+    console.error(
+      `Bigin sync skipped — missing required secrets: ${missingSecrets.join(", ")}`,
+    );
     await serviceClient.from("leads_epf_advisory").update({
       crm_sync_status: "failed",
       crm_last_attempt_at: new Date().toISOString(),
-      crm_sync_error: message.slice(0, 1000),
+      crm_sync_error: `Missing required secrets: ${missingSecrets.join(", ")}`,
     }).eq("id", storedLead.id);
+  } else {
+    try {
+      const { contactId, dealId } = await syncToBigin(lead);
+      await serviceClient.from("leads_epf_advisory").update({
+        crm_sync_status: "synced",
+        crm_record_id: contactId,
+        crm_deal_id: dealId ?? null,
+        crm_last_attempt_at: new Date().toISOString(),
+        crm_sync_error: null,
+      }).eq("id", storedLead.id);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown CRM sync failure";
+      console.error("EPF lead CRM sync failed", message);
+      await serviceClient.from("leads_epf_advisory").update({
+        crm_sync_status: "failed",
+        crm_last_attempt_at: new Date().toISOString(),
+        crm_sync_error: message.slice(0, 1000),
+      }).eq("id", storedLead.id);
+    }
   }
 
   let downloadUrl: string;
