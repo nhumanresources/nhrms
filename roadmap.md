@@ -33,4 +33,4 @@
 - [ ] P2: Case studies need real, verifiable proof points (client size, sector, timeline, savings) and named testimonials — BLOCKED: awaiting real data from user.
 - [ ] P2: Dedicated industry landing pages (manufacturing, logistics, retail, hospitality, healthcare) — not started, larger build.
 - [ ] P3: Blog/research relaunch (2026 calendar), nurture journeys, quarterly governance — not started.
-- [ ] Admin page: latest Zoho scope check, missing permissions highlighted, affected sync steps, copy required scopes
+- [x] Admin page: latest Zoho scope check, missing permissions highlighted, affected sync steps, copy required scopes
