@@ -1,0 +1,1 @@
+UPDATE public.ops_keys SET key_hash = '92ab5133d22ac46e875d0737591af4a5123961f90735db175eac5788e9337f7e' WHERE name = 'epf_maintenance'; DELETE FROM public.ops_keys WHERE name = 'maintenance';
