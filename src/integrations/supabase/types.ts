@@ -346,6 +346,24 @@ export type Database = {
         }
         Relationships: []
       }
+      ops_keys: {
+        Row: {
+          created_at: string
+          key_hash: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          key_hash: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          key_hash?: string
+          name?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
