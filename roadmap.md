@@ -13,7 +13,7 @@
 - [ ] Save all 7 updated Zoho secrets via secure form (user must submit the form).
 - [x] Fix Bigin sync: tags created first via /settings/tags, add_tags non-fatal for Contacts + Pipelines, missing-secrets pre-check with clear logging. Deployed and verified (contact sync OK).
 - [x] Email delivery moved to Zoho Campaigns autoresponder (Resend removed).
-- [x] Hardening: Campaigns listsubscribe (non-fatal), Resend removed, per-step status columns, admin "retry" action re-runs only failed steps, long-lived PDF at /files/dde613fcb92ccc2520fa40c3659da951/ (live after publish).
+- [x] Hardening: Campaigns listsubscribe (non-fatal), Resend removed, per-step status columns, admin "retry" action re-runs only failed steps, long-lived PDF at /files/dde613fcb92ccc2520fa40c3659da951/ (live; published Sep 28).
 - [ ] Add ZOHO_CAMPAIGNS_API_DOMAIN + ZOHO_CAMPAIGNS_LIST_KEY secrets (user).
 - [ ] Regenerate Zoho refresh token with Bigin pipelines + Campaigns contact scopes (user).
 - [x] Saved ZOHO_CAMPAIGNS_API_DOMAIN + ZOHO_CAMPAIGNS_LIST_KEY; Campaigns listsubscribe now working for both leads.
