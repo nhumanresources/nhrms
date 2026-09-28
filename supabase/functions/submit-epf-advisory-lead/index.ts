@@ -458,6 +458,10 @@ async function runIntegrations(serviceClient: ReturnType<typeof createClient>, r
   if (row.bigin_deal_status !== "synced") {
     if (!contactId || !accountId) {
       Object.assign(update, { bigin_deal_status: "failed", bigin_deal_error: "Waiting on Bigin contact sync" });
+    } else if (scopeError(scopes, "bigin_deal")) {
+      const msg = scopeError(scopes, "bigin_deal")!;
+      console.error(`Bigin deal creation skipped — ${msg}`);
+      Object.assign(update, { bigin_deal_status: "failed", bigin_deal_error: msg });
     } else {
       try {
         const dealId = await syncBiginDeal(row, accountId, contactId);
@@ -473,10 +477,14 @@ async function runIntegrations(serviceClient: ReturnType<typeof createClient>, r
   if (row.campaigns_status !== "synced") {
     const missingCampaigns = [...missing, "ZOHO_CAMPAIGNS_API_DOMAIN", "ZOHO_CAMPAIGNS_LIST_KEY"]
       .filter((n, i, a) => a.indexOf(n) === i && !Deno.env.get(n));
+    const campaignsScopeMsg = scopeError(scopes, "campaigns");
     if (missingCampaigns.length) {
       const msg = `Missing required secrets: ${missingCampaigns.join(", ")}`;
       console.error(`Zoho Campaigns sync skipped — ${msg}`);
       Object.assign(update, { campaigns_status: "failed", campaigns_error: msg });
+    } else if (campaignsScopeMsg) {
+      console.error(`Zoho Campaigns sync skipped — ${campaignsScopeMsg}`);
+      Object.assign(update, { campaigns_status: "failed", campaigns_error: campaignsScopeMsg });
     } else {
       try {
         await syncCampaigns(row);
