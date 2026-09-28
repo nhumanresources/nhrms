@@ -364,15 +364,15 @@ async function syncCampaigns(row: LeadRow, retry = true): Promise<void> {
     "Phone": normalizePhone(row.phone),
   });
   const params = new URLSearchParams({ resfmt: "JSON", listkey: listKey, contactinfo, source: "EPF Advisory Landing Page" });
-  const response = await fetch(`${domain}/api/v1.1/json/listsubscribe?${params}`, {
+  const response = await zohoFetch(`${domain}/api/v1.1/json/listsubscribe?${params}`, {
     method: "POST",
     headers: { Authorization: `Zoho-oauthtoken ${token.value}` },
-  });
-  if (response.status === 401 && retry) {
-    cachedZohoToken = null;
+  }, "Campaigns listsubscribe");
+  if ((response.status === 401 || /invalid.*token|INVALID_OAUTHTOKEN/i.test(response.body)) && retry) {
+    invalidateZohoToken();
     return syncCampaigns(row, false);
   }
-  const body = await response.text();
+  const body = response.body;
   let parsed: any = {};
   try { parsed = JSON.parse(body); } catch { /* non-JSON */ }
   if (!response.ok || parsed?.status === "error") {
