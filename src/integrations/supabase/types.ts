@@ -387,6 +387,9 @@ export type Database = {
       }
       zoho_oauth_state: {
         Row: {
+          access_api_domain: string | null
+          access_expires_at: string | null
+          access_token: string | null
           api_domain: string | null
           grant_code_hash: string
           id: string
@@ -395,6 +398,9 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          access_api_domain?: string | null
+          access_expires_at?: string | null
+          access_token?: string | null
           api_domain?: string | null
           grant_code_hash: string
           id?: string
@@ -403,6 +409,9 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          access_api_domain?: string | null
+          access_expires_at?: string | null
+          access_token?: string | null
           api_domain?: string | null
           grant_code_hash?: string
           id?: string
