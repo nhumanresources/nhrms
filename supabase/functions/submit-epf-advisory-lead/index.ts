@@ -19,6 +19,17 @@ const BIGIN_PIPELINE = Deno.env.get("BIGIN_PIPELINE_NAME") ?? "Collaboration";
 const BIGIN_OWNER_EMAIL = Deno.env.get("BIGIN_OWNER_EMAIL") ?? "";
 const LEAD_TAGS = ["EPF Advisory Lead", "Collaboration"];
 
+const REQUIRED_ZOHO_SECRETS = [
+  "ZOHO_CLIENT_ID",
+  "ZOHO_CLIENT_SECRET",
+  "ZOHO_REFRESH_TOKEN",
+  "ZOHO_ACCOUNTS_DOMAIN",
+  "ZOHO_API_DOMAIN",
+];
+
+const missingZohoSecrets = () =>
+  REQUIRED_ZOHO_SECRETS.filter((name) => !Deno.env.get(name));
+
 let cachedZohoToken: ZohoToken | null = null;
 
 const jsonResponse = (body: unknown, status = 200) =>
