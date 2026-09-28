@@ -243,14 +243,16 @@ async function findPipelineStage(): Promise<{ layoutId: string; subPipeline: str
     const names = (layouts?.layouts ?? []).map((l: any) => l.display_label ?? l.name).join(", ");
     throw new Error(`Bigin pipeline "${BIGIN_LAYOUT_NAME}" not found (available: ${names || "none"})`);
   }
-  const result = await biginRequest(`/settings/pipeline?layout_id=${layout.id}`, { method: "GET" });
-  const subs = result?.pipeline ?? [];
+  // Layout detail holds the Sub_Pipeline picklist; each value "maps" to its own Stage list (in order).
+  const detail = await biginRequest(`/settings/layouts/${layout.id}?module=Pipelines`, { method: "GET" });
+  const fields = (detail?.layouts?.[0]?.sections ?? []).flatMap((s: any) => s.fields ?? []);
+  const subs = fields.find((f: any) => f.api_name === "Sub_Pipeline")?.pick_list_values ?? [];
   const sub = subs.find((p: any) => lower(p.display_value) === lower(BIGIN_SUB_PIPELINE));
   if (!sub) {
     throw new Error(`Sub-pipeline "${BIGIN_SUB_PIPELINE}" not found (available: ${subs.map((p: any) => p.display_value).join(", ") || "none"})`);
   }
-  const stages = [...(sub.maps ?? [])].sort((a: any, b: any) => (a.sequence_number ?? 0) - (b.sequence_number ?? 0));
-  const stage = stages[0]?.display_value;
+  const stages = sub.maps?.find((m: any) => m.api_name === "Stage")?.pick_list_values ?? [];
+  const stage = stages[0]?.actual_value ?? stages[0]?.display_value;
   if (!stage) throw new Error(`No stages found in sub-pipeline "${BIGIN_SUB_PIPELINE}"`);
   return { layoutId: String(layout.id), subPipeline: sub.display_value, stage };
 }
