@@ -25,7 +25,7 @@
 ## Website audit (Sep 28, 2026)
 - [x] P1: Reconcile statistics — canonical 1,000+ Leaders Placed Globally, 423 Clients Across 14 Countries, 16+ Years, 423+ Enterprise Engagements.
 - [x] P1: Remove stale 2025 internship dates (June 2025 -> June 8, 2026; "Applications opening: Sept 2025" -> rolling 2026 intake).
-- [x] P1: Navigation audit — all internal routes resolve; added footer "Free Tools & Resources" group linking compliance audit, readiness check, compliance calendar, EPF advisory, Maharashtra wages, HR baseline test.
+- [x] P1: Navigation audit — all internal routes resolve; added footer "Free Tools & Resources" group linking compliance audit, readiness check, compliance calendar, EPF advisory, Maharashtra wages.
 - [x] P1: Legal review — privacy/terms/cookies dated 28 Sep 2026, DPDP Act 2023 referenced, consent withdrawal route added.
 - [x] P1: Removed unverifiable "Zero penalties" compliance claim.
 - [x] P2: Academy integrated into lead gen — free compliance audit CTAs on /academy and /academy/resources.
