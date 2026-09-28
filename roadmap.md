@@ -16,3 +16,6 @@
 - [x] Hardening: Campaigns listsubscribe (non-fatal), Resend removed, per-step status columns, admin "retry" action re-runs only failed steps, long-lived PDF at /files/dde613fcb92ccc2520fa40c3659da951/ (live after publish).
 - [ ] Add ZOHO_CAMPAIGNS_API_DOMAIN + ZOHO_CAMPAIGNS_LIST_KEY secrets (user).
 - [ ] Regenerate Zoho refresh token with Bigin pipelines + Campaigns contact scopes (user).
+- [x] Saved ZOHO_CAMPAIGNS_API_DOMAIN + ZOHO_CAMPAIGNS_LIST_KEY; Campaigns listsubscribe now working for both leads.
+- [x] One-time grant exchange: ZOHO_GRANT_CODE -> refresh token stored server-side (zoho_oauth_state), used in place of the old secret.
+- [ ] BLOCKER: current grant scope lacks ZohoBigin.modules.ALL — Bigin contact/deal sync fails with 401. User must regenerate the Self Client grant code with ZohoBigin.modules.ALL + ZohoCampaigns.contact.ALL (or CREATE/UPDATE/READ) and share it.
