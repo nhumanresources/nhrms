@@ -102,10 +102,61 @@ async function getRefreshToken(): Promise<string> {
   return cachedRefreshToken!;
 }
 
-async function getZohoToken(forceRefresh = false): Promise<ZohoToken> {
-  if (!forceRefresh && cachedZohoToken && cachedZohoToken.expiresAt > Date.now() + 120_000) {
-    return cachedZohoToken;
+// ---- Zoho access-token cache -------------------------------------------------
+// Zoho caps how often a refresh token can mint access tokens, so one access
+// token is reused for ~55 minutes across ALL Bigin + Campaigns calls. It is
+// cached in memory AND persisted in zoho_oauth_state so cold starts / other
+// instances reuse it too. Refreshed only when expired or after a 401.
+const ACCESS_TOKEN_TTL_MS = 55 * 60 * 1000;
+let tokenRefreshInFlight: Promise<ZohoToken> | null = null;
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const isTooManyRequests = (status: number, body: string) =>
+  status === 429 || /too many requests|TOO_MANY_REQUESTS|rate limit/i.test(body);
+
+// Exponential backoff (1s, 2s, 4s, 8s + jitter) when Zoho says "too many requests".
+async function zohoFetch(url: string, init: RequestInit, label: string): Promise<{ status: number; ok: boolean; body: string }> {
+  const maxAttempts = 5;
+  for (let attempt = 1; ; attempt++) {
+    const response = await fetch(url, init);
+    const body = await response.text();
+    if (!isTooManyRequests(response.status, body) || attempt >= maxAttempts) {
+      return { status: response.status, ok: response.ok, body };
+    }
+    const wait = 1000 * 2 ** (attempt - 1) + Math.floor(Math.random() * 400);
+    console.warn(`${label}: Zoho rate limit, retry ${attempt}/${maxAttempts - 1} in ${wait}ms`);
+    await sleep(wait);
   }
+}
+
+function serviceDb() {
+  return createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"), {
+    auth: { persistSession: false },
+  });
+}
+
+async function getZohoToken(forceRefresh = false): Promise<ZohoToken> {
+  const fresh = (t: ZohoToken | null) => !!t && t.expiresAt > Date.now() + 60_000;
+  if (!forceRefresh && fresh(cachedZohoToken)) return cachedZohoToken!;
+
+  if (!forceRefresh) {
+    const { data } = await serviceDb().from("zoho_oauth_state")
+      .select("access_token, access_api_domain, access_expires_at").eq("id", "default").maybeSingle();
+    const stored = data?.access_token && data.access_expires_at
+      ? { value: data.access_token, apiDomain: data.access_api_domain || requireEnv("ZOHO_API_DOMAIN").replace(/\/$/, ""),
+          expiresAt: new Date(data.access_expires_at).getTime() }
+      : null;
+    if (fresh(stored)) { cachedZohoToken = stored; return stored!; }
+  }
+
+  // Single-flight: concurrent callers share one refresh.
+  if (!tokenRefreshInFlight) {
+    tokenRefreshInFlight = refreshZohoToken().finally(() => { tokenRefreshInFlight = null; });
+  }
+  return tokenRefreshInFlight;
+}
+
+async function refreshZohoToken(): Promise<ZohoToken> {
   const accountsDomain = requireEnv("ZOHO_ACCOUNTS_DOMAIN").replace(/\/$/, "");
   const configuredApiDomain = requireEnv("ZOHO_API_DOMAIN").replace(/\/$/, "");
   const params = new URLSearchParams({
@@ -114,39 +165,48 @@ async function getZohoToken(forceRefresh = false): Promise<ZohoToken> {
     client_secret: requireEnv("ZOHO_CLIENT_SECRET"),
     refresh_token: await getRefreshToken(),
   });
-  const response = await fetch(`${accountsDomain}/oauth/v2/token`, {
+  const { ok, status, body } = await zohoFetch(`${accountsDomain}/oauth/v2/token`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: params,
-  });
-  const body = await response.text();
-  if (!response.ok) throw new Error(safeProviderError(response.status, body));
-  const parsed = JSON.parse(body) as { access_token?: string; api_domain?: string; expires_in?: number };
-  if (!parsed.access_token) throw new Error("Zoho token response did not include an access token");
+  }, "Zoho token refresh");
+  if (!ok) throw new Error(safeProviderError(status, body));
+  const parsed = JSON.parse(body) as { access_token?: string; api_domain?: string; expires_in?: number; error?: string };
+  if (!parsed.access_token) throw new Error(`Zoho token response did not include an access token${parsed.error ? ` (${parsed.error})` : ""}`);
+  const ttl = Math.min(ACCESS_TOKEN_TTL_MS, (parsed.expires_in ?? 3600) * 1000 - 5 * 60 * 1000);
   cachedZohoToken = {
     value: parsed.access_token,
     apiDomain: (parsed.api_domain || configuredApiDomain).replace(/\/$/, ""),
-    expiresAt: Date.now() + (parsed.expires_in ?? 3600) * 1000,
+    expiresAt: Date.now() + ttl,
   };
+  await serviceDb().from("zoho_oauth_state").update({
+    access_token: cachedZohoToken.value,
+    access_api_domain: cachedZohoToken.apiDomain,
+    access_expires_at: new Date(cachedZohoToken.expiresAt).toISOString(),
+  }).eq("id", "default");
+  console.log("Zoho access token refreshed; cached for", Math.round(ttl / 60000), "min");
   return cachedZohoToken;
+}
+
+function invalidateZohoToken() {
+  cachedZohoToken = null;
 }
 
 async function biginRequest(path: string, init: RequestInit, retryOnUnauthorized = true): Promise<any> {
   const token = await getZohoToken(!retryOnUnauthorized);
-  const response = await fetch(`${token.apiDomain}/bigin/v2${path}`, {
+  const { ok, status, body } = await zohoFetch(`${token.apiDomain}/bigin/v2${path}`, {
     ...init,
     headers: {
       Authorization: `Zoho-oauthtoken ${token.value}`,
       "Content-Type": "application/json",
       ...(init.headers ?? {}),
     },
-  });
-  if (response.status === 401 && retryOnUnauthorized) {
-    cachedZohoToken = null;
+  }, `Bigin ${path}`);
+  if (status === 401 && retryOnUnauthorized) {
+    invalidateZohoToken();
     return biginRequest(path, init, false);
   }
-  const body = await response.text();
-  if (!response.ok) throw new Error(safeProviderError(response.status, body));
+  if (!ok) throw new Error(safeProviderError(status, body));
   return body ? JSON.parse(body) : {};
 }
 
