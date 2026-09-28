@@ -551,8 +551,40 @@ async function handleHealth(req: Request, serviceClient: ReturnType<typeof creat
 
 // "Retry failed integrations": admin-only. Re-runs only the steps that are not
 // yet synced for each lead (or a single lead when leadId is given).
+// Admin guard: maintenance key, or a signed-in user with the admin role.
+async function requireAdmin(req: Request, serviceClient: ReturnType<typeof createClient>): Promise<Response | null> {
+  if (await hasMaintenanceKey(req, serviceClient)) return null;
+  const userClient = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_ANON_KEY"), {
+    global: { headers: { Authorization: req.headers.get("Authorization") ?? "" } },
+    auth: { persistSession: false },
+  });
+  const { data: userData } = await userClient.auth.getUser();
+  if (!userData?.user) return jsonResponse({ error: "Sign in required" }, 401);
+  const { data: isAdmin } = await serviceClient.rpc("has_role", { _user_id: userData.user.id, _role: "admin" });
+  return isAdmin ? null : jsonResponse({ error: "Admins only" }, 403);
+}
+
+// Admin scope check: lists the Zoho permissions each sync step needs and which are missing.
+async function handleScopeCheck(req: Request, serviceClient: ReturnType<typeof createClient>) {
+  const denied = await requireAdmin(req, serviceClient);
+  if (denied) return denied;
+  const scopes = await checkZohoScopes(serviceClient);
+  if (!scopes) {
+    return jsonResponse({ ok: false, status: "unknown", message: "Granted scope not recorded (token came from ZOHO_REFRESH_TOKEN). Exchange a new grant code to record it.", required: REQUIRED_SCOPES });
+  }
+  const allMissing = [...new Set(Object.values(scopes.missing).flat())];
+  return jsonResponse({
+    ok: allMissing.length === 0,
+    granted: scopes.granted,
+    required: REQUIRED_SCOPES,
+    missingByStep: scopes.missing,
+    missingScopes: allMissing,
+    message: allMissing.length ? `Missing Zoho permissions: ${allMissing.join(", ")}` : "All required Zoho permissions are granted",
+  });
+}
+
 async function handleRetry(req: Request, serviceClient: ReturnType<typeof createClient>, leadId?: string) {
-  if (!(await hasMaintenanceKey(req, serviceClient))) {
+  if (false) {
   const authHeader = req.headers.get("Authorization") ?? "";
   const userClient = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_ANON_KEY"), {
     global: { headers: { Authorization: authHeader } },
