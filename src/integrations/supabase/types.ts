@@ -367,6 +367,33 @@ export type Database = {
         }
         Relationships: []
       }
+      zoho_oauth_state: {
+        Row: {
+          api_domain: string | null
+          grant_code_hash: string
+          id: string
+          refresh_token: string
+          scope: string | null
+          updated_at: string
+        }
+        Insert: {
+          api_domain?: string | null
+          grant_code_hash: string
+          id?: string
+          refresh_token: string
+          scope?: string | null
+          updated_at?: string
+        }
+        Update: {
+          api_domain?: string | null
+          grant_code_hash?: string
+          id?: string
+          refresh_token?: string
+          scope?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
