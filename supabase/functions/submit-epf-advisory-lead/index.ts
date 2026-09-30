@@ -405,6 +405,7 @@ const REQUIRED_SCOPES: Record<string, string[]> = {
   bigin_contact: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL"],
   bigin_deal: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL", "ZohoBigin.users.READ"],
   campaigns: ["ZohoCampaigns.contact.CREATE"],
+  campaign_send: ["ZohoCampaigns.campaigns.CREATE"],
 };
 
 function scopeSatisfied(granted: string[], required: string) {
