@@ -397,6 +397,66 @@ async function syncCampaigns(row: LeadRow, retry = true): Promise<void> {
   console.log("Zoho Campaigns listsubscribe OK", parsed?.message ?? parsed?.code ?? "");
 }
 
+// ---- One-off EPF email campaign (Zoho Campaigns) ------------------------------
+// Creates a regular campaign against the "EPF Advisory Leads" list and sends it.
+// Content is hosted publicly (unguessable path) and passed via content_url.
+const EPF_CAMPAIGN = {
+  name: "EPF Wage Ceiling Revision — Employer Briefing",
+  subject: "EPF wage ceiling: ₹15,000 → ₹25,000 from 17 Sept 2026 — your employer briefing",
+  fromEmail: Deno.env.get("EPF_CAMPAIGN_FROM_EMAIL") ?? "info@nhrms.com",
+  fromName: "nHRMS · An RYT Group Firm",
+  contentUrl: "https://nhrms.com/files/7f3a9c1e8b2d4f60a5c7e9d1b3f5a802/epf-employer-briefing-email.html",
+};
+
+async function campaignsApi(endpoint: string, params: URLSearchParams, retry = true): Promise<any> {
+  const domain = requireEnv("ZOHO_CAMPAIGNS_API_DOMAIN").replace(/\/$/, "");
+  const token = await getZohoToken(!retry);
+  params.set("resfmt", "JSON");
+  const response = await zohoFetch(`${domain}/api/v1.1/${endpoint}?${params}`, {
+    method: "POST",
+    headers: { Authorization: `Zoho-oauthtoken ${token.value}` },
+  }, `Campaigns ${endpoint}`);
+  if ((response.status === 401 || /invalid.*token|INVALID_OAUTHTOKEN/i.test(response.body)) && retry) {
+    invalidateZohoToken();
+    return campaignsApi(endpoint, params, false);
+  }
+  let parsed: any = {};
+  try { parsed = JSON.parse(response.body); } catch { /* non-JSON */ }
+  if (!response.ok || parsed?.status === "error") {
+    throw new Error(`Zoho Campaigns ${endpoint} failed (${response.status}): ${response.body.slice(0, 600)}`);
+  }
+  return parsed;
+}
+
+// Admin-only (maintenance key). dryRun creates the campaign without sending;
+// with confirm:true the campaign is created AND sent to the whole list.
+async function handleSendCampaign(req: Request, serviceClient: ReturnType<typeof createClient>, payload: any) {
+  if (!(await hasMaintenanceKey(req, serviceClient))) return jsonResponse({ error: "Forbidden" }, 403);
+  const scopes = await checkZohoScopes(serviceClient).catch(() => null);
+  const scopeMsg = scopeError(scopes, "campaign_send");
+  if (scopeMsg) return jsonResponse({ ok: false, error: scopeMsg }, 400);
+
+  const listKey = requireEnv("ZOHO_CAMPAIGNS_LIST_KEY");
+  const created = await campaignsApi("createCampaign", new URLSearchParams({
+    campaignname: EPF_CAMPAIGN.name,
+    from_email: EPF_CAMPAIGN.fromEmail,
+    from_name: EPF_CAMPAIGN.fromName,
+    subject: EPF_CAMPAIGN.subject,
+    list_details: JSON.stringify({ listkey: [listKey] }),
+    content_url: EPF_CAMPAIGN.contentUrl,
+  }));
+  const campaignKey = created?.campaignkey ?? created?.campaign_key ?? created?.campaigndetails?.campaignkey;
+  if (!campaignKey) throw new Error(`Campaign created but no campaign key returned: ${JSON.stringify(created).slice(0, 400)}`);
+  console.log("EPF campaign created", campaignKey);
+
+  if (payload?.confirm !== true) {
+    return jsonResponse({ ok: true, sent: false, campaignKey, message: "Campaign created (draft). Re-run with confirm:true to send to the list.", campaign: EPF_CAMPAIGN });
+  }
+  const sent = await campaignsApi("sendcampaign", new URLSearchParams({ campaignkey: String(campaignKey) }));
+  console.log("EPF campaign sent", campaignKey);
+  return jsonResponse({ ok: true, sent: true, campaignKey, result: sent });
+}
+
 // ---- Zoho scope pre-check -----------------------------------------------------
 // Each integration step needs specific OAuth scopes. The granted scope is read
 // from zoho_oauth_state (recorded at grant-code exchange). A required scope is
@@ -405,6 +465,7 @@ const REQUIRED_SCOPES: Record<string, string[]> = {
   bigin_contact: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL"],
   bigin_deal: ["ZohoBigin.modules.ALL", "ZohoBigin.settings.ALL", "ZohoBigin.users.READ"],
   campaigns: ["ZohoCampaigns.contact.CREATE"],
+  campaign_send: ["ZohoCampaigns.campaigns.CREATE"],
 };
 
 function scopeSatisfied(granted: string[], required: string) {
@@ -640,6 +701,7 @@ Deno.serve(async (req) => {
     try { return jsonResponse(await biginRequest(payload.path, { method: "GET" })); } catch (e) { return jsonResponse({ error: errMsg(e) }); }
   }
   if (payload?.action === "scope_check") return handleScopeCheck(req, serviceClient);
+  if (payload?.action === "send_campaign") return handleSendCampaign(req, serviceClient, payload);
   if (payload?.action === "retry") {
     const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;
     return handleRetry(req, serviceClient, leadId);
