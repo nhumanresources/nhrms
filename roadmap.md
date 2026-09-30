@@ -34,3 +34,4 @@
 - [ ] P2: Dedicated industry landing pages (manufacturing, logistics, retail, hospitality, healthcare) — not started, larger build.
 - [ ] P3: Blog/research relaunch (2026 calendar), nurture journeys, quarterly governance — not started.
 - [x] Admin page: latest Zoho scope check, missing permissions highlighted, affected sync steps, copy required scopes
+- [ ] One-off EPF email campaign to "EPF Advisory Leads" list: email HTML hosted at /files/7f3a9c1e8b2d4f60a5c7e9d1b3f5a802/epf-employer-briefing-email.html; send_campaign action added to edge function (maintenance-key gated, dry-run default, confirm:true sends). BLOCKED: token needs ZohoCampaigns.campaigns.CREATE scope — user must regenerate grant code; also needs publish so Zoho can fetch content_url from nhrms.com.
