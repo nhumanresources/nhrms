@@ -701,6 +701,7 @@ Deno.serve(async (req) => {
     try { return jsonResponse(await biginRequest(payload.path, { method: "GET" })); } catch (e) { return jsonResponse({ error: errMsg(e) }); }
   }
   if (payload?.action === "scope_check") return handleScopeCheck(req, serviceClient);
+  if (payload?.action === "send_campaign") return handleSendCampaign(req, serviceClient, payload);
   if (payload?.action === "retry") {
     const leadId = typeof payload.leadId === "string" ? payload.leadId : undefined;
     return handleRetry(req, serviceClient, leadId);
