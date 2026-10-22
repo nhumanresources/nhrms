@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.5"
+    PostgrestVersion: "13.0.5"
   }
   public: {
     Tables: {
@@ -116,6 +116,75 @@ export type Database = {
           strength?: string | null
           user_agent?: string | null
           why_programme?: string | null
+        }
+        Relationships: []
+      }
+      connect_leads: {
+        Row: {
+          bigin_contact_id: string | null
+          bigin_deal_id: string | null
+          bigin_sync_error: string | null
+          company: string
+          company_size: string | null
+          consent: boolean
+          created_at: string
+          designation: string | null
+          email: string
+          full_name: string
+          id: string
+          ip_address: string | null
+          message: string | null
+          mobile: string
+          referrer: string | null
+          service: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          bigin_contact_id?: string | null
+          bigin_deal_id?: string | null
+          bigin_sync_error?: string | null
+          company: string
+          company_size?: string | null
+          consent?: boolean
+          created_at?: string
+          designation?: string | null
+          email: string
+          full_name: string
+          id?: string
+          ip_address?: string | null
+          message?: string | null
+          mobile: string
+          referrer?: string | null
+          service: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          bigin_contact_id?: string | null
+          bigin_deal_id?: string | null
+          bigin_sync_error?: string | null
+          company?: string
+          company_size?: string | null
+          consent?: boolean
+          created_at?: string
+          designation?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          ip_address?: string | null
+          message?: string | null
+          mobile?: string
+          referrer?: string | null
+          service?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Relationships: []
       }
